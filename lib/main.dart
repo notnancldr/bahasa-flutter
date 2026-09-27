@@ -1,6 +1,6 @@
 import 'package:bahasa/core/theme/app_theme.dart';
+import 'package:bahasa/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'core/router/app_router.dart';
 
@@ -58,7 +58,11 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp.router(
-      title: 'My App',
+      title: AppLocalizations.of(context)?.appTitle,
+      localizationsDelegates: [
+        AppLocalizations.delegate,
+      ],
+      supportedLocales: AppLocalizations.supportedLocales,
       debugShowCheckedModeBanner: false,
       theme: AppTheme.light,
       darkTheme: AppTheme.light,

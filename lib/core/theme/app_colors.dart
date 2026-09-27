@@ -19,7 +19,7 @@ abstract class AppColors {
 
   // Neutrals — light theme
   static const lightBackground = Color(0xFFFFFFFF);
-  static const lightSurface = Color(0xFFFAFAF8);
+  static const lightSurface = Color(0xFFF4F4F2);
   static const lightOnSurface = Color(0xFF111827);
   static const lightOutline = Color(0xFFE5E7EB);
 

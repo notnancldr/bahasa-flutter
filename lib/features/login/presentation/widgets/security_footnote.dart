@@ -1,3 +1,4 @@
+import 'package:bahasa/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 
 class SecurityFootnote extends StatelessWidget {
@@ -5,6 +6,8 @@ class SecurityFootnote extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l = AppLocalizations.of(context)!;
+
     return Opacity(
       opacity: 0.5,
       child: Column(
@@ -14,7 +17,7 @@ class SecurityFootnote extends StatelessWidget {
             size: 18,
           ),
           Text(
-            "Profil Anda tersimpan aman di perangkat ini tanpa kata sandi",
+            l.securityFootnote,
             textAlign: TextAlign.center,
             style: TextStyle(
               fontSize: 12,

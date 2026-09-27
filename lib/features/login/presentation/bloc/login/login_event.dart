@@ -15,9 +15,11 @@ class InputUsername extends CreateProfileEvent {
 }
 
 class SelectDefaultLanguage extends CreateProfileEvent {
-  final String language;
+  final String? language;
 
   SelectDefaultLanguage({
     required this.language,
   });
 }
+
+class SaveProfile extends CreateProfileEvent {}

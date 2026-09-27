@@ -1,3 +1,4 @@
+import 'package:bahasa/features/login/presentation/pages/login_page.dart';
 import 'package:bahasa/features/login/presentation/pages/welcome_page.dart';
 import 'package:go_router/go_router.dart';
 import 'app_routes.dart';
@@ -15,8 +16,13 @@ class AppRouter {
     routes: [
       GoRoute(
         path: AppRoutes.login,
-        name: 'login',
+        name: "login",
         builder: (context, state) => const WelcomePage(),
+      ),
+      GoRoute(
+        path: AppRoutes.loginNew,
+        name: "loginNew",
+        builder: (context, state) => const LoginPage(),
       ),
 
       // Shell route: persistent scaffold (e.g. bottom nav) for main app

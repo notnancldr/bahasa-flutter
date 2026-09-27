@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class OptionCard extends StatelessWidget {
   final Color bgColor;
@@ -24,70 +25,82 @@ class OptionCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: double.infinity,
-      padding: EdgeInsets.symmetric(horizontal: 24, vertical: 8),
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(16),
-        border: Border.all(
-          color: Colors.grey.withAlpha(40),
-          width: 3,
-        ),
-        color: Colors.grey.withAlpha(20),
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Container(
-            padding: EdgeInsets.all(10),
-            margin: EdgeInsets.symmetric(vertical: 16),
+    return ClipRRect(
+      borderRadius: BorderRadius.circular(16),
+      child: Material(
+        color: Colors.transparent,
+        child: InkWell(
+          onTap: () {
+            context.push(route);
+          },
+          child: Container(
+            width: double.infinity,
+            padding: EdgeInsets.symmetric(horizontal: 24, vertical: 8),
             decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(999),
-              color: bgColor,
+              borderRadius: BorderRadius.circular(16),
+              border: Border.all(
+                color: Colors.grey.withAlpha(40),
+                width: 3,
+              ),
+              color: Colors.grey.withAlpha(20),
             ),
-            child: Icon(
-              icon,
-              color: iconColor,
-              size: 24,
-            ),
-          ),
-          SizedBox(height: 4),
-          Text(
-            title,
-            textAlign: TextAlign.center,
-            style: TextStyle(
-              fontWeight: FontWeight.w700,
-            ),
-          ),
-          Text(
-            description,
-            textAlign: TextAlign.center,
-            style: TextStyle(
-              color: Colors.grey.shade500,
-            ),
-          ),
-
-          Padding(
-            padding: EdgeInsets.symmetric(vertical: 16),
-            child: Row(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
-                  nextText,
-                  style: TextStyle(
-                    color: Theme.of(context).primaryColor,
-                    fontWeight: FontWeight.bold,
+                Container(
+                  padding: EdgeInsets.all(10),
+                  margin: EdgeInsets.symmetric(vertical: 16),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(999),
+                    color: bgColor,
+                  ),
+                  child: Icon(
+                    icon,
+                    weight: 700,
+                    color: iconColor,
+                    size: 24,
                   ),
                 ),
-                SizedBox(width: 8),
-                Icon(
-                  Icons.arrow_forward,
-                  color: Theme.of(context).primaryColor,
-                  size: 16,
+                SizedBox(height: 4),
+                Text(
+                  title,
+                  textAlign: TextAlign.left,
+                  style: TextStyle(
+                    fontWeight: FontWeight.w700,
+                  ),
+                ),
+                Text(
+                  description,
+                  textAlign: TextAlign.left,
+                  style: TextStyle(
+                    color: Colors.grey.shade500,
+                  ),
+                ),
+
+                Padding(
+                  padding: EdgeInsets.symmetric(vertical: 16),
+                  child: Row(
+                    children: [
+                      Text(
+                        nextText,
+                        style: TextStyle(
+                          color: Theme.of(context).primaryColor,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      SizedBox(width: 8),
+                      Icon(
+                        Icons.arrow_forward,
+                        color: Theme.of(context).primaryColor,
+                        size: 16,
+                      ),
+                    ],
+                  ),
                 ),
               ],
             ),
           ),
-        ],
+        ),
       ),
     );
   }
