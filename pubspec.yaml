@@ -24,6 +24,7 @@ dependencies:
   network_info_plus: ^8.2.1
   path_provider: ^2.1.6
   shelf_multipart: ^2.0.1
+  material_symbols_icons: ^4.2960.0
 
 dev_dependencies:
   flutter_test:
