@@ -1,0 +1,65 @@
+{
+    "@@locale": "id",
+    "appTitle": "Basa",
+    "@appTitle": {},
+
+    "welcome_startUsing": "Mulai Gunakan",
+    "@welcome_startUsing": {},
+    "welcome_description": "Pilih cara Anda memulai pembelajaran hari ini.",
+    "@welcome_description": {},
+    "welcome_newProfile_title": "Buat Profil Baru",
+    "@welcome_newProfile_title": {},
+    "welcome_newProfile_description": "Mulai dari awal dengan profil baru.",
+    "@welcome_newProfile_description": {},
+    "welcome_sync_title": "Sinkronisasi Profil",
+    "@welcome_sync_title": {},
+    "welcome_sync_description": "Pindahkan profil dari perangkat lama.",
+    "@welcome_sync_description": {},
+
+    "welcome_nextButton": "Mulai Sekarang",
+    "@welcome_nextButton": {},
+
+    "newProfile_title": "Registrasi Profil",
+    "@newProfile_title": {},
+    
+    "newProfile_step_username_title": "Masukkan Username",
+    "@newProfile_step_username_title": {},
+    "newProfile_step_username_description": "Nama ini akan digunakan sebagai tampilan akun belajar Anda di perangkat ini",
+    "@newProfile_step_username_description": {},
+    "newProfile_step_username_fieldName": "Username",
+    "@newProfile_step_username_fieldName": {},
+    "newProfile_step_username_fieldPlaceholder": "Masukkan username...",
+    "@newProfile_step_username_fieldPlaceholder": {},
+    "newProfile_step_username_fieldHint": "Dapat menggunakan huruf, angka, atau tanda titik.",
+    "@newProfile_step_username_fieldHint": {},
+
+    "newProfile_step_language_title": "Pilih Bahasa Utama",
+    "@newProfile_step_language_title": {},
+    "newProfile_step_language_description": "Bahasa ini akan digunakan sebagai bahasa utama navigasi dan pengantar latihan.",
+    "@newProfile_step_language_description": {},
+    "newProfile_step_language_search": "Cari bahasa...",
+    "@newProfile_step_language_search": {},
+
+    "newProfile_nextButton": "Lanjutkan",
+    "@newProfile_nextButton": {},
+    "newProfile_saveButton": "Simpan",
+    "@newProfile_saveButton": {},
+
+    "securityFootnote": "Profil Anda tersimpan aman di perangkat ini tanpa kata sandi",
+    "@securityFootnote": {},
+    
+    "step": "{first} of {second}",
+    "@step": {
+        "placeholders": {
+            "first": {
+                "type": "int"
+            },
+            "second": {
+                "type": "int"
+            }
+        }
+    },
+
+    "end_of_translation": "",
+    "@end_of_translation": {}
+}
