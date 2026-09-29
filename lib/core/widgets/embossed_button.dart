@@ -25,27 +25,30 @@ class EmbossedButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final colorScheme = Theme.of(context).colorScheme;
+    final theme = Theme.of(context);
+
+    final c = theme.colorScheme;
+
     final borderRadius = BorderRadius.circular(999);
     final isOutlined = type == EmbossedButtonType.outlined
       || type == EmbossedButtonType.outlineMuted;
     final isOutlineMuted = type == EmbossedButtonType.outlineMuted;
 
     final Color backgroundColor = !_isEnabled
-        ? colorScheme.onSurface.withAlpha(31)
+        ? c.onSurface.withAlpha(31)
         : isOutlined
             ? Colors.transparent
-            : colorScheme.primaryContainer;
+            : c.primaryContainer;
 
     final Color foregroundColor = !_isEnabled
-        ? colorScheme.onSurface.withAlpha(97)
+        ? c.onSurface.withAlpha(97)
         : isOutlined
-            ? colorScheme.onPrimaryContainer
-            : colorScheme.onPrimaryContainer;
+            ? c.onPrimaryContainer
+            : c.onPrimaryContainer;
 
     final Color shadowColor = !_isEnabled || isOutlined
         ? Colors.transparent
-        : colorScheme.primary;
+        : c.primaryFixedDim;
 
     return Container(
       decoration: BoxDecoration(
@@ -53,10 +56,10 @@ class EmbossedButton extends StatelessWidget {
         border: isOutlined
             ? Border.all(
                 color: isOutlineMuted
-                    ? colorScheme.outline
+                    ? c.outline
                     : _isEnabled
-                        ? colorScheme.primary
-                        : colorScheme.onSurface.withAlpha(97),
+                        ? c.primary
+                        : c.onSurface.withAlpha(97),
                 width: 2,
               )
             : null,

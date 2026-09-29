@@ -15,7 +15,11 @@ class LoginHeader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+
     final l = AppLocalizations.of(context)!;
+    final c = theme.colorScheme;
+    final t = theme.textTheme;
 
     return Column(
       children: [
@@ -36,9 +40,9 @@ class LoginHeader extends StatelessWidget {
                     padding: EdgeInsets.all(8),
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(999),
-                      color: Theme.of(context).colorScheme.outline,
+                      color: c.surfaceContainer,
                       border: BoxBorder.all(
-                        color: Theme.of(context).colorScheme.outlineVariant,
+                        color: c.outlineVariant,
                       ),
                     ),
                     child: Icon(
@@ -51,20 +55,20 @@ class LoginHeader extends StatelessWidget {
                 SizedBox(width: 8),
                 Text(
                   l.newProfile_title,
-                  style: Theme.of(context).textTheme.labelMedium,
+                  style: t.labelMedium,
                 ),
               ],
             ),
             Container(
               padding: EdgeInsets.symmetric(vertical: 4, horizontal: 8),
               decoration: BoxDecoration(
-                color: Theme.of(context).colorScheme.outline,
+                color: c.surfaceContainer,
                 borderRadius: BorderRadius.circular(999),
               ),
               child: Text(
                 // "${current + 1} dari $total",
                 l.step(current + 1, total),
-                style: Theme.of(context).textTheme.labelSmall,
+                style: t.labelSmall,
               ),
             ),
           ],
@@ -75,13 +79,12 @@ class LoginHeader extends StatelessWidget {
             if ((index + 1) % 2 == 0) {
               return SizedBox(width: 8);
             }
-        
-            final colorScheme = Theme.of(context).colorScheme;
+      
             final currentBox = (index / 2).toInt();
             final isActive = currentBox <= current;
             final backgroundColor = isActive
-              ? colorScheme.primaryContainer
-              : colorScheme.outline;
+              ? c.primary
+              : c.outline;
         
             return Expanded(
               child: Container(

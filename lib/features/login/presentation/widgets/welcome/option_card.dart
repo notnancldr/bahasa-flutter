@@ -25,6 +25,9 @@ class OptionCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final c = theme.colorScheme;
+
     return ClipRRect(
       borderRadius: BorderRadius.circular(16),
       child: Material(
@@ -84,14 +87,14 @@ class OptionCard extends StatelessWidget {
                       Text(
                         nextText,
                         style: TextStyle(
-                          color: Theme.of(context).primaryColor,
+                          color: c.secondary,
                           fontWeight: FontWeight.bold,
                         ),
                       ),
                       SizedBox(width: 8),
                       Icon(
                         Icons.arrow_forward,
-                        color: Theme.of(context).primaryColor,
+                        color: c.secondary,
                         size: 16,
                       ),
                     ],

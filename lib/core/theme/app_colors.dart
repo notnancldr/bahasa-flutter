@@ -4,23 +4,31 @@ import 'package:flutter/material.dart';
 /// Nothing else in the app should hardcode a Color(0x...) value.
 abstract class AppColors {
   // Brand
-  static const primary = Color(0xFF5B93AE);
-  static const secondary = Color(0xFFA8E0D3);
-  static const tertiary = Color(0xFFF59E0B); // TODO
+  static const primary = Color(0xFFA9D6E5);
+  static const secondary = Color(0xFF5B93AE);
+  static const tertiary = Color(0xFFC9B6E4); // TODO
+
+  static const primaryDark = Color(0xFF5B93AE);
 
   static const primaryBackground = Color(0xFFA9D6E5);
   static const onPrimaryBackground = Color(0xFF2F3A3F);
 
+  static const mainText = Color(0xFF2F3A3F);
+  static const secodaryText = Color(0xFF7D8A8F);
+
+  static const streakLight = Color(0xFFFFD59E);
+  static const streakDark = Color(0xFFFFB68F);
+
   // Semantic
-  static const success = Color(0xFFA8E0D3);
-  static const warning = Color(0xFFF59E0B);
-  static const error = Color(0xFFEF4444);
+  static const success = Color(0xFFA8D5A2);
+  static const warning = Color(0xFFFFD59E);
+  static const error = Color(0xFFF4A6A6);
   static const info = Color(0xFF3B82F6);
 
   // Neutrals — light theme
-  static const lightBackground = Color(0xFFFFFFFF);
+  static const lightBackground = Color(0xFFFAFAF8);
   static const lightSurface = Color(0xFFF4F4F2);
-  static const lightOnSurface = Color(0xFF111827);
+  static const lightOnSurface = Color(0xFF2F3A3F);
   static const lightOutline = Color(0xFFE5E7EB);
 
   // Neutrals — dark theme

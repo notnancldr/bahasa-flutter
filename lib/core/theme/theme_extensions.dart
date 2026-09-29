@@ -10,30 +10,47 @@ class AppSemanticColors extends ThemeExtension<AppSemanticColors> {
   final Color warning;
   final Color info;
 
+  final Color streakLight;
+  final Color streakDark;
+
   const AppSemanticColors({
     required this.success,
     required this.warning,
     required this.info,
+    required this.streakLight,
+    required this.streakDark,
   });
 
   static const light = AppSemanticColors(
     success: AppColors.success,
     warning: AppColors.warning,
     info: AppColors.info,
+    streakLight: AppColors.streakLight,
+    streakDark: AppColors.streakDark,
   );
 
   static const dark = AppSemanticColors(
     success: AppColors.success,
     warning: AppColors.warning,
     info: AppColors.info,
+    streakLight: AppColors.streakLight,
+    streakDark: AppColors.streakDark,
   );
 
   @override
-  AppSemanticColors copyWith({Color? success, Color? warning, Color? info}) {
+  AppSemanticColors copyWith({
+    Color? success,
+    Color? warning,
+    Color? info,
+    Color? streakLight,
+    Color? streakDark,
+  }) {
     return AppSemanticColors(
       success: success ?? this.success,
       warning: warning ?? this.warning,
       info: info ?? this.info,
+      streakLight: streakLight ?? this.streakLight,
+      streakDark: streakDark ?? this.streakDark,
     );
   }
 
@@ -44,6 +61,8 @@ class AppSemanticColors extends ThemeExtension<AppSemanticColors> {
       success: Color.lerp(success, other.success, t)!,
       warning: Color.lerp(warning, other.warning, t)!,
       info: Color.lerp(info, other.info, t)!,
+      streakLight: Color.lerp(streakLight, other.streakLight, t)!,
+      streakDark: Color.lerp(streakDark, other.streakDark, t)!,
     );
   }
 }
