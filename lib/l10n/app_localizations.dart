@@ -212,16 +212,34 @@ abstract class AppLocalizations {
   /// **'Simpan'**
   String get newProfile_saveButton;
 
+  /// No description provided for @newProfile_complete_title.
+  ///
+  /// In id, this message translates to:
+  /// **'Profil Berhasil Dibuat'**
+  String get newProfile_complete_title;
+
+  /// No description provided for @newProfile_complete_description.
+  ///
+  /// In id, this message translates to:
+  /// **'Profilmu sudah siap digunakan. Mari lanjutkan pengalaman belajarmu dengan tenang.'**
+  String get newProfile_complete_description;
+
   /// No description provided for @securityFootnote.
   ///
   /// In id, this message translates to:
   /// **'Profil Anda tersimpan aman di perangkat ini tanpa kata sandi'**
   String get securityFootnote;
 
+  /// No description provided for @done.
+  ///
+  /// In id, this message translates to:
+  /// **'Selesai'**
+  String get done;
+
   /// No description provided for @step.
   ///
   /// In id, this message translates to:
-  /// **'{first} of {second}'**
+  /// **'{first} dari {second}'**
   String step(int first, int second);
 
   /// No description provided for @end_of_translation.

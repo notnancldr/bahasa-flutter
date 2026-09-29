@@ -1,3 +1,4 @@
+import 'package:bahasa/core/router/page_transitions.dart';
 import 'package:bahasa/features/login/presentation/pages/login_page.dart';
 import 'package:bahasa/features/login/presentation/pages/welcome_page.dart';
 import 'package:go_router/go_router.dart';
@@ -22,7 +23,11 @@ class AppRouter {
       GoRoute(
         path: AppRoutes.loginNew,
         name: "loginNew",
-        builder: (context, state) => const LoginPage(),
+        pageBuilder: (context, state) => buildSlideTransitionPage(
+          context: context,
+          state: state,
+          child: const LoginPage(),
+        ),
       ),
 
       // Shell route: persistent scaffold (e.g. bottom nav) for main app

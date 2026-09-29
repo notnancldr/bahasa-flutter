@@ -16,64 +16,66 @@ class InputUsernameStep extends StatelessWidget {
   Widget build(BuildContext context) {
     final l = AppLocalizations.of(context)!;
 
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        LoginStepHeader(
-          l.newProfile_step_username_title,
-          description: l.newProfile_step_username_description,
-        ),
-
-        SizedBox(height: 32),
-
-        Text(
-          l.newProfile_step_username_fieldName,
-          style: Theme.of(context).textTheme.titleMedium,
-        ),
-
-        SizedBox(height: 8),
-
-        Container(
-          decoration: BoxDecoration(
-            border: BoxBorder.all(
-              color: Theme.of(context).colorScheme.outline,
-              width: 3,
-            ),
-            borderRadius: BorderRadius.circular(16),
-            color: Theme.of(context).colorScheme.surface,
+    return SingleChildScrollView(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          LoginStepHeader(
+            l.newProfile_step_username_title,
+            description: l.newProfile_step_username_description,
           ),
-          padding: EdgeInsets.only(left: 14),
-          child: Row(
-            children: [
-              Icon(
-                Symbols.alternate_email,
-                size: 16,
+      
+          SizedBox(height: 32),
+      
+          Text(
+            l.newProfile_step_username_fieldName,
+            style: Theme.of(context).textTheme.titleMedium,
+          ),
+      
+          SizedBox(height: 8),
+      
+          Container(
+            decoration: BoxDecoration(
+              border: BoxBorder.all(
+                color: Theme.of(context).colorScheme.outline,
+                width: 3,
               ),
-              SizedBox(width: 8),
-              Expanded(
-                child: TextField(
-                  onChanged: (value) {
-                    context.read<LoginBloc>().add(InputUsername(username: value));
-                  },
-                  decoration: InputDecoration(
-                    hint: Text(l.newProfile_step_username_fieldPlaceholder),
-                    contentPadding: EdgeInsets.all(0),
-                    fillColor: Colors.transparent,
-                    hoverColor: Colors.transparent,
+              borderRadius: BorderRadius.circular(16),
+              color: Theme.of(context).colorScheme.surface,
+            ),
+            padding: EdgeInsets.only(left: 14),
+            child: Row(
+              children: [
+                Icon(
+                  Symbols.alternate_email,
+                  size: 16,
+                ),
+                SizedBox(width: 8),
+                Expanded(
+                  child: TextField(
+                    onChanged: (value) {
+                      context.read<LoginBloc>().add(InputUsername(username: value));
+                    },
+                    decoration: InputDecoration(
+                      hint: Text(l.newProfile_step_username_fieldPlaceholder),
+                      contentPadding: EdgeInsets.all(0),
+                      fillColor: Colors.transparent,
+                      hoverColor: Colors.transparent,
+                    ),
                   ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
-        ),
-
-        SizedBox(height: 4),
-
-        Text(
-          l.newProfile_step_username_fieldHint,
-          style: Theme.of(context).textTheme.labelSmall,
-        ),
-      ],
+      
+          SizedBox(height: 4),
+      
+          Text(
+            l.newProfile_step_username_fieldHint,
+            style: Theme.of(context).textTheme.labelSmall,
+          ),
+        ],
+      ),
     );
   }
 }

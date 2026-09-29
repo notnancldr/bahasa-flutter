@@ -62,7 +62,8 @@ class LoginHeader extends StatelessWidget {
                 borderRadius: BorderRadius.circular(999),
               ),
               child: Text(
-                "${current + 1} dari $total",
+                // "${current + 1} dari $total",
+                l.step(current + 1, total),
                 style: Theme.of(context).textTheme.labelSmall,
               ),
             ),

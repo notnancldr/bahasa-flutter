@@ -56,6 +56,9 @@
         }
     },
 
+    "done": "Done",
+    "@done": {},
+
     "end_of_translation": "",
     "@end_of_translation": {}
 }

@@ -73,8 +73,18 @@ class AppLocalizationsEn extends AppLocalizations {
   String get newProfile_saveButton => 'Save';
 
   @override
+  String get newProfile_complete_title => 'Profil Berhasil Dibuat';
+
+  @override
+  String get newProfile_complete_description =>
+      'Profilmu sudah siap digunakan. Mari lanjutkan pengalaman belajarmu dengan tenang.';
+
+  @override
   String get securityFootnote =>
       'Your profile is stored securely on this device without a password';
+
+  @override
+  String get done => 'Done';
 
   @override
   String step(int first, int second) {

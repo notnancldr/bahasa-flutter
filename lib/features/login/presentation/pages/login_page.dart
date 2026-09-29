@@ -1,14 +1,20 @@
+import 'package:bahasa/core/localization/locale_cubit.dart';
 import 'package:bahasa/core/widgets/embossed_button.dart';
+import 'package:bahasa/core/widgets/slide_fade_switcher.dart';
 import 'package:bahasa/features/login/presentation/bloc/login/login_bloc.dart';
 import 'package:bahasa/features/login/presentation/bloc/login/login_event.dart';
 import 'package:bahasa/features/login/presentation/bloc/login/login_state.dart';
+import 'package:bahasa/features/login/presentation/widgets/login/login_complete.dart';
 import 'package:bahasa/features/login/presentation/widgets/login/login_header.dart';
 import 'package:bahasa/features/login/presentation/widgets/security_footnote.dart';
 import 'package:bahasa/features/login/presentation/widgets/login/input_username_step.dart';
 import 'package:bahasa/features/login/presentation/widgets/login/select_language_step.dart';
+import 'package:bahasa/l10n/app_localizations.dart';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import 'package:material_symbols_icons/symbols.dart';
 
 class LoginPage extends StatelessWidget {
@@ -17,7 +23,9 @@ class LoginPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => LoginBloc(),
+      create: (context) => LoginBloc(
+        localeCubit: context.read<LocaleCubit>(),
+      ),
       child: const LoginView(),
     );
   }
@@ -36,6 +44,8 @@ class LoginView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l = AppLocalizations.of(context)!;
+
     return Scaffold(
       body: SafeArea(
         child: Padding(
@@ -50,37 +60,16 @@ class LoginView extends StatelessWidget {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        LoginHeader(current: _stepFor(state), total: 2),
+                        LoginHeader(current: _stepFor(state), total: 2)
+                          .animate(
+                            target: (state is ProfileSavedState) ? 0 : 1,
+                          )
+                          .fade()
+                          .slideY(),
+                        // Text((state is ProfileSavedState).toString()),
                         SizedBox(height: 8),
                         Expanded(
-                          child: AnimatedSwitcher(
-                            duration: const Duration(milliseconds: 350),
-                            switchInCurve: Curves.easeOut,
-                            switchOutCurve: Curves.easeIn,
-                            layoutBuilder: (currentChild, previousChildren) {
-                              return Stack(
-                                alignment: Alignment.topLeft,
-                                children: <Widget>[
-                                  ...previousChildren,
-                                  if (currentChild != null) currentChild,
-                                ],
-                              );
-                            },
-                            transitionBuilder: (child, animation) {
-                              final slideIn = Tween<Offset>(
-                                begin: const Offset(0.12, 0),
-                                end: Offset.zero,
-                              ).animate(animation);
-                              return ClipRect(
-                                child: SlideTransition(
-                                  position: slideIn,
-                                  child: FadeTransition(
-                                    opacity: animation,
-                                    child: child,
-                                  ),
-                                ),
-                              );
-                            },
+                          child: SlideFadeSwitcher(
                             child: _buildStep(state),
                           ),
                         ),
@@ -96,9 +85,9 @@ class LoginView extends StatelessWidget {
                     mainAxisSize: MainAxisSize.min,
                     children: [
                       EmbossedButton(
-                        _labelFor(state),
+                        _labelFor(state, l),
                         onPressed: _onPressedFor(context, state),
-                        trailingIcon: Symbols.arrow_forward,
+                        trailingIcon: _iconFor(state),
                       ),
                       SizedBox(height: 16),
                       SecurityFootnote(),
@@ -119,14 +108,23 @@ class LoginView extends StatelessWidget {
         InputUsernameStep(key: const ValueKey('username-step'), state: state),
       SelectLanguageState() =>
         SelectLanguageStep(key: const ValueKey('language-step'), state: state),
-      _ => const SizedBox.shrink(key: ValueKey('unknown-step')),
+      ProfileSavedState() =>
+        LoginComplete(key: const ValueKey('login-complete')),
     };
   }
 
-  String _labelFor(LoginState state) {
+  String _labelFor(LoginState state, AppLocalizations l) {
     return switch (state) {
-      SelectLanguageState() => "Simpan",
-      _ => "Lanjutkan",
+      SelectLanguageState() => l.newProfile_saveButton,
+      ProfileSavedState() => l.done,
+      _ => l.newProfile_nextButton,
+    };
+  }
+
+  IconData? _iconFor(LoginState state) {
+    return switch (state) {
+      ProfileSavedState() => null,
+      _ => Symbols.arrow_forward,
     };
   }
 
@@ -136,8 +134,11 @@ class LoginView extends StatelessWidget {
           context.read<LoginBloc>().add(SelectDefaultLanguage(language: null));
         },
       InputUsernameState(isValid: false) => null,
-      SelectLanguageState() => () {
+      SelectLanguageState(isValid: true) => () {
           context.read<LoginBloc>().add(SaveProfile());
+        },
+      ProfileSavedState() => () {
+          context.go("/");
         },
       _ => null,
     };

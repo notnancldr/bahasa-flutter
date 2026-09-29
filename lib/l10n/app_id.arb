@@ -45,10 +45,18 @@
     "newProfile_saveButton": "Simpan",
     "@newProfile_saveButton": {},
 
+    "newProfile_complete_title": "Profil Berhasil Dibuat",
+    "@newProfile_complete_title": {},
+    "newProfile_complete_description": "Profilmu sudah siap digunakan. Mari lanjutkan pengalaman belajarmu dengan tenang.",
+    "@newProfile_complete_description": {},
+
     "securityFootnote": "Profil Anda tersimpan aman di perangkat ini tanpa kata sandi",
     "@securityFootnote": {},
+
+    "done": "Selesai",
+    "@done": {},
     
-    "step": "{first} of {second}",
+    "step": "{first} dari {second}",
     "@step": {
         "placeholders": {
             "first": {
