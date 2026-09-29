@@ -1,7 +1,7 @@
 abstract class AppRoutes {
   static const login = "/login";
 
-  static const loginImport = "/login/import";
+  static const loginTransfer = "/login/transfer";
   static const loginNew = "/login/new";
 
   // // Template from AI

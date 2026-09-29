@@ -70,7 +70,7 @@ class WelcomeView extends StatelessWidget {
                         bgColor: Colors.green.shade700.withAlpha(40),
                         iconColor: Colors.green.shade700,
                         icon: Symbols.download,
-                        route: AppRoutes.loginImport,
+                        route: AppRoutes.loginTransfer,
                         title: l.welcome_sync_title,
                         description: l.welcome_sync_description,
                         nextText: l.welcome_nextButton,
