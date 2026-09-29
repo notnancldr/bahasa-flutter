@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
 @immutable
-sealed class ImportEvent {}
+sealed class TransferEvent {}
 
-class InitServer extends ImportEvent {}
+class InitServer extends TransferEvent {}
 
-class RestartServer extends ImportEvent {}
+class RestartServer extends TransferEvent {}
 
-class ReceiveData extends ImportEvent {
+class ReceiveData extends TransferEvent {
   final String ipOrigin;
   final String fileName;
   final int fileSize;
@@ -19,4 +19,4 @@ class ReceiveData extends ImportEvent {
   });
 }
 
-class CancelImport extends ImportEvent {}
+class CancelTransfer extends TransferEvent {}

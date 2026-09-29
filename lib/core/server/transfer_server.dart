@@ -3,7 +3,7 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:bahasa/core/constants/server_routes.dart';
-import 'package:bahasa/core/errors/import_error.dart';
+import 'package:bahasa/core/errors/transfer_error.dart';
 import 'package:bahasa/core/utils/random_char.dart';
 
 import 'package:network_info_plus/network_info_plus.dart';
@@ -14,22 +14,22 @@ import 'package:shelf/shelf_io.dart' as io;
 import 'package:shelf_router/shelf_router.dart';
 import 'package:shelf_multipart/shelf_multipart.dart';
 
-/// Events emitted by [ImportServer] while it runs.
-/// A Bloc (or anything else) subscribes to [ImportServer.events]
+/// Events emitted by [TransferServer] while it runs.
+/// A Bloc (or anything else) subscribes to [TransferServer.events]
 /// to track status without touching the server internals.
-sealed class ImportServerEvent {}
+sealed class TransferServerEvent {}
 
-class ImportServerListening extends ImportServerEvent {
+class TransferServerListening extends TransferServerEvent {
   final String ipHost;
-  ImportServerListening(this.ipHost);
+  TransferServerListening(this.ipHost);
 }
 
-class ImportServerReceiving extends ImportServerEvent {
+class TransferServerReceiving extends TransferServerEvent {
   final String? ipOrigin;
   final String fileName;
   final int? fileSize;
   final int progress;
-  ImportServerReceiving({
+  TransferServerReceiving({
     required this.ipOrigin,
     required this.fileName,
     required this.fileSize,
@@ -37,23 +37,23 @@ class ImportServerReceiving extends ImportServerEvent {
   });
 }
 
-class ImportServerComplete extends ImportServerEvent {
+class TransferServerComplete extends TransferServerEvent {
   final String filePath;
-  ImportServerComplete(this.filePath);
+  TransferServerComplete(this.filePath);
 }
 
-class ImportServerCancelled extends ImportServerEvent {}
+class TransferServerCancelled extends TransferServerEvent {}
 
-class ImportServerError extends ImportServerEvent {
+class TransferServerError extends TransferServerEvent {
   final Exception error;
-  ImportServerError(this.error);
+  TransferServerError(this.error);
 }
 
 /// Owns the Shelf HTTP server used for the local Wi-Fi file-transfer flow.
 /// Pure infrastructure — no Bloc/state imports here.
-class ImportServer {
+class TransferServer {
   HttpServer? _server;
-  final _controller = StreamController<ImportServerEvent>.broadcast();
+  final _controller = StreamController<TransferServerEvent>.broadcast();
 
   // Track the in-flight transfer so cancel() can reach into it.
   StreamSubscription<List<int>>? _activeSub;
@@ -61,7 +61,7 @@ class ImportServer {
   String? _activeTempPath;
   bool _cancelRequested = false;
 
-  Stream<ImportServerEvent> get events => _controller.stream;
+  Stream<TransferServerEvent> get events => _controller.stream;
   bool get isRunning => _server != null;
   bool get isReceiving => _activeSub != null;
 
@@ -79,13 +79,13 @@ class ImportServer {
     final ip = await info.getWifiIP();
     if (ip == null) {
       final error = NoHostIp();
-      _controller.add(ImportServerError(error));
+      _controller.add(TransferServerError(error));
       throw error;
     }
 
     final handler = _createHandler();
     _server = await io.serve(handler.call, '0.0.0.0', 7000);
-    _controller.add(ImportServerListening(ip));
+    _controller.add(TransferServerListening(ip));
   }
 
   Future<void> restart() => start();
@@ -101,7 +101,7 @@ class ImportServer {
     if (_activeSub == null) return;
     _cancelRequested = true;
     await _cleanupActiveTransfer(deleteFile: true);
-    _controller.add(ImportServerCancelled());
+    _controller.add(TransferServerCancelled());
   }
 
   Future<void> _cleanupActiveTransfer({required bool deleteFile}) async {
@@ -135,8 +135,8 @@ class ImportServer {
   Future<Response> _receive(Request request) async {
     final formDataRequest = request.formData();
     if (formDataRequest == null) {
-      final error = ImportNotValid();
-      _controller.add(ImportServerError(error));
+      final error = TransferNotValid();
+      _controller.add(TransferServerError(error));
       return Response.badRequest(
         body: jsonEncode({"success": false, "message": error.runtimeType.toString()}),
       );
@@ -157,8 +157,8 @@ class ImportServer {
       }
     }
     if (fileData == null) {
-      final error = ImportNotValid();
-      _controller.add(ImportServerError(error));
+      final error = TransferNotValid();
+      _controller.add(TransferServerError(error));
       return Response.badRequest(
         body: jsonEncode({"success": false, "message": error.runtimeType.toString()}),
       );
@@ -174,7 +174,7 @@ class ImportServer {
     _activeTempPath = path;
     _cancelRequested = false;
 
-    _controller.add(ImportServerReceiving(
+    _controller.add(TransferServerReceiving(
       ipOrigin: clientIp,
       fileName: fileName,
       fileSize: totalBytes,
@@ -189,7 +189,7 @@ class ImportServer {
         if (_cancelRequested) return; // subscription is being torn down
         sink.add(chunk);
         received += chunk.length;
-        _controller.add(ImportServerReceiving(
+        _controller.add(TransferServerReceiving(
           ipOrigin: clientIp,
           fileName: fileName,
           fileSize: totalBytes,
@@ -201,7 +201,7 @@ class ImportServer {
         try {
           await sink.flush();
           await sink.close();
-          _controller.add(ImportServerComplete(path));
+          _controller.add(TransferServerComplete(path));
           if (!completer.isCompleted) {
             completer.complete(Response.ok(
               jsonEncode({"success": true, "message": "File sent"}),
@@ -209,7 +209,7 @@ class ImportServer {
           }
         } catch (e) {
           final error = Exception(e.toString());
-          _controller.add(ImportServerError(error));
+          _controller.add(TransferServerError(error));
           if (!completer.isCompleted) {
             completer.complete(Response.internalServerError(body: e.toString()));
           }
@@ -221,7 +221,7 @@ class ImportServer {
       },
       onError: (Object e) {
         final error = Exception(e.toString());
-        _controller.add(ImportServerError(error));
+        _controller.add(TransferServerError(error));
         if (!completer.isCompleted) {
           completer.complete(Response.internalServerError(body: e.toString()));
         }

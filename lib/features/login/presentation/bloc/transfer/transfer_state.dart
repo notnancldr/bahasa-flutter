@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
 @immutable
-sealed class ImportState {}
+sealed class TransferState {}
 
-class StartHostState extends ImportState {}
+class StartHostState extends TransferState {}
 
-class CancelHostState extends ImportState {}
+class CancelHostState extends TransferState {}
 
-class ListeningState extends ImportState {
+class ListeningState extends TransferState {
   final String ipHost;
   final int repeat;
 
@@ -17,7 +17,7 @@ class ListeningState extends ImportState {
   });
 }
 
-class ReceiveState extends ImportState {
+class ReceiveState extends TransferState {
   final String ipHost;
   final String? ipOrigin;
   final String fileName;
@@ -53,7 +53,7 @@ class ReceiveState extends ImportState {
   }
 }
 
-class CheckValidState extends ImportState {
+class CheckValidState extends TransferState {
   final String fileName;
   final int progress;
   final int target;
@@ -85,20 +85,20 @@ class CheckValidState extends ImportState {
   }
 }
 
-class ImportCompleteState extends ImportState {
+class TransferCompleteState extends TransferState {
   final String username;
   final String defultLanguage;
 
-  ImportCompleteState({
+  TransferCompleteState({
     required this.username,
     required this.defultLanguage,
   });
 }
 
-class ImportErrorState extends ImportState {
+class TransferErrorState extends TransferState {
   final Exception error;
 
-  ImportErrorState({
+  TransferErrorState({
     required this.error,
   });
 }
