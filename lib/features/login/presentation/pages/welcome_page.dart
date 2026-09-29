@@ -57,8 +57,8 @@ class WelcomeView extends StatelessWidget {
                   Column(
                     children: [
                       OptionCard(
-                        bgColor: Colors.green.shade500.withAlpha(40),
-                        iconColor: Colors.green.shade500,
+                        bgColor: Colors.orange.shade700.withAlpha(40),
+                        iconColor: Color(0xFF885131),
                         icon: Symbols.person_add_rounded,
                         route: AppRoutes.loginNew,
                         title: l.welcome_newProfile_title,
@@ -67,8 +67,8 @@ class WelcomeView extends StatelessWidget {
                       ),
                       SizedBox(height: 32),
                       OptionCard(
-                        bgColor: Colors.green.shade500.withAlpha(40),
-                        iconColor: Colors.green.shade500,
+                        bgColor: Colors.green.shade700.withAlpha(40),
+                        iconColor: Colors.green.shade700,
                         icon: Symbols.download,
                         route: AppRoutes.loginImport,
                         title: l.welcome_sync_title,

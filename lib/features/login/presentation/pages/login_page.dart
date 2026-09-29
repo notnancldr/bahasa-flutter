@@ -62,6 +62,8 @@ class LoginView extends StatelessWidget {
                       children: [
                         LoginHeader(current: _stepFor(state), total: 2)
                           .animate(
+                            // Prevent initial animation
+                            value: 1,
                             target: (state is ProfileSavedState) ? 0 : 1,
                           )
                           .fade()
