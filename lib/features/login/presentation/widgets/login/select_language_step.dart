@@ -31,7 +31,7 @@ const List<_LanguageOption> _kLanguages = [
 ];
 
 class SelectLanguageStep extends StatefulWidget {
-  final SelectLanguageState state;
+  final InputState state;
 
   const SelectLanguageStep({super.key, required this.state});
 

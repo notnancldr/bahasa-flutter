@@ -1,6 +1,7 @@
 import 'package:bahasa/core/localization/locale_cubit.dart';
 import 'package:bahasa/core/widgets/embossed_button.dart';
 import 'package:bahasa/core/widgets/slide_fade_switcher.dart';
+import 'package:bahasa/features/login/domain/enums/login_step_enum.dart';
 import 'package:bahasa/features/login/presentation/bloc/login/login_bloc.dart';
 import 'package:bahasa/features/login/presentation/bloc/login/login_event.dart';
 import 'package:bahasa/features/login/presentation/bloc/login/login_state.dart';
@@ -36,8 +37,8 @@ class LoginView extends StatelessWidget {
 
   static int _stepFor(LoginState state) {
     return switch (state) {
-      InputUsernameState() => 0,
-      SelectLanguageState() => 1,
+      InputState(step: LoginStep.username) => 0,
+      InputState(step: LoginStep.language) => 1,
       ProfileSavedState() => 2,
     };
   }
@@ -60,7 +61,7 @@ class LoginView extends StatelessWidget {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        LoginHeader(current: _stepFor(state), total: 2)
+                        LoginHeader(state: state, current: _stepFor(state), total: 2)
                           .animate(
                             // Prevent initial animation
                             value: 1,
@@ -106,9 +107,9 @@ class LoginView extends StatelessWidget {
 
   Widget _buildStep(LoginState state) {
     return switch (state) {
-      InputUsernameState() =>
+      InputState(step: LoginStep.username) =>
         InputUsernameStep(key: const ValueKey('username-step'), state: state),
-      SelectLanguageState() =>
+      InputState(step: LoginStep.language) =>
         SelectLanguageStep(key: const ValueKey('language-step'), state: state),
       ProfileSavedState() =>
         LoginComplete(key: const ValueKey('login-complete')),
@@ -117,7 +118,7 @@ class LoginView extends StatelessWidget {
 
   String _labelFor(LoginState state, AppLocalizations l) {
     return switch (state) {
-      SelectLanguageState() => l.newProfile_saveButton,
+      InputState(step: LoginStep.language) => l.newProfile_saveButton,
       ProfileSavedState() => l.done,
       _ => l.newProfile_nextButton,
     };
@@ -132,11 +133,11 @@ class LoginView extends StatelessWidget {
 
   void Function()? _onPressedFor(BuildContext context, LoginState state) {
     return switch (state) {
-      InputUsernameState(isValid: true) => () {
+      InputState(step: LoginStep.username, isUsernameValid: true) => () {
           context.read<LoginBloc>().add(SelectDefaultLanguage(language: null));
         },
-      InputUsernameState(isValid: false) => null,
-      SelectLanguageState(isValid: true) => () {
+      InputState(step: LoginStep.username, isUsernameValid: false) => null,
+      InputState(step: LoginStep.language, isLanguageValid: true) => () {
           context.read<LoginBloc>().add(SaveProfile());
         },
       ProfileSavedState() => () {

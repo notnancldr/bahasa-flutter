@@ -32,8 +32,8 @@ class SlideFadeSwitcher extends StatelessWidget {
 
     return AnimatedSwitcher(
       duration: duration,
-      switchInCurve: Curves.easeOut,
-      switchOutCurve: Curves.easeIn,
+      switchInCurve: Curves.easeInOut,
+      switchOutCurve: Curves.easeInOut,
       layoutBuilder: (currentChild, previousChildren) {
         return Stack(
           alignment: alignment,

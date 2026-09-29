@@ -8,7 +8,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:material_symbols_icons/material_symbols_icons.dart';
 
 class InputUsernameStep extends StatelessWidget {
-  final InputUsernameState state;
+  final InputState state;
 
   const InputUsernameStep({super.key, required this.state});
 
@@ -52,16 +52,21 @@ class InputUsernameStep extends StatelessWidget {
                 ),
                 SizedBox(width: 8),
                 Expanded(
-                  child: TextField(
-                    onChanged: (value) {
-                      context.read<LoginBloc>().add(InputUsername(username: value));
-                    },
-                    decoration: InputDecoration(
-                      hint: Text(l.newProfile_step_username_fieldPlaceholder),
-                      contentPadding: EdgeInsets.all(0),
-                      fillColor: Colors.transparent,
-                      hoverColor: Colors.transparent,
-                    ),
+                  child: BlocBuilder<LoginBloc, LoginState>(
+                    builder: (context, state) {
+                      return TextFormField(
+                        initialValue: state is InputState ? state.username : "",
+                        onChanged: (value) {
+                          context.read<LoginBloc>().add(InputUsername(username: value));
+                        },
+                        decoration: InputDecoration(
+                          hint: Text(l.newProfile_step_username_fieldPlaceholder),
+                          contentPadding: EdgeInsets.all(0),
+                          fillColor: Colors.transparent,
+                          hoverColor: Colors.transparent,
+                        ),
+                      );
+                    }
                   ),
                 ),
               ],

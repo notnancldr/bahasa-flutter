@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:bahasa/core/errors/login_error.dart';
 import 'package:bahasa/core/localization/locale_cubit.dart';
+import 'package:bahasa/features/login/domain/enums/login_step_enum.dart';
 import 'package:bahasa/features/login/presentation/bloc/login/login_event.dart';
 import 'package:bahasa/features/login/presentation/bloc/login/login_state.dart';
 
@@ -15,6 +16,7 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
     on<InputUsername>(_handleUsernameInput);
     on<SelectDefaultLanguage>(_handleDefaultLanguage);
     on<SaveProfile>(_handleSaveProfile);
+    on<PreviousStep>(_handlePreviousStep);
   }
 
   bool _validateUsername(String? username, {int minLength = 3, int maxLength = 20}) {
@@ -36,53 +38,36 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
 
   Future<void> _handleUsernameInput(InputUsername event, Emitter<LoginState> emit) async {
     final isValid = _validateUsername(event.username);
+    final currentState = state;
 
-    emit(InputUsernameState(
-      username: event.username,
-      isValid: isValid,
-    ));
+    emit(
+      currentState is InputState
+        ? currentState.copyWith(step: LoginStep.username, username: event.username, isUsernameValid: isValid)
+        : DefaultLoginState(),
+    );
   }
 
   Future<void> _handleDefaultLanguage(SelectDefaultLanguage event, Emitter<LoginState> emit) async {
     final currentState = state;
     final isValid = _validateLanguage(event.language);
 
-    late String username;
-    String? language;
+    String? language = event.language ?? (currentState is InputState ? currentState.language : null);
 
-    switch (currentState) {
-      case InputUsernameState(username: final usernameState):
-        username = usernameState;
-        break;
-      case SelectLanguageState(
-          language: final languageState,
-          username: final usernameState,
-        ):
-        language = languageState;
-        username = usernameState;
-        break;
-      default:
-        throw LoginNotValid();
-    }
+    emit(
+      currentState is InputState
+        ? currentState.copyWith(step: LoginStep.language, language: language, isLanguageValid: isValid)
+        : DefaultLoginState(),
+    );
 
+    if (language == null) return;
 
-    emit(SelectLanguageState(
-      language: event.language ?? language,
-      username: username,
-      isValid: isValid,
-    ));
-
-    if (event.language == null && language == null) {
-      return;
-    }
-
-    await _changeLanguage((event.language ?? language)!);
+    await _changeLanguage(language);
   }
 
   Future<void> _handleSaveProfile(SaveProfile event, Emitter<LoginState> emit) async {
     final currentState = state;
 
-    if (currentState is! SelectLanguageState || !currentState.isValid) {
+    if (currentState is! InputState || !currentState.isLanguageValid || !currentState.isUsernameValid) {
       throw LoginNotValid();
     }
 
@@ -96,9 +81,18 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
     emit(ProfileSavedState());
   }
 
+  void _handlePreviousStep(LoginEvent event, Emitter<LoginState> emit) {
+    final currentState = state;
+    if (currentState is! InputState) return;
+
+    emit(switch (currentState) {
+      InputState(step: LoginStep.language) => currentState.copyWith(step: LoginStep.username),
+      InputState(step: LoginStep.username) => currentState,
+    });
+  }
+
   /// Persists the chosen language and applies it as the active app locale.
   Future<void> _changeLanguage(String language) async {
-    print("Change, $language");
     await _localeCubit.changeLanguage(language); // this already saves to SharedPreferences internally
   }
 

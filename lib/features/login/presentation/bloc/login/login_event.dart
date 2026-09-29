@@ -22,4 +22,6 @@ class SelectDefaultLanguage extends CreateProfileEvent {
   });
 }
 
+class PreviousStep extends CreateProfileEvent {}
+
 class SaveProfile extends CreateProfileEvent {}
