@@ -1,5 +1,6 @@
 import 'package:bahasa/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:go_router/go_router.dart';
 import 'package:material_symbols_icons/symbols.dart';
 
@@ -87,9 +88,11 @@ class LoginHeader extends StatelessWidget {
               : c.outline;
         
             return Expanded(
-              child: Container(
+              child: AnimatedContainer(
+                key: ValueKey("stepindicator-$currentBox"),
                 width: double.infinity,
                 height: 6,
+                duration: 300.ms,
                 decoration: BoxDecoration(
                   color: backgroundColor,
                   borderRadius: BorderRadius.circular(999),
