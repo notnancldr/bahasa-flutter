@@ -128,17 +128,17 @@ abstract class AppLocalizations {
   /// **'Mulai dari awal dengan profil baru.'**
   String get welcome_newProfile_description;
 
-  /// No description provided for @welcome_sync_title.
+  /// No description provided for @welcome_transfer_title.
   ///
   /// In id, this message translates to:
-  /// **'Sinkronisasi Profil'**
-  String get welcome_sync_title;
+  /// **'Pindahkan Profil Lama'**
+  String get welcome_transfer_title;
 
-  /// No description provided for @welcome_sync_description.
+  /// No description provided for @welcome_transfer_description.
   ///
   /// In id, this message translates to:
-  /// **'Pindahkan profil dari perangkat lama.'**
-  String get welcome_sync_description;
+  /// **'Pindahkan profil dari perangkat lama Anda.'**
+  String get welcome_transfer_description;
 
   /// No description provided for @welcome_nextButton.
   ///

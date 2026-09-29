@@ -27,11 +27,11 @@ class AppLocalizationsId extends AppLocalizations {
       'Mulai dari awal dengan profil baru.';
 
   @override
-  String get welcome_sync_title => 'Sinkronisasi Profil';
+  String get welcome_transfer_title => 'Pindahkan Profil Lama';
 
   @override
-  String get welcome_sync_description =>
-      'Pindahkan profil dari perangkat lama.';
+  String get welcome_transfer_description =>
+      'Pindahkan profil dari perangkat lama Anda.';
 
   @override
   String get welcome_nextButton => 'Mulai Sekarang';

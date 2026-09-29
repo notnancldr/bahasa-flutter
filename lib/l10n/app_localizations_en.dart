@@ -27,11 +27,11 @@ class AppLocalizationsEn extends AppLocalizations {
       'Start fresh with a new profile.';
 
   @override
-  String get welcome_sync_title => 'Sync Profile';
+  String get welcome_transfer_title => 'Transfer Old Profile';
 
   @override
-  String get welcome_sync_description =>
-      'Transfer your profile from an old device.';
+  String get welcome_transfer_description =>
+      'Transfer your profile from your old device.';
 
   @override
   String get welcome_nextButton => 'Get Started';
@@ -73,11 +73,11 @@ class AppLocalizationsEn extends AppLocalizations {
   String get newProfile_saveButton => 'Save';
 
   @override
-  String get newProfile_complete_title => 'Profil Berhasil Dibuat';
+  String get newProfile_complete_title => 'Profile Created Successfully';
 
   @override
   String get newProfile_complete_description =>
-      'Profilmu sudah siap digunakan. Mari lanjutkan pengalaman belajarmu dengan tenang.';
+      'Your profile is ready to use. Let\'s continue your learning journey with confidence.';
 
   @override
   String get securityFootnote =>

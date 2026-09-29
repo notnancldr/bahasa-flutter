@@ -4,60 +4,47 @@
     "@appTitle": {},
 
     "welcome_startUsing": "Start Using",
-    "@welcome_startUsing": {},
     "welcome_description": "Choose how you want to start learning today.",
-    "@welcome_description": {},
     "welcome_newProfile_title": "Create New Profile",
-    "@welcome_newProfile_title": {},
     "welcome_newProfile_description": "Start fresh with a new profile.",
-    "@welcome_newProfile_description": {},
-    "welcome_sync_title": "Sync Profile",
-    "@welcome_sync_title": {},
-    "welcome_sync_description": "Transfer your profile from an old device.",
-    "@welcome_sync_description": {},
+    "welcome_transfer_title": "Transfer Old Profile",
+    "welcome_transfer_description": "Transfer your profile from your old device.",
 
     "welcome_nextButton": "Get Started",
-    "@welcome_nextButton": {},
 
     "newProfile_title": "Profile Registration",
-    "@newProfile_title": {},
 
     "newProfile_step_username_title": "Enter Username",
-    "@newProfile_step_username_title": {},
     "newProfile_step_username_description": "This name will be used as your learning account's display name on this device",
-    "@newProfile_step_username_description": {},
     "newProfile_step_username_fieldName": "Username",
-    "@newProfile_step_username_fieldName": {},
     "newProfile_step_username_fieldPlaceholder": "Enter username...",
-    "@newProfile_step_username_fieldPlaceholder": {},
     "newProfile_step_username_fieldHint": "You can use letters, numbers, or periods.",
-    "@newProfile_step_username_fieldHint": {},
 
     "newProfile_step_language_title": "Choose Main Language",
-    "@newProfile_step_language_title": {},
     "newProfile_step_language_description": "This language will be used as the main language for navigation and exercise instructions.",
-    "@newProfile_step_language_description": {},
     "newProfile_step_language_search": "Search language...",
-    "@newProfile_step_language_search": {},
 
     "newProfile_nextButton": "Continue",
-    "@newProfile_nextButton": {},
     "newProfile_saveButton": "Save",
-    "@newProfile_saveButton": {},
+
+    "newProfile_complete_title": "Profile Created Successfully",
+    "newProfile_complete_description": "Your profile is ready to use. Let's continue your learning journey with confidence.",
 
     "securityFootnote": "Your profile is stored securely on this device without a password",
-    "@securityFootnote": {},
+
+    "done": "Done",
 
     "step": "{first} of {second}",
     "@step": {
         "placeholders": {
-            "first": { "type": "int" },
-            "second": { "type": "int" }
+            "first": {
+                "type": "int"
+            },
+            "second": {
+                "type": "int"
+            }
         }
     },
-
-    "done": "Done",
-    "@done": {},
 
     "end_of_translation": "",
     "@end_of_translation": {}
