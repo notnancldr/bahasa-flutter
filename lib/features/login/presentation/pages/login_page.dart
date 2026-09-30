@@ -61,7 +61,7 @@ class _LoginViewState extends State<LoginView> {
         if (step != _lastStep) {
           _reverse = step < _lastStep;
           _lastStep = step;
-        };
+        }
         return PopScope(
           canPop: state is! InputState || state.step == LoginStep.username,
           onPopInvokedWithResult: (didPop, _) {

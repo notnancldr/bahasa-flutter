@@ -93,7 +93,7 @@ class _SelectLanguageStepState extends State<SelectLanguageStep> {
           child: ListView.separated(
             padding: EdgeInsets.zero,
             itemCount: filtered.length,
-            separatorBuilder: (_, __) => SizedBox(height: 12),
+            separatorBuilder: (_, _) => SizedBox(height: 12),
             itemBuilder: (context, index) {
               final lang = filtered[index];
               final isSelected = lang.code == widget.state.language;
