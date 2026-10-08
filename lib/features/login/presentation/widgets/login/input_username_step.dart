@@ -1,7 +1,7 @@
 import 'package:bahasa/features/login/presentation/bloc/login/login_bloc.dart';
 import 'package:bahasa/features/login/presentation/bloc/login/login_event.dart';
 import 'package:bahasa/features/login/presentation/bloc/login/login_state.dart';
-import 'package:bahasa/features/login/presentation/widgets/login/login_step_header.dart';
+import 'package:bahasa/features/login/presentation/widgets/login_step_header.dart';
 import 'package:bahasa/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -14,7 +14,11 @@ class InputUsernameStep extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+
     final l = AppLocalizations.of(context)!;
+    final c = theme.colorScheme;
+    final t = theme.textTheme;
 
     return SingleChildScrollView(
       child: Column(
@@ -29,7 +33,7 @@ class InputUsernameStep extends StatelessWidget {
       
           Text(
             l.newProfile_step_username_fieldName,
-            style: Theme.of(context).textTheme.titleMedium,
+            style: t.titleMedium,
           ),
       
           SizedBox(height: 8),
@@ -37,11 +41,11 @@ class InputUsernameStep extends StatelessWidget {
           Container(
             decoration: BoxDecoration(
               border: BoxBorder.all(
-                color: Theme.of(context).colorScheme.outline,
+                color: c.outline,
                 width: 3,
               ),
               borderRadius: BorderRadius.circular(16),
-              color: Theme.of(context).colorScheme.surface,
+              color: c.surface,
             ),
             padding: EdgeInsets.only(left: 14),
             child: Row(
@@ -77,7 +81,7 @@ class InputUsernameStep extends StatelessWidget {
       
           Text(
             l.newProfile_step_username_fieldHint,
-            style: Theme.of(context).textTheme.labelSmall,
+            style: t.labelSmall,
           ),
         ],
       ),

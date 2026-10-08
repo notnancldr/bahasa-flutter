@@ -38,7 +38,7 @@ class EmbossedButtonColor {
       foreground ?? theme.colorScheme.onPrimaryContainer;
 
   Color resolveShadow(ThemeData theme) =>
-      shadow ?? theme.colorScheme.primaryFixedDim;
+      shadow ?? theme.semanticColors.primaryDark;
 
   Color resolveBorder(ThemeData theme) => border ?? theme.colorScheme.primary;
 

@@ -20,10 +20,10 @@ abstract class AppTextTheme {
       ),
 
       bodyLarge: TextStyle(
-        fontSize: 16, fontWeight: FontWeight.normal, color: scheme.onSurface,
+        fontSize: 16, fontWeight: FontWeight.w600, color: scheme.onSurface,
       ),
       bodyMedium: TextStyle(
-        fontSize: 14, fontWeight: FontWeight.normal, color: scheme.onSurface,
+        fontSize: 14, fontWeight: FontWeight.w600, color: scheme.onSurface,
       ),
 
       labelLarge: TextStyle(

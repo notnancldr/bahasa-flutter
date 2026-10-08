@@ -9,8 +9,6 @@ abstract class AppColorScheme {
     secondary: AppColors.secondary,
     tertiary: AppColors.tertiary,
 
-    primaryFixedDim: AppColors.primaryDark,
-
     primaryContainer: AppColors.primaryBackground,
     onPrimaryContainer: AppColors.onPrimaryBackground,
 
@@ -27,8 +25,6 @@ abstract class AppColorScheme {
     primary: AppColors.primary,
     secondary: AppColors.secondary,
     tertiary: AppColors.tertiary,
-
-    primaryFixedDim: AppColors.primaryDark,
 
     primaryContainer: AppColors.primaryBackground,
     onPrimaryContainer: AppColors.onPrimaryBackground,

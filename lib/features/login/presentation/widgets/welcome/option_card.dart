@@ -1,3 +1,4 @@
+import 'package:bahasa/core/theme/theme_extensions.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -27,6 +28,7 @@ class OptionCard extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final c = theme.colorScheme;
+    final s = theme.extension<AppSemanticColors>()!;
 
     return ClipRRect(
       borderRadius: BorderRadius.circular(16),
@@ -87,14 +89,14 @@ class OptionCard extends StatelessWidget {
                       Text(
                         nextText,
                         style: TextStyle(
-                          color: c.secondary,
+                          color: s.primaryDark,
                           fontWeight: FontWeight.bold,
                         ),
                       ),
                       SizedBox(width: 8),
                       Icon(
                         Icons.arrow_forward,
-                        color: c.secondary,
+                        color: s.primaryDark,
                         size: 16,
                       ),
                     ],
