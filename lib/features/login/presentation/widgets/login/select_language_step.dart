@@ -1,8 +1,9 @@
 import 'package:bahasa/features/login/presentation/bloc/login/login_bloc.dart';
 import 'package:bahasa/features/login/presentation/bloc/login/login_event.dart';
 import 'package:bahasa/features/login/presentation/bloc/login/login_state.dart';
-import 'package:bahasa/features/login/presentation/widgets/login/login_step_header.dart';
+import 'package:bahasa/features/login/presentation/widgets/login_step_header.dart';
 import 'package:bahasa/l10n/app_localizations.dart';
+import 'package:country_flags/country_flags.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:material_symbols_icons/symbols.dart';
@@ -10,24 +11,20 @@ import 'package:material_symbols_icons/symbols.dart';
 class _LanguageOption {
   final String code;
   final String name;
-  final String subtitle;
-  final String flagEmoji;
 
   const _LanguageOption({
     required this.code,
     required this.name,
-    required this.subtitle,
-    required this.flagEmoji,
   });
 }
 
 const List<_LanguageOption> _kLanguages = [
-  _LanguageOption(code: 'id', name: 'Bahasa Indonesia', subtitle: 'Indonesia (Default)', flagEmoji: '🇮🇩'),
-  _LanguageOption(code: 'en', name: 'English', subtitle: 'Inggris', flagEmoji: '🇬🇧'),
-  _LanguageOption(code: 'es', name: 'Español', subtitle: 'Spanyol', flagEmoji: '🇪🇸'),
-  _LanguageOption(code: 'ja', name: '日本語', subtitle: 'Jepang', flagEmoji: '🇯🇵'),
-  _LanguageOption(code: 'ko', name: '한국어', subtitle: 'Korea', flagEmoji: '🇰🇷'),
-  _LanguageOption(code: 'fr', name: 'Francais', subtitle: 'Prancis', flagEmoji: '🇫🇷'),
+  _LanguageOption(code: 'id', name: 'Bahasa Indonesia'),
+  _LanguageOption(code: 'en', name: 'English'),
+  _LanguageOption(code: 'es', name: 'Español'),
+  _LanguageOption(code: 'ja', name: '日本語'),
+  _LanguageOption(code: 'ko', name: '한국어'),
+  _LanguageOption(code: 'fr', name: 'Francais'),
 ];
 
 class SelectLanguageStep extends StatefulWidget {
@@ -51,15 +48,15 @@ class _SelectLanguageStepState extends State<SelectLanguageStep> {
 
   @override
   Widget build(BuildContext context) {
+    final l = AppLocalizations.of(context)!;
+
     final filtered = _query.isEmpty
         ? _kLanguages
         : _kLanguages.where((lang) {
             final q = _query.toLowerCase();
-            return lang.name.toLowerCase().contains(q) ||
-                lang.subtitle.toLowerCase().contains(q);
+            return lang.name.toLowerCase().contains(q);
           }).toList();
 
-    final l = AppLocalizations.of(context)!;
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -128,7 +125,10 @@ class _LanguageTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final colorScheme = Theme.of(context).colorScheme;
+    final theme = Theme.of(context);
+
+    final c = theme.colorScheme;
+    final l = AppLocalizations.of(context)!;
 
     return InkWell(
       borderRadius: BorderRadius.circular(16),
@@ -138,19 +138,32 @@ class _LanguageTile extends StatelessWidget {
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(16),
           color: selected
-              ? colorScheme.primaryContainer.withValues(alpha: 0.25)
-              : colorScheme.surface,
+              ? c.primaryContainer.withValues(alpha: 0.25)
+              : c.surface,
           border: Border.all(
-            color: selected ? colorScheme.primaryContainer : colorScheme.outline,
+            color: selected ? c.primaryContainer : c.outline,
             width: selected ? 2 : 2,
           ),
         ),
         child: Row(
           children: [
-            CircleAvatar(
-              radius: 20,
-              backgroundColor: colorScheme.surfaceContainerHighest,
-              child: Text(option.flagEmoji, style: TextStyle(fontSize: 20)),
+            Container(
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(999),
+                border: BoxBorder.all(
+                  color: c.secondary,
+                ),
+              ),
+              child: CircleAvatar(
+                radius: 20,
+                backgroundColor: c.surfaceContainerHighest,
+                child: CountryFlag.fromLanguageCode(
+                  option.code,
+                  theme: const ImageTheme(
+                    shape: Circle(),
+                  ),
+                ),
+              ),
             ),
             SizedBox(width: 14),
             Expanded(
@@ -164,9 +177,9 @@ class _LanguageTile extends StatelessWidget {
                         ),
                   ),
                   Text(
-                    option.subtitle,
+                    l.languageName(option.code),
                     style: Theme.of(context).textTheme.labelMedium?.copyWith(
-                          color: colorScheme.onSurfaceVariant,
+                          color: c.onSurfaceVariant,
                         ),
                   ),
                 ],

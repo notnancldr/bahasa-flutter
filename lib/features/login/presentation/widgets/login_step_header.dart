@@ -15,7 +15,7 @@ class LoginStepHeader extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        SizedBox(height: 32),
+        SizedBox(height: 8),
         Text(
           title,
           style: Theme.of(context).textTheme.titleLarge,

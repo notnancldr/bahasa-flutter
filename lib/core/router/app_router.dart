@@ -1,5 +1,6 @@
 import 'package:bahasa/core/router/page_transitions.dart';
 import 'package:bahasa/features/login/presentation/pages/login_page.dart';
+import 'package:bahasa/features/login/presentation/pages/transfer_page.dart';
 import 'package:bahasa/features/login/presentation/pages/welcome_page.dart';
 import 'package:go_router/go_router.dart';
 import 'app_routes.dart';
@@ -27,6 +28,15 @@ class AppRouter {
           context: context,
           state: state,
           child: const LoginPage(),
+        ),
+      ),
+      GoRoute(
+        path: AppRoutes.loginTransfer,
+        name: "loginTransfer",
+        pageBuilder: (context, state) => buildSlideTransitionPage(
+          context: context,
+          state: state,
+          child: const TransferPage(),
         ),
       ),
 

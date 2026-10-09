@@ -26,7 +26,8 @@ dependencies:
   shelf_multipart: ^2.0.1
   material_symbols_icons: ^4.2960.0
   shared_preferences: ^2.5.5
-
+  pretty_qr_code: ^3.6.0
+  country_flags: ^4.1.2
 dev_dependencies:
   flutter_test:
     sdk: flutter

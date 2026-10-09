@@ -23,7 +23,6 @@ class ReceiveState extends TransferState {
   final String fileName;
   final int? fileSize;
   final int progress;
-  final bool isComplete;
 
   ReceiveState({
     required this.ipHost,
@@ -31,7 +30,6 @@ class ReceiveState extends TransferState {
     required this.fileName,
     required this.fileSize,
     required this.progress,
-    required this.isComplete,
   });
 
   ReceiveState copyWith({
@@ -48,7 +46,6 @@ class ReceiveState extends TransferState {
       fileName: fileName ?? this.fileName,
       fileSize: fileSize ?? this.fileSize,
       progress: progress ?? this.progress,
-      isComplete: isComplete ?? this.isComplete,
     );
   }
 }
@@ -57,15 +54,11 @@ class CheckValidState extends TransferState {
   final String fileName;
   final int progress;
   final int target;
-  final bool isComplete;
-  final bool isValid;
 
   CheckValidState({
     required this.fileName,
     required this.progress,
     required this.target,
-    required this.isComplete,
-    required this.isValid,
   });
 
   CheckValidState copyWith({
@@ -79,8 +72,6 @@ class CheckValidState extends TransferState {
       fileName: fileName ?? this.fileName,
       progress: progress ?? this.progress,
       target: target ?? this.target,
-      isComplete: isComplete ?? this.isComplete,
-      isValid: isValid ?? this.isValid,
     );
   }
 }

@@ -32,19 +32,32 @@
 
     "securityFootnote": "Your profile is stored securely on this device without a password",
 
+    "transfer_listening_title": "Waiting for Another Device",
+    "transfer_listening_description": "Open [APP_NAME :v] on another device, then insert the following address to start profile transfer.",
+    "transfer_listening_address": "Device Address",
+    "transfer_listening_aboveQr": "or scan this code",
+    "transfer_listening_belowQr": "Waiting for data from another device...",
+    "transfer_listening_note": "Make sure both devices connected to the same network.",
+
+    "process_preparing": "Preparing",
+    "process_gettingReady": "Getting things ready",
+    "process_process": "Processing",
+    "process_loading": "Loading",
+
+    "back": "Back",
+    "cancel": "Cancel",
     "done": "Done",
+    "tryAgain": "Try Again",
+
+    "copy": "Copy",
+    "paste": "Paste",
+
+    "copied": "Copied!",
+    "pasted": "Pasted!",
+
+    "languageName": "{code, select, id{Indonesian} en{English} es{Spanish} ja{Japanese} ko{Korean} fr{French} ru{Russian} ar{Arabic} de{German} pt{Portuguese} zh{Chinese} hi{Hindi} other{{code}}}",
 
     "step": "{first} of {second}",
-    "@step": {
-        "placeholders": {
-            "first": {
-                "type": "int"
-            },
-            "second": {
-                "type": "int"
-            }
-        }
-    },
 
     "end_of_translation": "",
     "@end_of_translation": {}

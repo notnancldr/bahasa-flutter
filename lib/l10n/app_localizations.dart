@@ -230,11 +230,215 @@ abstract class AppLocalizations {
   /// **'Profil Anda tersimpan aman di perangkat ini tanpa kata sandi'**
   String get securityFootnote;
 
+  /// No description provided for @transfer_listening_title.
+  ///
+  /// In id, this message translates to:
+  /// **'Menunggu Perangkat Lain'**
+  String get transfer_listening_title;
+
+  /// No description provided for @transfer_listening_description.
+  ///
+  /// In id, this message translates to:
+  /// **'Buka [NAMA_APLIKASI :v] di perangkat lama, lalu masukkan alamat berikut untuk memulai pemindahan profil.'**
+  String get transfer_listening_description;
+
+  /// No description provided for @transfer_listening_address.
+  ///
+  /// In id, this message translates to:
+  /// **'Alamat Perangkat Ini'**
+  String get transfer_listening_address;
+
+  /// No description provided for @transfer_listening_aboveQr.
+  ///
+  /// In id, this message translates to:
+  /// **'atau pindai kode ini'**
+  String get transfer_listening_aboveQr;
+
+  /// No description provided for @transfer_listening_belowQr.
+  ///
+  /// In id, this message translates to:
+  /// **'Menunggu data dari perangkat lain...'**
+  String get transfer_listening_belowQr;
+
+  /// No description provided for @transfer_listening_note.
+  ///
+  /// In id, this message translates to:
+  /// **'Pastikan kedua perangkat terhubung ke jaringan Wi-Fi yang sama.'**
+  String get transfer_listening_note;
+
+  /// No description provided for @transfer_receive_name.
+  ///
+  /// In id, this message translates to:
+  /// **'Penerimaan Berkas'**
+  String get transfer_receive_name;
+
+  /// No description provided for @transfer_receive_title.
+  ///
+  /// In id, this message translates to:
+  /// **'Menerima Berkas'**
+  String get transfer_receive_title;
+
+  /// No description provided for @transfer_receive_description.
+  ///
+  /// In id, this message translates to:
+  /// **'Mohon tunggu, berkas profil Anda sedang dalam proses transfer.'**
+  String get transfer_receive_description;
+
+  /// No description provided for @transfer_receive_process.
+  ///
+  /// In id, this message translates to:
+  /// **'Sedang menerima'**
+  String get transfer_receive_process;
+
+  /// No description provided for @transfer_checkValid_name.
+  ///
+  /// In id, this message translates to:
+  /// **'Pemeriksaan Berkas'**
+  String get transfer_checkValid_name;
+
+  /// No description provided for @transfer_checkValid_title.
+  ///
+  /// In id, this message translates to:
+  /// **'Memvalidasi Berkas'**
+  String get transfer_checkValid_title;
+
+  /// No description provided for @transfer_checkValid_description.
+  ///
+  /// In id, this message translates to:
+  /// **'Mohon tunggu sebentar, sistem sedang memastikan berkas yang diterima aman dan lengkap.'**
+  String get transfer_checkValid_description;
+
+  /// No description provided for @transfer_checkValid_process.
+  ///
+  /// In id, this message translates to:
+  /// **'Sedang memindai'**
+  String get transfer_checkValid_process;
+
+  /// No description provided for @transfer_checkValid_info_title.
+  ///
+  /// In id, this message translates to:
+  /// **'Memeriksa data profil...'**
+  String get transfer_checkValid_info_title;
+
+  /// No description provided for @transfer_checkValid_info_description.
+  ///
+  /// In id, this message translates to:
+  /// **'Memeriksa kelengkapan riwayat belajar, kosakata tersimpan, dan integritas data profil.'**
+  String get transfer_checkValid_info_description;
+
+  /// No description provided for @transfer_complete_title.
+  ///
+  /// In id, this message translates to:
+  /// **'Profil Berhasil Dipindahkan'**
+  String get transfer_complete_title;
+
+  /// No description provided for @transfer_complete_description.
+  ///
+  /// In id, this message translates to:
+  /// **'Profilmu sudah siap digunakan. Mari lanjutkan perjalanan belajarmu dengan tenang.'**
+  String get transfer_complete_description;
+
+  /// No description provided for @transfer_complete_profileInfo_title.
+  ///
+  /// In id, this message translates to:
+  /// **'Info Profil'**
+  String get transfer_complete_profileInfo_title;
+
+  /// No description provided for @joinSince.
+  ///
+  /// In id, this message translates to:
+  /// **'Bergabung sejak'**
+  String get joinSince;
+
+  /// No description provided for @username.
+  ///
+  /// In id, this message translates to:
+  /// **'Username'**
+  String get username;
+
+  /// No description provided for @defaultLanguage.
+  ///
+  /// In id, this message translates to:
+  /// **'Bahasa default'**
+  String get defaultLanguage;
+
+  /// No description provided for @process_preparing.
+  ///
+  /// In id, this message translates to:
+  /// **'Menyiapkan'**
+  String get process_preparing;
+
+  /// No description provided for @process_gettingReady.
+  ///
+  /// In id, this message translates to:
+  /// **'Mempersiapkan semuanya'**
+  String get process_gettingReady;
+
+  /// No description provided for @process_process.
+  ///
+  /// In id, this message translates to:
+  /// **'Memproses'**
+  String get process_process;
+
+  /// No description provided for @process_loading.
+  ///
+  /// In id, this message translates to:
+  /// **'Memuat'**
+  String get process_loading;
+
+  /// No description provided for @back.
+  ///
+  /// In id, this message translates to:
+  /// **'Kembali'**
+  String get back;
+
+  /// No description provided for @cancel.
+  ///
+  /// In id, this message translates to:
+  /// **'Batal'**
+  String get cancel;
+
   /// No description provided for @done.
   ///
   /// In id, this message translates to:
   /// **'Selesai'**
   String get done;
+
+  /// No description provided for @tryAgain.
+  ///
+  /// In id, this message translates to:
+  /// **'Coba Lagi'**
+  String get tryAgain;
+
+  /// No description provided for @copy.
+  ///
+  /// In id, this message translates to:
+  /// **'Salin'**
+  String get copy;
+
+  /// No description provided for @paste.
+  ///
+  /// In id, this message translates to:
+  /// **'tempel'**
+  String get paste;
+
+  /// No description provided for @copied.
+  ///
+  /// In id, this message translates to:
+  /// **'Disalin!'**
+  String get copied;
+
+  /// No description provided for @pasted.
+  ///
+  /// In id, this message translates to:
+  /// **'Dikutip!'**
+  String get pasted;
+
+  /// Display name of a language, resolved from its ISO 639-1 code
+  ///
+  /// In id, this message translates to:
+  /// **'{code, select, id{Indonesia} en{Inggris} es{Spanyol} ja{Jepang} ko{Korea} fr{Prancis} ru{Rusia} ar{Arab} de{Jerman} pt{Portugis} zh{Mandarin} hi{Hindi} other{{code}}}'**
+  String languageName(String code);
 
   /// No description provided for @step.
   ///
