@@ -1,0 +1,19 @@
+import 'package:bahasa/features/settings/domain/entities/user_profile.dart';
+
+abstract class ProfileRepository {
+  /// Retrieves the current user profile.
+  Future<UserProfile> getProfile();
+
+  /// Updates the username.
+  Future<UserProfile> updateUsername(String newUsername);
+
+  /// Updates the profile photo path.
+  Future<UserProfile> updateProfilePhoto(String photoPath);
+
+  /// Launches local file access to pick an image from phone and returns its path.
+  Future<String?> pickProfilePhoto();
+
+  /// Deletes profile record and all app data.
+  Future<void> deleteProfileAndData();
+}
+
