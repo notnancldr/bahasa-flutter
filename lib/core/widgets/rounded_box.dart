@@ -1,3 +1,4 @@
+import 'package:bahasa/core/widgets/rounded_container.dart';
 import 'package:flutter/material.dart';
 
 class RoundedBox extends StatelessWidget {
@@ -18,21 +19,11 @@ class RoundedBox extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
-
-    final c = theme.colorScheme;
-
-    return Container(
+    return RoundedContainer.box(
       width: width,
       height: height,
-      padding: EdgeInsets.all(16.0),
-      decoration: BoxDecoration(
-        color: color ?? c.surfaceBright,
-        borderRadius: BorderRadius.circular(16),
-        border: useBorder? BoxBorder.all(
-          color: c.outline,
-        ) : null,
-      ),
+      color: color,
+      useBorder: useBorder,
       child: child,
     );
   }

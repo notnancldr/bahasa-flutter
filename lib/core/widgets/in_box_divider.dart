@@ -8,9 +8,6 @@ class InBoxDivider extends StatelessWidget {
   Widget build(BuildContext context) {
     final WidgetVars(:c) = WidgetVars.of(context);
 
-    return Divider(
-      indent: 8,
-      color: c.outline,
-    );
+    return Divider(indent: 8, color: c.outline);
   }
 }

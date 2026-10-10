@@ -37,8 +37,9 @@ class EmbossedButton extends StatelessWidget {
     final isOutlined = isOutlineMuted || type == EmbossedButtonType.outlined;
     final isFilled = !isOutlined;
 
-    final gradient =
-        _isEnabled && isFilled ? color.resolveGradient(theme) : null;
+    final gradient = _isEnabled && isFilled
+        ? color.resolveGradient(theme)
+        : null;
 
     final Color backgroundColor;
     if (!_isEnabled) {
@@ -70,7 +71,9 @@ class EmbossedButton extends StatelessWidget {
         decoration: BoxDecoration(
           borderRadius: borderRadius,
           gradient: gradient,
-          border: isOutlined && _isEnabled ? Border.all(color: borderColor, width: 2) : null,
+          border: isOutlined && _isEnabled
+              ? Border.all(color: borderColor, width: 2)
+              : null,
           boxShadow: _isEnabled && shadowColor != null
               ? [BoxShadow(color: shadowColor, offset: const Offset(0, 2))]
               : null,
