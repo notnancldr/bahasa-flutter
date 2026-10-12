@@ -1,24 +1,22 @@
 import 'package:bahasa/core/localization/locale_cubit.dart';
 import 'package:bahasa/core/widgets/embossed_button/embossed_button.dart';
-import 'package:bahasa/core/widgets/slide_fade_switcher.dart';
+import 'package:bahasa/core/widgets/step_page_switcher.dart';
 import 'package:bahasa/features/login/domain/enums/login_step_enum.dart';
+import 'package:bahasa/features/login/login_dependencies.dart';
 import 'package:bahasa/features/login/presentation/bloc/login/login_bloc.dart';
 import 'package:bahasa/features/login/presentation/bloc/login/login_event.dart';
 import 'package:bahasa/features/login/presentation/bloc/login/login_state.dart';
+import 'package:bahasa/features/login/presentation/widgets/login/input_username_step.dart';
 import 'package:bahasa/features/login/presentation/widgets/login/login_complete.dart';
 import 'package:bahasa/features/login/presentation/widgets/login/login_header.dart';
-import 'package:bahasa/features/login/presentation/widgets/security_footnote.dart';
-import 'package:bahasa/features/login/presentation/widgets/login/input_username_step.dart';
 import 'package:bahasa/features/login/presentation/widgets/login/select_language_step.dart';
+import 'package:bahasa/features/login/presentation/widgets/security_footnote.dart';
 import 'package:bahasa/l10n/app_localizations.dart';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:material_symbols_icons/symbols.dart';
-
-import 'package:bahasa/features/login/login_dependencies.dart';
 
 class LoginPage extends StatelessWidget {
   const LoginPage({super.key});
@@ -34,16 +32,8 @@ class LoginPage extends StatelessWidget {
   }
 }
 
-class LoginView extends StatefulWidget {
+class LoginView extends StatelessWidget {
   const LoginView({super.key});
-
-  @override
-  State<LoginView> createState() => _LoginViewState();
-}
-
-class _LoginViewState extends State<LoginView> {
-  int _lastStep = 0;
-  bool _reverse = false;
 
   static int _stepFor(LoginState state) {
     return switch (state) {
@@ -59,11 +49,8 @@ class _LoginViewState extends State<LoginView> {
 
     return BlocBuilder<LoginBloc, LoginState>(
       builder: (context, state) {
-        final step = _stepFor(state);
-        if (step != _lastStep) {
-          _reverse = step < _lastStep;
-          _lastStep = step;
-        }
+        final currentStep = _stepFor(state);
+
         return PopScope(
           canPop: state is! InputState || state.step == LoginStep.username,
           onPopInvokedWithResult: (didPop, _) {
@@ -72,7 +59,7 @@ class _LoginViewState extends State<LoginView> {
           child: Scaffold(
             body: SafeArea(
               child: Padding(
-                padding: EdgeInsets.all(24),
+                padding: const EdgeInsets.all(24),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -83,7 +70,7 @@ class _LoginViewState extends State<LoginView> {
                         children: [
                           LoginHeader(
                                 state: state,
-                                current: _stepFor(state),
+                                current: currentStep,
                                 total: 2,
                               )
                               .animate(
@@ -93,11 +80,10 @@ class _LoginViewState extends State<LoginView> {
                               )
                               .fade()
                               .slideY(),
-                          // Text((state is ProfileSavedState).toString()),
-                          SizedBox(height: 8),
+                          const SizedBox(height: 8),
                           Expanded(
-                            child: SlideFadeSwitcher(
-                              reverse: _reverse,
+                            child: StepPageSwitcher(
+                              currentStep: currentStep,
                               child: _buildStep(state),
                             ),
                           ),
@@ -106,7 +92,7 @@ class _LoginViewState extends State<LoginView> {
                     ),
 
                     // --- Bottom section: pinned button + footnote ---
-                    SizedBox(height: 16),
+                    const SizedBox(height: 16),
 
                     Column(
                       mainAxisSize: MainAxisSize.min,
@@ -116,8 +102,8 @@ class _LoginViewState extends State<LoginView> {
                           onPressed: _onPressedFor(context, state),
                           trailingIcon: _iconFor(state),
                         ),
-                        SizedBox(height: 16),
-                        SecurityFootnote(),
+                        const SizedBox(height: 16),
+                        const SecurityFootnote(),
                       ],
                     ),
                   ],
@@ -140,8 +126,8 @@ class _LoginViewState extends State<LoginView> {
         key: const ValueKey('language-step'),
         state: state,
       ),
-      ProfileSavedState() => LoginComplete(
-        key: const ValueKey('login-complete'),
+      ProfileSavedState() => const LoginComplete(
+        key: ValueKey('login-complete'),
       ),
     };
   }

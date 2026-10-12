@@ -1,13 +1,12 @@
+import 'package:bahasa/core/widgets/step_progress_header.dart';
 import 'package:bahasa/features/login/domain/enums/login_step_enum.dart';
 import 'package:bahasa/features/login/presentation/bloc/login/login_bloc.dart';
 import 'package:bahasa/features/login/presentation/bloc/login/login_event.dart';
 import 'package:bahasa/features/login/presentation/bloc/login/login_state.dart';
 import 'package:bahasa/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import 'package:material_symbols_icons/symbols.dart';
 
 class LoginHeader extends StatelessWidget {
   final int current;
@@ -23,87 +22,24 @@ class LoginHeader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
-
     final l = AppLocalizations.of(context)!;
-    final c = theme.colorScheme;
-    final t = theme.textTheme;
 
-    return Column(
-      children: [
-        Row(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Row(
-              children: [
-                InkWell(
-                  borderRadius: BorderRadius.circular(999),
-                  onTap: () {
-                    final currentState = state;
-                    if (currentState is InputState &&
-                        currentState.step == LoginStep.username) {
-                      if (context.canPop()) {
-                        context.pop();
-                      }
-                    } else {
-                      context.read<LoginBloc>().add(PreviousStep());
-                    }
-                  },
-                  child: Container(
-                    padding: EdgeInsets.all(8),
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(999),
-                      color: c.surfaceContainer,
-                      border: BoxBorder.all(color: c.outlineVariant),
-                    ),
-                    child: Icon(Symbols.arrow_back, size: 16, weight: 700),
-                  ),
-                ),
-                SizedBox(width: 8),
-                Text(l.newProfile_title, style: t.labelMedium),
-              ],
-            ),
-            Container(
-              padding: EdgeInsets.symmetric(vertical: 4, horizontal: 8),
-              decoration: BoxDecoration(
-                color: c.surfaceContainer,
-                borderRadius: BorderRadius.circular(999),
-              ),
-              child: Text(
-                // "${current + 1} dari $total",
-                l.step(current + 1, total),
-                style: t.labelSmall,
-              ),
-            ),
-          ],
-        ),
-        SizedBox(height: 12),
-        Row(
-          children: List.generate(2 * total - 1, (index) {
-            if ((index + 1) % 2 == 0) {
-              return SizedBox(width: 8);
-            }
-
-            final currentBox = (index / 2).toInt();
-            final isActive = currentBox <= current;
-            final backgroundColor = isActive ? c.primary : c.outline;
-
-            return Expanded(
-              child: AnimatedContainer(
-                key: ValueKey("stepindicator-$currentBox"),
-                width: double.infinity,
-                height: 6,
-                duration: 300.ms,
-                decoration: BoxDecoration(
-                  color: backgroundColor,
-                  borderRadius: BorderRadius.circular(999),
-                ),
-              ),
-            );
-          }),
-        ),
-      ],
+    return StepProgressHeader(
+      current: current,
+      total: total,
+      title: l.newProfile_title,
+      stepLabel: l.step(current + 1, total),
+      onBack: () {
+        final currentState = state;
+        if (currentState is InputState &&
+            currentState.step == LoginStep.username) {
+          if (context.canPop()) {
+            context.pop();
+          }
+        } else {
+          context.read<LoginBloc>().add(PreviousStep());
+        }
+      },
     );
   }
 }

@@ -1,4 +1,5 @@
 import 'package:bahasa/core/utils/widget_var.dart';
+import 'package:bahasa/core/widgets/info_chip.dart';
 import 'package:flutter/material.dart';
 
 class ReceiveStepHeader extends StatelessWidget {
@@ -21,13 +22,7 @@ class ReceiveStepHeader extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         SizedBox(height: 16),
-        Card.filled(
-          color: c.surfaceContainer,
-          child: Padding(
-            padding: const EdgeInsets.symmetric(vertical: 4, horizontal: 8),
-            child: Text(name, style: t.labelMedium),
-          ),
-        ),
+        InfoChip(text: name),
 
         SizedBox(height: 54),
         Text(
