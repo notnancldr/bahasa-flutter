@@ -1,5 +1,9 @@
 import 'package:bahasa/core/localization/locale_cubit.dart';
 import 'package:bahasa/core/theme/app_theme.dart';
+import 'package:bahasa/features/settings/presentation/bloc/theme/theme_bloc.dart';
+import 'package:bahasa/features/settings/presentation/bloc/theme/theme_event.dart';
+import 'package:bahasa/features/settings/presentation/bloc/theme/theme_state.dart';
+import 'package:bahasa/features/settings/settings_dependencies.dart';
 import 'package:bahasa/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -18,27 +22,16 @@ class AppBootstrap extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // return MultiRepositoryProvider(
-    //   providers: [
-    //     // RepositoryProvider<AuthRepository>(
-    //     //   create: (_) => AuthRepository(),
-    //     // ),
-    //     // add other repositories here (e.g. UserRepository, ApiClient)
-    //   ],
-    //   child: MultiBlocProvider(
-    //     providers: [
-    //       BlocProvider<AuthBloc>(
-    //         create: (context) => AuthBloc(
-    //           authRepository: context.read<AuthRepository>(),
-    //         )..add(const AuthCheckRequested()),
-    //       ),
-    //       // add other app-wide blocs here
-    //     ],
-    //     child: const MyApp(),
-    //   ),
-    // );
-    return BlocProvider(
-      create: (_) => LocaleCubit(),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create: (_) => LocaleCubit(),
+        ),
+        BlocProvider(
+          create: (_) => SettingsDependencies.createThemeBloc()
+            ..add(const LoadThemeEvent()),
+        ),
+      ],
       child: const BahasaApp(),
     );
   }
@@ -62,19 +55,24 @@ class _BahasaAppState extends State<BahasaApp> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<LocaleCubit, LanguageState>(
-      builder: (context, state) {
-        return MaterialApp.router(
-          title: AppLocalizations.of(context)?.appTitle,
-          localizationsDelegates: AppLocalizations.localizationsDelegates,
-          supportedLocales: AppLocalizations.supportedLocales,
-          locale: state.locale,
-          debugShowCheckedModeBanner: false,
-          theme: AppTheme.light,
-          darkTheme: AppTheme.light,
-          routerConfig: _appRouter.router,
+    return BlocBuilder<ThemeBloc, ThemeState>(
+      builder: (context, themeState) {
+        return BlocBuilder<LocaleCubit, LanguageState>(
+          builder: (context, localeState) {
+            return MaterialApp.router(
+              title: AppLocalizations.of(context)?.appTitle,
+              localizationsDelegates: AppLocalizations.localizationsDelegates,
+              supportedLocales: AppLocalizations.supportedLocales,
+              locale: localeState.locale,
+              debugShowCheckedModeBanner: false,
+              themeMode: themeState.themeMode,
+              theme: AppTheme.light,
+              darkTheme: AppTheme.dark,
+              routerConfig: _appRouter.router,
+            );
+          },
         );
-      }
+      },
     );
   }
 }
