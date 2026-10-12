@@ -8,9 +8,8 @@ abstract class AppRoutes {
   // Settings
   static const settings = "/settings";
   static const settingsAccount = "/settings/account";
+  static const settingsAccountEdit = "/settings/account/edit";
   static const settingsTheme = "/settings/theme";
-  static const settingsNotifications = "/settings/notifications";
   static const settingsDataStorage = "/settings/data";
   static const settingsDataTransfer = "/settings/data/transfer";
-  static const settingsDataDelete = "/settings/data/delete";
 }

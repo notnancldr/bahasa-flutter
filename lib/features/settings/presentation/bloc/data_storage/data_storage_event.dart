@@ -4,8 +4,8 @@ sealed class DataStorageEvent {
 
 // --- Data Transfer Events ---
 class StartDataTransferEvent extends DataStorageEvent {
-  final String receiverCode;
-  const StartDataTransferEvent(this.receiverCode);
+  final String receiverIp;
+  const StartDataTransferEvent(this.receiverIp);
 }
 
 class RetryDataTransferEvent extends DataStorageEvent {
@@ -37,4 +37,3 @@ class CancelDeleteDataEvent extends DataStorageEvent {
 class ResetDataStorageStateEvent extends DataStorageEvent {
   const ResetDataStorageStateEvent();
 }
-

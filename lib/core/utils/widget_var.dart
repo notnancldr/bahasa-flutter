@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 
 class WidgetVars {
   /// ### Current Theme
-  /// 
+  ///
   /// Equivalent to:
   /// ```
   /// Theme.of(context)
@@ -12,7 +12,7 @@ class WidgetVars {
   final ThemeData theme;
 
   /// ### Color Schemes
-  /// 
+  ///
   /// Equivalent to:
   /// ```
   /// Theme.of(context).colorScheme
@@ -20,7 +20,7 @@ class WidgetVars {
   final ColorScheme c;
 
   /// ### Text Themes
-  /// 
+  ///
   /// Equivalent to:
   /// ```
   /// Theme.of(context).textTheme
@@ -28,7 +28,7 @@ class WidgetVars {
   final TextTheme t;
 
   /// ### Text Themes
-  /// 
+  ///
   /// Equivalent to:
   /// ```
   /// Theme.of(context).extension<AppSemanticColors>()!
@@ -36,12 +36,21 @@ class WidgetVars {
   final AppSemanticColors s;
 
   /// ### App Localizations
-  /// 
+  ///
   /// Equivalent to:
   /// ```
   /// AppLocalizations.of(context)!
   /// ```
   final AppLocalizations l;
+
+  /// ### Current Theme Mode
+  ///
+  /// Equivalent to:
+  ///
+  /// ```
+  /// Theme.of(context).brightness == Brightness.dark
+  /// ```
+  final bool isDark;
 
   const WidgetVars({
     required this.theme,
@@ -51,6 +60,8 @@ class WidgetVars {
     required this.s,
 
     required this.l,
+
+    required this.isDark,
   });
 
   factory of(BuildContext context) {
@@ -62,12 +73,8 @@ class WidgetVars {
 
     final l = AppLocalizations.of(context)!;
 
-    return WidgetVars(
-      theme: theme,
-      c: c,
-      t: t,
-      s: s,
-      l: l,
-    );
+    final isDark = Theme.of(context).brightness == Brightness.dark;
+
+    return WidgetVars(theme: theme, c: c, t: t, s: s, l: l, isDark: isDark);
   }
 }

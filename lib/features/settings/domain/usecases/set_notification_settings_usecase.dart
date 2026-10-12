@@ -8,4 +8,3 @@ class SetNotificationSettingsUseCase {
   Future<void> call(NotificationSettings settings) =>
       _repository.setNotificationSettings(settings);
 }
-

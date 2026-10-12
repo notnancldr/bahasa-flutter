@@ -2,16 +2,10 @@
 class NotificationSettings {
   final bool isEnabled;
 
-  const NotificationSettings({
-    required this.isEnabled,
-  });
+  const NotificationSettings({required this.isEnabled});
 
-  NotificationSettings copyWith({
-    bool? isEnabled,
-  }) {
-    return NotificationSettings(
-      isEnabled: isEnabled ?? this.isEnabled,
-    );
+  NotificationSettings copyWith({bool? isEnabled}) {
+    return NotificationSettings(isEnabled: isEnabled ?? this.isEnabled);
   }
 
   @override
@@ -24,4 +18,3 @@ class NotificationSettings {
   @override
   int get hashCode => isEnabled.hashCode;
 }
-

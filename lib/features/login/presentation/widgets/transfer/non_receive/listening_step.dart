@@ -1,10 +1,7 @@
-import 'package:bahasa/core/theme/theme_extensions.dart';
-import 'package:bahasa/core/widgets/rounded_box.dart';
-import 'package:bahasa/core/widgets/rounded_container.dart';
+import 'package:bahasa/core/utils/widget_var.dart';
 import 'package:bahasa/core/widgets/waiting_dots.dart';
 import 'package:bahasa/features/login/presentation/bloc/transfer/transfer_state.dart';
 import 'package:bahasa/features/login/presentation/widgets/login_step_header.dart';
-import 'package:bahasa/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:material_symbols_icons/symbols.dart';
@@ -13,19 +10,11 @@ import 'package:pretty_qr_code/pretty_qr_code.dart';
 class ListeningStep extends StatelessWidget {
   final ListeningState state;
 
-  const ListeningStep({
-    super.key,
-    required this.state,
-  });
+  const ListeningStep({super.key, required this.state});
 
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
-
-    final l = AppLocalizations.of(context)!;
-    final c = theme.colorScheme;
-    final s = theme.extension<AppSemanticColors>()!;
-    final t = theme.textTheme;
+    final WidgetVars(:theme, :c, :t, :s, :l) = WidgetVars.of(context);
 
     return SingleChildScrollView(
       child: Column(
@@ -36,111 +25,112 @@ class ListeningStep extends StatelessWidget {
             l.transfer_listening_title,
             description: l.transfer_listening_description,
           ),
-      
+
           SizedBox(height: 16),
-      
-          RoundedBox(child: Column(
-            crossAxisAlignment: .stretch,
-            children: [
-              Text(
-                l.transfer_listening_address,
-                style: t.bodyMedium,
-              ),
-              SizedBox(height: 8),
-              Row(
-                mainAxisAlignment: .spaceBetween,
+
+          Card(
+            child: Padding(
+              padding: const EdgeInsets.all(16),
+              child: Column(
+                crossAxisAlignment: .stretch,
                 children: [
-                  Text(
-                    state.ipHost,
-                    style: t.titleMedium,
-                  ),
-                  OutlinedButton(
-                    onPressed: () {
-                      final data = ClipboardData(text: _hostUrl(state.ipHost));
-                      Clipboard.setData(data);
-                      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                        content: Text(l.copied),
-                        duration: Durations.extralong4,
-                      ));
-                    },
-                    style: ButtonStyle(
-                      foregroundColor: WidgetStateColor.fromMap({
-                        WidgetState.any: s.primaryDark,
-                      }),
-                    ),
-                    child: Row(
-                      children: [
-                        Icon(Symbols.content_copy),
-                        SizedBox(width: 8),
-                        Text(l.copy),
-                      ],
-                    ),
+                  Text(l.transfer_listening_address, style: t.bodyMedium),
+                  SizedBox(height: 8),
+                  Row(
+                    mainAxisAlignment: .spaceBetween,
+                    children: [
+                      Text(state.ipHost, style: t.titleMedium),
+                      OutlinedButton(
+                        onPressed: () {
+                          final data = ClipboardData(
+                            text: _hostUrl(state.ipHost),
+                          );
+                          Clipboard.setData(data);
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(
+                              content: Text(l.copied),
+                              duration: Durations.extralong4,
+                            ),
+                          );
+                        },
+                        style: ButtonStyle(
+                          foregroundColor: WidgetStateColor.fromMap({
+                            WidgetState.any: s.primaryDark,
+                          }),
+                        ),
+                        child: Row(
+                          children: [
+                            Icon(Symbols.content_copy),
+                            SizedBox(width: 8),
+                            Text(l.copy),
+                          ],
+                        ),
+                      ),
+                    ],
                   ),
                 ],
               ),
-            ],
-          )),
+            ),
+          ),
 
           SizedBox(height: 16),
 
-          RoundedBox(child: Row(
-            mainAxisAlignment: .center,
-            children: [
-              Column(
+          Card(
+            child: Padding(
+              padding: const EdgeInsets.all(16),
+              child: Row(
+                mainAxisAlignment: .center,
                 children: [
-                  RoundedContainer(
-                    textContent: true,
-                    child: Row(
-                      children: [
-                        Icon(
+                  Column(
+                    children: [
+                      Chip(
+                        avatar: Icon(
                           Symbols.qr_code_scanner,
                           size: 16,
                           color: s.primaryDark,
                         ),
-                        SizedBox(width: 4),
-                        Text(
+                        label: Text(
                           l.transfer_listening_aboveQr,
                           style: t.bodySmall,
                         ),
-                      ],
-                    ),
-                  ),
-
-                  SizedBox(height: 8),
-
-                  RoundedContainer(
-                    useBorder: true,
-                    child: SizedBox(
-                      height: 152,
-                      width: 152,
-                      child: PrettyQrView.data(
-                        decoration: const PrettyQrDecoration(
-                          shape: PrettyQrSmoothSymbol(),
-                          quietZone: .pixels(8)
-                        ),
-                        data: _hostUrl(state.ipHost),
+                        backgroundColor: c.surfaceContainerLow,
+                        side: BorderSide.none,
                       ),
-                    ),
-                  ),
-
-                  SizedBox(height: 16),
-                  WaitingDots(color: c.primary),
-                  SizedBox(height: 16),
-
-                  Text(
-                    l.transfer_listening_belowQr,
-                    style: t.bodyMedium,
+                                
+                      SizedBox(height: 16),
+                                
+                      Card.outlined(
+                        color: Colors.white,
+                        child: SizedBox(
+                          height: 152,
+                          width: 152,
+                          child: PrettyQrView.data(
+                            decoration: const PrettyQrDecoration(
+                              shape: PrettyQrSmoothSymbol(),
+                              quietZone: .pixels(12),
+                            ),
+                            data: _hostUrl(state.ipHost),
+                          ),
+                        ),
+                      ),
+                                
+                      SizedBox(height: 16),
+                      WaitingDots(color: c.primary),
+                      SizedBox(height: 16),
+                                
+                      Text(l.transfer_listening_belowQr, style: t.bodyMedium),
+                    ],
                   ),
                 ],
               ),
-            ],
-          )),
+            ),
+          ),
 
           SizedBox(height: 8),
 
-          RoundedContainer(
+          Card(
             child: Padding(
-              padding: const EdgeInsets.all(8.0),
+              padding: const EdgeInsets.all(16),
               child: Row(
                 crossAxisAlignment: .start,
                 children: [
@@ -151,10 +141,12 @@ class ListeningStep extends StatelessWidget {
                     weight: 800,
                   ),
                   SizedBox(width: 16),
-                  Expanded(child: Text(
-                    l.transfer_listening_note,
-                    style: t.labelMedium,
-                  )),
+                  Expanded(
+                    child: Text(
+                      l.transfer_listening_note,
+                      style: t.labelMedium,
+                    ),
+                  ),
                 ],
               ),
             ),
@@ -164,6 +156,5 @@ class ListeningStep extends StatelessWidget {
     );
   }
 
-  String _hostUrl(String ipHost) =>
-      "http://$ipHost:7000";
+  String _hostUrl(String ipHost) => "http://$ipHost:7000";
 }

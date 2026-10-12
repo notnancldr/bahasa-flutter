@@ -31,4 +31,3 @@ class ConfirmDeleteProfileEvent extends AccountEvent {
 class CancelAccountActionEvent extends AccountEvent {
   const CancelAccountActionEvent();
 }
-

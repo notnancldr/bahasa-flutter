@@ -12,7 +12,7 @@ class NotificationBloc extends Bloc<NotificationEvent, NotificationState> {
   NotificationBloc({
     required this._getNotificationSettingsUseCase,
     required this._setNotificationSettingsUseCase,
-  })  : super(const NotificationState()) {
+  }) : super(const NotificationState()) {
     on<LoadNotificationSettingsEvent>(_onLoadSettings);
     on<ToggleNotificationEvent>(_onToggleNotification);
   }
@@ -24,16 +24,15 @@ class NotificationBloc extends Bloc<NotificationEvent, NotificationState> {
     emit(state.copyWith(isLoading: true, isApplied: false));
     try {
       final settings = await _getNotificationSettingsUseCase();
-      emit(state.copyWith(
-        isEnabled: settings.isEnabled,
-        isLoading: false,
-        isApplied: false,
-      ));
+      emit(
+        state.copyWith(
+          isEnabled: settings.isEnabled,
+          isLoading: false,
+          isApplied: false,
+        ),
+      );
     } catch (e) {
-      emit(state.copyWith(
-        isLoading: false,
-        errorMessage: e.toString(),
-      ));
+      emit(state.copyWith(isLoading: false, errorMessage: e.toString()));
     }
   }
 
@@ -46,17 +45,15 @@ class NotificationBloc extends Bloc<NotificationEvent, NotificationState> {
       await _setNotificationSettingsUseCase(
         NotificationSettings(isEnabled: event.isEnabled),
       );
-      emit(state.copyWith(
-        isEnabled: event.isEnabled,
-        isLoading: false,
-        isApplied: true,
-      ));
+      emit(
+        state.copyWith(
+          isEnabled: event.isEnabled,
+          isLoading: false,
+          isApplied: true,
+        ),
+      );
     } catch (e) {
-      emit(state.copyWith(
-        isLoading: false,
-        errorMessage: e.toString(),
-      ));
+      emit(state.copyWith(isLoading: false, errorMessage: e.toString()));
     }
   }
 }
-

@@ -14,4 +14,3 @@ abstract class SettingsRepository {
   /// Persists and updates notification settings.
   Future<void> setNotificationSettings(NotificationSettings settings);
 }
-

@@ -12,4 +12,3 @@ class ChangeThemeEvent extends ThemeEvent {
   final ThemeMode themeMode;
   const ChangeThemeEvent(this.themeMode);
 }
-

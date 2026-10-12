@@ -12,13 +12,13 @@ class InputState extends LoginState {
   final bool isLanguageValid;
 
   final LoginStep step;
-  
+
   InputState({
     required this.username,
     required this.language,
     required this.isUsernameValid,
     required this.isLanguageValid,
-    required this.step, 
+    required this.step,
   });
 
   InputState copyWith({
@@ -50,24 +50,19 @@ class InputState extends LoginState {
   }
 
   @override
-  int get hashCode => Object.hash(
-        username,
-        language,
-        isUsernameValid,
-        isLanguageValid,
-      );
+  int get hashCode =>
+      Object.hash(username, language, isUsernameValid, isLanguageValid);
 }
 
 class DefaultLoginState extends InputState {
-  DefaultLoginState(): super(
-    username: "",
-    isUsernameValid: false,
-    language: null,
-    isLanguageValid: false,
-    step: LoginStep.username,
-  );
+  DefaultLoginState()
+    : super(
+        username: "",
+        isUsernameValid: false,
+        language: null,
+        isLanguageValid: false,
+        step: LoginStep.username,
+      );
 }
 
 class ProfileSavedState extends LoginState {}
-
-

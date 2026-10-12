@@ -9,4 +9,3 @@ class AppThemeModeModel {
     return mode.toStorageString();
   }
 }
-

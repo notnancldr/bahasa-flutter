@@ -4,11 +4,7 @@ class UserProfile {
   final String? photoPath;
   final DateTime? updatedAt;
 
-  const UserProfile({
-    required this.username,
-    this.photoPath,
-    this.updatedAt,
-  });
+  const UserProfile({required this.username, this.photoPath, this.updatedAt});
 
   UserProfile copyWith({
     String? username,
@@ -34,4 +30,3 @@ class UserProfile {
   @override
   int get hashCode => Object.hash(username, photoPath, updatedAt);
 }
-

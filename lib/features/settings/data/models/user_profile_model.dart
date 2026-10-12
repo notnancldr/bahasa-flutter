@@ -33,4 +33,3 @@ class UserProfileModel extends UserProfile {
     };
   }
 }
-

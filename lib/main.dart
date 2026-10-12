@@ -24,12 +24,11 @@ class AppBootstrap extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
+        BlocProvider(create: (_) => LocaleCubit()),
         BlocProvider(
-          create: (_) => LocaleCubit(),
-        ),
-        BlocProvider(
-          create: (_) => SettingsDependencies.createThemeBloc()
-            ..add(const LoadThemeEvent()),
+          create: (_) =>
+              SettingsDependencies.createThemeBloc()
+                ..add(const LoadThemeEvent()),
         ),
       ],
       child: const BahasaApp(),

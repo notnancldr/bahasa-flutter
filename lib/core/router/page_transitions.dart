@@ -17,11 +17,11 @@ CustomTransitionPage<T> buildSlideTransitionPage<T>({
     transitionDuration: transitionDuration,
     reverseTransitionDuration: reversTransitionDuration,
     transitionsBuilder: (context, animation, secondaryAnimation, child) {
-      final tween = Tween(begin: begin, end: end).chain(CurveTween(curve: curve));
-      return SlideTransition(
-        position: animation.drive(tween),
-        child: child,
-      );
+      final tween = Tween(
+        begin: begin,
+        end: end,
+      ).chain(CurveTween(curve: curve));
+      return SlideTransition(position: animation.drive(tween), child: child);
     },
   );
 }

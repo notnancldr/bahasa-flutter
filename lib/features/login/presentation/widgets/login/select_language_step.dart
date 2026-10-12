@@ -12,10 +12,7 @@ class _LanguageOption {
   final String code;
   final String name;
 
-  const _LanguageOption({
-    required this.code,
-    required this.name,
-  });
+  const _LanguageOption({required this.code, required this.name});
 }
 
 const List<_LanguageOption> _kLanguages = [
@@ -56,7 +53,6 @@ class _SelectLanguageStepState extends State<SelectLanguageStep> {
             final q = _query.toLowerCase();
             return lang.name.toLowerCase().contains(q);
           }).toList();
-
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -150,18 +146,14 @@ class _LanguageTile extends StatelessWidget {
             Container(
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(999),
-                border: BoxBorder.all(
-                  color: c.secondary,
-                ),
+                border: BoxBorder.all(color: c.secondary),
               ),
               child: CircleAvatar(
                 radius: 20,
                 backgroundColor: c.surfaceContainerHighest,
                 child: CountryFlag.fromLanguageCode(
                   option.code,
-                  theme: const ImageTheme(
-                    shape: Circle(),
-                  ),
+                  theme: const ImageTheme(shape: Circle()),
                 ),
               ),
             ),
@@ -172,15 +164,13 @@ class _LanguageTile extends StatelessWidget {
                 children: [
                   Text(
                     option.name,
-                    style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                          fontWeight: FontWeight.bold,
-                        ),
+                    style: Theme.of(context).textTheme.titleMedium
+                        ?.copyWith(fontWeight: FontWeight.bold),
                   ),
                   Text(
                     l.languageName(option.code),
-                    style: Theme.of(context).textTheme.labelMedium?.copyWith(
-                          color: c.onSurfaceVariant,
-                        ),
+                    style: Theme.of(context).textTheme.labelMedium
+                        ?.copyWith(color: c.onSurfaceVariant),
                   ),
                 ],
               ),
@@ -211,7 +201,9 @@ class _SelectionIndicator extends StatelessWidget {
         shape: BoxShape.circle,
         color: selected ? colorScheme.primaryContainer : Colors.transparent,
         border: Border.all(
-          color: selected ? colorScheme.primaryContainer : colorScheme.outlineVariant,
+          color: selected
+              ? colorScheme.primaryContainer
+              : colorScheme.outlineVariant,
           width: 2,
         ),
       ),

@@ -1,7 +1,7 @@
 import 'package:bahasa/core/router/app_routes.dart';
+import 'package:bahasa/core/utils/widget_var.dart';
 import 'package:bahasa/features/login/presentation/widgets/security_footnote.dart';
 import 'package:bahasa/features/login/presentation/widgets/welcome/option_card.dart';
-import 'package:bahasa/l10n/app_localizations.dart';
 
 import 'package:flutter/material.dart';
 import 'package:material_symbols_icons/symbols.dart';
@@ -20,7 +20,7 @@ class WelcomeView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final l = AppLocalizations.of(context)!;
+    final WidgetVars(:l, :c) = WidgetVars.of(context);
 
     return Scaffold(
       body: SafeArea(
@@ -48,7 +48,7 @@ class WelcomeView extends StatelessWidget {
                           l.welcome_description,
                           textAlign: TextAlign.center,
                           style: TextStyle(
-                            color: Colors.grey.shade800,
+                            color: c.onSurfaceVariant.withAlpha(128),
                           ),
                         ),
                       ],

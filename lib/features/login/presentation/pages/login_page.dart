@@ -18,13 +18,15 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:material_symbols_icons/symbols.dart';
 
+import 'package:bahasa/features/login/login_dependencies.dart';
+
 class LoginPage extends StatelessWidget {
   const LoginPage({super.key});
 
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => LoginBloc(
+      create: (context) => LoginDependencies.createLoginBloc(
         localeCubit: context.read<LocaleCubit>(),
       ),
       child: const LoginView(),
@@ -79,14 +81,18 @@ class _LoginViewState extends State<LoginView> {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          LoginHeader(state: state, current: _stepFor(state), total: 2)
-                            .animate(
-                              // Prevent initial animation
-                              value: 1,
-                              target: (state is ProfileSavedState) ? 0 : 1,
-                            )
-                            .fade()
-                            .slideY(),
+                          LoginHeader(
+                                state: state,
+                                current: _stepFor(state),
+                                total: 2,
+                              )
+                              .animate(
+                                // Prevent initial animation
+                                value: 1,
+                                target: (state is ProfileSavedState) ? 0 : 1,
+                              )
+                              .fade()
+                              .slideY(),
                           // Text((state is ProfileSavedState).toString()),
                           SizedBox(height: 8),
                           Expanded(
@@ -98,11 +104,10 @@ class _LoginViewState extends State<LoginView> {
                         ],
                       ),
                     ),
-      
+
                     // --- Bottom section: pinned button + footnote ---
-      
                     SizedBox(height: 16),
-      
+
                     Column(
                       mainAxisSize: MainAxisSize.min,
                       children: [
@@ -121,18 +126,23 @@ class _LoginViewState extends State<LoginView> {
             ),
           ),
         );
-      }
+      },
     );
   }
 
   Widget _buildStep(LoginState state) {
     return switch (state) {
-      InputState(step: LoginStep.username) =>
-        InputUsernameStep(key: const ValueKey('username-step'), state: state),
-      InputState(step: LoginStep.language) =>
-        SelectLanguageStep(key: const ValueKey('language-step'), state: state),
-      ProfileSavedState() =>
-        LoginComplete(key: const ValueKey('login-complete')),
+      InputState(step: LoginStep.username) => InputUsernameStep(
+        key: const ValueKey('username-step'),
+        state: state,
+      ),
+      InputState(step: LoginStep.language) => SelectLanguageStep(
+        key: const ValueKey('language-step'),
+        state: state,
+      ),
+      ProfileSavedState() => LoginComplete(
+        key: const ValueKey('login-complete'),
+      ),
     };
   }
 
@@ -154,15 +164,17 @@ class _LoginViewState extends State<LoginView> {
   void Function()? _onPressedFor(BuildContext context, LoginState state) {
     return switch (state) {
       InputState(step: LoginStep.username, isUsernameValid: true) => () {
-          context.read<LoginBloc>().add(SelectDefaultLanguage(language: state.language));
-        },
+        context.read<LoginBloc>().add(
+          SelectDefaultLanguage(language: state.language),
+        );
+      },
       InputState(step: LoginStep.username, isUsernameValid: false) => null,
       InputState(step: LoginStep.language, isLanguageValid: true) => () {
-          context.read<LoginBloc>().add(SaveProfile());
-        },
+        context.read<LoginBloc>().add(SaveProfile());
+      },
       ProfileSavedState() => () {
-          context.go("/");
-        },
+        context.go("/");
+      },
       _ => null,
     };
   }

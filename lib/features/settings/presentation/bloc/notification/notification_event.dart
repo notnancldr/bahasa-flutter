@@ -10,4 +10,3 @@ class ToggleNotificationEvent extends NotificationEvent {
   final bool isEnabled;
   const ToggleNotificationEvent(this.isEnabled);
 }
-

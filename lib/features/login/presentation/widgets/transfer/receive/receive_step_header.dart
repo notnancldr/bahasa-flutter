@@ -1,4 +1,4 @@
-import 'package:bahasa/core/widgets/rounded_container.dart';
+import 'package:bahasa/core/utils/widget_var.dart';
 import 'package:flutter/material.dart';
 
 class ReceiveStepHeader extends StatelessWidget {
@@ -15,19 +15,17 @@ class ReceiveStepHeader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
-
-    final t = theme.textTheme;
+    final WidgetVars(:t, :c) = WidgetVars.of(context);
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         SizedBox(height: 16),
-        RoundedContainer(
-          textContent: true,
-          child: Text(
-            name,
-            style: t.labelMedium,
+        Card.filled(
+          color: c.surfaceContainer,
+          child: Padding(
+            padding: const EdgeInsets.symmetric(vertical: 4, horizontal: 8),
+            child: Text(name, style: t.labelMedium),
           ),
         ),
 

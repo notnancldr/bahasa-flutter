@@ -43,9 +43,10 @@ class SettingsLocalDataSourceImpl implements SettingsLocalDataSource {
   }
 
   @override
-  Future<void> saveNotificationSettings(NotificationSettingsModel settings) async {
+  Future<void> saveNotificationSettings(
+    NotificationSettingsModel settings,
+  ) async {
     final prefs = await _getPrefs();
     await prefs.setBool(_notificationsKey, settings.isEnabled);
   }
 }
-

@@ -45,4 +45,3 @@ class AccountError extends AccountState {
   final UserProfile? previousProfile;
   const AccountError(this.message, {this.previousProfile});
 }
-

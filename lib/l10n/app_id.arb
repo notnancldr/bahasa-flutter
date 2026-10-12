@@ -51,6 +51,11 @@
     "transfer_checkValid_info_title": "Memeriksa data profil...",
     "transfer_checkValid_info_description": "Memeriksa kelengkapan riwayat belajar, kosakata tersimpan, dan integritas data profil.",
 
+    "transfer_error_invalid_title": "Data Tidak Valid",
+    "transfer_error_invalid_description": "Proses pemindahan terputus sebelum semua data profil Anda selesai disalin ke perangkat ini.",
+    "transfer_error_cleanup_title": "Data yang gagal sudah kami hapus dari perangkat ini.",
+    "transfer_error_cleanup_description": "Penyimpanan lokal perangkat tetap bersih dan aman.",
+
     "transfer_complete_title": "Profil Berhasil Dipindahkan",
     "transfer_complete_description": "Profilmu sudah siap digunakan. Mari lanjutkan perjalanan belajarmu dengan tenang.",
     "transfer_complete_profileInfo_title": "Info Profil",
@@ -96,6 +101,83 @@
             }
         }
     },
+
+    "settings_title": "Pengaturan",
+    "settings_manageProfile": "Kelola profil",
+    "settings_activeStudent": "Pelajar Aktif",
+    "settings_account_title": "Akun",
+    "settings_account_subtitle": "Ubah nama pengguna & foto",
+    "settings_theme_title": "Tema",
+    "settings_theme_subtitleLight": "Mode terang (nyaman di mata)",
+    "settings_theme_subtitleDark": "Mode gelap (hemat baterai)",
+    "settings_theme_badgeLight": "Terang",
+    "settings_theme_badgeDark": "Gelap",
+    "settings_notif_title": "Notifikasi",
+    "settings_notif_subtitle": "Pengingat belajar harian",
+    "settings_data_title": "Data & Penyimpanan",
+    "settings_data_subtitle": "Impor, ekspor, & cadangan profil",
+
+    "account_joinedSince": "Bergabung sejak 2026.",
+    "account_editProfile": "Edit Profil",
+    "account_editProfile_subtitle": "Ubah foto atau username.",
+    "account_deleteProfile": "Hapus Profil",
+    "account_deleteProfile_subtitle": "Hapus akun dan semua data secara permanen.",
+    "account_footer": "Basa \u2022 Sahabat Belajar Bahasa Anda",
+    "account_delete_dialogTitle": "Hapus profil ini?",
+    "account_delete_dialogBody": "Semua data belajarmu akan dihapus secara permanen dan tidak dapat dikembalikan.",
+    "account_delete_confirmButton": "Hapus",
+
+    "editProfile_title": "Edit Profil",
+    "editProfile_subtitle": "Kelola informasi publik dan akun belajar kamu.",
+    "editProfile_changePhoto": "Ganti Foto",
+    "editProfile_usernameLabel": "Username",
+    "editProfile_usernameHint": "Dapat menggunakan huruf, angka, atau tanda titik.",
+    "editProfile_tipTitle": "Tips Komunitas Basa",
+    "editProfile_tipBody": "Username ini akan terlihat oleh teman sebaya pada papan peringkat mingguan.",
+    "editProfile_saveButton": "Simpan Perubahan",
+
+    "theme_title": "Tema",
+    "theme_subtitle": "Pilih tampilan yang paling nyaman untukmu.",
+    "theme_light": "Mode Terang",
+    "theme_dark": "Mode Gelap",
+
+    "data_sectionStorage": "PENGGUNAAN PENYIMPANAN",
+    "data_download": "Unduhan Kosakata",
+    "data_downloadSubtitle": "{sizeStr} tersimpan offline",
+    "@data_downloadSubtitle": {
+        "placeholders": {
+            "sizeStr": {
+                "type": "String"
+            }
+        }
+    },
+    "data_clear": "Bersihkan",
+    "data_sectionDataTransfer": "TRANSFER DATA",
+    "data_dataTransfer": "Transfer Data",
+    "data_dataTransfer_subtitle": "Transfer profil ke perangkat baru",
+    "data_sectionDanger": "TINDAKAN LANJUTAN",
+    "data_deleteData": "Hapus Data",
+    "data_deleteData_subtitle": "Hapus seluruh riwayat dan progres",
+
+    "shareData_title": "Bagikan Data",
+    "shareData_subtitle": "Masukkan IP dari perangkat penerima untuk mengirim data.",
+    "shareData_ipLabel": "Alamat IP Penerima",
+    "shareData_ipPlaceholder": "Masukkan alamat IP...",
+    "shareData_startButton": "Mulai Transfer",
+    "shareData_sending_overline": "DATA & PENYIMPANAN",
+    "shareData_sending_title": "Sedang Mengirim Data",
+    "shareData_sending_status": "Mohon tunggu, data sedang diproses...",
+    "shareData_sending_note": "Jangan tutup aplikasi selama proses berlangsung.",
+    "shareData_failed_title": "Transfer gagal",
+    "shareData_failed_body": "Koneksi terputus atau kode sudah tidak berlaku. Coba lagi?",
+    "shareData_failed_no": "Tidak",
+
+    "deleteData_dialog_title": "Hapus semua data?",
+    "deleteData_dialog_body": "Tindakan ini tidak dapat dibatalkan. Ketik username kamu untuk mengonfirmasi.",
+    "deleteData_dialog_confirmButton": "Hapus Data",
+    "deleteData_success_title": "Data berhasil dihapus",
+    "deleteData_success_body": "Akunmu tetap ada. Kamu bisa mulai belajar dari awal kapan pun.",
+    "deleteData_success_homeButton": "Kembali ke Beranda",
 
     "end_of_translation": "",
     "@end_of_translation": {}

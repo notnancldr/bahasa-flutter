@@ -326,6 +326,30 @@ abstract class AppLocalizations {
   /// **'Memeriksa kelengkapan riwayat belajar, kosakata tersimpan, dan integritas data profil.'**
   String get transfer_checkValid_info_description;
 
+  /// No description provided for @transfer_error_invalid_title.
+  ///
+  /// In id, this message translates to:
+  /// **'Data Tidak Valid'**
+  String get transfer_error_invalid_title;
+
+  /// No description provided for @transfer_error_invalid_description.
+  ///
+  /// In id, this message translates to:
+  /// **'Proses pemindahan terputus sebelum semua data profil Anda selesai disalin ke perangkat ini.'**
+  String get transfer_error_invalid_description;
+
+  /// No description provided for @transfer_error_cleanup_title.
+  ///
+  /// In id, this message translates to:
+  /// **'Data yang gagal sudah kami hapus dari perangkat ini.'**
+  String get transfer_error_cleanup_title;
+
+  /// No description provided for @transfer_error_cleanup_description.
+  ///
+  /// In id, this message translates to:
+  /// **'Penyimpanan lokal perangkat tetap bersih dan aman.'**
+  String get transfer_error_cleanup_description;
+
   /// No description provided for @transfer_complete_title.
   ///
   /// In id, this message translates to:
@@ -445,6 +469,384 @@ abstract class AppLocalizations {
   /// In id, this message translates to:
   /// **'{first} dari {second}'**
   String step(int first, int second);
+
+  /// No description provided for @settings_title.
+  ///
+  /// In id, this message translates to:
+  /// **'Pengaturan'**
+  String get settings_title;
+
+  /// No description provided for @settings_manageProfile.
+  ///
+  /// In id, this message translates to:
+  /// **'Kelola profil'**
+  String get settings_manageProfile;
+
+  /// No description provided for @settings_activeStudent.
+  ///
+  /// In id, this message translates to:
+  /// **'Pelajar Aktif'**
+  String get settings_activeStudent;
+
+  /// No description provided for @settings_account_title.
+  ///
+  /// In id, this message translates to:
+  /// **'Akun'**
+  String get settings_account_title;
+
+  /// No description provided for @settings_account_subtitle.
+  ///
+  /// In id, this message translates to:
+  /// **'Ubah nama pengguna & foto'**
+  String get settings_account_subtitle;
+
+  /// No description provided for @settings_theme_title.
+  ///
+  /// In id, this message translates to:
+  /// **'Tema'**
+  String get settings_theme_title;
+
+  /// No description provided for @settings_theme_subtitleLight.
+  ///
+  /// In id, this message translates to:
+  /// **'Mode terang (nyaman di mata)'**
+  String get settings_theme_subtitleLight;
+
+  /// No description provided for @settings_theme_subtitleDark.
+  ///
+  /// In id, this message translates to:
+  /// **'Mode gelap (hemat baterai)'**
+  String get settings_theme_subtitleDark;
+
+  /// No description provided for @settings_theme_badgeLight.
+  ///
+  /// In id, this message translates to:
+  /// **'Terang'**
+  String get settings_theme_badgeLight;
+
+  /// No description provided for @settings_theme_badgeDark.
+  ///
+  /// In id, this message translates to:
+  /// **'Gelap'**
+  String get settings_theme_badgeDark;
+
+  /// No description provided for @settings_notif_title.
+  ///
+  /// In id, this message translates to:
+  /// **'Notifikasi'**
+  String get settings_notif_title;
+
+  /// No description provided for @settings_notif_subtitle.
+  ///
+  /// In id, this message translates to:
+  /// **'Pengingat belajar harian'**
+  String get settings_notif_subtitle;
+
+  /// No description provided for @settings_data_title.
+  ///
+  /// In id, this message translates to:
+  /// **'Data & Penyimpanan'**
+  String get settings_data_title;
+
+  /// No description provided for @settings_data_subtitle.
+  ///
+  /// In id, this message translates to:
+  /// **'Impor, ekspor, & cadangan profil'**
+  String get settings_data_subtitle;
+
+  /// No description provided for @account_joinedSince.
+  ///
+  /// In id, this message translates to:
+  /// **'Bergabung sejak 2026.'**
+  String get account_joinedSince;
+
+  /// No description provided for @account_editProfile.
+  ///
+  /// In id, this message translates to:
+  /// **'Edit Profil'**
+  String get account_editProfile;
+
+  /// No description provided for @account_editProfile_subtitle.
+  ///
+  /// In id, this message translates to:
+  /// **'Ubah foto atau username.'**
+  String get account_editProfile_subtitle;
+
+  /// No description provided for @account_deleteProfile.
+  ///
+  /// In id, this message translates to:
+  /// **'Hapus Profil'**
+  String get account_deleteProfile;
+
+  /// No description provided for @account_deleteProfile_subtitle.
+  ///
+  /// In id, this message translates to:
+  /// **'Hapus akun dan semua data secara permanen.'**
+  String get account_deleteProfile_subtitle;
+
+  /// No description provided for @account_footer.
+  ///
+  /// In id, this message translates to:
+  /// **'Basa • Sahabat Belajar Bahasa Anda'**
+  String get account_footer;
+
+  /// No description provided for @account_delete_dialogTitle.
+  ///
+  /// In id, this message translates to:
+  /// **'Hapus profil ini?'**
+  String get account_delete_dialogTitle;
+
+  /// No description provided for @account_delete_dialogBody.
+  ///
+  /// In id, this message translates to:
+  /// **'Semua data belajarmu akan dihapus secara permanen dan tidak dapat dikembalikan.'**
+  String get account_delete_dialogBody;
+
+  /// No description provided for @account_delete_confirmButton.
+  ///
+  /// In id, this message translates to:
+  /// **'Hapus'**
+  String get account_delete_confirmButton;
+
+  /// No description provided for @editProfile_title.
+  ///
+  /// In id, this message translates to:
+  /// **'Edit Profil'**
+  String get editProfile_title;
+
+  /// No description provided for @editProfile_subtitle.
+  ///
+  /// In id, this message translates to:
+  /// **'Kelola informasi publik dan akun belajar kamu.'**
+  String get editProfile_subtitle;
+
+  /// No description provided for @editProfile_changePhoto.
+  ///
+  /// In id, this message translates to:
+  /// **'Ganti Foto'**
+  String get editProfile_changePhoto;
+
+  /// No description provided for @editProfile_usernameLabel.
+  ///
+  /// In id, this message translates to:
+  /// **'Username'**
+  String get editProfile_usernameLabel;
+
+  /// No description provided for @editProfile_usernameHint.
+  ///
+  /// In id, this message translates to:
+  /// **'Dapat menggunakan huruf, angka, atau tanda titik.'**
+  String get editProfile_usernameHint;
+
+  /// No description provided for @editProfile_tipTitle.
+  ///
+  /// In id, this message translates to:
+  /// **'Tips Komunitas Basa'**
+  String get editProfile_tipTitle;
+
+  /// No description provided for @editProfile_tipBody.
+  ///
+  /// In id, this message translates to:
+  /// **'Username ini akan terlihat oleh teman sebaya pada papan peringkat mingguan.'**
+  String get editProfile_tipBody;
+
+  /// No description provided for @editProfile_saveButton.
+  ///
+  /// In id, this message translates to:
+  /// **'Simpan Perubahan'**
+  String get editProfile_saveButton;
+
+  /// No description provided for @theme_title.
+  ///
+  /// In id, this message translates to:
+  /// **'Tema'**
+  String get theme_title;
+
+  /// No description provided for @theme_subtitle.
+  ///
+  /// In id, this message translates to:
+  /// **'Pilih tampilan yang paling nyaman untukmu.'**
+  String get theme_subtitle;
+
+  /// No description provided for @theme_light.
+  ///
+  /// In id, this message translates to:
+  /// **'Mode Terang'**
+  String get theme_light;
+
+  /// No description provided for @theme_dark.
+  ///
+  /// In id, this message translates to:
+  /// **'Mode Gelap'**
+  String get theme_dark;
+
+  /// No description provided for @data_sectionStorage.
+  ///
+  /// In id, this message translates to:
+  /// **'PENGGUNAAN PENYIMPANAN'**
+  String get data_sectionStorage;
+
+  /// No description provided for @data_download.
+  ///
+  /// In id, this message translates to:
+  /// **'Unduhan Kosakata'**
+  String get data_download;
+
+  /// No description provided for @data_downloadSubtitle.
+  ///
+  /// In id, this message translates to:
+  /// **'{sizeStr} tersimpan offline'**
+  String data_downloadSubtitle(String sizeStr);
+
+  /// No description provided for @data_clear.
+  ///
+  /// In id, this message translates to:
+  /// **'Bersihkan'**
+  String get data_clear;
+
+  /// No description provided for @data_sectionDataTransfer.
+  ///
+  /// In id, this message translates to:
+  /// **'TRANSFER DATA'**
+  String get data_sectionDataTransfer;
+
+  /// No description provided for @data_dataTransfer.
+  ///
+  /// In id, this message translates to:
+  /// **'Transfer Data'**
+  String get data_dataTransfer;
+
+  /// No description provided for @data_dataTransfer_subtitle.
+  ///
+  /// In id, this message translates to:
+  /// **'Transfer profil ke perangkat baru'**
+  String get data_dataTransfer_subtitle;
+
+  /// No description provided for @data_sectionDanger.
+  ///
+  /// In id, this message translates to:
+  /// **'TINDAKAN LANJUTAN'**
+  String get data_sectionDanger;
+
+  /// No description provided for @data_deleteData.
+  ///
+  /// In id, this message translates to:
+  /// **'Hapus Data'**
+  String get data_deleteData;
+
+  /// No description provided for @data_deleteData_subtitle.
+  ///
+  /// In id, this message translates to:
+  /// **'Hapus seluruh riwayat dan progres'**
+  String get data_deleteData_subtitle;
+
+  /// No description provided for @shareData_title.
+  ///
+  /// In id, this message translates to:
+  /// **'Bagikan Data'**
+  String get shareData_title;
+
+  /// No description provided for @shareData_subtitle.
+  ///
+  /// In id, this message translates to:
+  /// **'Masukkan IP dari perangkat penerima untuk mengirim data.'**
+  String get shareData_subtitle;
+
+  /// No description provided for @shareData_ipLabel.
+  ///
+  /// In id, this message translates to:
+  /// **'Alamat IP Penerima'**
+  String get shareData_ipLabel;
+
+  /// No description provided for @shareData_ipPlaceholder.
+  ///
+  /// In id, this message translates to:
+  /// **'Masukkan alamat IP...'**
+  String get shareData_ipPlaceholder;
+
+  /// No description provided for @shareData_startButton.
+  ///
+  /// In id, this message translates to:
+  /// **'Mulai Transfer'**
+  String get shareData_startButton;
+
+  /// No description provided for @shareData_sending_overline.
+  ///
+  /// In id, this message translates to:
+  /// **'DATA & PENYIMPANAN'**
+  String get shareData_sending_overline;
+
+  /// No description provided for @shareData_sending_title.
+  ///
+  /// In id, this message translates to:
+  /// **'Sedang Mengirim Data'**
+  String get shareData_sending_title;
+
+  /// No description provided for @shareData_sending_status.
+  ///
+  /// In id, this message translates to:
+  /// **'Mohon tunggu, data sedang diproses...'**
+  String get shareData_sending_status;
+
+  /// No description provided for @shareData_sending_note.
+  ///
+  /// In id, this message translates to:
+  /// **'Jangan tutup aplikasi selama proses berlangsung.'**
+  String get shareData_sending_note;
+
+  /// No description provided for @shareData_failed_title.
+  ///
+  /// In id, this message translates to:
+  /// **'Transfer gagal'**
+  String get shareData_failed_title;
+
+  /// No description provided for @shareData_failed_body.
+  ///
+  /// In id, this message translates to:
+  /// **'Koneksi terputus atau kode sudah tidak berlaku. Coba lagi?'**
+  String get shareData_failed_body;
+
+  /// No description provided for @shareData_failed_no.
+  ///
+  /// In id, this message translates to:
+  /// **'Tidak'**
+  String get shareData_failed_no;
+
+  /// No description provided for @deleteData_dialog_title.
+  ///
+  /// In id, this message translates to:
+  /// **'Hapus semua data?'**
+  String get deleteData_dialog_title;
+
+  /// No description provided for @deleteData_dialog_body.
+  ///
+  /// In id, this message translates to:
+  /// **'Tindakan ini tidak dapat dibatalkan. Ketik username kamu untuk mengonfirmasi.'**
+  String get deleteData_dialog_body;
+
+  /// No description provided for @deleteData_dialog_confirmButton.
+  ///
+  /// In id, this message translates to:
+  /// **'Hapus Data'**
+  String get deleteData_dialog_confirmButton;
+
+  /// No description provided for @deleteData_success_title.
+  ///
+  /// In id, this message translates to:
+  /// **'Data berhasil dihapus'**
+  String get deleteData_success_title;
+
+  /// No description provided for @deleteData_success_body.
+  ///
+  /// In id, this message translates to:
+  /// **'Akunmu tetap ada. Kamu bisa mulai belajar dari awal kapan pun.'**
+  String get deleteData_success_body;
+
+  /// No description provided for @deleteData_success_homeButton.
+  ///
+  /// In id, this message translates to:
+  /// **'Kembali ke Beranda'**
+  String get deleteData_success_homeButton;
 
   /// No description provided for @end_of_translation.
   ///

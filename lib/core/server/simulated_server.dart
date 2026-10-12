@@ -4,12 +4,13 @@ import 'dart:async';
 import 'package:bahasa/core/errors/transfer_error.dart';
 import 'package:bahasa/core/server/base.dart';
 import 'package:bahasa/core/server/transfer_server.dart';
+
 // + import TransferServerBase and the TransferServerEvent classes
 
 enum SimulatedOutcome {
-  success,         // runs to 100% and completes
-  errorMidway,     // emits progress, then TransferServerError
-  invalidRequest,  // immediately emits TransferNotValid (no file part)
+  success, // runs to 100% and completes
+  errorMidway, // emits progress, then TransferServerError
+  invalidRequest, // immediately emits TransferNotValid (no file part)
 }
 
 class SimulatedTransfer {
@@ -35,13 +36,13 @@ class SimulatedTransfer {
 
   /// Slow transfer, handy for testing the cancel button.
   const SimulatedTransfer.slow()
-      : fileName = 'big_file.zip',
-        fileSize = 200 * 1024 * 1024,
-        chunkSize = 512 * 1024,
-        tick = const Duration(milliseconds: 150),
-        clientIp = '192.168.1.42',
-        outcome = SimulatedOutcome.success,
-        failAt = 0.6;
+    : fileName = 'big_file.zip',
+      fileSize = 200 * 1024 * 1024,
+      chunkSize = 512 * 1024,
+      tick = const Duration(milliseconds: 150),
+      clientIp = '192.168.1.42',
+      outcome = SimulatedOutcome.success,
+      failAt = 0.6;
 }
 
 class SimulatedTransferServer implements TransferServerBase {
@@ -123,12 +124,14 @@ class SimulatedTransferServer implements TransferServerBase {
     }
 
     var received = 0;
-    _controller.add(TransferServerReceiving(
-      ipOrigin: transfer.clientIp,
-      fileName: transfer.fileName,
-      fileSize: transfer.fileSize,
-      progress: 0,
-    ));
+    _controller.add(
+      TransferServerReceiving(
+        ipOrigin: transfer.clientIp,
+        fileName: transfer.fileName,
+        fileSize: transfer.fileSize,
+        progress: 0,
+      ),
+    );
 
     _timer = Timer.periodic(transfer.tick, (t) {
       received = (received + transfer.chunkSize).clamp(0, transfer.fileSize);
@@ -143,12 +146,14 @@ class SimulatedTransferServer implements TransferServerBase {
         return;
       }
 
-      _controller.add(TransferServerReceiving(
-        ipOrigin: transfer.clientIp,
-        fileName: transfer.fileName,
-        fileSize: transfer.fileSize,
-        progress: received,
-      ));
+      _controller.add(
+        TransferServerReceiving(
+          ipOrigin: transfer.clientIp,
+          fileName: transfer.fileName,
+          fileSize: transfer.fileSize,
+          progress: received,
+        ),
+      );
 
       if (received >= transfer.fileSize) {
         t.cancel();

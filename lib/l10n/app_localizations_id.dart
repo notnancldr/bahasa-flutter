@@ -139,6 +139,21 @@ class AppLocalizationsId extends AppLocalizations {
       'Memeriksa kelengkapan riwayat belajar, kosakata tersimpan, dan integritas data profil.';
 
   @override
+  String get transfer_error_invalid_title => 'Data Tidak Valid';
+
+  @override
+  String get transfer_error_invalid_description =>
+      'Proses pemindahan terputus sebelum semua data profil Anda selesai disalin ke perangkat ini.';
+
+  @override
+  String get transfer_error_cleanup_title =>
+      'Data yang gagal sudah kami hapus dari perangkat ini.';
+
+  @override
+  String get transfer_error_cleanup_description =>
+      'Penyimpanan lokal perangkat tetap bersih dan aman.';
+
+  @override
   String get transfer_complete_title => 'Profil Berhasil Dipindahkan';
 
   @override
@@ -217,6 +232,208 @@ class AppLocalizationsId extends AppLocalizations {
   String step(int first, int second) {
     return '$first dari $second';
   }
+
+  @override
+  String get settings_title => 'Pengaturan';
+
+  @override
+  String get settings_manageProfile => 'Kelola profil';
+
+  @override
+  String get settings_activeStudent => 'Pelajar Aktif';
+
+  @override
+  String get settings_account_title => 'Akun';
+
+  @override
+  String get settings_account_subtitle => 'Ubah nama pengguna & foto';
+
+  @override
+  String get settings_theme_title => 'Tema';
+
+  @override
+  String get settings_theme_subtitleLight => 'Mode terang (nyaman di mata)';
+
+  @override
+  String get settings_theme_subtitleDark => 'Mode gelap (hemat baterai)';
+
+  @override
+  String get settings_theme_badgeLight => 'Terang';
+
+  @override
+  String get settings_theme_badgeDark => 'Gelap';
+
+  @override
+  String get settings_notif_title => 'Notifikasi';
+
+  @override
+  String get settings_notif_subtitle => 'Pengingat belajar harian';
+
+  @override
+  String get settings_data_title => 'Data & Penyimpanan';
+
+  @override
+  String get settings_data_subtitle => 'Impor, ekspor, & cadangan profil';
+
+  @override
+  String get account_joinedSince => 'Bergabung sejak 2026.';
+
+  @override
+  String get account_editProfile => 'Edit Profil';
+
+  @override
+  String get account_editProfile_subtitle => 'Ubah foto atau username.';
+
+  @override
+  String get account_deleteProfile => 'Hapus Profil';
+
+  @override
+  String get account_deleteProfile_subtitle =>
+      'Hapus akun dan semua data secara permanen.';
+
+  @override
+  String get account_footer => 'Basa • Sahabat Belajar Bahasa Anda';
+
+  @override
+  String get account_delete_dialogTitle => 'Hapus profil ini?';
+
+  @override
+  String get account_delete_dialogBody =>
+      'Semua data belajarmu akan dihapus secara permanen dan tidak dapat dikembalikan.';
+
+  @override
+  String get account_delete_confirmButton => 'Hapus';
+
+  @override
+  String get editProfile_title => 'Edit Profil';
+
+  @override
+  String get editProfile_subtitle =>
+      'Kelola informasi publik dan akun belajar kamu.';
+
+  @override
+  String get editProfile_changePhoto => 'Ganti Foto';
+
+  @override
+  String get editProfile_usernameLabel => 'Username';
+
+  @override
+  String get editProfile_usernameHint =>
+      'Dapat menggunakan huruf, angka, atau tanda titik.';
+
+  @override
+  String get editProfile_tipTitle => 'Tips Komunitas Basa';
+
+  @override
+  String get editProfile_tipBody =>
+      'Username ini akan terlihat oleh teman sebaya pada papan peringkat mingguan.';
+
+  @override
+  String get editProfile_saveButton => 'Simpan Perubahan';
+
+  @override
+  String get theme_title => 'Tema';
+
+  @override
+  String get theme_subtitle => 'Pilih tampilan yang paling nyaman untukmu.';
+
+  @override
+  String get theme_light => 'Mode Terang';
+
+  @override
+  String get theme_dark => 'Mode Gelap';
+
+  @override
+  String get data_sectionStorage => 'PENGGUNAAN PENYIMPANAN';
+
+  @override
+  String get data_download => 'Unduhan Kosakata';
+
+  @override
+  String data_downloadSubtitle(String sizeStr) {
+    return '$sizeStr tersimpan offline';
+  }
+
+  @override
+  String get data_clear => 'Bersihkan';
+
+  @override
+  String get data_sectionDataTransfer => 'TRANSFER DATA';
+
+  @override
+  String get data_dataTransfer => 'Transfer Data';
+
+  @override
+  String get data_dataTransfer_subtitle => 'Transfer profil ke perangkat baru';
+
+  @override
+  String get data_sectionDanger => 'TINDAKAN LANJUTAN';
+
+  @override
+  String get data_deleteData => 'Hapus Data';
+
+  @override
+  String get data_deleteData_subtitle => 'Hapus seluruh riwayat dan progres';
+
+  @override
+  String get shareData_title => 'Bagikan Data';
+
+  @override
+  String get shareData_subtitle =>
+      'Masukkan IP dari perangkat penerima untuk mengirim data.';
+
+  @override
+  String get shareData_ipLabel => 'Alamat IP Penerima';
+
+  @override
+  String get shareData_ipPlaceholder => 'Masukkan alamat IP...';
+
+  @override
+  String get shareData_startButton => 'Mulai Transfer';
+
+  @override
+  String get shareData_sending_overline => 'DATA & PENYIMPANAN';
+
+  @override
+  String get shareData_sending_title => 'Sedang Mengirim Data';
+
+  @override
+  String get shareData_sending_status =>
+      'Mohon tunggu, data sedang diproses...';
+
+  @override
+  String get shareData_sending_note =>
+      'Jangan tutup aplikasi selama proses berlangsung.';
+
+  @override
+  String get shareData_failed_title => 'Transfer gagal';
+
+  @override
+  String get shareData_failed_body =>
+      'Koneksi terputus atau kode sudah tidak berlaku. Coba lagi?';
+
+  @override
+  String get shareData_failed_no => 'Tidak';
+
+  @override
+  String get deleteData_dialog_title => 'Hapus semua data?';
+
+  @override
+  String get deleteData_dialog_body =>
+      'Tindakan ini tidak dapat dibatalkan. Ketik username kamu untuk mengonfirmasi.';
+
+  @override
+  String get deleteData_dialog_confirmButton => 'Hapus Data';
+
+  @override
+  String get deleteData_success_title => 'Data berhasil dihapus';
+
+  @override
+  String get deleteData_success_body =>
+      'Akunmu tetap ada. Kamu bisa mulai belajar dari awal kapan pun.';
+
+  @override
+  String get deleteData_success_homeButton => 'Kembali ke Beranda';
 
   @override
   String get end_of_translation => '';

@@ -14,4 +14,3 @@ class TransferDataUseCase {
     return _repository.transferData(receiverCode: trimmed);
   }
 }
-

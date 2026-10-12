@@ -12,16 +12,11 @@ class SecurityFootnote extends StatelessWidget {
       opacity: 0.5,
       child: Column(
         children: [
-          Icon(
-            Icons.lock_open_outlined,
-            size: 18,
-          ),
+          Icon(Icons.lock_open_outlined, size: 18),
           Text(
             l.securityFootnote,
             textAlign: TextAlign.center,
-            style: TextStyle(
-              fontSize: 12,
-            ),
+            style: TextStyle(fontSize: 12),
           ),
         ],
       ),

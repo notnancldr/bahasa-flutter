@@ -8,4 +8,3 @@ class UpdateProfilePhotoUseCase {
   Future<UserProfile> call(String photoPath) =>
       _repository.updateProfilePhoto(photoPath);
 }
-

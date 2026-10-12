@@ -26,7 +26,7 @@ class CircleIcon extends StatelessWidget {
     return Container(
       padding: padding ?? EdgeInsets.all(8),
       decoration: BoxDecoration(
-        color: colorScheme.primaryContainer,
+        color: backgroundColor ?? colorScheme.primaryContainer,
         borderRadius: BorderRadius.circular(999),
       ),
       child: Icon(

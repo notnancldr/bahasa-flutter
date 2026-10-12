@@ -7,4 +7,3 @@ class GetThemeModeUseCase {
 
   Future<AppThemeMode> call() => _repository.getThemeMode();
 }
-

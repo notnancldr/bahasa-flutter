@@ -6,4 +6,3 @@ class PickProfilePhotoUseCase {
 
   Future<String?> call() => _repository.pickProfilePhoto();
 }
-

@@ -6,4 +6,3 @@ class DeleteProfileUseCase {
 
   Future<void> call() => _repository.deleteProfileAndData();
 }
-

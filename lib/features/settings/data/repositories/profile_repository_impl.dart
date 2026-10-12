@@ -57,4 +57,3 @@ class ProfileRepositoryImpl implements ProfileRepository {
     await _dataStorageDataSource.deleteAllApplicationData();
   }
 }
-

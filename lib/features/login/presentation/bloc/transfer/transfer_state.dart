@@ -11,10 +11,7 @@ class ListeningState extends TransferState {
   final String ipHost;
   final int repeat;
 
-  ListeningState({
-    required this.ipHost,
-    required this.repeat,
-  });
+  ListeningState({required this.ipHost, required this.repeat});
 }
 
 class ReceiveState extends TransferState {
@@ -80,16 +77,17 @@ class TransferCompleteState extends TransferState {
   final String username;
   final String defultLanguage;
 
-  TransferCompleteState({
-    required this.username,
-    required this.defultLanguage,
-  });
+  TransferCompleteState({required this.username, required this.defultLanguage});
 }
 
 class TransferErrorState extends TransferState {
   final Exception error;
+  final String? message;
+  final bool isInvalidData;
 
   TransferErrorState({
     required this.error,
+    this.message,
+    this.isInvalidData = false,
   });
 }

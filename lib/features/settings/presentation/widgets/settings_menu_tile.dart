@@ -1,4 +1,5 @@
 import 'package:bahasa/core/theme/app_colors.dart';
+import 'package:bahasa/core/utils/widget_var.dart';
 import 'package:flutter/material.dart';
 import 'package:material_symbols_icons/symbols.dart';
 
@@ -11,6 +12,9 @@ class SettingsMenuTile extends StatelessWidget {
   final Widget? trailing;
   final VoidCallback? onTap;
 
+  final bool border;
+  final bool background;
+
   const SettingsMenuTile({
     super.key,
     required this.icon,
@@ -20,28 +24,27 @@ class SettingsMenuTile extends StatelessWidget {
     required this.subtitle,
     this.trailing,
     this.onTap,
+    this.border = true,
+    this.background = true,
   });
 
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
-    final isDark = theme.brightness == Brightness.dark;
+    final WidgetVars(:theme, :c, :isDark) = WidgetVars.of(context);
+    final cardShape = theme.cardTheme.shape as RoundedRectangleBorder;
 
-    return Material(
-      color: Colors.transparent,
-      child: InkWell(
-        onTap: onTap,
-        borderRadius: BorderRadius.circular(20),
-        child: Container(
-          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
-          decoration: BoxDecoration(
-            color: isDark ? const Color(0xFF1E2630) : Colors.white,
-            borderRadius: BorderRadius.circular(20),
-            border: Border.all(
-              color: isDark ? const Color(0xFF2C3847) : const Color(0xFFEFF2F5),
-              width: 1.2,
-            ),
-          ),
+    return InkWell(
+      onTap: onTap,
+      borderRadius: cardShape.borderRadius.resolve(.ltr),
+      child: Card.outlined(
+        shape: border
+            ? cardShape
+            : RoundedRectangleBorder(
+                borderRadius: BorderRadius.zero,
+                side: BorderSide.none,
+              ),
+        child: Padding(
+          padding: const EdgeInsets.all(12),
           child: Row(
             children: [
               Container(
@@ -49,13 +52,9 @@ class SettingsMenuTile extends StatelessWidget {
                 height: 44,
                 decoration: BoxDecoration(
                   color: iconBackgroundColor,
-                  borderRadius: BorderRadius.circular(14),
+                  borderRadius: BorderRadius.circular(5),
                 ),
-                child: Icon(
-                  icon,
-                  color: iconColor,
-                  size: 22,
-                ),
+                child: Icon(icon, color: iconColor, size: 22),
               ),
               const SizedBox(width: 14),
               Expanded(
@@ -95,4 +94,3 @@ class SettingsMenuTile extends StatelessWidget {
     );
   }
 }
-

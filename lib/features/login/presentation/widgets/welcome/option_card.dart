@@ -27,7 +27,6 @@ class OptionCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    final c = theme.colorScheme;
     final s = theme.extension<AppSemanticColors>()!;
 
     return ClipRRect(
@@ -43,10 +42,7 @@ class OptionCard extends StatelessWidget {
             padding: EdgeInsets.symmetric(horizontal: 24, vertical: 8),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(16),
-              border: Border.all(
-                color: Colors.grey.withAlpha(40),
-                width: 3,
-              ),
+              border: Border.all(color: Colors.grey.withAlpha(40), width: 3),
               color: Colors.grey.withAlpha(20),
             ),
             child: Column(
@@ -59,27 +55,18 @@ class OptionCard extends StatelessWidget {
                     borderRadius: BorderRadius.circular(999),
                     color: bgColor,
                   ),
-                  child: Icon(
-                    icon,
-                    weight: 700,
-                    color: iconColor,
-                    size: 24,
-                  ),
+                  child: Icon(icon, weight: 700, color: iconColor, size: 24),
                 ),
                 SizedBox(height: 4),
                 Text(
                   title,
                   textAlign: TextAlign.left,
-                  style: TextStyle(
-                    fontWeight: FontWeight.w700,
-                  ),
+                  style: TextStyle(fontWeight: FontWeight.w700),
                 ),
                 Text(
                   description,
                   textAlign: TextAlign.left,
-                  style: TextStyle(
-                    color: Colors.grey.shade500,
-                  ),
+                  style: TextStyle(color: Colors.grey.shade500),
                 ),
 
                 Padding(
@@ -94,11 +81,7 @@ class OptionCard extends StatelessWidget {
                         ),
                       ),
                       SizedBox(width: 8),
-                      Icon(
-                        Icons.arrow_forward,
-                        color: s.primaryDark,
-                        size: 16,
-                      ),
+                      Icon(Icons.arrow_forward, color: s.primaryDark, size: 16),
                     ],
                   ),
                 ),

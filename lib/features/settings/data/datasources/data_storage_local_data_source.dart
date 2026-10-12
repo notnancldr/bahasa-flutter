@@ -1,4 +1,5 @@
 import 'dart:io';
+
 import 'package:bahasa/core/errors/settings_error.dart';
 import 'package:bahasa/features/settings/domain/entities/data_transfer_result.dart';
 import 'package:path_provider/path_provider.dart';
@@ -31,7 +32,9 @@ class DataStorageLocalDataSourceImpl implements DataStorageLocalDataSource {
   }
 
   @override
-  Future<DataTransferResult> transferData({required String receiverCode}) async {
+  Future<DataTransferResult> transferData({
+    required String receiverCode,
+  }) async {
     final tempBase = await _getTempDir();
     final tempTransferDir = Directory(
       '${tempBase.path}/transfer_temp_${DateTime.now().microsecondsSinceEpoch}',
@@ -44,12 +47,15 @@ class DataStorageLocalDataSourceImpl implements DataStorageLocalDataSource {
       // Simulate network / transfer latency and validation
       await Future.delayed(const Duration(milliseconds: 300));
 
-      if (receiverCode.toLowerCase().contains('error') || receiverCode.isEmpty) {
+      if (receiverCode.toLowerCase().contains('error') ||
+          receiverCode.isEmpty) {
         throw const DataTransferFailure('Failed to connect to receiver code.');
       }
 
       // Write received payload data into temp directory
-      final payloadFile = File('${tempTransferDir.path}/payload_$receiverCode.dat');
+      final payloadFile = File(
+        '${tempTransferDir.path}/payload_$receiverCode.dat',
+      );
       await payloadFile.writeAsString(
         'TRANSFERRED_DATA_PAYLOAD: code=$receiverCode, time=${DateTime.now().toIso8601String()}',
       );

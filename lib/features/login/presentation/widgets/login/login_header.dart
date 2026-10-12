@@ -41,12 +41,12 @@ class LoginHeader extends StatelessWidget {
                   borderRadius: BorderRadius.circular(999),
                   onTap: () {
                     final currentState = state;
-                    if (currentState is InputState && currentState.step == LoginStep.username) {
+                    if (currentState is InputState &&
+                        currentState.step == LoginStep.username) {
                       if (context.canPop()) {
                         context.pop();
                       }
-                    }
-                    else {
+                    } else {
                       context.read<LoginBloc>().add(PreviousStep());
                     }
                   },
@@ -55,22 +55,13 @@ class LoginHeader extends StatelessWidget {
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(999),
                       color: c.surfaceContainer,
-                      border: BoxBorder.all(
-                        color: c.outlineVariant,
-                      ),
+                      border: BoxBorder.all(color: c.outlineVariant),
                     ),
-                    child: Icon(
-                      Symbols.arrow_back,
-                      size: 16,
-                      weight: 700,
-                    ),
+                    child: Icon(Symbols.arrow_back, size: 16, weight: 700),
                   ),
                 ),
                 SizedBox(width: 8),
-                Text(
-                  l.newProfile_title,
-                  style: t.labelMedium,
-                ),
+                Text(l.newProfile_title, style: t.labelMedium),
               ],
             ),
             Container(
@@ -93,13 +84,11 @@ class LoginHeader extends StatelessWidget {
             if ((index + 1) % 2 == 0) {
               return SizedBox(width: 8);
             }
-      
+
             final currentBox = (index / 2).toInt();
             final isActive = currentBox <= current;
-            final backgroundColor = isActive
-              ? c.primary
-              : c.outline;
-        
+            final backgroundColor = isActive ? c.primary : c.outline;
+
             return Expanded(
               child: AnimatedContainer(
                 key: ValueKey("stepindicator-$currentBox"),

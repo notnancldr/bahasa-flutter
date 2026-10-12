@@ -23,10 +23,7 @@ class SettingsMetricCard extends StatelessWidget {
       decoration: BoxDecoration(
         color: backgroundColor,
         borderRadius: BorderRadius.circular(20),
-        border: Border.all(
-          color: borderColor,
-          width: 1.2,
-        ),
+        border: Border.all(color: borderColor, width: 1.2),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -55,4 +52,3 @@ class SettingsMetricCard extends StatelessWidget {
     );
   }
 }
-

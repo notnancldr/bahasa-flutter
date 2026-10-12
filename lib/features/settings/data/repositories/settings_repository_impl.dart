@@ -7,9 +7,7 @@ import 'package:bahasa/features/settings/domain/repositories/settings_repository
 class SettingsRepositoryImpl implements SettingsRepository {
   final SettingsLocalDataSource _settingsDataSource;
 
-  SettingsRepositoryImpl({
-    required this._settingsDataSource,
-  });
+  SettingsRepositoryImpl({required this._settingsDataSource});
 
   @override
   Future<AppThemeMode> getThemeMode() async {
@@ -32,4 +30,3 @@ class SettingsRepositoryImpl implements SettingsRepository {
     await _settingsDataSource.saveNotificationSettings(model);
   }
 }
-

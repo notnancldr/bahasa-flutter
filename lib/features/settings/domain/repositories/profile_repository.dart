@@ -16,4 +16,3 @@ abstract class ProfileRepository {
   /// Deletes profile record and all app data.
   Future<void> deleteProfileAndData();
 }
-

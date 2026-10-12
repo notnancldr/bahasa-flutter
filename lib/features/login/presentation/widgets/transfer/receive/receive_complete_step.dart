@@ -1,23 +1,14 @@
-import 'package:bahasa/core/theme/theme_extensions.dart';
 import 'package:bahasa/core/utils/widget_var.dart';
 import 'package:bahasa/core/widgets/circle_icon.dart';
 import 'package:bahasa/core/widgets/in_box_divider.dart';
-import 'package:bahasa/core/widgets/rounded_box.dart';
-import 'package:bahasa/core/widgets/rounded_container.dart';
 import 'package:bahasa/features/login/presentation/bloc/transfer/transfer_state.dart';
-import 'package:bahasa/features/login/presentation/widgets/transfer/receive/receive_progress_indicator.dart';
-import 'package:bahasa/features/login/presentation/widgets/transfer/receive/receive_step_header.dart';
-import 'package:bahasa/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:material_symbols_icons/material_symbols_icons.dart';
 
 class ReceiveCompleteStep extends StatelessWidget {
   final TransferCompleteState state;
 
-  const ReceiveCompleteStep({
-    super.key,
-    required this.state,
-  });
+  const ReceiveCompleteStep({super.key, required this.state});
 
   @override
   Widget build(BuildContext context) {
@@ -39,22 +30,16 @@ class ReceiveCompleteStep extends StatelessWidget {
               decoration: BoxDecoration(
                 color: s.success.withAlpha(50),
                 borderRadius: BorderRadius.circular(999),
-                border: BoxBorder.all(
-                  width: 1,
-                  color: s.success,
-                ),
+                border: BoxBorder.all(width: 1, color: s.success),
                 boxShadow: [
-                  BoxShadow(
-                    blurRadius: 16,
-                    color: s.success.withAlpha(60),
-                  )
+                  BoxShadow(blurRadius: 16, color: s.success.withAlpha(60)),
                 ],
               ),
               child: Icon(
                 Symbols.check,
                 size: 48,
                 weight: 800,
-                color: c.onPrimaryContainer
+                color: c.onPrimaryContainer,
               ),
             ),
           ),
@@ -73,49 +58,55 @@ class ReceiveCompleteStep extends StatelessWidget {
 
         SizedBox(height: 32),
 
-        RoundedBox(
-          width: double.infinity,
-          child: Column(
-            children: [
-              Row(
-                children: [
-                  CircleIcon(
-                    Symbols.description,
-                    color: s.info,
-                    exactColor: false,
-                    size: 18,
-                  ),
-                  SizedBox(width: 16),
-                  Text(
-                    l.transfer_complete_profileInfo_title,
-                    style: t.titleMedium,
-                  ),
-                ],
-              ),
+        Card.outlined(
+          child: Padding(
+            padding: const EdgeInsets.all(16),
+            child: Column(
+              children: [
+                Row(
+                  children: [
+                    CircleIcon(
+                      Symbols.description,
+                      color: s.info,
+                      exactColor: false,
+                      size: 18,
+                    ),
+                    SizedBox(width: 16),
+                    Text(
+                      l.transfer_complete_profileInfo_title,
+                      style: t.titleMedium,
+                    ),
+                  ],
+                ),
 
-              InBoxDivider(),
+                SizedBox(height: 12),
 
-              _ProfileInfoItem(
-                icon: Symbols.calendar_month,
-                color: c.secondary,
-                title: l.joinSince,
-                content: "Dummy", // TODO: Real data
-              ),
-              
-              _ProfileInfoItem(
-                icon: Symbols.person,
-                color: s.success,
-                title: l.username,
-                content: "Dummy", // TODO: Real data
-              ),
-              
-              _ProfileInfoItem(
-                icon: Symbols.language,
-                color: c.tertiary,
-                title: l.defaultLanguage,
-                content: "Dummy", // TODO: Real data
-              ),
-            ],
+                InBoxDivider(),
+
+                SizedBox(height: 12),
+
+                _ProfileInfoItem(
+                  icon: Symbols.calendar_month,
+                  color: c.secondary,
+                  title: l.joinSince,
+                  content: "Dummy", // TODO: Real data
+                ),
+
+                _ProfileInfoItem(
+                  icon: Symbols.person,
+                  color: s.success,
+                  title: l.username,
+                  content: "Dummy", // TODO: Real data
+                ),
+
+                _ProfileInfoItem(
+                  icon: Symbols.language,
+                  color: c.tertiary,
+                  title: l.defaultLanguage,
+                  content: "Dummy", // TODO: Real data
+                ),
+              ],
+            ),
           ),
         ),
       ],
@@ -145,25 +136,15 @@ class _ProfileInfoItem extends StatelessWidget {
       padding: const EdgeInsets.symmetric(vertical: 8.0),
       child: Row(
         children: [
-          CircleIcon(
-            icon,
-            color: color,
-            exactColor: false,
-          ),
-          
+          CircleIcon(icon, color: color, exactColor: false),
+
           SizedBox(width: 16),
-      
+
           Column(
             crossAxisAlignment: .start,
             children: [
-              Text(
-                title,
-                style: t.labelMedium,
-              ),
-              Text(
-                content,
-                style: t.titleSmall,
-              ),
+              Text(title, style: t.labelMedium),
+              Text(content, style: t.titleSmall),
             ],
           ),
         ],

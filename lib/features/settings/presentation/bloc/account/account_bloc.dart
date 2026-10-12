@@ -23,7 +23,7 @@ class AccountBloc extends Bloc<AccountEvent, AccountState> {
     required this._updateProfilePhotoUseCase,
     required this._pickProfilePhotoUseCase,
     required this._deleteProfileUseCase,
-  })  : super(const AccountInitial()) {
+  }) : super(const AccountInitial()) {
     on<LoadAccountEvent>(_onLoadAccount);
     on<PickAndChangePhotoEvent>(_onPickAndChangePhoto);
     on<ChangeProfilePhotoEvent>(_onChangeProfilePhoto);

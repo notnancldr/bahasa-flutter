@@ -5,6 +5,6 @@ class SetThemeModeUseCase {
   final SettingsRepository _repository;
   const SetThemeModeUseCase(this._repository);
 
-  Future<void> call(AppThemeMode themeMode) => _repository.setThemeMode(themeMode);
+  Future<void> call(AppThemeMode themeMode) =>
+      _repository.setThemeMode(themeMode);
 }
-

@@ -7,23 +7,18 @@ class StartHostStep extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final l = AppLocalizations.of(context)!;
-    
+
     return Column(
       mainAxisAlignment: .center,
       crossAxisAlignment: .stretch,
       children: [
         Row(
           mainAxisAlignment: .center,
-          children: [
-            CircularProgressIndicator(),
-          ],
+          children: [CircularProgressIndicator()],
         ),
         SizedBox(height: 12),
-        Text(
-          l.process_preparing,
-          textAlign: TextAlign.center,
-        ),
-      ]
+        Text(l.process_preparing, textAlign: TextAlign.center),
+      ],
     );
   }
 }

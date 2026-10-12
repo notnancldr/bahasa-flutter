@@ -9,17 +9,13 @@ class CreateProfileEvent extends LoginEvent {}
 class InputUsername extends CreateProfileEvent {
   final String username;
 
-  InputUsername({
-    required this.username,
-  });
+  InputUsername({required this.username});
 }
 
 class SelectDefaultLanguage extends CreateProfileEvent {
   final String? language;
 
-  SelectDefaultLanguage({
-    required this.language,
-  });
+  SelectDefaultLanguage({required this.language});
 }
 
 class PreviousStep extends CreateProfileEvent {}

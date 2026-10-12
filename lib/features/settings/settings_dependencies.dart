@@ -46,9 +46,7 @@ class SettingsDependencies {
   }
 
   static SettingsRepository createSettingsRepository() {
-    return SettingsRepositoryImpl(
-      settingsDataSource: settingsDataSource,
-    );
+    return SettingsRepositoryImpl(settingsDataSource: settingsDataSource);
   }
 
   static DataStorageRepository createDataStorageRepository() {
@@ -77,7 +75,9 @@ class SettingsDependencies {
     );
   }
 
-  static NotificationBloc createNotificationBloc({SettingsRepository? repository}) {
+  static NotificationBloc createNotificationBloc({
+    SettingsRepository? repository,
+  }) {
     final repo = repository ?? createSettingsRepository();
     return NotificationBloc(
       getNotificationSettingsUseCase: GetNotificationSettingsUseCase(repo),
@@ -85,7 +85,9 @@ class SettingsDependencies {
     );
   }
 
-  static DataStorageBloc createDataStorageBloc({DataStorageRepository? repository}) {
+  static DataStorageBloc createDataStorageBloc({
+    DataStorageRepository? repository,
+  }) {
     final repo = repository ?? createDataStorageRepository();
     return DataStorageBloc(
       transferDataUseCase: TransferDataUseCase(repo),
@@ -93,4 +95,3 @@ class SettingsDependencies {
     );
   }
 }
-

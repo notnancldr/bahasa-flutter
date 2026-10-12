@@ -18,7 +18,7 @@ class PageHeader extends StatelessWidget {
 
     return Row(
       children: [
-        const CircleBackButton(),
+        ...showBackButton ? const [CircleBackButton()] : const [],
         Expanded(
           child: Text(title, style: t.bodyLarge, textAlign: TextAlign.center),
         ),
