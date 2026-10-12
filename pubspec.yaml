@@ -22,12 +22,23 @@ dependencies:
   shelf_router: ^1.1.4
   sqlite3_flutter_libs: ^0.6.0+eol
   network_info_plus: ^8.2.1
-
+  path_provider: ^2.1.6
+  shelf_multipart: ^2.0.1
+  material_symbols_icons: ^4.2960.0
+  shared_preferences: ^2.5.5
+  pretty_qr_code: ^3.6.0
+  country_flags: ^4.1.2
 dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_lints: ^6.0.0
 
 flutter:
+  fonts:
+    - family: NunitoSans
+      fonts:
+        - asset: fonts/NunitoSans-Regular.ttf
+        - asset: fonts/NunitoSans-Italic.ttf
+          style: italic
   uses-material-design: true
   generate: true

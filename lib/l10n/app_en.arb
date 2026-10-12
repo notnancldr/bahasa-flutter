@@ -1,0 +1,64 @@
+{
+    "@@locale": "en",
+    "appTitle": "Basa",
+    "@appTitle": {},
+
+    "welcome_startUsing": "Start Using",
+    "welcome_description": "Choose how you want to start learning today.",
+    "welcome_newProfile_title": "Create New Profile",
+    "welcome_newProfile_description": "Start fresh with a new profile.",
+    "welcome_transfer_title": "Transfer Old Profile",
+    "welcome_transfer_description": "Transfer your profile from your old device.",
+
+    "welcome_nextButton": "Get Started",
+
+    "newProfile_title": "Profile Registration",
+
+    "newProfile_step_username_title": "Enter Username",
+    "newProfile_step_username_description": "This name will be used as your learning account's display name on this device",
+    "newProfile_step_username_fieldName": "Username",
+    "newProfile_step_username_fieldPlaceholder": "Enter username...",
+    "newProfile_step_username_fieldHint": "You can use letters, numbers, or periods.",
+
+    "newProfile_step_language_title": "Choose Main Language",
+    "newProfile_step_language_description": "This language will be used as the main language for navigation and exercise instructions.",
+    "newProfile_step_language_search": "Search language...",
+
+    "newProfile_nextButton": "Continue",
+    "newProfile_saveButton": "Save",
+
+    "newProfile_complete_title": "Profile Created Successfully",
+    "newProfile_complete_description": "Your profile is ready to use. Let's continue your learning journey with confidence.",
+
+    "securityFootnote": "Your profile is stored securely on this device without a password",
+
+    "transfer_listening_title": "Waiting for Another Device",
+    "transfer_listening_description": "Open [APP_NAME :v] on another device, then insert the following address to start profile transfer.",
+    "transfer_listening_address": "Device Address",
+    "transfer_listening_aboveQr": "or scan this code",
+    "transfer_listening_belowQr": "Waiting for data from another device...",
+    "transfer_listening_note": "Make sure both devices connected to the same network.",
+
+    "process_preparing": "Preparing",
+    "process_gettingReady": "Getting things ready",
+    "process_process": "Processing",
+    "process_loading": "Loading",
+
+    "back": "Back",
+    "cancel": "Cancel",
+    "done": "Done",
+    "tryAgain": "Try Again",
+
+    "copy": "Copy",
+    "paste": "Paste",
+
+    "copied": "Copied!",
+    "pasted": "Pasted!",
+
+    "languageName": "{code, select, id{Indonesian} en{English} es{Spanish} ja{Japanese} ko{Korean} fr{French} ru{Russian} ar{Arabic} de{German} pt{Portuguese} zh{Chinese} hi{Hindi} other{{code}}}",
+
+    "step": "{first} of {second}",
+
+    "end_of_translation": "",
+    "@end_of_translation": {}
+}
