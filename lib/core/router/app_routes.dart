@@ -1,6 +1,8 @@
 abstract class AppRoutes {
   static const home = "/";
   static const deck = "/deck";
+  static const deckGenerate = "/deck/generate";
+  static const deckImport = "/deck/import";
   static const login = "/login";
 
   static const loginTransfer = "/login/transfer";

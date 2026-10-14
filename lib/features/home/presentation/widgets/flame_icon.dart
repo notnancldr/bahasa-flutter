@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 /// Flame icon widget rendered in vibrant colors or grayscale (when streak is 0).
 class FlameIcon extends StatelessWidget {
@@ -10,152 +11,22 @@ class FlameIcon extends StatelessWidget {
 
   const FlameIcon({super.key, required this.streakCount, this.size = 180});
 
+  final _svg = """
+    <svg width="131" height="179" viewBox="0 0 131 179" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path fill-rule="evenodd" clip-rule="evenodd" d="M130.286 115.153C128.833 150.128 100.245 178.036 65.178 178.036C29.181 178.036 4.57531e-05 147.644 4.57531e-05 112.36C4.57531e-05 107.644 -0.0838538 98.2187 6.93387 82.3166C11.1337 72.7998 13.7678 66.8212 15.2545 61.3561C16.0713 58.3524 17.6598 53.5804 22.1883 61.3561C24.8585 65.9408 24.9618 72.535 24.9618 72.535C24.9618 72.535 34.8966 64.853 41.603 50.1771C51.4344 28.6625 43.5902 15.8018 40.9096 6.85867C39.9818 3.7649 39.3994 -1.79523 45.7633 0.570514C52.2478 2.98167 69.3909 15.0738 78.3522 27.8192C91.1416 46.0095 95.6868 63.4521 95.6868 63.4521C95.6868 63.4521 99.7819 58.3308 101.234 52.9718C102.874 46.9205 102.898 40.9272 108.167 47.3831C113.178 53.5224 120.62 65.0598 124.809 76.0284C132.415 95.9472 130.286 115.153 130.286 115.153Z" fill="url(#paint0_linear_2_481)"/>
+    <path fill-rule="evenodd" clip-rule="evenodd" d="M65.2787 178.036C39.7137 178.036 18.9897 157.53 18.9897 132.233C18.9897 116.969 25.206 107.701 38.1434 95.1342C46.427 87.0875 54.18 77.2045 57.4751 70.4748C58.1239 69.15 59.6001 62.2463 65.2923 70.3297C68.2782 74.569 72.9591 82.1083 75.9608 88.5427C81.1352 99.6364 82.37 110.388 82.37 110.388C82.37 110.388 87.4412 107.431 90.9157 99.8175C92.0359 97.3638 94.3005 88.0748 100.631 97.3624C105.277 104.178 111.658 116.432 111.568 132.233C111.568 157.53 90.8431 178.036 65.2787 178.036Z" fill="#FC9502"/>
+    <path fill-rule="evenodd" clip-rule="evenodd" d="M66.1873 128.186C72.844 128.186 72.844 140.213 81.2998 156.271C86.9303 166.963 78.5083 178.036 66.1873 178.036C53.8663 178.036 47.4766 168.292 47.4766 156.271C47.4766 144.251 59.5306 128.186 66.1873 128.186Z" fill="#FCE202"/>
+    <defs>
+    <linearGradient id="paint0_linear_2_481" x1="65.2757" y1="178.168" x2="65.2757" y2="0.134534" gradientUnits="userSpaceOnUse">
+    <stop stop-color="#FF4C0D"/>
+    <stop offset="1" stop-color="#FC9502"/>
+    </linearGradient>
+    </defs>
+    </svg>
+  """;
+
   @override
   Widget build(BuildContext context) {
-    final isDark = Theme.of(context).brightness == Brightness.dark;
-    final isInactive = streakCount <= 0;
-
-    return CustomPaint(
-      size: Size(size, size * 1.3),
-      painter: _FlamePainter(isInactive: isInactive, isDark: isDark),
-    );
-  }
-}
-
-class _FlamePainter extends CustomPainter {
-  final bool isInactive;
-  final bool isDark;
-
-  _FlamePainter({required this.isInactive, required this.isDark});
-
-  @override
-  void paint(Canvas canvas, Size size) {
-    final w = size.width;
-    final h = size.height;
-
-    // Inactive flame colors matching the empty state screenshot
-    final outerInactive = isDark
-        ? const Color(0xFF333E44)
-        : const Color(0xFFECECEC);
-    final innerInactive = isDark
-        ? const Color(0xFF252D32)
-        : const Color(0xFFDEDFE1);
-
-    // Active flame colors matching the active state screenshot
-    const outerActive = Color(0xFFFF6400); // Vibrant orange
-    const innerActive = Color(0xFFFFDE00); // Bright gold/yellow
-
-    final outerColor = isInactive ? outerInactive : outerActive;
-    final innerColor = isInactive ? innerInactive : innerActive;
-
-    // Draw Outer Flame
-    final outerPath = Path();
-    outerPath.moveTo(w * 0.44, 0);
-    outerPath.cubicTo(
-      w * 0.48,
-      h * 0.12,
-      w * 0.58,
-      h * 0.22,
-      w * 0.68,
-      h * 0.26,
-    );
-    outerPath.cubicTo(
-      w * 0.60,
-      h * 0.32,
-      w * 0.58,
-      h * 0.38,
-      w * 0.60,
-      h * 0.45,
-    );
-    outerPath.cubicTo(
-      w * 0.65,
-      h * 0.40,
-      w * 0.70,
-      h * 0.38,
-      w * 0.76,
-      h * 0.38,
-    );
-    outerPath.cubicTo(
-      w * 0.88,
-      h * 0.50,
-      w * 0.88,
-      h * 0.68,
-      w * 0.80,
-      h * 0.80,
-    );
-    outerPath.cubicTo(
-      w * 0.68,
-      h * 0.98,
-      w * 0.32,
-      h * 0.98,
-      w * 0.20,
-      h * 0.80,
-    );
-    outerPath.cubicTo(
-      w * 0.12,
-      h * 0.68,
-      w * 0.16,
-      h * 0.50,
-      w * 0.28,
-      h * 0.38,
-    );
-    outerPath.cubicTo(
-      w * 0.35,
-      h * 0.42,
-      w * 0.40,
-      h * 0.40,
-      w * 0.42,
-      h * 0.34,
-    );
-    outerPath.cubicTo(w * 0.30, h * 0.28, w * 0.32, h * 0.12, w * 0.44, 0);
-    outerPath.close();
-
-    final outerPaint = Paint()
-      ..color = outerColor
-      ..style = PaintingStyle.fill
-      ..isAntiAlias = true;
-
-    canvas.drawPath(outerPath, outerPaint);
-
-    // Draw Inner Flame
-    final innerPath = Path();
-    innerPath.moveTo(w * 0.50, h * 0.40);
-    innerPath.cubicTo(
-      w * 0.56,
-      h * 0.50,
-      w * 0.65,
-      h * 0.60,
-      w * 0.63,
-      h * 0.72,
-    );
-    innerPath.cubicTo(
-      w * 0.62,
-      h * 0.84,
-      w * 0.38,
-      h * 0.84,
-      w * 0.37,
-      h * 0.72,
-    );
-    innerPath.cubicTo(
-      w * 0.35,
-      h * 0.60,
-      w * 0.45,
-      h * 0.50,
-      w * 0.50,
-      h * 0.40,
-    );
-    innerPath.close();
-
-    final innerPaint = Paint()
-      ..color = innerColor
-      ..style = PaintingStyle.fill
-      ..isAntiAlias = true;
-
-    canvas.drawPath(innerPath, innerPaint);
-  }
-
-  @override
-  bool shouldRepaint(covariant _FlamePainter oldDelegate) {
-    return oldDelegate.isInactive != isInactive || oldDelegate.isDark != isDark;
+    return SvgPicture.string(_svg);
   }
 }

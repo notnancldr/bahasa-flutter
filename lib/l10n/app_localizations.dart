@@ -932,6 +932,336 @@ abstract class AppLocalizations {
   /// **'{days} hari lalu'**
   String home_timeDaysAgo(int days);
 
+  /// No description provided for @deck_method_title.
+  ///
+  /// In id, this message translates to:
+  /// **'Tambah Deck Baru'**
+  String get deck_method_title;
+
+  /// No description provided for @deck_method_subtitle.
+  ///
+  /// In id, this message translates to:
+  /// **'Pilih cara kamu ingin membuat deck.'**
+  String get deck_method_subtitle;
+
+  /// No description provided for @deck_method_generate_title.
+  ///
+  /// In id, this message translates to:
+  /// **'Generate Deck'**
+  String get deck_method_generate_title;
+
+  /// No description provided for @deck_method_generate_subtitle.
+  ///
+  /// In id, this message translates to:
+  /// **'Buat deck baru secara otomatis.'**
+  String get deck_method_generate_subtitle;
+
+  /// No description provided for @deck_method_generate_cta.
+  ///
+  /// In id, this message translates to:
+  /// **'Mulai'**
+  String get deck_method_generate_cta;
+
+  /// No description provided for @deck_method_import_title.
+  ///
+  /// In id, this message translates to:
+  /// **'Impor Deck'**
+  String get deck_method_import_title;
+
+  /// No description provided for @deck_method_import_subtitle.
+  ///
+  /// In id, this message translates to:
+  /// **'Gunakan berkas .euy yang sudah ada.'**
+  String get deck_method_import_subtitle;
+
+  /// No description provided for @deck_method_import_cta.
+  ///
+  /// In id, this message translates to:
+  /// **'Pilih Berkas'**
+  String get deck_method_import_cta;
+
+  /// No description provided for @deck_gen_appbar_title.
+  ///
+  /// In id, this message translates to:
+  /// **'Generate Deck'**
+  String get deck_gen_appbar_title;
+
+  /// No description provided for @deck_gen_name_title.
+  ///
+  /// In id, this message translates to:
+  /// **'Beri nama deck-mu'**
+  String get deck_gen_name_title;
+
+  /// No description provided for @deck_gen_name_desc.
+  ///
+  /// In id, this message translates to:
+  /// **'Nama ini akan muncul di daftar deck kamu.'**
+  String get deck_gen_name_desc;
+
+  /// No description provided for @deck_gen_name_label.
+  ///
+  /// In id, this message translates to:
+  /// **'Nama Deck'**
+  String get deck_gen_name_label;
+
+  /// No description provided for @deck_gen_name_hint.
+  ///
+  /// In id, this message translates to:
+  /// **'Contoh: Kosakata Dasar Jepang...'**
+  String get deck_gen_name_hint;
+
+  /// No description provided for @deck_gen_country_title.
+  ///
+  /// In id, this message translates to:
+  /// **'Pilih Negara'**
+  String get deck_gen_country_title;
+
+  /// No description provided for @deck_gen_country_desc.
+  ///
+  /// In id, this message translates to:
+  /// **'Konten deck akan disesuaikan dengan negara ini.'**
+  String get deck_gen_country_desc;
+
+  /// No description provided for @deck_gen_country_search.
+  ///
+  /// In id, this message translates to:
+  /// **'Cari Negara'**
+  String get deck_gen_country_search;
+
+  /// No description provided for @deck_gen_diff_title.
+  ///
+  /// In id, this message translates to:
+  /// **'Pilih Level Kesulitan'**
+  String get deck_gen_diff_title;
+
+  /// No description provided for @deck_gen_diff_desc.
+  ///
+  /// In id, this message translates to:
+  /// **'Ini membantu menyesuaikan tingkat kesulitan kartu.'**
+  String get deck_gen_diff_desc;
+
+  /// No description provided for @deck_gen_diff_beginner.
+  ///
+  /// In id, this message translates to:
+  /// **'Pemula'**
+  String get deck_gen_diff_beginner;
+
+  /// No description provided for @deck_gen_diff_intermediate.
+  ///
+  /// In id, this message translates to:
+  /// **'Menengah'**
+  String get deck_gen_diff_intermediate;
+
+  /// No description provided for @deck_gen_diff_expert.
+  ///
+  /// In id, this message translates to:
+  /// **'Mahir'**
+  String get deck_gen_diff_expert;
+
+  /// No description provided for @deck_gen_desc_title.
+  ///
+  /// In id, this message translates to:
+  /// **'Tambahkan deskripsi'**
+  String get deck_gen_desc_title;
+
+  /// No description provided for @deck_gen_desc_subtitle.
+  ///
+  /// In id, this message translates to:
+  /// **'Ceritakan sedikit tentang fokus belajarmu di deck ini.'**
+  String get deck_gen_desc_subtitle;
+
+  /// No description provided for @deck_gen_desc_hint.
+  ///
+  /// In id, this message translates to:
+  /// **'Contoh: Fokus pada kosakata sehari-hari untuk percakapan santai...'**
+  String get deck_gen_desc_hint;
+
+  /// No description provided for @deck_gen_review_title.
+  ///
+  /// In id, this message translates to:
+  /// **'Periksa sebelum membuat'**
+  String get deck_gen_review_title;
+
+  /// No description provided for @deck_gen_review_desc.
+  ///
+  /// In id, this message translates to:
+  /// **'Pastikan detail berikut sudah sesuai.'**
+  String get deck_gen_review_desc;
+
+  /// No description provided for @deck_gen_review_change.
+  ///
+  /// In id, this message translates to:
+  /// **'Ubah'**
+  String get deck_gen_review_change;
+
+  /// No description provided for @deck_gen_create_button.
+  ///
+  /// In id, this message translates to:
+  /// **'Buat Deck'**
+  String get deck_gen_create_button;
+
+  /// No description provided for @deck_gen_cancel_button.
+  ///
+  /// In id, this message translates to:
+  /// **'Batal'**
+  String get deck_gen_cancel_button;
+
+  /// No description provided for @deck_gen_progress_header.
+  ///
+  /// In id, this message translates to:
+  /// **'Membuat Deck'**
+  String get deck_gen_progress_header;
+
+  /// No description provided for @deck_gen_progress_title.
+  ///
+  /// In id, this message translates to:
+  /// **'Sedang menyiapkan deck-mu...'**
+  String get deck_gen_progress_title;
+
+  /// No description provided for @deck_gen_progress_subtitle.
+  ///
+  /// In id, this message translates to:
+  /// **'Kamu akan diberi tahu begitu selesai.'**
+  String get deck_gen_progress_subtitle;
+
+  /// No description provided for @deck_run_in_background.
+  ///
+  /// In id, this message translates to:
+  /// **'Jalankan di Latar Belakang'**
+  String get deck_run_in_background;
+
+  /// No description provided for @deck_gen_error_title.
+  ///
+  /// In id, this message translates to:
+  /// **'Pembuatan deck gagal'**
+  String get deck_gen_error_title;
+
+  /// No description provided for @deck_gen_error_subtitle.
+  ///
+  /// In id, this message translates to:
+  /// **'Terjadi kendala saat menyiapkan deck-mu. Tidak ada data yang tersimpan sebagian.'**
+  String get deck_gen_error_subtitle;
+
+  /// No description provided for @deck_back_to_home.
+  ///
+  /// In id, this message translates to:
+  /// **'Kembali Ke Halaman Utama'**
+  String get deck_back_to_home;
+
+  /// No description provided for @deck_import_appbar_title.
+  ///
+  /// In id, this message translates to:
+  /// **'Impor Deck'**
+  String get deck_import_appbar_title;
+
+  /// No description provided for @deck_import_title.
+  ///
+  /// In id, this message translates to:
+  /// **'Pilih berkas deck'**
+  String get deck_import_title;
+
+  /// No description provided for @deck_import_subtitle.
+  ///
+  /// In id, this message translates to:
+  /// **'Pilih berkas .euy dari penyimpanan perangkatmu.'**
+  String get deck_import_subtitle;
+
+  /// No description provided for @deck_import_empty_title.
+  ///
+  /// In id, this message translates to:
+  /// **'Belum ada berkas dipilih'**
+  String get deck_import_empty_title;
+
+  /// No description provided for @deck_import_empty_format.
+  ///
+  /// In id, this message translates to:
+  /// **'Format yang didukung: .euy'**
+  String get deck_import_empty_format;
+
+  /// No description provided for @deck_import_pick_button.
+  ///
+  /// In id, this message translates to:
+  /// **'Pilih dari Penyimpanan'**
+  String get deck_import_pick_button;
+
+  /// No description provided for @deck_import_change_file.
+  ///
+  /// In id, this message translates to:
+  /// **'Ganti Berkas'**
+  String get deck_import_change_file;
+
+  /// No description provided for @deck_import_verifying_title.
+  ///
+  /// In id, this message translates to:
+  /// **'Memeriksa berkas...'**
+  String get deck_import_verifying_title;
+
+  /// No description provided for @deck_import_verifying_subtitle.
+  ///
+  /// In id, this message translates to:
+  /// **'Memastikan format dan isi berkas sudah sesuai.'**
+  String get deck_import_verifying_subtitle;
+
+  /// No description provided for @deck_import_importing_title.
+  ///
+  /// In id, this message translates to:
+  /// **'Meng-Impor Deck'**
+  String get deck_import_importing_title;
+
+  /// No description provided for @deck_import_invalid_title.
+  ///
+  /// In id, this message translates to:
+  /// **'Berkas tidak valid'**
+  String get deck_import_invalid_title;
+
+  /// No description provided for @deck_import_invalid_subtitle.
+  ///
+  /// In id, this message translates to:
+  /// **'Berkas yang kamu pilih rusak atau bukan format .euy yang dikenali.'**
+  String get deck_import_invalid_subtitle;
+
+  /// No description provided for @deck_import_pick_another.
+  ///
+  /// In id, this message translates to:
+  /// **'Pilih Berkas Lain'**
+  String get deck_import_pick_another;
+
+  /// No description provided for @deck_import_ready_title.
+  ///
+  /// In id, this message translates to:
+  /// **'Deck sudah siap!'**
+  String get deck_import_ready_title;
+
+  /// No description provided for @deck_import_ready_subtitle.
+  ///
+  /// In id, this message translates to:
+  /// **'Periksa detail berikut sebelum melanjutkan.'**
+  String get deck_import_ready_subtitle;
+
+  /// No description provided for @deck_card_count_label.
+  ///
+  /// In id, this message translates to:
+  /// **'Jumlah Kartu'**
+  String get deck_card_count_label;
+
+  /// No description provided for @deck_file_size_label.
+  ///
+  /// In id, this message translates to:
+  /// **'Ukuran Berkas'**
+  String get deck_file_size_label;
+
+  /// No description provided for @deck_continue.
+  ///
+  /// In id, this message translates to:
+  /// **'Lanjutkan'**
+  String get deck_continue;
+
+  /// No description provided for @deck_page_placeholder.
+  ///
+  /// In id, this message translates to:
+  /// **'Deck'**
+  String get deck_page_placeholder;
+
   /// No description provided for @end_of_translation.
   ///
   /// In id, this message translates to:

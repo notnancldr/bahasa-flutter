@@ -15,11 +15,11 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
     required this.localeCubit,
     ValidateLoginInputUseCase? validateLoginInputUseCase,
     SaveLoginProfileUseCase? saveLoginProfileUseCase,
-  })  : _validateLoginInputUseCase =
-            validateLoginInputUseCase ?? const ValidateLoginInputUseCase(),
-        _saveLoginProfileUseCase =
-            saveLoginProfileUseCase ?? const SaveLoginProfileUseCase(),
-        super(DefaultLoginState()) {
+  }) : _validateLoginInputUseCase =
+           validateLoginInputUseCase ?? const ValidateLoginInputUseCase(),
+       _saveLoginProfileUseCase =
+           saveLoginProfileUseCase ?? const SaveLoginProfileUseCase(),
+       super(DefaultLoginState()) {
     on<InputUsername>(_handleUsernameInput);
     on<SelectDefaultLanguage>(_handleDefaultLanguage);
     on<SaveProfile>(_handleSaveProfile);

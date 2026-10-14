@@ -499,5 +499,181 @@ class AppLocalizationsId extends AppLocalizations {
   }
 
   @override
+  String get deck_method_title => 'Tambah Deck Baru';
+
+  @override
+  String get deck_method_subtitle => 'Pilih cara kamu ingin membuat deck.';
+
+  @override
+  String get deck_method_generate_title => 'Generate Deck';
+
+  @override
+  String get deck_method_generate_subtitle => 'Buat deck baru secara otomatis.';
+
+  @override
+  String get deck_method_generate_cta => 'Mulai';
+
+  @override
+  String get deck_method_import_title => 'Impor Deck';
+
+  @override
+  String get deck_method_import_subtitle =>
+      'Gunakan berkas .euy yang sudah ada.';
+
+  @override
+  String get deck_method_import_cta => 'Pilih Berkas';
+
+  @override
+  String get deck_gen_appbar_title => 'Generate Deck';
+
+  @override
+  String get deck_gen_name_title => 'Beri nama deck-mu';
+
+  @override
+  String get deck_gen_name_desc => 'Nama ini akan muncul di daftar deck kamu.';
+
+  @override
+  String get deck_gen_name_label => 'Nama Deck';
+
+  @override
+  String get deck_gen_name_hint => 'Contoh: Kosakata Dasar Jepang...';
+
+  @override
+  String get deck_gen_country_title => 'Pilih Negara';
+
+  @override
+  String get deck_gen_country_desc =>
+      'Konten deck akan disesuaikan dengan negara ini.';
+
+  @override
+  String get deck_gen_country_search => 'Cari Negara';
+
+  @override
+  String get deck_gen_diff_title => 'Pilih Level Kesulitan';
+
+  @override
+  String get deck_gen_diff_desc =>
+      'Ini membantu menyesuaikan tingkat kesulitan kartu.';
+
+  @override
+  String get deck_gen_diff_beginner => 'Pemula';
+
+  @override
+  String get deck_gen_diff_intermediate => 'Menengah';
+
+  @override
+  String get deck_gen_diff_expert => 'Mahir';
+
+  @override
+  String get deck_gen_desc_title => 'Tambahkan deskripsi';
+
+  @override
+  String get deck_gen_desc_subtitle =>
+      'Ceritakan sedikit tentang fokus belajarmu di deck ini.';
+
+  @override
+  String get deck_gen_desc_hint =>
+      'Contoh: Fokus pada kosakata sehari-hari untuk percakapan santai...';
+
+  @override
+  String get deck_gen_review_title => 'Periksa sebelum membuat';
+
+  @override
+  String get deck_gen_review_desc => 'Pastikan detail berikut sudah sesuai.';
+
+  @override
+  String get deck_gen_review_change => 'Ubah';
+
+  @override
+  String get deck_gen_create_button => 'Buat Deck';
+
+  @override
+  String get deck_gen_cancel_button => 'Batal';
+
+  @override
+  String get deck_gen_progress_header => 'Membuat Deck';
+
+  @override
+  String get deck_gen_progress_title => 'Sedang menyiapkan deck-mu...';
+
+  @override
+  String get deck_gen_progress_subtitle =>
+      'Kamu akan diberi tahu begitu selesai.';
+
+  @override
+  String get deck_run_in_background => 'Jalankan di Latar Belakang';
+
+  @override
+  String get deck_gen_error_title => 'Pembuatan deck gagal';
+
+  @override
+  String get deck_gen_error_subtitle =>
+      'Terjadi kendala saat menyiapkan deck-mu. Tidak ada data yang tersimpan sebagian.';
+
+  @override
+  String get deck_back_to_home => 'Kembali Ke Halaman Utama';
+
+  @override
+  String get deck_import_appbar_title => 'Impor Deck';
+
+  @override
+  String get deck_import_title => 'Pilih berkas deck';
+
+  @override
+  String get deck_import_subtitle =>
+      'Pilih berkas .euy dari penyimpanan perangkatmu.';
+
+  @override
+  String get deck_import_empty_title => 'Belum ada berkas dipilih';
+
+  @override
+  String get deck_import_empty_format => 'Format yang didukung: .euy';
+
+  @override
+  String get deck_import_pick_button => 'Pilih dari Penyimpanan';
+
+  @override
+  String get deck_import_change_file => 'Ganti Berkas';
+
+  @override
+  String get deck_import_verifying_title => 'Memeriksa berkas...';
+
+  @override
+  String get deck_import_verifying_subtitle =>
+      'Memastikan format dan isi berkas sudah sesuai.';
+
+  @override
+  String get deck_import_importing_title => 'Meng-Impor Deck';
+
+  @override
+  String get deck_import_invalid_title => 'Berkas tidak valid';
+
+  @override
+  String get deck_import_invalid_subtitle =>
+      'Berkas yang kamu pilih rusak atau bukan format .euy yang dikenali.';
+
+  @override
+  String get deck_import_pick_another => 'Pilih Berkas Lain';
+
+  @override
+  String get deck_import_ready_title => 'Deck sudah siap!';
+
+  @override
+  String get deck_import_ready_subtitle =>
+      'Periksa detail berikut sebelum melanjutkan.';
+
+  @override
+  String get deck_card_count_label => 'Jumlah Kartu';
+
+  @override
+  String get deck_file_size_label => 'Ukuran Berkas';
+
+  @override
+  String get deck_continue => 'Lanjutkan';
+
+  @override
+  String get deck_page_placeholder => 'Deck';
+
+  @override
   String get end_of_translation => '';
 }

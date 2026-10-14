@@ -96,9 +96,9 @@ class ListeningStep extends StatelessWidget {
                         backgroundColor: c.surfaceContainerLow,
                         side: BorderSide.none,
                       ),
-                                
+
                       SizedBox(height: 16),
-                                
+
                       Card.outlined(
                         color: Colors.white,
                         child: SizedBox(
@@ -113,11 +113,11 @@ class ListeningStep extends StatelessWidget {
                           ),
                         ),
                       ),
-                                
+
                       SizedBox(height: 16),
                       WaitingDots(color: c.primary),
                       SizedBox(height: 16),
-                                
+
                       Text(l.transfer_listening_belowQr, style: t.bodyMedium),
                     ],
                   ),

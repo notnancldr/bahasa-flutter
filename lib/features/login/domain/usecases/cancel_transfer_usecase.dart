@@ -10,4 +10,3 @@ class CancelTransferUseCase {
     await _repository.cleanupTempFiles(tempFilePath);
   }
 }
-

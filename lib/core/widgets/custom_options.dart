@@ -12,6 +12,10 @@ class CustomOption extends StatelessWidget {
   final Widget? trailing;
   final EdgeInsetsGeometry padding;
   final BorderRadius borderRadius;
+  final Color? selectedColor;
+  final Color? unselectedColor;
+  final BoxBorder? selectedBorder;
+  final BoxBorder? unselectedBorder;
 
   const CustomOption({
     super.key,
@@ -23,11 +27,23 @@ class CustomOption extends StatelessWidget {
     this.trailing,
     this.padding = const EdgeInsets.symmetric(horizontal: 14, vertical: 12),
     this.borderRadius = const BorderRadius.all(Radius.circular(16)),
+    this.selectedColor,
+    this.unselectedColor,
+    this.selectedBorder,
+    this.unselectedBorder,
   });
 
   @override
   Widget build(BuildContext context) {
     final WidgetVars(:c, :s) = WidgetVars.of(context);
+
+    final resolvedColor = selected
+        ? (selectedColor ?? c.primary.withValues(alpha: 0.75))
+        : (unselectedColor ?? c.surface);
+
+    final resolvedBorder = selected
+        ? (selectedBorder ?? Border.all(color: s.primaryDark, width: 2))
+        : (unselectedBorder ?? Border.all(color: c.outline, width: 2));
 
     return InkWell(
       borderRadius: borderRadius,
@@ -36,15 +52,8 @@ class CustomOption extends StatelessWidget {
         padding: padding,
         decoration: BoxDecoration(
           borderRadius: borderRadius,
-          color: selected
-              ? c.primary.withValues(alpha: 0.75)
-              : c.surface,
-          border: Border.all(
-            color: selected
-                ? s.primaryDark
-                : c.outline,
-            width: 2,
-          ),
+          color: resolvedColor,
+          border: resolvedBorder,
         ),
         child: Row(
           children: [
@@ -56,6 +65,7 @@ class CustomOption extends StatelessWidget {
                 children: [title, ?subtitle],
               ),
             ),
+            if (trailing != null) ...[const SizedBox(width: 14), trailing!],
           ],
         ),
       ),

@@ -107,4 +107,3 @@ class LanguageSettingsView extends StatelessWidget {
     );
   }
 }
-

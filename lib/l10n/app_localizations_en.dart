@@ -499,5 +499,180 @@ class AppLocalizationsEn extends AppLocalizations {
   }
 
   @override
+  String get deck_method_title => 'Add New Deck';
+
+  @override
+  String get deck_method_subtitle => 'Choose how you want to create your deck.';
+
+  @override
+  String get deck_method_generate_title => 'Generate Deck';
+
+  @override
+  String get deck_method_generate_subtitle =>
+      'Create a new deck automatically.';
+
+  @override
+  String get deck_method_generate_cta => 'Start';
+
+  @override
+  String get deck_method_import_title => 'Import Deck';
+
+  @override
+  String get deck_method_import_subtitle => 'Use an existing .euy file.';
+
+  @override
+  String get deck_method_import_cta => 'Choose File';
+
+  @override
+  String get deck_gen_appbar_title => 'Generate Deck';
+
+  @override
+  String get deck_gen_name_title => 'Name your deck';
+
+  @override
+  String get deck_gen_name_desc => 'This name will appear in your deck list.';
+
+  @override
+  String get deck_gen_name_label => 'Deck Name';
+
+  @override
+  String get deck_gen_name_hint => 'Example: Basic Japanese Vocabulary...';
+
+  @override
+  String get deck_gen_country_title => 'Select Country';
+
+  @override
+  String get deck_gen_country_desc =>
+      'Deck content will be tailored to this country.';
+
+  @override
+  String get deck_gen_country_search => 'Search Country';
+
+  @override
+  String get deck_gen_diff_title => 'Select Difficulty Level';
+
+  @override
+  String get deck_gen_diff_desc => 'This helps adjust the card difficulty.';
+
+  @override
+  String get deck_gen_diff_beginner => 'Beginner';
+
+  @override
+  String get deck_gen_diff_intermediate => 'Intermediate';
+
+  @override
+  String get deck_gen_diff_expert => 'Expert';
+
+  @override
+  String get deck_gen_desc_title => 'Add description';
+
+  @override
+  String get deck_gen_desc_subtitle =>
+      'Tell a bit about your study focus for this deck.';
+
+  @override
+  String get deck_gen_desc_hint =>
+      'Example: Focus on everyday vocabulary for casual conversation...';
+
+  @override
+  String get deck_gen_review_title => 'Review before creating';
+
+  @override
+  String get deck_gen_review_desc => 'Make sure the details below are correct.';
+
+  @override
+  String get deck_gen_review_change => 'Change';
+
+  @override
+  String get deck_gen_create_button => 'Create Deck';
+
+  @override
+  String get deck_gen_cancel_button => 'Cancel';
+
+  @override
+  String get deck_gen_progress_header => 'Creating Deck';
+
+  @override
+  String get deck_gen_progress_title => 'Preparing your deck...';
+
+  @override
+  String get deck_gen_progress_subtitle =>
+      'You will be notified once it is ready.';
+
+  @override
+  String get deck_run_in_background => 'Run in Background';
+
+  @override
+  String get deck_gen_error_title => 'Deck creation failed';
+
+  @override
+  String get deck_gen_error_subtitle =>
+      'Something went wrong while preparing your deck. No partial data was saved.';
+
+  @override
+  String get deck_back_to_home => 'Back to Home Page';
+
+  @override
+  String get deck_import_appbar_title => 'Import Deck';
+
+  @override
+  String get deck_import_title => 'Select deck file';
+
+  @override
+  String get deck_import_subtitle =>
+      'Select a .euy file from your device storage.';
+
+  @override
+  String get deck_import_empty_title => 'No file chosen yet';
+
+  @override
+  String get deck_import_empty_format => 'Supported format: .euy';
+
+  @override
+  String get deck_import_pick_button => 'Choose from Storage';
+
+  @override
+  String get deck_import_change_file => 'Change File';
+
+  @override
+  String get deck_import_verifying_title => 'Verifying file...';
+
+  @override
+  String get deck_import_verifying_subtitle =>
+      'Ensuring the file format and content are valid.';
+
+  @override
+  String get deck_import_importing_title => 'Importing Deck';
+
+  @override
+  String get deck_import_invalid_title => 'Invalid file';
+
+  @override
+  String get deck_import_invalid_subtitle =>
+      'The selected file is corrupted or not a recognized .euy format.';
+
+  @override
+  String get deck_import_pick_another => 'Choose Another File';
+
+  @override
+  String get deck_import_ready_title => 'Deck is ready!';
+
+  @override
+  String get deck_import_ready_subtitle =>
+      'Check the details below before proceeding.';
+
+  @override
+  String get deck_card_count_label => 'Card Count';
+
+  @override
+  String get deck_file_size_label => 'File Size';
+
+  @override
+  String get deck_continue => 'Continue';
+
+  @override
+  String get deck_page_placeholder => 'Deck';
+
+  @override
   String get end_of_translation => '';
 }

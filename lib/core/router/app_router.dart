@@ -1,6 +1,8 @@
 import 'package:bahasa/core/router/page_transitions.dart';
 import 'package:bahasa/core/widgets/main_scaffold.dart';
-import 'package:bahasa/features/deck/presentation/pages/deck_page.dart';
+import 'package:bahasa/features/decks/generate_deck/presentation/pages/generate_deck_page.dart';
+import 'package:bahasa/features/decks/import_deck/presentation/pages/import_deck_page.dart';
+import 'package:bahasa/features/decks/presentation/pages/deck_page.dart';
 import 'package:bahasa/features/home/presentation/pages/home_page.dart';
 import 'package:bahasa/features/login/presentation/pages/login_page.dart';
 import 'package:bahasa/features/login/presentation/pages/transfer_page.dart';
@@ -21,7 +23,7 @@ class AppRouter {
   AppRouter();
 
   late final GoRouter router = GoRouter(
-    initialLocation: AppRoutes.settings, // Temporary initial location
+    initialLocation: AppRoutes.home, // Temporary initial location
     debugLogDiagnostics: true,
     routes: [
       GoRoute(
@@ -45,6 +47,24 @@ class AppRouter {
           context: context,
           state: state,
           child: const TransferPage(),
+        ),
+      ),
+      GoRoute(
+        path: AppRoutes.deckGenerate,
+        name: "deckGenerate",
+        pageBuilder: (context, state) => buildSlideTransitionPage(
+          context: context,
+          state: state,
+          child: const GenerateDeckPage(),
+        ),
+      ),
+      GoRoute(
+        path: AppRoutes.deckImport,
+        name: "deckImport",
+        pageBuilder: (context, state) => buildSlideTransitionPage(
+          context: context,
+          state: state,
+          child: const ImportDeckPage(),
         ),
       ),
 

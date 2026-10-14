@@ -9,4 +9,3 @@ class ValidateTransferredFileUseCase {
   Future<TransferValidationResult> call(String? tempFilePath) =>
       _repository.validateTransferredFile(tempFilePath);
 }
-

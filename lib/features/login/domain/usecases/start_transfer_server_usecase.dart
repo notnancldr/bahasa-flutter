@@ -7,4 +7,3 @@ class StartTransferServerUseCase {
 
   Future<void> call() => _repository.startServer();
 }
-

@@ -26,7 +26,7 @@ class TransferBloc extends Bloc<TransferEvent, TransferState> {
     required this._startTransferServerUseCase,
     required this._cancelTransferUseCase,
     required this._validateTransferredFileUseCase,
-  })  : super(StartHostState()) {
+  }) : super(StartHostState()) {
     on<InitServer>(_startServer);
     on<CancelTransfer>(_cancelTransfer);
     on<RestartServer>((event, emit) => _startServer(event, emit));
@@ -172,13 +172,7 @@ class TransferBloc extends Bloc<TransferEvent, TransferState> {
   ) async {
     final currentTempPath = tempPath;
 
-    emit(
-      CheckValidState(
-        fileName: prev.fileName,
-        progress: 0,
-        target: 1,
-      ),
-    );
+    emit(CheckValidState(fileName: prev.fileName, progress: 0, target: 1));
 
     final result = await _validateTransferredFileUseCase(currentTempPath);
 
