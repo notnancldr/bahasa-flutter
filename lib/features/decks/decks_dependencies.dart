@@ -8,6 +8,7 @@ import 'generate_deck/presentation/bloc/generate_deck_bloc.dart';
 import 'import_deck/data/datasources/euy_file_data_source.dart';
 import 'import_deck/data/repositories/import_deck_repository_impl.dart';
 import 'import_deck/domain/repositories/import_deck_repository.dart';
+import 'import_deck/domain/usecases/get_euy_file_property_usecase.dart';
 import 'import_deck/domain/usecases/import_euy_deck_usecase.dart';
 import 'import_deck/domain/usecases/validate_euy_file_usecase.dart';
 import 'import_deck/presentation/bloc/import_deck_bloc.dart';
@@ -35,6 +36,7 @@ abstract class DecksDependencies {
     final repo = repository ?? createImportDeckRepository();
     return ImportDeckBloc(
       repository: repo,
+      getFilePropertyUseCase: GetEuyFilePropertyUseCase(repo),
       validateUseCase: ValidateEuyFileUseCase(repo),
       importUseCase: ImportEuyDeckUseCase(repo),
     );

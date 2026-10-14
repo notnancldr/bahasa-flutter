@@ -4,6 +4,7 @@ import 'package:bahasa/core/utils/deck_db_loader.dart';
 import 'package:bahasa/core/utils/main_db_loader.dart';
 
 import '../../domain/entities/euy_deck.dart';
+import '../../domain/entities/euy_file_property.dart';
 import '../../domain/entities/euy_validation_result.dart';
 import '../../domain/repositories/import_deck_repository.dart';
 import '../datasources/euy_file_data_source.dart';
@@ -27,6 +28,13 @@ class ImportDeckRepositoryImpl implements ImportDeckRepository {
   @override
   Future<String?> pickEuyFile() async {
     return _fileDataSource.pickEuyFile();
+  }
+
+  @override
+  Future<EuyFileProperty> getFileProperty(String filePath) async {
+    final name = filePath.split(Platform.pathSeparator).last;
+    final size = await _fileDataSource.getFileSizeFormatted(filePath);
+    return EuyFileProperty(path: filePath, name: name, sizeFormatted: size);
   }
 
   @override

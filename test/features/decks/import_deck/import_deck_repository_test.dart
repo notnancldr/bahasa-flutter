@@ -91,4 +91,17 @@ void main() {
     final picked = await customRepo.pickEuyFile();
     expect(picked, equals('/fake/path/sample.euy'));
   });
+
+  test(
+    'getFileProperty returns name and formatted size without full parsing',
+    () async {
+      final sampleFile = File('${tempDir.path}/my_sample.euy');
+      await sampleFile.writeAsString('{"dummy": true}');
+
+      final property = await repository.getFileProperty(sampleFile.path);
+      expect(property.path, equals(sampleFile.path));
+      expect(property.name, equals('my_sample.euy'));
+      expect(property.sizeFormatted, contains('B'));
+    },
+  );
 }
