@@ -24,7 +24,10 @@ class AppBootstrap extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
-        BlocProvider(create: (_) => LocaleCubit()),
+        BlocProvider(
+          create: (_) =>
+              LocaleCubit(SettingsDependencies.createProfileRepository()),
+        ),
         BlocProvider(
           create: (_) =>
               SettingsDependencies.createThemeBloc()

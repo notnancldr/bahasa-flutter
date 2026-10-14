@@ -1,4 +1,7 @@
 import 'package:bahasa/core/router/page_transitions.dart';
+import 'package:bahasa/core/widgets/main_scaffold.dart';
+import 'package:bahasa/features/deck/presentation/pages/deck_page.dart';
+import 'package:bahasa/features/home/presentation/pages/home_page.dart';
 import 'package:bahasa/features/login/presentation/pages/login_page.dart';
 import 'package:bahasa/features/login/presentation/pages/transfer_page.dart';
 import 'package:bahasa/features/login/presentation/pages/welcome_page.dart';
@@ -6,6 +9,7 @@ import 'package:bahasa/features/settings/presentation/bloc/account/account_bloc.
 import 'package:bahasa/features/settings/presentation/pages/account_settings_page.dart';
 import 'package:bahasa/features/settings/presentation/pages/data_storage_page.dart';
 import 'package:bahasa/features/settings/presentation/pages/edit_profile_page.dart';
+import 'package:bahasa/features/settings/presentation/pages/language_settings_page.dart';
 import 'package:bahasa/features/settings/presentation/pages/settings_page.dart';
 import 'package:bahasa/features/settings/presentation/pages/share_data_page.dart';
 import 'package:bahasa/features/settings/presentation/pages/theme_settings_page.dart';
@@ -17,7 +21,7 @@ class AppRouter {
   AppRouter();
 
   late final GoRouter router = GoRouter(
-    initialLocation: AppRoutes.login, // Temporary initial location
+    initialLocation: AppRoutes.settings, // Temporary initial location
     debugLogDiagnostics: true,
     routes: [
       GoRoute(
@@ -44,15 +48,29 @@ class AppRouter {
         ),
       ),
 
-      // Settings routes
-      GoRoute(
-        path: AppRoutes.settings,
-        name: "settings",
-        pageBuilder: (context, state) => buildSlideTransitionPage(
+      ShellRoute(
+        pageBuilder: (context, state, child) => buildSlideTransitionPage(
           context: context,
           state: state,
-          child: const SettingsPage(),
+          child: MainScaffold(child: child),
         ),
+        routes: [
+          GoRoute(
+            path: AppRoutes.home,
+            name: "home",
+            builder: (context, state) => const HomePage(),
+          ),
+          GoRoute(
+            path: AppRoutes.deck,
+            name: "deck",
+            builder: (context, state) => const DeckPage(),
+          ),
+          GoRoute(
+            path: AppRoutes.settings,
+            name: "settings",
+            builder: (context, state) => const SettingsPage(),
+          ),
+        ],
       ),
       GoRoute(
         path: AppRoutes.settingsAccount,
@@ -60,7 +78,7 @@ class AppRouter {
         pageBuilder: (context, state) => buildSlideTransitionPage(
           context: context,
           state: state,
-          child: const AccountSettingsPage(),
+          child: AccountSettingsPage(bloc: state.extra as AccountBloc?),
         ),
       ),
       GoRoute(
@@ -79,6 +97,15 @@ class AppRouter {
           context: context,
           state: state,
           child: const ThemeSettingsPage(),
+        ),
+      ),
+      GoRoute(
+        path: AppRoutes.settingsLanguage,
+        name: "settingsLanguage",
+        pageBuilder: (context, state) => buildSlideTransitionPage(
+          context: context,
+          state: state,
+          child: LanguageSettingsPage(bloc: state.extra as AccountBloc?),
         ),
       ),
       GoRoute(

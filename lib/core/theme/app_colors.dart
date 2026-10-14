@@ -31,7 +31,7 @@ abstract class AppColors {
   static const lightBackground = Color(0xFFFAFAF8);
   static const lightSurface = Color(0xFFF4F4F2);
   static const lightOnSurface = Color(0xFF2F3A3F);
-  static const lightOutline = Color.fromARGB(102, 204, 204, 204);
+  static const lightOutline = Color(0x66CCCCCC);
 
   // Neutrals — dark theme (same blue-gray hue as mainText, hue ~200°)
   static const darkBackground = Color(0xFF0F1417);

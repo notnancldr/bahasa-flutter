@@ -112,6 +112,8 @@
     "settings_theme_subtitleDark": "Mode gelap (hemat baterai)",
     "settings_theme_badgeLight": "Terang",
     "settings_theme_badgeDark": "Gelap",
+    "settings_language_title": "Bahasa",
+    "settings_language_subtitle": "Pilih bahasa utama aplikasi",
     "settings_notif_title": "Notifikasi",
     "settings_notif_subtitle": "Pengingat belajar harian",
     "settings_data_title": "Data & Penyimpanan",
@@ -178,6 +180,61 @@
     "deleteData_success_title": "Data berhasil dihapus",
     "deleteData_success_body": "Akunmu tetap ada. Kamu bisa mulai belajar dari awal kapan pun.",
     "deleteData_success_homeButton": "Kembali ke Beranda",
+
+    "home_consecutiveDays": "Hari Beruntun",
+    "home_emptyDeckTitle": "Kamu belum punya deck!",
+    "home_createDeckButton": "Buat Deck",
+    "home_rarelyStudied": "Jarang Dipelajari",
+    "home_reviewButton": "Ulas",
+    "home_lastStudiedDaysAgo": "Terakhir dipelajari {days} hari lalu.",
+    "@home_lastStudiedDaysAgo": {
+        "placeholders": {
+            "days": {
+                "type": "int"
+            }
+        }
+    },
+    "home_recentActivityTitle": "Aktivitas Terakhir",
+    "home_recentActivitySubtitle": "{cards, plural, other{{cards} kartu}} \u2022 {unit, select, hoursAgo{{time} jam lalu} yesterday{Kemarin} daysAgo{{time} hari lalu} other{{time}}}",
+    "@home_recentActivitySubtitle": {
+        "description": "Subtitle for recent activity item showing card count and time description",
+        "placeholders": {
+            "cards": {
+                "type": "int"
+            },
+            "time": {
+                "type": "int"
+            },
+            "unit": {
+                "type": "String"
+            }
+        }
+    },
+    "home_cardsCount": "{count} kartu",
+    "@home_cardsCount": {
+        "placeholders": {
+            "count": {
+                "type": "int"
+            }
+        }
+    },
+    "home_timeHoursAgo": "{hours} jam lalu",
+    "@home_timeHoursAgo": {
+        "placeholders": {
+            "hours": {
+                "type": "int"
+            }
+        }
+    },
+    "home_timeYesterday": "Kemarin",
+    "home_timeDaysAgo": "{days} hari lalu",
+    "@home_timeDaysAgo": {
+        "placeholders": {
+            "days": {
+                "type": "int"
+            }
+        }
+    },
 
     "end_of_translation": "",
     "@end_of_translation": {}

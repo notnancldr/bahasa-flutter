@@ -20,10 +20,29 @@ class ProfileRepositoryImpl implements ProfileRepository {
   }
 
   @override
+  Future<UserProfile> saveProfile(UserProfile profile) async {
+    final model = UserProfileModel.fromEntity(profile);
+    return _profileDataSource.saveProfile(model);
+  }
+
+  @override
   Future<UserProfile> updateUsername(String newUsername) async {
     final current = await _profileDataSource.getProfile();
     final updated = UserProfileModel(
       username: newUsername,
+      defaultLanguage: current.defaultLanguage,
+      photoPath: current.photoPath,
+      updatedAt: DateTime.now(),
+    );
+    return _profileDataSource.saveProfile(updated);
+  }
+
+  @override
+  Future<UserProfile> updateDefaultLanguage(String newDefaultLanguage) async {
+    final current = await _profileDataSource.getProfile();
+    final updated = UserProfileModel(
+      username: current.username,
+      defaultLanguage: newDefaultLanguage,
       photoPath: current.photoPath,
       updatedAt: DateTime.now(),
     );
@@ -35,6 +54,7 @@ class ProfileRepositoryImpl implements ProfileRepository {
     final current = await _profileDataSource.getProfile();
     final updated = UserProfileModel(
       username: current.username,
+      defaultLanguage: current.defaultLanguage,
       photoPath: photoPath,
       updatedAt: DateTime.now(),
     );

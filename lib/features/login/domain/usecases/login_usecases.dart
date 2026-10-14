@@ -1,4 +1,6 @@
 import 'package:bahasa/core/errors/login_error.dart';
+import 'package:bahasa/features/settings/domain/entities/user_profile.dart';
+import 'package:bahasa/features/settings/domain/repositories/profile_repository.dart';
 
 class ValidateLoginInputUseCase {
   const ValidateLoginInputUseCase();
@@ -27,9 +29,11 @@ class ValidateLoginInputUseCase {
 }
 
 class SaveLoginProfileUseCase {
-  const SaveLoginProfileUseCase();
+  final ProfileRepository? _profileRepository;
 
-  Future<void> call({
+  const SaveLoginProfileUseCase([this._profileRepository]);
+
+  Future<UserProfile?> call({
     required String? username,
     required String? language,
     required bool isUsernameValid,
@@ -41,5 +45,15 @@ class SaveLoginProfileUseCase {
         language == null) {
       throw LoginNotValid();
     }
+
+    if (_profileRepository != null) {
+      final newProfile = UserProfile(
+        username: username.trim(),
+        defaultLanguage: language,
+        updatedAt: DateTime.now(),
+      );
+      return _profileRepository.saveProfile(newProfile);
+    }
+    return null;
   }
 }

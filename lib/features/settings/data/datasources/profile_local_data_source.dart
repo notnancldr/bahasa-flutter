@@ -27,7 +27,7 @@ class ProfileLocalDataSourceImpl implements ProfileLocalDataSource {
     final raw = prefs.getString(_profileKey);
     if (raw == null) {
       // Default fallback profile if not yet explicitly saved
-      return const UserProfileModel(username: 'User');
+      return const UserProfileModel(username: "User", defaultLanguage: "en");
     }
 
     try {

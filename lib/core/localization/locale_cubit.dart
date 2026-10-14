@@ -1,3 +1,4 @@
+import 'package:bahasa/features/settings/domain/repositories/profile_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -22,14 +23,31 @@ class LanguageState {
 class LocaleCubit extends Cubit<LanguageState> {
   static const _prefsKey = 'app_language';
   static const _defaultLanguageCode = 'id';
+  final ProfileRepository? _profileRepository;
 
-  LocaleCubit() : super(const LanguageState(Locale(_defaultLanguageCode))) {
+  LocaleCubit([this._profileRepository])
+    : super(const LanguageState(Locale(_defaultLanguageCode))) {
     _loadSavedLanguage();
   }
 
   Future<void> _loadSavedLanguage() async {
-    final prefs = await SharedPreferences.getInstance();
-    final savedLanguage = prefs.getString(_prefsKey);
+    String? savedLanguage;
+
+    if (_profileRepository != null) {
+      try {
+        final profile = await _profileRepository.getProfile();
+        if (profile.defaultLanguage.isNotEmpty) {
+          savedLanguage = profile.defaultLanguage;
+        }
+      } catch (_) {
+        // Fallback to SharedPreferences if profile is not yet available
+      }
+    }
+
+    if (savedLanguage == null) {
+      final prefs = await SharedPreferences.getInstance();
+      savedLanguage = prefs.getString(_prefsKey);
+    }
 
     if (savedLanguage != null && savedLanguage != state.locale.languageCode) {
       emit(LanguageState(Locale(savedLanguage)));
@@ -42,6 +60,14 @@ class LocaleCubit extends Cubit<LanguageState> {
 
     final prefs = await SharedPreferences.getInstance();
     await prefs.setString(_prefsKey, language);
+
+    if (_profileRepository != null) {
+      try {
+        await _profileRepository.updateDefaultLanguage(language);
+      } catch (_) {
+        // Ignore failure if profile is not created yet (e.g. during onboarding)
+      }
+    }
 
     emit(LanguageState(Locale(language)));
   }

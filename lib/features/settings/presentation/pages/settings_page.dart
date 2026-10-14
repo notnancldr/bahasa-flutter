@@ -1,5 +1,7 @@
+import 'package:bahasa/core/localization/locale_cubit.dart';
 import 'package:bahasa/core/router/app_routes.dart';
 import 'package:bahasa/core/utils/widget_var.dart';
+import 'package:bahasa/features/settings/presentation/bloc/account/account_bloc.dart';
 import 'package:bahasa/features/settings/presentation/bloc/account/account_event.dart';
 import 'package:bahasa/features/settings/presentation/bloc/notification/notification_bloc.dart';
 import 'package:bahasa/features/settings/presentation/bloc/notification/notification_event.dart';
@@ -42,11 +44,17 @@ class SettingsView extends StatelessWidget {
   const SettingsView({super.key});
 
   void _navigateToAccount(BuildContext context) {
-    context.push(AppRoutes.settingsAccount);
+    final accountBloc = context.read<AccountBloc>();
+    context.push(AppRoutes.settingsAccount, extra: accountBloc);
   }
 
   void _navigateToTheme(BuildContext context) {
     context.push(AppRoutes.settingsTheme);
+  }
+
+  void _navigateToLanguage(BuildContext context) {
+    final accountBloc = context.read<AccountBloc>();
+    context.push(AppRoutes.settingsLanguage, extra: accountBloc);
   }
 
   void _navigateToDataStorage(BuildContext context) {
@@ -57,12 +65,8 @@ class SettingsView extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final WidgetVars(:l, :c) = WidgetVars.of(context);
-    final isDark = theme.brightness == Brightness.dark;
 
     return Scaffold(
-      backgroundColor: isDark
-          ? const Color(0xFF13171F)
-          : const Color(0xFFF9FAFA),
       body: SafeArea(
         child: SingleChildScrollView(
           padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 24),
@@ -70,7 +74,7 @@ class SettingsView extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                'Pengaturan',
+                l.settings_title,
                 style: theme.textTheme.displayLarge?.copyWith(
                   fontSize: 28,
                   fontWeight: FontWeight.w800,
@@ -114,11 +118,58 @@ class SettingsView extends StatelessWidget {
                             vertical: 4,
                           ),
                           decoration: BoxDecoration(
-                            color: c.surfaceContainer,
+                            color: c.surfaceContainerHigh,
                             borderRadius: BorderRadius.circular(5),
                           ),
                           child: Text(
                             themeLabel,
+                            style: TextStyle(
+                              fontSize: 12,
+                              fontWeight: FontWeight.w700,
+                              color: c.onSurfaceVariant,
+                            ),
+                          ),
+                        ),
+                        const SizedBox(width: 4),
+                        const Icon(
+                          Symbols.chevron_right,
+                          size: 20,
+                          color: Color(0xFF9EAAB0),
+                        ),
+                      ],
+                    ),
+                  );
+                },
+              ),
+              const SizedBox(height: 12),
+
+              // Menu: Bahasa (Language)
+              BlocBuilder<LocaleCubit, LanguageState>(
+                builder: (context, localeState) {
+                  final currentCode = localeState.locale.languageCode;
+                  final languageLabel = l.languageName(currentCode);
+
+                  return SettingsMenuTile(
+                    icon: Symbols.translate,
+                    iconColor: const Color(0xFF388E3C),
+                    iconBackgroundColor: const Color(0xFFC8E6C9),
+                    title: l.settings_language_title,
+                    subtitle: languageLabel,
+                    onTap: () => _navigateToLanguage(context),
+                    trailing: Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Container(
+                          padding: const EdgeInsets.symmetric(
+                            horizontal: 10,
+                            vertical: 4,
+                          ),
+                          decoration: BoxDecoration(
+                            color: c.surfaceContainerHigh,
+                            borderRadius: BorderRadius.circular(5),
+                          ),
+                          child: Text(
+                            languageLabel,
                             style: TextStyle(
                               fontSize: 12,
                               fontWeight: FontWeight.w700,
@@ -146,8 +197,8 @@ class SettingsView extends StatelessWidget {
                     icon: Symbols.notifications,
                     iconColor: const Color(0xFF9E653A),
                     iconBackgroundColor: const Color(0xFFFFECCF),
-                    title: 'Notifikasi',
-                    subtitle: 'Pengingat belajar harian',
+                    title: l.settings_notif_title,
+                    subtitle: l.settings_notif_subtitle,
                     onTap: null,
                     trailing: Switch.adaptive(
                       value: notifState.isEnabled,
@@ -168,8 +219,8 @@ class SettingsView extends StatelessWidget {
                 icon: Symbols.database,
                 iconColor: const Color(0xFF3B7A8C),
                 iconBackgroundColor: const Color(0xFFCEE8F2),
-                title: 'Data & Penyimpanan',
-                subtitle: 'Impor, ekspor, & cadangan profil',
+                title: l.settings_data_title,
+                subtitle: l.settings_data_subtitle,
                 onTap: () => _navigateToDataStorage(context),
               ),
               const SizedBox(height: 32),

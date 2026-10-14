@@ -23,12 +23,24 @@ class AccountSettingsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) =>
-          (bloc ?? SettingsDependencies.createAccountBloc())
-            ..add(const LoadAccountEvent()),
-      child: const AccountSettingsView(),
-    );
+    if (bloc != null) {
+      return BlocProvider.value(
+        value: bloc!,
+        child: const AccountSettingsView(),
+      );
+    }
+
+    try {
+      context.read<AccountBloc>();
+      return const AccountSettingsView();
+    } catch (_) {
+      return BlocProvider(
+        create: (context) =>
+            SettingsDependencies.createAccountBloc()
+              ..add(const LoadAccountEvent()),
+        child: const AccountSettingsView(),
+      );
+    }
   }
 }
 
@@ -119,12 +131,10 @@ class AccountSettingsView extends StatelessWidget {
           );
         }
 
-        String username = 'Rizky_23';
-        if (state is AccountLoaded) {
-          username = state.profile.username.isNotEmpty
-              ? state.profile.username
-              : username;
-        }
+        final profile = state.profile;
+        final username = (profile != null && profile.username.trim().isNotEmpty)
+            ? profile.username
+            : 'Unknown';
 
         return Scaffold(
           backgroundColor: isDark

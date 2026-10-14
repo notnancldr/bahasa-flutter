@@ -13,6 +13,7 @@ import 'package:bahasa/features/settings/domain/usecases/get_notification_settin
 import 'package:bahasa/features/settings/domain/usecases/get_profile_usecase.dart';
 import 'package:bahasa/features/settings/domain/usecases/get_theme_mode_usecase.dart';
 import 'package:bahasa/features/settings/domain/usecases/pick_profile_photo_usecase.dart';
+import 'package:bahasa/features/settings/domain/usecases/set_default_language_usecase.dart';
 import 'package:bahasa/features/settings/domain/usecases/set_notification_settings_usecase.dart';
 import 'package:bahasa/features/settings/domain/usecases/set_theme_mode_usecase.dart';
 import 'package:bahasa/features/settings/domain/usecases/transfer_data_usecase.dart';
@@ -64,6 +65,7 @@ class SettingsDependencies {
       updateProfilePhotoUseCase: UpdateProfilePhotoUseCase(repo),
       pickProfilePhotoUseCase: PickProfilePhotoUseCase(repo),
       deleteProfileUseCase: DeleteProfileUseCase(repo),
+      setDefaultLanguageUsecase: SetDefaultLanguageUsecase(repo),
     );
   }
 

@@ -13,21 +13,20 @@ class SettingsProfileCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final WidgetVars(:theme, :c, :l) = WidgetVars.of(context);
+    final WidgetVars(:theme, :c, :l, :s) = WidgetVars.of(context);
 
     final cardTheme = theme.cardTheme;
     final cardShape = cardTheme.shape as RoundedRectangleBorder;
 
     return BlocBuilder<AccountBloc, AccountState>(
       builder: (context, state) {
-        String username = 'Unknown';
-        if (state is AccountLoaded) {
-          username = state.profile.username.isNotEmpty
-              ? state.profile.username
-              : username;
-        }
+        final profile = state.profile;
+        final username = (profile != null && profile.username.trim().isNotEmpty)
+            ? profile.username
+            : 'Unknown';
 
         return Card(
+          color: Colors.transparent,
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
             child: Row(
@@ -35,13 +34,13 @@ class SettingsProfileCard extends StatelessWidget {
                 Container(
                   width: 48,
                   height: 48,
-                  decoration: const BoxDecoration(
-                    color: Color(0xFFD6EFF8),
+                  decoration: BoxDecoration(
+                    color: c.primaryContainer.withAlpha(80),
                     shape: BoxShape.circle,
                   ),
-                  child: const Icon(
+                  child: Icon(
                     Symbols.person,
-                    color: Color(0xFF4C8A9E),
+                    color: s.primaryDark,
                     size: 26,
                     fill: 1.0,
                   ),
@@ -79,7 +78,7 @@ class SettingsProfileCard extends StatelessWidget {
                       vertical: 7,
                     ),
                     decoration: BoxDecoration(
-                      color: const Color(0xFFE8F4F8),
+                      color: c.primaryContainer.withAlpha(80),
                       borderRadius: cardShape.borderRadius / 2,
                     ),
                     child: Row(
@@ -88,7 +87,7 @@ class SettingsProfileCard extends StatelessWidget {
                         Text(
                           l.settings_manageProfile,
                           style: TextStyle(
-                            color: Color(0xFF437D91),
+                            color: s.primaryDark,
                             fontSize: 12,
                             fontWeight: FontWeight.w700,
                           ),
@@ -97,7 +96,7 @@ class SettingsProfileCard extends StatelessWidget {
                         Icon(
                           Symbols.arrow_forward,
                           size: 14,
-                          color: Color(0xFF437D91),
+                          color: s.primaryDark,
                           weight: 600,
                         ),
                       ],

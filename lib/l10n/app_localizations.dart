@@ -530,6 +530,18 @@ abstract class AppLocalizations {
   /// **'Gelap'**
   String get settings_theme_badgeDark;
 
+  /// No description provided for @settings_language_title.
+  ///
+  /// In id, this message translates to:
+  /// **'Bahasa'**
+  String get settings_language_title;
+
+  /// No description provided for @settings_language_subtitle.
+  ///
+  /// In id, this message translates to:
+  /// **'Pilih bahasa utama aplikasi'**
+  String get settings_language_subtitle;
+
   /// No description provided for @settings_notif_title.
   ///
   /// In id, this message translates to:
@@ -847,6 +859,78 @@ abstract class AppLocalizations {
   /// In id, this message translates to:
   /// **'Kembali ke Beranda'**
   String get deleteData_success_homeButton;
+
+  /// No description provided for @home_consecutiveDays.
+  ///
+  /// In id, this message translates to:
+  /// **'Hari Beruntun'**
+  String get home_consecutiveDays;
+
+  /// No description provided for @home_emptyDeckTitle.
+  ///
+  /// In id, this message translates to:
+  /// **'Kamu belum punya deck!'**
+  String get home_emptyDeckTitle;
+
+  /// No description provided for @home_createDeckButton.
+  ///
+  /// In id, this message translates to:
+  /// **'Buat Deck'**
+  String get home_createDeckButton;
+
+  /// No description provided for @home_rarelyStudied.
+  ///
+  /// In id, this message translates to:
+  /// **'Jarang Dipelajari'**
+  String get home_rarelyStudied;
+
+  /// No description provided for @home_reviewButton.
+  ///
+  /// In id, this message translates to:
+  /// **'Ulas'**
+  String get home_reviewButton;
+
+  /// No description provided for @home_lastStudiedDaysAgo.
+  ///
+  /// In id, this message translates to:
+  /// **'Terakhir dipelajari {days} hari lalu.'**
+  String home_lastStudiedDaysAgo(int days);
+
+  /// No description provided for @home_recentActivityTitle.
+  ///
+  /// In id, this message translates to:
+  /// **'Aktivitas Terakhir'**
+  String get home_recentActivityTitle;
+
+  /// Subtitle for recent activity item showing card count and time description
+  ///
+  /// In id, this message translates to:
+  /// **'{cards, plural, other{{cards} kartu}} • {unit, select, hoursAgo{{time} jam lalu} yesterday{Kemarin} daysAgo{{time} hari lalu} other{{time}}}'**
+  String home_recentActivitySubtitle(int cards, int time, String unit);
+
+  /// No description provided for @home_cardsCount.
+  ///
+  /// In id, this message translates to:
+  /// **'{count} kartu'**
+  String home_cardsCount(int count);
+
+  /// No description provided for @home_timeHoursAgo.
+  ///
+  /// In id, this message translates to:
+  /// **'{hours} jam lalu'**
+  String home_timeHoursAgo(int hours);
+
+  /// No description provided for @home_timeYesterday.
+  ///
+  /// In id, this message translates to:
+  /// **'Kemarin'**
+  String get home_timeYesterday;
+
+  /// No description provided for @home_timeDaysAgo.
+  ///
+  /// In id, this message translates to:
+  /// **'{days} hari lalu'**
+  String home_timeDaysAgo(int days);
 
   /// No description provided for @end_of_translation.
   ///

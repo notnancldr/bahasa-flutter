@@ -263,6 +263,12 @@ class AppLocalizationsEn extends AppLocalizations {
   String get settings_theme_badgeDark => 'Dark';
 
   @override
+  String get settings_language_title => 'Language';
+
+  @override
+  String get settings_language_subtitle => 'Select app primary language';
+
+  @override
   String get settings_notif_title => 'Notifications';
 
   @override
@@ -433,6 +439,64 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get deleteData_success_homeButton => 'Back to Home';
+
+  @override
+  String get home_consecutiveDays => 'Consecutive Days';
+
+  @override
+  String get home_emptyDeckTitle => 'You don\'t have any deck yet!';
+
+  @override
+  String get home_createDeckButton => 'Create Deck';
+
+  @override
+  String get home_rarelyStudied => 'Rarely Studied';
+
+  @override
+  String get home_reviewButton => 'Review';
+
+  @override
+  String home_lastStudiedDaysAgo(int days) {
+    return 'Last studied $days days ago.';
+  }
+
+  @override
+  String get home_recentActivityTitle => 'Recent Activity';
+
+  @override
+  String home_recentActivitySubtitle(int cards, int time, String unit) {
+    String _temp0 = intl.Intl.pluralLogic(
+      cards,
+      locale: localeName,
+      other: '$cards cards',
+      one: '1 card',
+    );
+    String _temp1 = intl.Intl.selectLogic(unit, {
+      'hoursAgo': '$time hours ago',
+      'yesterday': 'Yesterday',
+      'daysAgo': '$time days ago',
+      'other': '$time',
+    });
+    return '$_temp0 • $_temp1';
+  }
+
+  @override
+  String home_cardsCount(int count) {
+    return '$count cards';
+  }
+
+  @override
+  String home_timeHoursAgo(int hours) {
+    return '$hours hours ago';
+  }
+
+  @override
+  String get home_timeYesterday => 'Yesterday';
+
+  @override
+  String home_timeDaysAgo(int days) {
+    return '$days days ago';
+  }
 
   @override
   String get end_of_translation => '';

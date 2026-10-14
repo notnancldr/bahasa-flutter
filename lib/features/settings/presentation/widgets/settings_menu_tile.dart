@@ -37,6 +37,7 @@ class SettingsMenuTile extends StatelessWidget {
       onTap: onTap,
       borderRadius: cardShape.borderRadius.resolve(.ltr),
       child: Card.outlined(
+        color: Colors.transparent,
         shape: border
             ? cardShape
             : RoundedRectangleBorder(

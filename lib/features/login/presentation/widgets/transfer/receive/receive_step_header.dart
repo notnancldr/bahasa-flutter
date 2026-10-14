@@ -1,4 +1,3 @@
-import 'package:bahasa/core/utils/widget_var.dart';
 import 'package:bahasa/core/widgets/info_chip.dart';
 import 'package:flutter/material.dart';
 
@@ -16,8 +15,6 @@ class ReceiveStepHeader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final WidgetVars(:t, :c) = WidgetVars.of(context);
-
     return Column(
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [

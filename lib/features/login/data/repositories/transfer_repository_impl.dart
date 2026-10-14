@@ -1,7 +1,6 @@
 import 'dart:io';
 
 import 'package:bahasa/core/server/base.dart';
-import 'package:bahasa/core/server/simulated_server.dart';
 import 'package:bahasa/core/server/transfer_server.dart';
 import 'package:bahasa/features/login/domain/entities/transfer_validation_result.dart';
 import 'package:bahasa/features/login/domain/repositories/transfer_repository.dart';

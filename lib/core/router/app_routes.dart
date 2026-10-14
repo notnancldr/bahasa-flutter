@@ -1,5 +1,6 @@
 abstract class AppRoutes {
   static const home = "/";
+  static const deck = "/deck";
   static const login = "/login";
 
   static const loginTransfer = "/login/transfer";
@@ -10,6 +11,7 @@ abstract class AppRoutes {
   static const settingsAccount = "/settings/account";
   static const settingsAccountEdit = "/settings/account/edit";
   static const settingsTheme = "/settings/theme";
+  static const settingsLanguage = "/settings/language";
   static const settingsDataStorage = "/settings/data";
   static const settingsDataTransfer = "/settings/data/transfer";
 }

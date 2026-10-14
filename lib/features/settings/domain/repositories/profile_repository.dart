@@ -4,8 +4,14 @@ abstract class ProfileRepository {
   /// Retrieves the current user profile.
   Future<UserProfile> getProfile();
 
+  /// Saves or creates a full user profile.
+  Future<UserProfile> saveProfile(UserProfile profile);
+
   /// Updates the username.
   Future<UserProfile> updateUsername(String newUsername);
+
+  /// Updates defaultLanguage.
+  Future<UserProfile> updateDefaultLanguage(String newDefaultLanguage);
 
   /// Updates the profile photo path.
   Future<UserProfile> updateProfilePhoto(String photoPath);

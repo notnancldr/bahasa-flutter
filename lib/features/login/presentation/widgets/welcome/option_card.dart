@@ -1,4 +1,4 @@
-import 'package:bahasa/core/theme/theme_extensions.dart';
+import 'package:bahasa/core/utils/widget_var.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -26,13 +26,13 @@ class OptionCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
-    final s = theme.extension<AppSemanticColors>()!;
+    final WidgetVars(:c, :s, :theme) = WidgetVars.of(context);
+
+    final cardShape = theme.cardTheme.shape as RoundedRectangleBorder;
 
     return ClipRRect(
-      borderRadius: BorderRadius.circular(16),
-      child: Material(
-        color: Colors.transparent,
+      borderRadius: cardShape.borderRadius,
+      child: Card(
         child: InkWell(
           onTap: () {
             context.push(route);
@@ -40,11 +40,6 @@ class OptionCard extends StatelessWidget {
           child: Container(
             width: double.infinity,
             padding: EdgeInsets.symmetric(horizontal: 24, vertical: 8),
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(16),
-              border: Border.all(color: Colors.grey.withAlpha(40), width: 3),
-              color: Colors.grey.withAlpha(20),
-            ),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [

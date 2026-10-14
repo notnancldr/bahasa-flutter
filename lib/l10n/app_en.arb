@@ -74,6 +74,8 @@
     "settings_theme_subtitleDark": "Dark mode (saves battery)",
     "settings_theme_badgeLight": "Light",
     "settings_theme_badgeDark": "Dark",
+    "settings_language_title": "Language",
+    "settings_language_subtitle": "Select app primary language",
     "settings_notif_title": "Notifications",
     "settings_notif_subtitle": "Daily learning reminders",
     "settings_data_title": "Data & Storage",
@@ -133,6 +135,47 @@
     "deleteData_success_title": "Data deleted successfully",
     "deleteData_success_body": "Your account still exists. You can start learning from scratch anytime.",
     "deleteData_success_homeButton": "Back to Home",
+
+    "home_consecutiveDays": "Consecutive Days",
+    "home_emptyDeckTitle": "You don't have any deck yet!",
+    "home_createDeckButton": "Create Deck",
+    "home_rarelyStudied": "Rarely Studied",
+    "home_reviewButton": "Review",
+    "home_lastStudiedDaysAgo": "Last studied {days} days ago.",
+    "@home_lastStudiedDaysAgo": {
+        "placeholders": {
+            "days": {
+                "type": "int"
+            }
+        }
+    },
+    "home_recentActivityTitle": "Recent Activity",
+    "home_recentActivitySubtitle": "{cards, plural, =1{1 card} other{{cards} cards}} \u2022 {unit, select, hoursAgo{{time} hours ago} yesterday{Yesterday} daysAgo{{time} days ago} other{{time}}}",
+    "home_cardsCount": "{count} cards",
+    "@home_cardsCount": {
+        "placeholders": {
+            "count": {
+                "type": "int"
+            }
+        }
+    },
+    "home_timeHoursAgo": "{hours} hours ago",
+    "@home_timeHoursAgo": {
+        "placeholders": {
+            "hours": {
+                "type": "int"
+            }
+        }
+    },
+    "home_timeYesterday": "Yesterday",
+    "home_timeDaysAgo": "{days} days ago",
+    "@home_timeDaysAgo": {
+        "placeholders": {
+            "days": {
+                "type": "int"
+            }
+        }
+    },
 
     "end_of_translation": "",
     "@end_of_translation": {}
