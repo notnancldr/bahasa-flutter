@@ -45,16 +45,25 @@ class CustomOption extends StatelessWidget {
         ? (selectedBorder ?? Border.all(color: s.primaryDark, width: 2))
         : (unselectedBorder ?? Border.all(color: c.outline, width: 2));
 
-    return InkWell(
-      borderRadius: borderRadius,
-      onTap: onTap,
+    return FilledButton(
+      // borderRadius: borderRadius,
+      onPressed: onTap,
+      style: ButtonStyle(
+        elevation: WidgetStatePropertyAll(0),
+        backgroundColor: WidgetStatePropertyAll(resolvedColor),
+        overlayColor: WidgetStateProperty.fromMap({
+          WidgetState.hovered: c.inverseSurface.withAlpha(10),
+        }),
+        padding: WidgetStatePropertyAll(EdgeInsets.all(0)),
+        shape: WidgetStatePropertyAll(
+          RoundedRectangleBorder(
+            borderRadius: borderRadius,
+            side: resolvedBorder.top,
+          ),
+        ),
+      ),
       child: Container(
         padding: padding,
-        decoration: BoxDecoration(
-          borderRadius: borderRadius,
-          color: resolvedColor,
-          border: resolvedBorder,
-        ),
         child: Row(
           children: [
             if (leading != null) ...[leading!, const SizedBox(width: 14)],

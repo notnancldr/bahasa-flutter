@@ -89,21 +89,21 @@ class ReceiveCompleteStep extends StatelessWidget {
                   icon: Symbols.calendar_month,
                   color: c.secondary,
                   title: l.joinSince,
-                  content: "Dummy", // TODO: Real data
+                  content: _formatDate(state.joinSince),
                 ),
 
                 _ProfileInfoItem(
                   icon: Symbols.person,
                   color: s.success,
                   title: l.username,
-                  content: "Dummy", // TODO: Real data
+                  content: state.username,
                 ),
 
                 _ProfileInfoItem(
                   icon: Symbols.language,
                   color: c.tertiary,
                   title: l.defaultLanguage,
-                  content: "Dummy", // TODO: Real data
+                  content: _formatLanguage(state.defaultLanguage),
                 ),
               ],
             ),
@@ -111,6 +111,28 @@ class ReceiveCompleteStep extends StatelessWidget {
         ),
       ],
     );
+  }
+
+  String _formatDate(String? raw) {
+    if (raw == null || raw.isEmpty) {
+      final now = DateTime.now();
+      return '${now.day.toString().padLeft(2, '0')}/${now.month.toString().padLeft(2, '0')}/${now.year}';
+    }
+    final dt = DateTime.tryParse(raw);
+    if (dt == null) return raw;
+    return '${dt.day.toString().padLeft(2, '0')}/${dt.month.toString().padLeft(2, '0')}/${dt.year}';
+  }
+
+  String _formatLanguage(String langCode) {
+    return switch (langCode.toLowerCase()) {
+      'id' => 'Indonesian',
+      'en' => 'English',
+      'es' => 'Spanish',
+      'fr' => 'French',
+      'de' => 'German',
+      'ja' => 'Japanese',
+      _ => langCode.toUpperCase(),
+    };
   }
 }
 

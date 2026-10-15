@@ -8,6 +8,7 @@ import 'package:bahasa/core/server/base.dart';
 import 'package:bahasa/core/utils/random_char.dart';
 
 import 'package:network_info_plus/network_info_plus.dart';
+import 'package:path_provider/path_provider.dart';
 
 import 'package:shelf/shelf.dart';
 import 'package:shelf/shelf_io.dart' as io;
@@ -56,6 +57,11 @@ class TransferServerError extends TransferServerEvent {
 class TransferServer implements TransferServerBase {
   static const _progressInterval = Duration(milliseconds: 100);
   static const _flushThreshold = 512 * 1024; // flush every 512 KB
+
+  final Future<Directory> Function()? _tempDirProvider;
+
+  /// Creates a [TransferServer] with an optional custom [tempDirProvider].
+  TransferServer([this._tempDirProvider]);
 
   HttpServer? _server;
   final _controller = StreamController<TransferServerEvent>.broadcast();
@@ -209,12 +215,14 @@ class TransferServer implements TransferServerBase {
     int? totalBytes,
   ) async {
     final fileName = data.filename ?? 'unnamed_${randomChar(8)}';
-    // final tempDir = await getTemporaryDirectory();
-    // final path = "${tempDir.path}/${randomChar(16)}_$fileName"; // TODO: save to file
-    // final sink = File(path).openWrite(); // TODO: save to file
+    final tempDir = _tempDirProvider != null
+        ? await _tempDirProvider()
+        : await getTemporaryDirectory();
+    final path = "${tempDir.path}/${randomChar(16)}_$fileName";
+    final sink = File(path).openWrite();
 
-    // _activeSink = sink; // TODO: save to file
-    // _activeTempPath = path; // TODO: save to file
+    _activeSink = sink;
+    _activeTempPath = path;
     _cancelRequested = false;
 
     final completer = Completer<Response>();
@@ -251,7 +259,7 @@ class TransferServer implements TransferServerBase {
     late final StreamSubscription<List<int>> sub;
     sub = data.part.listen(
       (chunk) {
-        // sink.add(chunk);
+        sink.add(chunk);
         received += chunk.length;
         unflushed += chunk.length;
         emitProgress();
@@ -259,19 +267,16 @@ class TransferServer implements TransferServerBase {
         // Backpressure: stop reading from the socket until the disk catches up.
         if (unflushed >= _flushThreshold) {
           unflushed = 0;
-          // sub.pause(); // TODO: save to file
-          // sink.flush().catchError((_) {}).whenComplete(sub.resume); // TODO: save to file
+          sub.pause();
+          sink.flush().catchError((_) {}).whenComplete(sub.resume);
         }
       },
       onDone: () async {
         try {
-          // await sink.flush(); // TODO: save to file
-          // await sink.close(); // TODO: save to file
+          await sink.flush();
+          await sink.close();
           emitProgress(force: true);
-          // _controller.add(TransferServerComplete(path));
-          _controller.add(
-            TransferServerComplete("dummy"),
-          ); // TODO: save to file
+          _controller.add(TransferServerComplete(path));
           if (!completer.isCompleted) {
             completer.complete(
               Response.ok(

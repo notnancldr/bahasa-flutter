@@ -1,7 +1,9 @@
 import 'package:bahasa/core/utils/widget_var.dart';
 import 'package:bahasa/core/widgets/embossed_button/embossed_button.dart';
 import 'package:bahasa/core/widgets/page_header.dart';
+import 'package:bahasa/features/settings/presentation/widgets/share_data/qr_scanner_modal.dart';
 import 'package:flutter/material.dart';
+import 'package:material_symbols_icons/symbols.dart';
 
 class ShareDataInputStep extends StatelessWidget {
   final TextEditingController controller;
@@ -12,6 +14,13 @@ class ShareDataInputStep extends StatelessWidget {
     required this.controller,
     required this.onStartTransfer,
   });
+
+  Future<void> _handleScanQr(BuildContext context) async {
+    final scanned = await QrScannerModal.show(context);
+    if (scanned != null && scanned.trim().isNotEmpty) {
+      controller.text = scanned.trim();
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -76,6 +85,37 @@ class ShareDataInputStep extends StatelessWidget {
                       borderRadius: BorderRadius.circular(16),
                       borderSide: BorderSide(color: c.primary, width: 1.5),
                     ),
+                  ),
+                ),
+                const SizedBox(height: 16),
+                Row(
+                  children: [
+                    Expanded(
+                      child: Divider(color: c.outlineVariant, height: 1),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 16),
+                      child: Text(
+                        l.shareData_or,
+                        style: t.bodySmall?.copyWith(
+                          color: c.onSurfaceVariant,
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
+                    ),
+                    Expanded(
+                      child: Divider(color: c.outlineVariant, height: 1),
+                    ),
+                  ],
+                ),
+                const SizedBox(height: 16),
+                SizedBox(
+                  width: double.infinity,
+                  child: EmbossedButton(
+                    l.shareData_scanQrButton,
+                    type: EmbossedButtonType.outlined,
+                    leadingIcon: Symbols.qr_code_scanner,
+                    onPressed: () => _handleScanQr(context),
                   ),
                 ),
               ],

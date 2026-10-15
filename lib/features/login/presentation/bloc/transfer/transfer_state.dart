@@ -75,9 +75,17 @@ class CheckValidState extends TransferState {
 
 class TransferCompleteState extends TransferState {
   final String username;
-  final String defultLanguage;
+  final String defaultLanguage;
+  final String? joinSince;
 
-  TransferCompleteState({required this.username, required this.defultLanguage});
+  /// Backwards compatibility getter for typo.
+  String get defultLanguage => defaultLanguage;
+
+  TransferCompleteState({
+    required this.username,
+    required this.defaultLanguage,
+    this.joinSince,
+  });
 }
 
 class TransferErrorState extends TransferState {

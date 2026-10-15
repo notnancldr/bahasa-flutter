@@ -422,6 +422,26 @@ class AppLocalizationsId extends AppLocalizations {
   String get shareData_failed_no => 'Tidak';
 
   @override
+  String get shareData_or => 'atau';
+
+  @override
+  String get shareData_scanQrButton => 'Pindai Kode QR';
+
+  @override
+  String get shareData_scanner_title => 'Pindai QR Penerima';
+
+  @override
+  String get shareData_scanner_instruction =>
+      'Arahkan kamera ke kode QR di perangkat penerima';
+
+  @override
+  String get shareData_scanner_permission_denied =>
+      'Izin kamera diperlukan untuk memindai kode QR';
+
+  @override
+  String get shareData_scanner_error => 'Tidak dapat mengakses kamera';
+
+  @override
   String get deleteData_dialog_title => 'Hapus semua data?';
 
   @override
@@ -673,6 +693,15 @@ class AppLocalizationsId extends AppLocalizations {
 
   @override
   String get deck_page_placeholder => 'Deck';
+
+  @override
+  String get nav_home => 'Beranda';
+
+  @override
+  String get nav_deck => 'Deck';
+
+  @override
+  String get nav_settings => 'Pengaturan';
 
   @override
   String get end_of_translation => '';

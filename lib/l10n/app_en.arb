@@ -128,6 +128,12 @@
     "shareData_failed_title": "Transfer failed",
     "shareData_failed_body": "Connection lost or code is no longer valid. Try again?",
     "shareData_failed_no": "No",
+    "shareData_or": "or",
+    "shareData_scanQrButton": "Scan QR Code",
+    "shareData_scanner_title": "Scan Receiver QR",
+    "shareData_scanner_instruction": "Point camera at the QR code on the receiver device",
+    "shareData_scanner_permission_denied": "Camera permission is required to scan QR code",
+    "shareData_scanner_error": "Unable to access camera",
 
     "deleteData_dialog_title": "Delete all data?",
     "deleteData_dialog_body": "This action cannot be undone. Type your username to confirm.",
@@ -234,6 +240,19 @@
     "deck_file_size_label": "File Size",
     "deck_continue": "Continue",
     "deck_page_placeholder": "Deck",
+
+    "nav_home": "Home",
+    "@nav_home": {
+        "description": "Bottom navigation bar item for Home screen"
+    },
+    "nav_deck": "Deck",
+    "@nav_deck": {
+        "description": "Bottom navigation bar item for Deck screen"
+    },
+    "nav_settings": "Settings",
+    "@nav_settings": {
+        "description": "Bottom navigation bar item for Settings screen"
+    },
 
     "end_of_translation": "",
     "@end_of_translation": {}

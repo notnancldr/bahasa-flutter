@@ -8,6 +8,7 @@ import 'package:bahasa/features/login/presentation/widgets/transfer/receive/rece
 import 'package:bahasa/features/login/presentation/widgets/transfer/receive/receive_complete_step.dart';
 import 'package:bahasa/features/login/presentation/widgets/transfer/receive/receive_error_step.dart';
 import 'package:bahasa/features/login/presentation/widgets/transfer/receive/receive_main_step.dart';
+import 'package:bahasa/core/router/app_routes.dart';
 import 'package:bahasa/l10n/app_localizations.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -103,9 +104,7 @@ class ReceiveStep extends StatelessWidget {
         l.done,
         onPressed: () {
           context.read<TransferBloc>().add(CancelTransfer());
-          if (context.canPop()) {
-            context.pop();
-          }
+          context.go(AppRoutes.home);
         },
       ),
       _ => EmbossedButton(

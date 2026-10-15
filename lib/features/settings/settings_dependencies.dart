@@ -37,7 +37,10 @@ class SettingsDependencies {
       _settingsDataSource ??= SettingsLocalDataSourceImpl();
 
   static DataStorageLocalDataSource get dataStorageDataSource =>
-      _dataStorageDataSource ??= DataStorageLocalDataSourceImpl();
+      _dataStorageDataSource ??= DataStorageLocalDataSourceImpl(
+        profileDataSource: profileDataSource,
+        settingsDataSource: settingsDataSource,
+      );
 
   static ProfileRepository createProfileRepository() {
     return ProfileRepositoryImpl(

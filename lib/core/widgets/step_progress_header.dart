@@ -1,7 +1,5 @@
 import 'package:bahasa/core/widgets/circle_back_button.dart';
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
-import 'package:material_symbols_icons/symbols.dart';
 
 /// Reusable segmented progress bar for multi-step flows.
 class StepProgressBar extends StatelessWidget {

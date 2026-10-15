@@ -20,7 +20,7 @@ class ImportDeckBloc extends Bloc<ImportDeckEvent, ImportDeckState> {
     GetEuyFilePropertyUseCase? getFilePropertyUseCase,
     required this.validateUseCase,
     required this.importUseCase,
-    this.stepDelay = const Duration(milliseconds: 600),
+    this.stepDelay = const Duration(milliseconds: 1200),
   }) : getFilePropertyUseCase =
            getFilePropertyUseCase ?? GetEuyFilePropertyUseCase(repository),
        super(const ImportPickerState()) {

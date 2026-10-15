@@ -115,35 +115,22 @@ class ReviewRecommendationCard extends StatelessWidget {
           ),
           const SizedBox(width: 12),
           // Right side: 'Ulas' pill action button with play arrow
-          Material(
-            color: Colors.transparent,
-            child: InkWell(
-              onTap: onReview,
-              borderRadius: BorderRadius.circular(999),
-              child: Ink(
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 14,
-                  vertical: 8,
-                ),
-                decoration: BoxDecoration(
-                  color: buttonBgColor,
-                  borderRadius: BorderRadius.circular(999),
-                ),
-                child: Row(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    Text(
-                      l.home_reviewButton,
-                      style: TextStyle(
-                        fontSize: 13,
-                        fontWeight: FontWeight.w800,
-                        color: buttonTextColor,
-                      ),
-                    ),
-                    const SizedBox(width: 4),
-                    Icon(Icons.play_arrow, size: 16, color: buttonTextColor),
-                  ],
-                ),
+          FilledButton.icon(
+            onPressed: onReview,
+            iconAlignment: IconAlignment.end,
+            icon: Icon(Icons.play_arrow, size: 16, color: buttonTextColor),
+            label: Text(l.home_reviewButton),
+            style: FilledButton.styleFrom(
+              backgroundColor: buttonBgColor,
+              foregroundColor: buttonTextColor,
+              elevation: 0,
+              padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 8),
+              minimumSize: Size.zero,
+              tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+              shape: const StadiumBorder(),
+              textStyle: const TextStyle(
+                fontSize: 13,
+                fontWeight: FontWeight.w800,
               ),
             ),
           ),

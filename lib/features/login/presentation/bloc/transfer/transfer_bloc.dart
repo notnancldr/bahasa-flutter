@@ -180,7 +180,8 @@ class TransferBloc extends Bloc<TransferEvent, TransferState> {
       emit(
         TransferCompleteState(
           username: result.username ?? 'user',
-          defultLanguage: result.defaultLanguage ?? 'id',
+          defaultLanguage: result.defaultLanguage ?? 'id',
+          joinSince: result.joinSince,
         ),
       );
     } else {

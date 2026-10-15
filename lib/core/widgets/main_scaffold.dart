@@ -1,38 +1,73 @@
-import 'package:bahasa/core/router/app_routes.dart';
 import 'package:bahasa/core/theme/app_colors.dart';
+import 'package:bahasa/core/utils/widget_var.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:material_symbols_icons/symbols.dart';
 
-/// Bottom navigation scaffold shell that persists the navigation bar
-/// across Home, Deck, and Settings branches.
-class MainScaffold extends StatelessWidget {
-  final Widget child;
+/// Bottom navigation scaffold shell that hosts a swipeable [PageView]
+/// across Home, Deck, and Settings branches with a synchronized bottom navigation bar.
+class MainScaffold extends StatefulWidget {
+  /// The navigation shell provided by [StatefulShellRoute].
+  final StatefulNavigationShell navigationShell;
 
-  const MainScaffold({super.key, required this.child});
+  /// The parallel branch navigators for each tab branch.
+  final List<Widget> children;
 
-  int _calculateSelectedIndex(BuildContext context) {
-    final location = GoRouterState.of(context).uri.toString();
-    if (location.startsWith(AppRoutes.deck)) {
-      return 1;
-    }
-    if (location.startsWith(AppRoutes.settings)) {
-      return 2;
-    }
-    return 0;
+  const MainScaffold({
+    super.key,
+    required this.navigationShell,
+    required this.children,
+  });
+
+  @override
+  State<MainScaffold> createState() => _MainScaffoldState();
+}
+
+class _MainScaffoldState extends State<MainScaffold> {
+  late final PageController _pageController;
+
+  @override
+  void initState() {
+    super.initState();
+    _pageController = PageController(
+      initialPage: widget.navigationShell.currentIndex,
+    );
   }
 
-  void _onItemTapped(int index, BuildContext context) {
-    switch (index) {
-      case 0:
-        context.go(AppRoutes.home);
-        break;
-      case 1:
-        context.go(AppRoutes.deck);
-        break;
-      case 2:
-        context.go(AppRoutes.settings);
-        break;
+  @override
+  void didUpdateWidget(covariant MainScaffold oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (widget.navigationShell.currentIndex !=
+        oldWidget.navigationShell.currentIndex) {
+      final targetIndex = widget.navigationShell.currentIndex;
+      if (_pageController.hasClients &&
+          _pageController.page?.round() != targetIndex) {
+        _pageController.animateToPage(
+          targetIndex,
+          duration: const Duration(milliseconds: 300),
+          curve: Curves.easeInOut,
+        );
+      }
+    }
+  }
+
+  @override
+  void dispose() {
+    _pageController.dispose();
+    super.dispose();
+  }
+
+  void _onPageChanged(int index) {
+    if (index != widget.navigationShell.currentIndex) {
+      widget.navigationShell.goBranch(index);
+    }
+  }
+
+  void _onItemTapped(int index) {
+    if (index == widget.navigationShell.currentIndex) {
+      widget.navigationShell.goBranch(index, initialLocation: true);
+    } else {
+      widget.navigationShell.goBranch(index);
     }
   }
 
@@ -40,14 +75,21 @@ class MainScaffold extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final isDark = theme.brightness == Brightness.dark;
-    final selectedIndex = _calculateSelectedIndex(context);
+    final selectedIndex = widget.navigationShell.currentIndex;
+    final WidgetVars(:l) = WidgetVars.of(context);
 
     final backgroundColor = isDark
         ? theme.colorScheme.surface
         : AppColors.lightBackground;
 
     return Scaffold(
-      body: child,
+      body: PageView(
+        controller: _pageController,
+        onPageChanged: _onPageChanged,
+        children: widget.children
+            .map((child) => _KeepAliveTab(child: child))
+            .toList(),
+      ),
       bottomNavigationBar: SafeArea(
         top: false,
         child: Container(
@@ -57,28 +99,50 @@ class MainScaffold extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
               _NavBarItem(
-                label: 'Home',
+                label: l.nav_home,
                 icon: Symbols.home,
                 isSelected: selectedIndex == 0,
-                onTap: () => _onItemTapped(0, context),
+                onTap: () => _onItemTapped(0),
               ),
               _NavBarItem(
-                label: 'Deck',
+                label: l.nav_deck,
                 icon: Symbols.style,
                 isSelected: selectedIndex == 1,
-                onTap: () => _onItemTapped(1, context),
+                onTap: () => _onItemTapped(1),
               ),
               _NavBarItem(
-                label: 'Setting',
+                label: l.nav_settings,
                 icon: Symbols.settings,
                 isSelected: selectedIndex == 2,
-                onTap: () => _onItemTapped(2, context),
+                onTap: () => _onItemTapped(2),
               ),
             ],
           ),
         ),
       ),
     );
+  }
+}
+
+/// Keeps a tab alive in [PageView] so it is not disposed when swiped off-screen.
+class _KeepAliveTab extends StatefulWidget {
+  final Widget child;
+
+  const _KeepAliveTab({required this.child});
+
+  @override
+  State<_KeepAliveTab> createState() => _KeepAliveTabState();
+}
+
+class _KeepAliveTabState extends State<_KeepAliveTab>
+    with AutomaticKeepAliveClientMixin {
+  @override
+  bool get wantKeepAlive => true;
+
+  @override
+  Widget build(BuildContext context) {
+    super.build(context);
+    return widget.child;
   }
 }
 
@@ -110,38 +174,43 @@ class _NavBarItem extends StatelessWidget {
         ? AppColors.darkOnSurfaceMuted
         : AppColors.secodaryText;
 
-    return InkWell(
-      onTap: onTap,
-      borderRadius: BorderRadius.circular(999),
-      child: AnimatedContainer(
-        duration: const Duration(milliseconds: 200),
-        curve: Curves.easeInOut,
-        width: 76,
-        padding: const EdgeInsets.symmetric(vertical: 6),
-        decoration: BoxDecoration(
-          color: isSelected ? selectedBgColor : Colors.transparent,
-          borderRadius: BorderRadius.circular(999),
-        ),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Icon(
-              icon,
-              size: 24,
-              fill: isSelected ? 1 : 0,
-              color: isSelected ? selectedTextColor : unselectedTextColor,
-            ),
-            const SizedBox(height: 2),
-            Text(
-              label,
-              style: TextStyle(
-                fontSize: 12,
-                fontWeight: isSelected ? FontWeight.w700 : FontWeight.w600,
+    return Semantics(
+      button: true,
+      selected: isSelected,
+      label: label,
+      child: InkWell(
+        onTap: onTap,
+        borderRadius: BorderRadius.circular(999),
+        child: AnimatedContainer(
+          duration: const Duration(milliseconds: 200),
+          curve: Curves.easeInOut,
+          width: 76,
+          padding: const EdgeInsets.symmetric(vertical: 6),
+          decoration: BoxDecoration(
+            color: isSelected ? selectedBgColor : Colors.transparent,
+            borderRadius: BorderRadius.circular(999),
+          ),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Icon(
+                icon,
+                size: 24,
+                fill: isSelected ? 1 : 0,
                 color: isSelected ? selectedTextColor : unselectedTextColor,
               ),
-            ),
-          ],
+              const SizedBox(height: 2),
+              Text(
+                label,
+                style: TextStyle(
+                  fontSize: 12,
+                  fontWeight: isSelected ? FontWeight.w700 : FontWeight.w600,
+                  color: isSelected ? selectedTextColor : unselectedTextColor,
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );

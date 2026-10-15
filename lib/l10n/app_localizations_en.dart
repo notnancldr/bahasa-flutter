@@ -421,6 +421,26 @@ class AppLocalizationsEn extends AppLocalizations {
   String get shareData_failed_no => 'No';
 
   @override
+  String get shareData_or => 'or';
+
+  @override
+  String get shareData_scanQrButton => 'Scan QR Code';
+
+  @override
+  String get shareData_scanner_title => 'Scan Receiver QR';
+
+  @override
+  String get shareData_scanner_instruction =>
+      'Point camera at the QR code on the receiver device';
+
+  @override
+  String get shareData_scanner_permission_denied =>
+      'Camera permission is required to scan QR code';
+
+  @override
+  String get shareData_scanner_error => 'Unable to access camera';
+
+  @override
   String get deleteData_dialog_title => 'Delete all data?';
 
   @override
@@ -672,6 +692,15 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get deck_page_placeholder => 'Deck';
+
+  @override
+  String get nav_home => 'Home';
+
+  @override
+  String get nav_deck => 'Deck';
+
+  @override
+  String get nav_settings => 'Settings';
 
   @override
   String get end_of_translation => '';

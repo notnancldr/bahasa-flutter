@@ -33,63 +33,69 @@ class SettingsMenuTile extends StatelessWidget {
     final WidgetVars(:theme, :c, :isDark) = WidgetVars.of(context);
     final cardShape = theme.cardTheme.shape as RoundedRectangleBorder;
 
-    return InkWell(
-      onTap: onTap,
-      borderRadius: cardShape.borderRadius.resolve(.ltr),
-      child: Card.outlined(
-        color: Colors.transparent,
-        shape: border
-            ? cardShape
-            : RoundedRectangleBorder(
-                borderRadius: BorderRadius.zero,
-                side: BorderSide.none,
-              ),
-        child: Padding(
-          padding: const EdgeInsets.all(12),
-          child: Row(
-            children: [
-              Container(
-                width: 44,
-                height: 44,
-                decoration: BoxDecoration(
-                  color: iconBackgroundColor,
-                  borderRadius: BorderRadius.circular(5),
+    return FilledButton(
+      onPressed: onTap,
+      style: ButtonStyle(
+        overlayColor: WidgetStateProperty.fromMap({
+          WidgetState.hovered: c.inverseSurface.withAlpha(10),
+        }),
+        elevation: WidgetStatePropertyAll(0),
+        shape: WidgetStatePropertyAll(
+          border
+              ? cardShape
+              : RoundedRectangleBorder(
+                  borderRadius: BorderRadius.zero,
+                  side: BorderSide.none,
                 ),
-                child: Icon(icon, color: iconColor, size: 22),
+        ),
+        backgroundColor: WidgetStatePropertyAll(Colors.transparent),
+        padding: WidgetStatePropertyAll(EdgeInsets.zero),
+      ),
+      child: Container(
+        padding: const EdgeInsets.all(12),
+        child: Row(
+          children: [
+            Container(
+              width: 44,
+              height: 44,
+              decoration: BoxDecoration(
+                color: iconBackgroundColor,
+                borderRadius: BorderRadius.circular(99),
               ),
-              const SizedBox(width: 14),
-              Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      title,
-                      style: theme.textTheme.titleMedium?.copyWith(
-                        fontWeight: FontWeight.w700,
-                        fontSize: 15,
-                      ),
+              child: Icon(icon, color: iconColor, size: 22),
+            ),
+            const SizedBox(width: 14),
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    title,
+                    style: theme.textTheme.titleMedium?.copyWith(
+                      fontWeight: FontWeight.w700,
+                      fontSize: 15,
                     ),
-                    const SizedBox(height: 2),
-                    Text(
-                      subtitle,
-                      style: theme.textTheme.bodyMedium?.copyWith(
-                        color: AppColors.secodaryText,
-                        fontSize: 12,
-                        fontWeight: FontWeight.w500,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              const SizedBox(width: 8),
-              trailing ??
-                  const Icon(
-                    Symbols.chevron_right,
-                    size: 20,
-                    color: Color(0xFF9EAAB0),
                   ),
-            ],
-          ),
+                  const SizedBox(height: 2),
+                  Text(
+                    subtitle,
+                    style: theme.textTheme.bodyMedium?.copyWith(
+                      color: AppColors.secodaryText,
+                      fontSize: 12,
+                      fontWeight: FontWeight.w500,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            const SizedBox(width: 8),
+            trailing ??
+                const Icon(
+                  Symbols.chevron_right,
+                  size: 20,
+                  color: Color(0xFF9EAAB0),
+                ),
+          ],
         ),
       ),
     );

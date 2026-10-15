@@ -43,8 +43,6 @@ class FlameIcon extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SvgPicture.string(
-      streakCount > 0 ? _vibrantSvg : _grayscaleSvg,
-    );
+    return SvgPicture.string(streakCount > 0 ? _vibrantSvg : _grayscaleSvg);
   }
 }

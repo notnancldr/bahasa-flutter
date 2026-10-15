@@ -12,7 +12,10 @@ import 'package:bahasa/features/settings/settings_dependencies.dart';
 /// Lightweight dependency factory for the Login & Transfer feature.
 class LoginDependencies {
   static TransferRepository createTransferRepository() =>
-      TransferRepositoryImpl();
+      TransferRepositoryImpl(
+        profileDataSource: SettingsDependencies.profileDataSource,
+        settingsDataSource: SettingsDependencies.settingsDataSource,
+      );
 
   static TransferBloc createTransferBloc({TransferRepository? repository}) {
     final repo = repository ?? createTransferRepository();

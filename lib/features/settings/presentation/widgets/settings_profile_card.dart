@@ -69,37 +69,35 @@ class SettingsProfileCard extends StatelessWidget {
                     ],
                   ),
                 ),
-                InkWell(
-                  onTap: onManageProfile,
-                  borderRadius: BorderRadius.circular(5),
-                  child: Container(
+                FilledButton.icon(
+                  onPressed: onManageProfile,
+                  iconAlignment: IconAlignment.end,
+                  icon: Icon(
+                    Symbols.arrow_forward,
+                    size: 14,
+                    color: s.primaryDark,
+                    weight: 600,
+                  ),
+                  label: Text(
+                    l.settings_manageProfile,
+                    style: TextStyle(
+                      color: s.primaryDark,
+                      fontSize: 12,
+                      fontWeight: FontWeight.w700,
+                    ),
+                  ),
+                  style: FilledButton.styleFrom(
+                    backgroundColor: c.primaryContainer.withAlpha(80),
+                    foregroundColor: s.primaryDark,
+                    elevation: 0,
                     padding: const EdgeInsets.symmetric(
                       horizontal: 12,
                       vertical: 7,
                     ),
-                    decoration: BoxDecoration(
-                      color: c.primaryContainer.withAlpha(80),
+                    minimumSize: Size.zero,
+                    tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                    shape: RoundedRectangleBorder(
                       borderRadius: cardShape.borderRadius / 2,
-                    ),
-                    child: Row(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        Text(
-                          l.settings_manageProfile,
-                          style: TextStyle(
-                            color: s.primaryDark,
-                            fontSize: 12,
-                            fontWeight: FontWeight.w700,
-                          ),
-                        ),
-                        SizedBox(width: 4),
-                        Icon(
-                          Symbols.arrow_forward,
-                          size: 14,
-                          color: s.primaryDark,
-                          weight: 600,
-                        ),
-                      ],
                     ),
                   ),
                 ),

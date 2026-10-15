@@ -1,5 +1,6 @@
 import 'package:bahasa/core/utils/widget_var.dart';
 import 'package:bahasa/core/widgets/embossed_button/embossed_button.dart';
+import 'package:bahasa/core/widgets/shape_loading.dart';
 import 'package:flutter/material.dart';
 import 'package:material_symbols_icons/symbols.dart';
 
@@ -32,7 +33,6 @@ class ImportProgressView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final WidgetVars(:c, :t, :s, :l) = WidgetVars.of(context);
-    final percentage = (progress * 100).toInt();
 
     return Column(
       children: [
@@ -45,39 +45,7 @@ class ImportProgressView extends StatelessWidget {
           child: Stack(
             alignment: Alignment.center,
             children: [
-              SizedBox(
-                width: 160,
-                height: 160,
-                child: CircularProgressIndicator(
-                  value: progress,
-                  strokeWidth: 10,
-                  backgroundColor: c.outlineVariant,
-                  valueColor: AlwaysStoppedAnimation<Color>(s.primaryDark),
-                  strokeCap: StrokeCap.round,
-                ),
-              ),
-              Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Container(
-                    width: 44,
-                    height: 44,
-                    decoration: BoxDecoration(
-                      color: c.primaryContainer,
-                      shape: BoxShape.circle,
-                    ),
-                    child: Icon(Symbols.draft, size: 22, color: s.primaryDark),
-                  ),
-                  const SizedBox(height: 6),
-                  Text(
-                    '$percentage%',
-                    style: t.titleMedium?.copyWith(
-                      fontWeight: FontWeight.w800,
-                      color: c.onSurface,
-                    ),
-                  ),
-                ],
-              ),
+              SizedBox(width: 160, height: 160, child: ShapeLoading()),
             ],
           ),
         ),

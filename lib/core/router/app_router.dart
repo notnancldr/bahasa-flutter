@@ -68,29 +68,46 @@ class AppRouter {
         ),
       ),
 
-      ShellRoute(
-        pageBuilder: (context, state, child) => buildSlideTransitionPage(
-          context: context,
-          state: state,
-          child: MainScaffold(child: child),
-        ),
-        routes: [
-          GoRoute(
-            path: AppRoutes.home,
-            name: "home",
-            builder: (context, state) => const HomePage(),
+      StatefulShellRoute(
+        branches: [
+          StatefulShellBranch(
+            preload: true,
+            routes: [
+              GoRoute(
+                path: AppRoutes.home,
+                name: "home",
+                builder: (context, state) => const HomePage(),
+              ),
+            ],
           ),
-          GoRoute(
-            path: AppRoutes.deck,
-            name: "deck",
-            builder: (context, state) => const DeckPage(),
+          StatefulShellBranch(
+            preload: true,
+            routes: [
+              GoRoute(
+                path: AppRoutes.deck,
+                name: "deck",
+                builder: (context, state) => const DeckPage(),
+              ),
+            ],
           ),
-          GoRoute(
-            path: AppRoutes.settings,
-            name: "settings",
-            builder: (context, state) => const SettingsPage(),
+          StatefulShellBranch(
+            preload: true,
+            routes: [
+              GoRoute(
+                path: AppRoutes.settings,
+                name: "settings",
+                builder: (context, state) => const SettingsPage(),
+              ),
+            ],
           ),
         ],
+        builder: (context, state, navigationShell) => navigationShell,
+        navigatorContainerBuilder: (context, navigationShell, children) {
+          return MainScaffold(
+            navigationShell: navigationShell,
+            children: children,
+          );
+        },
       ),
       GoRoute(
         path: AppRoutes.settingsAccount,

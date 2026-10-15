@@ -173,6 +173,12 @@
     "shareData_failed_title": "Transfer gagal",
     "shareData_failed_body": "Koneksi terputus atau kode sudah tidak berlaku. Coba lagi?",
     "shareData_failed_no": "Tidak",
+    "shareData_or": "atau",
+    "shareData_scanQrButton": "Pindai Kode QR",
+    "shareData_scanner_title": "Pindai QR Penerima",
+    "shareData_scanner_instruction": "Arahkan kamera ke kode QR di perangkat penerima",
+    "shareData_scanner_permission_denied": "Izin kamera diperlukan untuk memindai kode QR",
+    "shareData_scanner_error": "Tidak dapat mengakses kamera",
 
     "deleteData_dialog_title": "Hapus semua data?",
     "deleteData_dialog_body": "Tindakan ini tidak dapat dibatalkan. Ketik username kamu untuk mengonfirmasi.",
@@ -293,6 +299,19 @@
     "deck_file_size_label": "Ukuran Berkas",
     "deck_continue": "Lanjutkan",
     "deck_page_placeholder": "Deck",
+
+    "nav_home": "Beranda",
+    "@nav_home": {
+        "description": "Bottom navigation bar item for Home screen"
+    },
+    "nav_deck": "Deck",
+    "@nav_deck": {
+        "description": "Bottom navigation bar item for Deck screen"
+    },
+    "nav_settings": "Pengaturan",
+    "@nav_settings": {
+        "description": "Bottom navigation bar item for Settings screen"
+    },
 
     "end_of_translation": "",
     "@end_of_translation": {}

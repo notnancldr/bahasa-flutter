@@ -72,25 +72,23 @@ class ImportFileCardSelected extends StatelessWidget {
           const SizedBox(height: 12),
           Divider(height: 1, thickness: 1, color: c.outlineVariant),
           const SizedBox(height: 10),
-          InkWell(
-            onTap: onChangeFile,
-            borderRadius: BorderRadius.circular(8),
-            child: Padding(
+          TextButton.icon(
+            onPressed: onChangeFile,
+            icon: Icon(Symbols.refresh, size: 16, color: s.primaryDark),
+            label: Text(
+              l.deck_import_change_file,
+              style: t.labelMedium?.copyWith(
+                color: s.primaryDark,
+                fontWeight: FontWeight.w700,
+              ),
+            ),
+            style: TextButton.styleFrom(
+              foregroundColor: s.primaryDark,
               padding: const EdgeInsets.symmetric(vertical: 4, horizontal: 8),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Icon(Symbols.refresh, size: 16, color: s.primaryDark),
-                  const SizedBox(width: 6),
-                  Text(
-                    l.deck_import_change_file,
-                    style: t.labelMedium?.copyWith(
-                      color: s.primaryDark,
-                      fontWeight: FontWeight.w700,
-                    ),
-                  ),
-                ],
+              minimumSize: Size.zero,
+              tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(8),
               ),
             ),
           ),

@@ -824,6 +824,42 @@ abstract class AppLocalizations {
   /// **'Tidak'**
   String get shareData_failed_no;
 
+  /// No description provided for @shareData_or.
+  ///
+  /// In id, this message translates to:
+  /// **'atau'**
+  String get shareData_or;
+
+  /// No description provided for @shareData_scanQrButton.
+  ///
+  /// In id, this message translates to:
+  /// **'Pindai Kode QR'**
+  String get shareData_scanQrButton;
+
+  /// No description provided for @shareData_scanner_title.
+  ///
+  /// In id, this message translates to:
+  /// **'Pindai QR Penerima'**
+  String get shareData_scanner_title;
+
+  /// No description provided for @shareData_scanner_instruction.
+  ///
+  /// In id, this message translates to:
+  /// **'Arahkan kamera ke kode QR di perangkat penerima'**
+  String get shareData_scanner_instruction;
+
+  /// No description provided for @shareData_scanner_permission_denied.
+  ///
+  /// In id, this message translates to:
+  /// **'Izin kamera diperlukan untuk memindai kode QR'**
+  String get shareData_scanner_permission_denied;
+
+  /// No description provided for @shareData_scanner_error.
+  ///
+  /// In id, this message translates to:
+  /// **'Tidak dapat mengakses kamera'**
+  String get shareData_scanner_error;
+
   /// No description provided for @deleteData_dialog_title.
   ///
   /// In id, this message translates to:
@@ -1261,6 +1297,24 @@ abstract class AppLocalizations {
   /// In id, this message translates to:
   /// **'Deck'**
   String get deck_page_placeholder;
+
+  /// Bottom navigation bar item for Home screen
+  ///
+  /// In id, this message translates to:
+  /// **'Beranda'**
+  String get nav_home;
+
+  /// Bottom navigation bar item for Deck screen
+  ///
+  /// In id, this message translates to:
+  /// **'Deck'**
+  String get nav_deck;
+
+  /// Bottom navigation bar item for Settings screen
+  ///
+  /// In id, this message translates to:
+  /// **'Pengaturan'**
+  String get nav_settings;
 
   /// No description provided for @end_of_translation.
   ///
