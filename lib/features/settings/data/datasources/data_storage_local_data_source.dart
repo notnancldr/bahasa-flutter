@@ -1,23 +1,41 @@
 import 'dart:io';
 
 import 'package:bahasa/core/errors/settings_error.dart';
+import 'package:bahasa/core/utils/deck_db_loader.dart';
+import 'package:bahasa/core/utils/main_db_loader.dart';
 import 'package:bahasa/features/settings/domain/entities/data_transfer_result.dart';
 import 'package:path_provider/path_provider.dart';
 
+/// Local data source interface for data storage, transfers, and data wiping.
 abstract class DataStorageLocalDataSource {
+  /// Initiates atomic data transfer using receiver code.
   Future<DataTransferResult> transferData({required String receiverCode});
+
+  /// Deletes application database files (`basa.sqlite` and `deck_<uuid>.sqlite`).
+  /// Leaves shared preferences untouched.
   Future<void> deleteAppData();
+
+  /// Deletes all files in the application document directory.
   Future<void> deleteAllApplicationData();
 }
 
+/// Implementation of [DataStorageLocalDataSource] managing local file persistence.
 class DataStorageLocalDataSourceImpl implements DataStorageLocalDataSource {
   final Future<Directory> Function()? _tempDirProvider;
   final Future<Directory> Function()? _appDocsDirProvider;
+  final MainDbLoader _mainDbLoader;
+  final DeckDbLoader _deckDbLoader;
 
+  /// Creates a [DataStorageLocalDataSourceImpl] with optional directory providers
+  /// and database loaders.
   DataStorageLocalDataSourceImpl({
     this._tempDirProvider,
-    this._appDocsDirProvider,
-  });
+    Future<Directory> Function()? appDocsDirProvider,
+    MainDbLoader? mainDbLoader,
+    DeckDbLoader? deckDbLoader,
+  }) : _appDocsDirProvider = appDocsDirProvider,
+       _mainDbLoader = mainDbLoader ?? MainDbLoader(appDocsDirProvider),
+       _deckDbLoader = deckDbLoader ?? DeckDbLoader(appDocsDirProvider);
 
   Future<Directory> _getTempDir() async {
     return _tempDirProvider != null
@@ -94,8 +112,39 @@ class DataStorageLocalDataSourceImpl implements DataStorageLocalDataSource {
   @override
   Future<void> deleteAppData() async {
     try {
-      final appDocsDir = await _getAppDocsDir();
-      final dataDir = Directory('${appDocsDir.path}/data');
+      final storageDir = await _mainDbLoader.getStorageDirectory();
+
+      // 1. Delete main database (basa.sqlite) and its SQLite journal/wal files if any
+      final mainDbFile = File(
+        '${storageDir.path}/${MainDbLoader.databaseFileName}',
+      );
+      if (await mainDbFile.exists()) {
+        await mainDbFile.delete();
+      }
+
+      final walFile = File('${mainDbFile.path}-wal');
+      if (await walFile.exists()) {
+        await walFile.delete();
+      }
+
+      final shmFile = File('${mainDbFile.path}-shm');
+      if (await shmFile.exists()) {
+        await shmFile.delete();
+      }
+
+      final journalFile = File('${mainDbFile.path}-journal');
+      if (await journalFile.exists()) {
+        await journalFile.delete();
+      }
+
+      // 2. Delete deck databases directory ('decks') and its contents
+      final decksDir = await _deckDbLoader.getDecksDirectory();
+      if (await decksDir.exists()) {
+        await decksDir.delete(recursive: true);
+      }
+
+      // 3. Clean up legacy data directory if present
+      final dataDir = Directory('${storageDir.path}/data');
       if (await dataDir.exists()) {
         await dataDir.delete(recursive: true);
       }

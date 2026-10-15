@@ -279,7 +279,7 @@ class AppLocalizationsId extends AppLocalizations {
   String get settings_data_title => 'Data & Penyimpanan';
 
   @override
-  String get settings_data_subtitle => 'Impor, ekspor, & cadangan profil';
+  String get settings_data_subtitle => 'Penyimpanan kosakata dan transfer data';
 
   @override
   String get account_joinedSince => 'Bergabung sejak 2026.';

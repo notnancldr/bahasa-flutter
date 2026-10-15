@@ -563,7 +563,7 @@ abstract class AppLocalizations {
   /// No description provided for @settings_data_subtitle.
   ///
   /// In id, this message translates to:
-  /// **'Impor, ekspor, & cadangan profil'**
+  /// **'Penyimpanan kosakata dan transfer data'**
   String get settings_data_subtitle;
 
   /// No description provided for @account_joinedSince.

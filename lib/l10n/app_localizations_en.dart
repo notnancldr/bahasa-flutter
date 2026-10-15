@@ -278,7 +278,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get settings_data_title => 'Data & Storage';
 
   @override
-  String get settings_data_subtitle => 'Import, export, & profile backup';
+  String get settings_data_subtitle => 'Vocab storage and transfer profile';
 
   @override
   String get account_joinedSince => 'Joined since 2026.';
