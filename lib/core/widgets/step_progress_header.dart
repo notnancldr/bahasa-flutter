@@ -1,3 +1,4 @@
+import 'package:bahasa/core/widgets/circle_back_button.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:material_symbols_icons/symbols.dart';
@@ -94,29 +95,7 @@ class StepProgressHeader extends StatelessWidget {
           children: [
             Row(
               children: [
-                InkWell(
-                  borderRadius: BorderRadius.circular(999),
-                  onTap:
-                      onBack ??
-                      () {
-                        if (context.canPop()) {
-                          context.pop();
-                        }
-                      },
-                  child: Container(
-                    padding: const EdgeInsets.all(8),
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(999),
-                      color: c.surfaceContainer,
-                      border: Border.all(color: c.outlineVariant),
-                    ),
-                    child: const Icon(
-                      Symbols.arrow_back,
-                      size: 16,
-                      weight: 700,
-                    ),
-                  ),
-                ),
+                CircleBackButton(onPressed: onBack),
                 const SizedBox(width: 8),
                 Text(title, style: t.labelMedium),
               ],
