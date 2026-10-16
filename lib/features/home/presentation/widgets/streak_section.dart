@@ -1,5 +1,5 @@
 import 'package:bahasa/core/utils/widget_var.dart';
-import 'package:bahasa/features/home/presentation/widgets/flame_icon.dart';
+import 'package:bahasa/core/widgets/flame_icon.dart';
 import 'package:flutter/material.dart';
 
 /// Displays the user's current streak with the flame icon, counter number,

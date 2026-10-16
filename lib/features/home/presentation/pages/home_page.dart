@@ -116,7 +116,7 @@ class _HomeDashboardView extends StatelessWidget {
             child: StreakSection(
               streakCount: dashboard.streakCount,
               onTap: () {
-                // Navigate to history or streak breakdown
+                context.push(AppRoutes.deckHistory);
               },
             ),
           ),
@@ -146,8 +146,12 @@ class _HomeDashboardView extends StatelessWidget {
                 tag: dashboard.recommendation!.tag,
                 title: dashboard.recommendation!.title,
                 subtitle: dashboard.recommendation!.subtitle,
-                onReview: () {
-                  context.go(AppRoutes.deck);
+                onReview: () async {
+                  final homeBloc = context.read<HomeBloc?>();
+                  await context.push(
+                    AppRoutes.deckDetailsPath(dashboard.recommendation!.id),
+                  );
+                  homeBloc?.add(const RefreshHomeDashboardEvent());
                 },
               ),
               const SizedBox(height: 28),
@@ -176,8 +180,10 @@ class _HomeDashboardView extends StatelessWidget {
                     subtitle: item.formatSubtitle(l),
                     icon: item.icon,
                     color: item.color,
-                    onTap: () {
-                      context.go(AppRoutes.deck);
+                    onTap: () async {
+                      final homeBloc = context.read<HomeBloc?>();
+                      await context.push(AppRoutes.deckDetailsPath(item.id));
+                      homeBloc?.add(const RefreshHomeDashboardEvent());
                     },
                   );
                 },

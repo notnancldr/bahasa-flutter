@@ -1,5 +1,9 @@
 import 'package:bahasa/core/localization/locale_cubit.dart';
 import 'package:bahasa/core/theme/app_theme.dart';
+import 'package:bahasa/features/multiplayer/multiplayer_dependencies.dart';
+import 'package:bahasa/features/multiplayer/presentation/bloc/multiplayer_bloc.dart';
+import 'package:bahasa/features/settings/presentation/bloc/account/account_bloc.dart';
+import 'package:bahasa/features/settings/presentation/bloc/account/account_event.dart';
 import 'package:bahasa/features/settings/presentation/bloc/theme/theme_bloc.dart';
 import 'package:bahasa/features/settings/presentation/bloc/theme/theme_event.dart';
 import 'package:bahasa/features/settings/presentation/bloc/theme/theme_state.dart';
@@ -32,6 +36,14 @@ class AppBootstrap extends StatelessWidget {
           create: (_) =>
               SettingsDependencies.createThemeBloc()
                 ..add(const LoadThemeEvent()),
+        ),
+        BlocProvider<AccountBloc>(
+          create: (_) =>
+              SettingsDependencies.createAccountBloc()
+                ..add(const LoadAccountEvent()),
+        ),
+        BlocProvider<MultiplayerBloc>(
+          create: (_) => MultiplayerDependencies.createMultiplayerBloc(),
         ),
       ],
       child: const BahasaApp(),

@@ -695,6 +695,44 @@ class AppLocalizationsId extends AppLocalizations {
   String get deck_page_placeholder => 'Deck';
 
   @override
+  String get deck_compilation_title => 'Kompilasi Deck';
+
+  @override
+  String get deck_search_hint => 'Cari deck anda...';
+
+  @override
+  String get deck_select_all => 'Pilih semua';
+
+  @override
+  String get deck_deselect_all => 'Batal pilih semua';
+
+  @override
+  String deck_selected_count(int count) {
+    return '$count deck terpilih';
+  }
+
+  @override
+  String get deck_delete_button => 'Hapus';
+
+  @override
+  String get deck_delete_dialog_title => 'Hapus Deck Ini??';
+
+  @override
+  String get deck_delete_dialog_body =>
+      'Tindakan ini tidak dapat dibatalkan. Ketik username kamu untuk mengonfirmasi.';
+
+  @override
+  String deck_delete_dialog_hint(String username) {
+    return 'Ketik \"$username\"...';
+  }
+
+  @override
+  String get deck_empty_search_title => 'Deck tidak ditemukan';
+
+  @override
+  String get deck_add_fab_tooltip => 'Tambah Deck';
+
+  @override
   String get nav_home => 'Beranda';
 
   @override
@@ -702,6 +740,485 @@ class AppLocalizationsId extends AppLocalizations {
 
   @override
   String get nav_settings => 'Pengaturan';
+
+  @override
+  String get deck_details_play_quiz => 'Mainkan\nQuiz';
+
+  @override
+  String get deck_details_play_flashcard => 'Mainkan\nFlash Card';
+
+  @override
+  String get deck_details_streak_label => 'Streak';
+
+  @override
+  String get deck_details_accuracy_label => 'Akurasi';
+
+  @override
+  String get deck_details_search_hint => 'Cari kartu...';
+
+  @override
+  String get deck_details_empty_cards => 'Kartu tidak ditemukan';
+
+  @override
+  String get deck_details_card_description_label => 'DESKRIPSI';
+
+  @override
+  String get deck_details_history_tooltip => 'Riwayat';
+
+  @override
+  String get deck_progress_streak_title => 'Waktu Aktif';
+
+  @override
+  String get deck_progress_accuracy_title => 'Accuracy';
+
+  @override
+  String get deck_progress_streaks_label => 'Streaks';
+
+  @override
+  String get deck_progress_accuracy_subtitle => 'Akurasi Bulan Ini';
+
+  @override
+  String deck_progress_comparison_vs_last_month(String diff, int lastMonth) {
+    return '$diff% dibanding bulan lalu ($lastMonth%)';
+  }
+
+  @override
+  String deck_progress_active_comparison_vs_last_month(
+    int thisMonth,
+    int lastMonth,
+  ) {
+    return '${thisMonth}m bulan ini (${lastMonth}m bulan lalu)';
+  }
+
+  @override
+  String get deck_progress_weekly_streaks_title => 'Weekly Streaks';
+
+  @override
+  String get deck_progress_weekly_restarts_note =>
+      '*This will be restarted every week';
+
+  @override
+  String get deck_progress_day_mon_short => 'Sen';
+
+  @override
+  String get deck_progress_day_tue_short => 'Sel';
+
+  @override
+  String get deck_progress_day_wed_short => 'Rab';
+
+  @override
+  String get deck_progress_day_thu_short => 'Kam';
+
+  @override
+  String get deck_progress_day_fri_short => 'Jum';
+
+  @override
+  String get deck_progress_day_sat_short => 'Sab';
+
+  @override
+  String get deck_progress_day_sun_short => 'Min';
+
+  @override
+  String get deck_progress_day_sun => 'Minggu';
+
+  @override
+  String get deck_progress_day_mon => 'Senin';
+
+  @override
+  String get deck_progress_day_tue => 'Selasa';
+
+  @override
+  String get deck_progress_day_wed => 'Rabu';
+
+  @override
+  String get deck_progress_day_thu => 'Kamis';
+
+  @override
+  String get deck_progress_day_fri => 'Jum\'at';
+
+  @override
+  String get deck_progress_day_sat => 'Sabtu';
+
+  @override
+  String get deck_progress_tab_month => 'Bulan';
+
+  @override
+  String get deck_progress_tab_year => 'Tahun';
+
+  @override
+  String get deck_progress_metric_card => 'Card';
+
+  @override
+  String get deck_progress_metric_accurate => 'Akurat';
+
+  @override
+  String get deck_progress_metric_active => 'Aktif';
+
+  @override
+  String get deck_progress_weakest_cards_title => '3 Kartu Paling Lemah';
+
+  @override
+  String get deck_progress_weakest_empty =>
+      'Belum ada kartu yang dipelajari pada periode ini';
+
+  @override
+  String deck_progress_wrong_count(int count) {
+    return '${count}x Salah';
+  }
+
+  @override
+  String deck_progress_accurate_percent(int percent) {
+    return '$percent% Akurat';
+  }
+
+  @override
+  String get flashcard_title => 'Flashcard';
+
+  @override
+  String get flashcard_instruction =>
+      'Perhatikan kata berikut lalu balik kartu untuk melihat arti:';
+
+  @override
+  String flashcard_card_progress(int current, int total) {
+    return 'Kartu $current dari $total';
+  }
+
+  @override
+  String get flashcard_question_label => 'Pertanyaan';
+
+  @override
+  String get flashcard_answer_label => 'Jawaban';
+
+  @override
+  String get flashcard_tap_to_flip => 'Ketuk untuk melihat arti';
+
+  @override
+  String get flashcard_flip_button => 'Balik Kartu';
+
+  @override
+  String get flashcard_not_memorized => 'Belum hafal';
+
+  @override
+  String get flashcard_memorized => 'Sudah hafal';
+
+  @override
+  String get flashcard_complete_title => 'Latihan Selesai';
+
+  @override
+  String flashcard_complete_cards_value(int count) {
+    return '${count}Card';
+  }
+
+  @override
+  String get flashcard_complete_memorized_label => 'Sudah Hafal';
+
+  @override
+  String get flashcard_complete_not_memorized_label => 'Belum Hafal';
+
+  @override
+  String flashcard_complete_active_time_value(int minutes, int seconds) {
+    return '+${minutes}m ${seconds}d';
+  }
+
+  @override
+  String get flashcard_complete_active_time_label => 'Waktu Aktif Sesi';
+
+  @override
+  String get flashcard_complete_finish_button => 'Selesai';
+
+  @override
+  String get quiz_title => 'Quiz';
+
+  @override
+  String get quiz_mc_instruction =>
+      'Pilih arti yang sesuai untuk kata berikut:';
+
+  @override
+  String get quiz_jumble_instruction =>
+      'Ketik atau susun terjemahan untuk kata ini:';
+
+  @override
+  String get quiz_jumble_placeholder => 'Tarik kata yang anda pilih ke sini';
+
+  @override
+  String get quiz_check_answer_button => 'Periksa Jawaban';
+
+  @override
+  String get quiz_feedback_correct_title => 'Jawaban Tepat Sekali';
+
+  @override
+  String get quiz_feedback_wrong_title => 'Jawaban yang benar adalah';
+
+  @override
+  String get quiz_continue_button => 'Lanjut';
+
+  @override
+  String quiz_complete_score_value(int correct, int total) {
+    return '$correct / $total';
+  }
+
+  @override
+  String get quiz_complete_correct_label => 'Jawaban Tepat';
+
+  @override
+  String get deck_history_title => 'Riwayat Aktifitas';
+
+  @override
+  String get deck_history_period_week => 'Minggu ini';
+
+  @override
+  String get deck_history_period_month => 'Bulan ini';
+
+  @override
+  String get deck_history_period_year => 'Tahun ini';
+
+  @override
+  String get deck_history_summary_week => 'Ringkasan Minggu ini';
+
+  @override
+  String get deck_history_summary_month => 'Ringkasan Bulan ini';
+
+  @override
+  String get deck_history_summary_year => 'Ringkasan Tahun ini';
+
+  @override
+  String get deck_history_total_activities => 'Total Aktivitas';
+
+  @override
+  String get deck_history_study_time => 'Waktu Belajar';
+
+  @override
+  String get deck_history_avg_accuracy => 'Rata-Rata Akurasi';
+
+  @override
+  String deck_history_sessions_count(int count) {
+    return '$count sesi';
+  }
+
+  @override
+  String get deck_history_activities_title => 'Aktifitas Belajar';
+
+  @override
+  String deck_history_activities_count(int count) {
+    return '$count aktifitas';
+  }
+
+  @override
+  String get deck_history_empty_title => 'Belum Ada Aktivitas';
+
+  @override
+  String get deck_history_empty_subtitle =>
+      'Selesaikan sesi flashcard atau kuis untuk melihat riwayat belajarmu di sini.';
+
+  @override
+  String get deck_history_quiz_label => 'Kuis kata';
+
+  @override
+  String get deck_history_flashcard_label => 'Flashcard';
+
+  @override
+  String deck_history_score_badge(int correct, int total) {
+    return '$correct / $total Benar';
+  }
+
+  @override
+  String deck_history_minutes_badge(int minutes) {
+    return '$minutes Menit';
+  }
+
+  @override
+  String deck_history_seconds_badge(int seconds) {
+    return '$seconds Dtk';
+  }
+
+  @override
+  String get deck_history_sheet_correct_answers => 'Jawaban Tepat';
+
+  @override
+  String get deck_history_sheet_session_duration => 'Durasi Sesi';
+
+  @override
+  String get deck_history_sheet_accuracy => 'Akurasi';
+
+  @override
+  String get deck_history_sheet_cards_studied => 'Kartu yang di pelajari';
+
+  @override
+  String get deck_history_sheet_mastered => 'Hafal';
+
+  @override
+  String get deck_history_sheet_needs_review => 'Perlu diulang';
+
+  @override
+  String get deck_history_sheet_close => 'Tutup rincian';
+
+  @override
+  String get deck_history_time_today => 'Hari ini';
+
+  @override
+  String get deck_history_time_yesterday => 'Kemarin';
+
+  @override
+  String get nav_multiplayer => 'Multiplayer';
+
+  @override
+  String get multiplayer_title => 'Bermain bersama';
+
+  @override
+  String get multiplayer_banner_title => 'Latihan bersama teman';
+
+  @override
+  String get multiplayer_banner_desc =>
+      'Belajar kooperatif 2 pemain di jaringan Wi-Fi yang sama tanpa kuota internet.';
+
+  @override
+  String get multiplayer_create_room => 'Buat Ruangan Baru';
+
+  @override
+  String get multiplayer_create_room_desc =>
+      'Jadikan perangkat anda sebagai host';
+
+  @override
+  String get multiplayer_join_room => 'Gabung ruangan';
+
+  @override
+  String get multiplayer_join_room_desc => 'Gabung keruangan yang sudah ada';
+
+  @override
+  String get multiplayer_room_title => 'Ruangan';
+
+  @override
+  String get multiplayer_room_ip_label => 'ALAMAT PERANGKAT INI';
+
+  @override
+  String get multiplayer_room_scan_label => 'atau pindai kode ini';
+
+  @override
+  String get multiplayer_room_waiting => 'Menunggu data dari perangkat lain...';
+
+  @override
+  String get multiplayer_room_wifi_note =>
+      'Pastikan kedua perangkat terhubung ke jaringan Wi-Fi yang sama.';
+
+  @override
+  String get multiplayer_join_scan_qr => 'Ketuk untuk pindai QR Host';
+
+  @override
+  String get multiplayer_join_or_scan => 'atau lakukan scan qr code';
+
+  @override
+  String get multiplayer_join_ip_placeholder => 'Masukan IP Address Host....';
+
+  @override
+  String get multiplayer_join_button => 'Gabung Ruangan';
+
+  @override
+  String get multiplayer_lobby_title => 'Lobi latihan';
+
+  @override
+  String multiplayer_lobby_connected_count(int current, int total) {
+    return 'Pemain Terhubung ($current/$total)';
+  }
+
+  @override
+  String get multiplayer_lobby_role_host => 'Pemberi Petunjuk';
+
+  @override
+  String get multiplayer_lobby_role_guesser => 'Penebak';
+
+  @override
+  String get multiplayer_lobby_ready => 'Siap';
+
+  @override
+  String get multiplayer_lobby_start_button => 'Pilih Deck';
+
+  @override
+  String get multiplayer_lobby_waiting_host => 'Menunggu Host memilih deck...';
+
+  @override
+  String get multiplayer_select_deck_title => 'Pilih Deck';
+
+  @override
+  String get multiplayer_select_deck_search => 'Cari deck anda...';
+
+  @override
+  String get multiplayer_game_title => 'Latihan bersama';
+
+  @override
+  String multiplayer_host_elaborate_prompt(String name) {
+    return 'Jelaskan Kepada $name terkait kata yang diatas';
+  }
+
+  @override
+  String multiplayer_guesser_listen_prompt(String name) {
+    return 'Dengarkan penjelasan dari $name';
+  }
+
+  @override
+  String multiplayer_guesser_waiting_title(String name) {
+    return 'Menunggu Jawaban Dari $name....';
+  }
+
+  @override
+  String multiplayer_guesser_waiting_desc(String name) {
+    return '$name (Pemberi Petunjuk) Sedang Memilih Jawaban Dari Sistem. Tetap Rileks Dan Bersiaplah!';
+  }
+
+  @override
+  String get multiplayer_score_plus => '+1';
+
+  @override
+  String get multiplayer_score_minus => '-1';
+
+  @override
+  String get multiplayer_score_zero => '+0';
+
+  @override
+  String get multiplayer_score_label => 'Poin';
+
+  @override
+  String get multiplayer_score_total => 'Total Skor Kalian Saat Ini:';
+
+  @override
+  String multiplayer_score_points(int score) {
+    return '$score Poin';
+  }
+
+  @override
+  String get multiplayer_continue_button => 'Lanjutkan Soal';
+
+  @override
+  String get multiplayer_complete_title => 'Latihan Bersama Selesai';
+
+  @override
+  String multiplayer_complete_correct_count(int correct, int total) {
+    return '$correct / $total';
+  }
+
+  @override
+  String get multiplayer_complete_correct_label => 'Jawaban Tepat';
+
+  @override
+  String get multiplayer_complete_time_label => 'Waktu Aktif Sesi';
+
+  @override
+  String get multiplayer_back_button => 'Kembali';
+
+  @override
+  String get multiplayer_history_title => 'Riwayat Latihan Bersama';
+
+  @override
+  String get multiplayer_leave_confirm_title => 'Keluar dari Ruangan?';
+
+  @override
+  String get multiplayer_leave_confirm_desc =>
+      'Sesi latihan akan dihentikan untuk kedua pemain.';
+
+  @override
+  String get multiplayer_leave_confirm_yes => 'Keluar';
+
+  @override
+  String get multiplayer_leave_confirm_no => 'Batal';
 
   @override
   String get end_of_translation => '';

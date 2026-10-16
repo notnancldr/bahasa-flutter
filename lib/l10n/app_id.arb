@@ -299,6 +299,60 @@
     "deck_file_size_label": "Ukuran Berkas",
     "deck_continue": "Lanjutkan",
     "deck_page_placeholder": "Deck",
+    "deck_compilation_title": "Kompilasi Deck",
+    "@deck_compilation_title": {
+        "description": "Header title for the Deck Compilation page"
+    },
+    "deck_search_hint": "Cari deck anda...",
+    "@deck_search_hint": {
+        "description": "Placeholder hint text in the deck search bar"
+    },
+    "deck_select_all": "Pilih semua",
+    "@deck_select_all": {
+        "description": "Button label to select all decks in selection mode"
+    },
+    "deck_deselect_all": "Batal pilih semua",
+    "@deck_deselect_all": {
+        "description": "Button label to deselect all decks in selection mode"
+    },
+    "deck_selected_count": "{count} deck terpilih",
+    "@deck_selected_count": {
+        "description": "Label showing the number of selected decks in the bottom bar",
+        "placeholders": {
+            "count": {
+                "type": "int"
+            }
+        }
+    },
+    "deck_delete_button": "Hapus",
+    "@deck_delete_button": {
+        "description": "Button label to delete selected decks"
+    },
+    "deck_delete_dialog_title": "Hapus Deck Ini??",
+    "@deck_delete_dialog_title": {
+        "description": "Title of the delete confirmation dialog on the deck page"
+    },
+    "deck_delete_dialog_body": "Tindakan ini tidak dapat dibatalkan. Ketik username kamu untuk mengonfirmasi.",
+    "@deck_delete_dialog_body": {
+        "description": "Body description of the delete confirmation dialog on the deck page"
+    },
+    "deck_delete_dialog_hint": "Ketik \"{username}\"...",
+    "@deck_delete_dialog_hint": {
+        "description": "Hint text inside the username verification text field when deleting decks",
+        "placeholders": {
+            "username": {
+                "type": "String"
+            }
+        }
+    },
+    "deck_empty_search_title": "Deck tidak ditemukan",
+    "@deck_empty_search_title": {
+        "description": "Message displayed when no decks match the search query"
+    },
+    "deck_add_fab_tooltip": "Tambah Deck",
+    "@deck_add_fab_tooltip": {
+        "description": "Tooltip and semantic label for the floating add deck button"
+    },
 
     "nav_home": "Beranda",
     "@nav_home": {
@@ -311,6 +365,704 @@
     "nav_settings": "Pengaturan",
     "@nav_settings": {
         "description": "Bottom navigation bar item for Settings screen"
+    },
+
+    "deck_details_play_quiz": "Mainkan\nQuiz",
+    "@deck_details_play_quiz": {
+        "description": "Button label to start the Quiz game from Deck Details page"
+    },
+    "deck_details_play_flashcard": "Mainkan\nFlash Card",
+    "@deck_details_play_flashcard": {
+        "description": "Button label to start the Flash Card game from Deck Details page"
+    },
+    "deck_details_streak_label": "Streak",
+    "@deck_details_streak_label": {
+        "description": "Label under the streak count on Deck Details page"
+    },
+    "deck_details_accuracy_label": "Akurasi",
+    "@deck_details_accuracy_label": {
+        "description": "Label under the accuracy percentage on Deck Details page"
+    },
+    "deck_details_search_hint": "Cari kartu...",
+    "@deck_details_search_hint": {
+        "description": "Hint text for searching cards on Deck Details page"
+    },
+    "deck_details_empty_cards": "Kartu tidak ditemukan",
+    "@deck_details_empty_cards": {
+        "description": "Empty state text when no cards match the search query on Deck Details page"
+    },
+    "deck_details_card_description_label": "DESKRIPSI",
+    "@deck_details_card_description_label": {
+        "description": "Section header label for card description in the Card Detail bottom sheet"
+    },
+    "deck_details_history_tooltip": "Riwayat",
+    "@deck_details_history_tooltip": {
+        "description": "Tooltip for the top-right history icon button"
+    },
+
+    "deck_progress_streak_title": "Waktu Aktif",
+    "@deck_progress_streak_title": {
+        "description": "AppBar title for the Active Time / Streak progress page"
+    },
+    "deck_progress_accuracy_title": "Accuracy",
+    "@deck_progress_accuracy_title": {
+        "description": "AppBar title for the Accuracy progress page"
+    },
+    "deck_progress_streaks_label": "Streaks",
+    "@deck_progress_streaks_label": {
+        "description": "Hero subtitle label under the streak count on the Streak progress page"
+    },
+    "deck_progress_accuracy_subtitle": "Akurasi Bulan Ini",
+    "@deck_progress_accuracy_subtitle": {
+        "description": "Hero subtitle label under the accuracy percentage on the Accuracy progress page"
+    },
+    "deck_progress_comparison_vs_last_month": "{diff}% dibanding bulan lalu ({lastMonth}%)",
+    "@deck_progress_comparison_vs_last_month": {
+        "description": "Comparison text between this month and last month accuracy",
+        "placeholders": {
+            "diff": {
+                "type": "String"
+            },
+            "lastMonth": {
+                "type": "int"
+            }
+        }
+    },
+    "deck_progress_active_comparison_vs_last_month": "{thisMonth}m bulan ini ({lastMonth}m bulan lalu)",
+    "@deck_progress_active_comparison_vs_last_month": {
+        "description": "Comparison text between this month and last month active time in minutes",
+        "placeholders": {
+            "thisMonth": {
+                "type": "int"
+            },
+            "lastMonth": {
+                "type": "int"
+            }
+        }
+    },
+    "deck_progress_weekly_streaks_title": "Weekly Streaks",
+    "@deck_progress_weekly_streaks_title": {
+        "description": "Card title for the Weekly Streaks box"
+    },
+    "deck_progress_weekly_restarts_note": "*This will be restarted every week",
+    "@deck_progress_weekly_restarts_note": {
+        "description": "Footnote inside the Weekly Streaks card"
+    },
+    "deck_progress_day_mon_short": "Sen",
+    "@deck_progress_day_mon_short": {
+        "description": "Short label for Monday"
+    },
+    "deck_progress_day_tue_short": "Sel",
+    "@deck_progress_day_tue_short": {
+        "description": "Short label for Tuesday"
+    },
+    "deck_progress_day_wed_short": "Rab",
+    "@deck_progress_day_wed_short": {
+        "description": "Short label for Wednesday"
+    },
+    "deck_progress_day_thu_short": "Kam",
+    "@deck_progress_day_thu_short": {
+        "description": "Short label for Thursday"
+    },
+    "deck_progress_day_fri_short": "Jum",
+    "@deck_progress_day_fri_short": {
+        "description": "Short label for Friday"
+    },
+    "deck_progress_day_sat_short": "Sab",
+    "@deck_progress_day_sat_short": {
+        "description": "Short label for Saturday"
+    },
+    "deck_progress_day_sun_short": "Min",
+    "@deck_progress_day_sun_short": {
+        "description": "Short label for Sunday"
+    },
+    "deck_progress_day_sun": "Minggu",
+    "@deck_progress_day_sun": {
+        "description": "Calendar column header for Sunday"
+    },
+    "deck_progress_day_mon": "Senin",
+    "@deck_progress_day_mon": {
+        "description": "Calendar column header for Monday"
+    },
+    "deck_progress_day_tue": "Selasa",
+    "@deck_progress_day_tue": {
+        "description": "Calendar column header for Tuesday"
+    },
+    "deck_progress_day_wed": "Rabu",
+    "@deck_progress_day_wed": {
+        "description": "Calendar column header for Wednesday"
+    },
+    "deck_progress_day_thu": "Kamis",
+    "@deck_progress_day_thu": {
+        "description": "Calendar column header for Thursday"
+    },
+    "deck_progress_day_fri": "Jum'at",
+    "@deck_progress_day_fri": {
+        "description": "Calendar column header for Friday"
+    },
+    "deck_progress_day_sat": "Sabtu",
+    "@deck_progress_day_sat": {
+        "description": "Calendar column header for Saturday"
+    },
+    "deck_progress_tab_month": "Bulan",
+    "@deck_progress_tab_month": {
+        "description": "Segmented toggle tab label for Monthly bar chart view"
+    },
+    "deck_progress_tab_year": "Tahun",
+    "@deck_progress_tab_year": {
+        "description": "Segmented toggle tab label for Yearly/Calendar heatmap view"
+    },
+    "deck_progress_metric_card": "Card",
+    "@deck_progress_metric_card": {
+        "description": "Metric box label for practiced card count in Period Detail bottom sheet"
+    },
+    "deck_progress_metric_accurate": "Akurat",
+    "@deck_progress_metric_accurate": {
+        "description": "Metric box label for accuracy rate in Period Detail bottom sheet"
+    },
+    "deck_progress_metric_active": "Aktif",
+    "@deck_progress_metric_active": {
+        "description": "Metric box label for active duration in Period Detail bottom sheet"
+    },
+    "deck_progress_weakest_cards_title": "3 Kartu Paling Lemah",
+    "@deck_progress_weakest_cards_title": {
+        "description": "Section header for Top 3 Weakest Cards in Period Detail bottom sheet"
+    },
+    "deck_progress_weakest_empty": "Belum ada kartu yang dipelajari pada periode ini",
+    "@deck_progress_weakest_empty": {
+        "description": "Empty state text when no weakest cards exist for the selected period"
+    },
+    "deck_progress_wrong_count": "{count}x Salah",
+    "@deck_progress_wrong_count": {
+        "description": "Label showing how many times a card was answered incorrectly",
+        "placeholders": {
+            "count": {
+                "type": "int"
+            }
+        }
+    },
+    "deck_progress_accurate_percent": "{percent}% Akurat",
+    "@deck_progress_accurate_percent": {
+        "description": "Label showing the accuracy percentage of a card",
+        "placeholders": {
+            "percent": {
+                "type": "int"
+            }
+        }
+    },
+
+    "flashcard_title": "Flashcard",
+    "@flashcard_title": {
+        "description": "Header title for the Flashcard game screen"
+    },
+    "flashcard_instruction": "Perhatikan kata berikut lalu balik kartu untuk melihat arti:",
+    "@flashcard_instruction": {
+        "description": "Instruction text displayed above the flashcard"
+    },
+    "flashcard_card_progress": "Kartu {current} dari {total}",
+    "@flashcard_card_progress": {
+        "description": "Badge showing the current flashcard index out of total cards",
+        "placeholders": {
+            "current": {
+                "type": "int"
+            },
+            "total": {
+                "type": "int"
+            }
+        }
+    },
+    "flashcard_question_label": "Pertanyaan",
+    "@flashcard_question_label": {
+        "description": "Label at the top of the unflipped flashcard"
+    },
+    "flashcard_answer_label": "Jawaban",
+    "@flashcard_answer_label": {
+        "description": "Label at the top of the flipped flashcard"
+    },
+    "flashcard_tap_to_flip": "Ketuk untuk melihat arti",
+    "@flashcard_tap_to_flip": {
+        "description": "Hint text at the bottom of the unflipped flashcard"
+    },
+    "flashcard_flip_button": "Balik Kartu",
+    "@flashcard_flip_button": {
+        "description": "Primary button label to flip the flashcard"
+    },
+    "flashcard_not_memorized": "Belum hafal",
+    "@flashcard_not_memorized": {
+        "description": "Self-assessment button label when the user has not memorized the card"
+    },
+    "flashcard_memorized": "Sudah hafal",
+    "@flashcard_memorized": {
+        "description": "Self-assessment button label when the user has memorized the card"
+    },
+    "flashcard_complete_title": "Latihan Selesai",
+    "@flashcard_complete_title": {
+        "description": "Title shown on the completion summary screen for Flashcard and Quiz games"
+    },
+    "flashcard_complete_cards_value": "{count}Card",
+    "@flashcard_complete_cards_value": {
+        "description": "Stat value showing the number of cards memorized or not memorized",
+        "placeholders": {
+            "count": {
+                "type": "int"
+            }
+        }
+    },
+    "flashcard_complete_memorized_label": "Sudah Hafal",
+    "@flashcard_complete_memorized_label": {
+        "description": "Stat label for memorized cards count on Flashcard completion screen"
+    },
+    "flashcard_complete_not_memorized_label": "Belum Hafal",
+    "@flashcard_complete_not_memorized_label": {
+        "description": "Stat label for not memorized cards count on Flashcard completion screen"
+    },
+    "flashcard_complete_active_time_value": "+{minutes}m {seconds}d",
+    "@flashcard_complete_active_time_value": {
+        "description": "Formatted session active time in minutes and seconds",
+        "placeholders": {
+            "minutes": {
+                "type": "int"
+            },
+            "seconds": {
+                "type": "int"
+            }
+        }
+    },
+    "flashcard_complete_active_time_label": "Waktu Aktif Sesi",
+    "@flashcard_complete_active_time_label": {
+        "description": "Stat label for session active time on completion screen"
+    },
+    "flashcard_complete_finish_button": "Selesai",
+    "@flashcard_complete_finish_button": {
+        "description": "Button label to finish the session and return to Deck Details"
+    },
+
+    "quiz_title": "Quiz",
+    "@quiz_title": {
+        "description": "Header title for the Quiz game screen"
+    },
+    "quiz_mc_instruction": "Pilih arti yang sesuai untuk kata berikut:",
+    "@quiz_mc_instruction": {
+        "description": "Instruction prompt for Multiple Choice translation questions in Quiz"
+    },
+    "quiz_jumble_instruction": "Ketik atau susun terjemahan untuk kata ini:",
+    "@quiz_jumble_instruction": {
+        "description": "Instruction prompt for Jumble Words arrangement questions in Quiz"
+    },
+    "quiz_jumble_placeholder": "Tarik kata yang anda pilih ke sini",
+    "@quiz_jumble_placeholder": {
+        "description": "Placeholder text inside the empty Jumble Words answer box"
+    },
+    "quiz_check_answer_button": "Periksa Jawaban",
+    "@quiz_check_answer_button": {
+        "description": "Primary button label to check the selected answer in Quiz"
+    },
+    "quiz_feedback_correct_title": "Jawaban Tepat Sekali",
+    "@quiz_feedback_correct_title": {
+        "description": "Title inside the Correct Answer feedback sheet"
+    },
+    "quiz_feedback_wrong_title": "Jawaban yang benar adalah",
+    "@quiz_feedback_wrong_title": {
+        "description": "Subtitle inside the Wrong Answer feedback sheet preceding the correct answer pill"
+    },
+    "quiz_continue_button": "Lanjut",
+    "@quiz_continue_button": {
+        "description": "Button label inside the Quiz feedback sheet to proceed to the next question"
+    },
+    "quiz_complete_score_value": "{correct} / {total}",
+    "@quiz_complete_score_value": {
+        "description": "Score ratio shown on the Quiz completion summary screen",
+        "placeholders": {
+            "correct": {
+                "type": "int"
+            },
+            "total": {
+                "type": "int"
+            }
+        }
+    },
+    "quiz_complete_correct_label": "Jawaban Tepat",
+    "@quiz_complete_correct_label": {
+        "description": "Label under the score ratio on the Quiz completion summary screen"
+    },
+
+    "deck_history_title": "Riwayat Aktifitas",
+    "@deck_history_title": {
+        "description": "Page title for the Deck History page"
+    },
+    "deck_history_period_week": "Minggu ini",
+    "@deck_history_period_week": {
+        "description": "Label for current week period toggle"
+    },
+    "deck_history_period_month": "Bulan ini",
+    "@deck_history_period_month": {
+        "description": "Label for current month period toggle"
+    },
+    "deck_history_period_year": "Tahun ini",
+    "@deck_history_period_year": {
+        "description": "Label for current year period toggle"
+    },
+    "deck_history_summary_week": "Ringkasan Minggu ini",
+    "@deck_history_summary_week": {
+        "description": "Heading for week summary section"
+    },
+    "deck_history_summary_month": "Ringkasan Bulan ini",
+    "@deck_history_summary_month": {
+        "description": "Heading for month summary section"
+    },
+    "deck_history_summary_year": "Ringkasan Tahun ini",
+    "@deck_history_summary_year": {
+        "description": "Heading for year summary section"
+    },
+    "deck_history_total_activities": "Total Aktivitas",
+    "@deck_history_total_activities": {
+        "description": "Caption for total activities count in summary section"
+    },
+    "deck_history_study_time": "Waktu Belajar",
+    "@deck_history_study_time": {
+        "description": "Caption for total study duration in summary section"
+    },
+    "deck_history_avg_accuracy": "Rata-Rata Akurasi",
+    "@deck_history_avg_accuracy": {
+        "description": "Caption for average accuracy percentage in summary section"
+    },
+    "deck_history_sessions_count": "{count} sesi",
+    "@deck_history_sessions_count": {
+        "description": "Formatted sessions count value",
+        "placeholders": {
+            "count": {
+                "type": "int"
+            }
+        }
+    },
+    "deck_history_activities_title": "Aktifitas Belajar",
+    "@deck_history_activities_title": {
+        "description": "Header title for the learning activity list section"
+    },
+    "deck_history_activities_count": "{count} aktifitas",
+    "@deck_history_activities_count": {
+        "description": "Counter displayed next to study activities title",
+        "placeholders": {
+            "count": {
+                "type": "int"
+            }
+        }
+    },
+    "deck_history_empty_title": "Belum Ada Aktivitas",
+    "@deck_history_empty_title": {
+        "description": "Empty state title when no activities were completed in the period"
+    },
+    "deck_history_empty_subtitle": "Selesaikan sesi flashcard atau kuis untuk melihat riwayat belajarmu di sini.",
+    "@deck_history_empty_subtitle": {
+        "description": "Empty state subtitle instructions"
+    },
+    "deck_history_quiz_label": "Kuis kata",
+    "@deck_history_quiz_label": {
+        "description": "Title for quiz study session items"
+    },
+    "deck_history_flashcard_label": "Flashcard",
+    "@deck_history_flashcard_label": {
+        "description": "Title for flashcard study session items"
+    },
+    "deck_history_score_badge": "{correct} / {total} Benar",
+    "@deck_history_score_badge": {
+        "description": "Score badge on history item card",
+        "placeholders": {
+            "correct": {
+                "type": "int"
+            },
+            "total": {
+                "type": "int"
+            }
+        }
+    },
+    "deck_history_minutes_badge": "{minutes} Menit",
+    "@deck_history_minutes_badge": {
+        "description": "Duration badge on history item card in minutes",
+        "placeholders": {
+            "minutes": {
+                "type": "int"
+            }
+        }
+    },
+    "deck_history_seconds_badge": "{seconds} Dtk",
+    "@deck_history_seconds_badge": {
+        "description": "Duration badge on history item card in seconds",
+        "placeholders": {
+            "seconds": {
+                "type": "int"
+            }
+        }
+    },
+    "deck_history_sheet_correct_answers": "Jawaban Tepat",
+    "@deck_history_sheet_correct_answers": {
+        "description": "Stat label for correct answers count in session detail sheet"
+    },
+    "deck_history_sheet_session_duration": "Durasi Sesi",
+    "@deck_history_sheet_session_duration": {
+        "description": "Stat label for session duration in session detail sheet"
+    },
+    "deck_history_sheet_accuracy": "Akurasi",
+    "@deck_history_sheet_accuracy": {
+        "description": "Stat label for accuracy percentage in session detail sheet"
+    },
+    "deck_history_sheet_cards_studied": "Kartu yang di pelajari",
+    "@deck_history_sheet_cards_studied": {
+        "description": "Section title for list of practiced cards in session detail sheet"
+    },
+    "deck_history_sheet_mastered": "Hafal",
+    "@deck_history_sheet_mastered": {
+        "description": "Badge for cards answered correctly in session detail sheet"
+    },
+    "deck_history_sheet_needs_review": "Perlu diulang",
+    "@deck_history_sheet_needs_review": {
+        "description": "Badge for cards answered incorrectly in session detail sheet"
+    },
+    "deck_history_sheet_close": "Tutup rincian",
+    "@deck_history_sheet_close": {
+        "description": "Primary action button to dismiss session detail bottom sheet"
+    },
+    "deck_history_time_today": "Hari ini",
+    "@deck_history_time_today": {
+        "description": "Relative date prefix for today"
+    },
+    "deck_history_time_yesterday": "Kemarin",
+    "@deck_history_time_yesterday": {
+        "description": "Relative date prefix for yesterday"
+    },
+
+    "nav_multiplayer": "Multiplayer",
+    "@nav_multiplayer": {
+        "description": "Multiplayer bottom navigation tab label"
+    },
+    "multiplayer_title": "Bermain bersama",
+    "@multiplayer_title": {
+        "description": "Multiplayer page title"
+    },
+    "multiplayer_banner_title": "Latihan bersama teman",
+    "@multiplayer_banner_title": {
+        "description": "Multiplayer hero banner title"
+    },
+    "multiplayer_banner_desc": "Belajar kooperatif 2 pemain di jaringan Wi-Fi yang sama tanpa kuota internet.",
+    "@multiplayer_banner_desc": {
+        "description": "Multiplayer hero banner description"
+    },
+    "multiplayer_create_room": "Buat Ruangan Baru",
+    "@multiplayer_create_room": {
+        "description": "Button to create a room as host"
+    },
+    "multiplayer_create_room_desc": "Jadikan perangkat anda sebagai host",
+    "@multiplayer_create_room_desc": {
+        "description": "Subtitle for create room option"
+    },
+    "multiplayer_join_room": "Gabung ruangan",
+    "@multiplayer_join_room": {
+        "description": "Button to join existing room"
+    },
+    "multiplayer_join_room_desc": "Gabung keruangan yang sudah ada",
+    "@multiplayer_join_room_desc": {
+        "description": "Subtitle for join room option"
+    },
+    "multiplayer_room_title": "Ruangan",
+    "@multiplayer_room_title": {
+        "description": "Room page title"
+    },
+    "multiplayer_room_ip_label": "ALAMAT PERANGKAT INI",
+    "@multiplayer_room_ip_label": {
+        "description": "Label above host IP address"
+    },
+    "multiplayer_room_scan_label": "atau pindai kode ini",
+    "@multiplayer_room_scan_label": {
+        "description": "Chip label above QR code"
+    },
+    "multiplayer_room_waiting": "Menunggu data dari perangkat lain...",
+    "@multiplayer_room_waiting": {
+        "description": "Host waiting status under QR code"
+    },
+    "multiplayer_room_wifi_note": "Pastikan kedua perangkat terhubung ke jaringan Wi-Fi yang sama.",
+    "@multiplayer_room_wifi_note": {
+        "description": "Advisory text regarding Wi-Fi connection"
+    },
+    "multiplayer_join_scan_qr": "Ketuk untuk pindai QR Host",
+    "@multiplayer_join_scan_qr": {
+        "description": "Guesser QR scanner box label"
+    },
+    "multiplayer_join_or_scan": "atau lakukan scan qr code",
+    "@multiplayer_join_or_scan": {
+        "description": "Divider text between QR scan and IP input"
+    },
+    "multiplayer_join_ip_placeholder": "Masukan IP Address Host....",
+    "@multiplayer_join_ip_placeholder": {
+        "description": "Hint text for host IP input field"
+    },
+    "multiplayer_join_button": "Gabung Ruangan",
+    "@multiplayer_join_button": {
+        "description": "Primary action button to join room"
+    },
+    "multiplayer_lobby_title": "Lobi latihan",
+    "@multiplayer_lobby_title": {
+        "description": "Title for practice lobby screen"
+    },
+    "multiplayer_lobby_connected_count": "Pemain Terhubung ({current}/{total})",
+    "@multiplayer_lobby_connected_count": {
+        "description": "Count of connected players in lobby",
+        "placeholders": {
+            "current": {
+                "type": "int"
+            },
+            "total": {
+                "type": "int"
+            }
+        }
+    },
+    "multiplayer_lobby_role_host": "Pemberi Petunjuk",
+    "@multiplayer_lobby_role_host": {
+        "description": "Host player role title"
+    },
+    "multiplayer_lobby_role_guesser": "Penebak",
+    "@multiplayer_lobby_role_guesser": {
+        "description": "Guesser player role title"
+    },
+    "multiplayer_lobby_ready": "Siap",
+    "@multiplayer_lobby_ready": {
+        "description": "Ready status badge"
+    },
+    "multiplayer_lobby_start_button": "Pilih Deck",
+    "@multiplayer_lobby_start_button": {
+        "description": "Button for host to proceed to deck selection"
+    },
+    "multiplayer_lobby_waiting_host": "Menunggu Host memilih deck...",
+    "@multiplayer_lobby_waiting_host": {
+        "description": "Guesser status while host chooses deck"
+    },
+    "multiplayer_select_deck_title": "Pilih Deck",
+    "@multiplayer_select_deck_title": {
+        "description": "Deck selection page title"
+    },
+    "multiplayer_select_deck_search": "Cari deck anda...",
+    "@multiplayer_select_deck_search": {
+        "description": "Placeholder for deck search bar"
+    },
+    "multiplayer_game_title": "Latihan bersama",
+    "@multiplayer_game_title": {
+        "description": "Title for multiplayer quiz page"
+    },
+    "multiplayer_host_elaborate_prompt": "Jelaskan Kepada {name} terkait kata yang diatas",
+    "@multiplayer_host_elaborate_prompt": {
+        "description": "Host instruction to explain word to guesser",
+        "placeholders": {
+            "name": {
+                "type": "String"
+            }
+        }
+    },
+    "multiplayer_guesser_listen_prompt": "Dengarkan penjelasan dari {name}",
+    "@multiplayer_guesser_listen_prompt": {
+        "description": "Guesser instruction box header",
+        "placeholders": {
+            "name": {
+                "type": "String"
+            }
+        }
+    },
+    "multiplayer_guesser_waiting_title": "Menunggu Jawaban Dari {name}....",
+    "@multiplayer_guesser_waiting_title": {
+        "description": "Guesser waiting title while host answers",
+        "placeholders": {
+            "name": {
+                "type": "String"
+            }
+        }
+    },
+    "multiplayer_guesser_waiting_desc": "{name} (Pemberi Petunjuk) Sedang Memilih Jawaban Dari Sistem. Tetap Rileks Dan Bersiaplah!",
+    "@multiplayer_guesser_waiting_desc": {
+        "description": "Guesser waiting description while host answers",
+        "placeholders": {
+            "name": {
+                "type": "String"
+            }
+        }
+    },
+    "multiplayer_score_plus": "+1",
+    "@multiplayer_score_plus": {
+        "description": "Plus one point indicator"
+    },
+    "multiplayer_score_minus": "-1",
+    "@multiplayer_score_minus": {
+        "description": "Minus one point indicator"
+    },
+    "multiplayer_score_zero": "+0",
+    "@multiplayer_score_zero": {
+        "description": "Zero score delta indicator"
+    },
+    "multiplayer_score_label": "Poin",
+    "@multiplayer_score_label": {
+        "description": "Points label"
+    },
+    "multiplayer_score_total": "Total Skor Kalian Saat Ini:",
+    "@multiplayer_score_total": {
+        "description": "Total score heading"
+    },
+    "multiplayer_score_points": "{score} Poin",
+    "@multiplayer_score_points": {
+        "description": "Points format with score count",
+        "placeholders": {
+            "score": {
+                "type": "int"
+            }
+        }
+    },
+    "multiplayer_continue_button": "Lanjutkan Soal",
+    "@multiplayer_continue_button": {
+        "description": "Button to advance to next question"
+    },
+    "multiplayer_complete_title": "Latihan Bersama Selesai",
+    "@multiplayer_complete_title": {
+        "description": "Completion screen title"
+    },
+    "multiplayer_complete_correct_count": "{correct} / {total}",
+    "@multiplayer_complete_correct_count": {
+        "description": "Correct ratio on complete screen",
+        "placeholders": {
+            "correct": {
+                "type": "int"
+            },
+            "total": {
+                "type": "int"
+            }
+        }
+    },
+    "multiplayer_complete_correct_label": "Jawaban Tepat",
+    "@multiplayer_complete_correct_label": {
+        "description": "Label under correct answers count"
+    },
+    "multiplayer_complete_time_label": "Waktu Aktif Sesi",
+    "@multiplayer_complete_time_label": {
+        "description": "Label under session duration"
+    },
+    "multiplayer_back_button": "Kembali",
+    "@multiplayer_back_button": {
+        "description": "Button to return to main page"
+    },
+    "multiplayer_history_title": "Riwayat Latihan Bersama",
+    "@multiplayer_history_title": {
+        "description": "Title for multiplayer history page"
+    },
+    "multiplayer_leave_confirm_title": "Keluar dari Ruangan?",
+    "@multiplayer_leave_confirm_title": {
+        "description": "Dialog title confirming room exit"
+    },
+    "multiplayer_leave_confirm_desc": "Sesi latihan akan dihentikan untuk kedua pemain.",
+    "@multiplayer_leave_confirm_desc": {
+        "description": "Dialog body explaining consequences of leaving"
+    },
+    "multiplayer_leave_confirm_yes": "Keluar",
+    "@multiplayer_leave_confirm_yes": {
+        "description": "Confirm button to leave room"
+    },
+    "multiplayer_leave_confirm_no": "Batal",
+    "@multiplayer_leave_confirm_no": {
+        "description": "Cancel button to stay in room"
     },
 
     "end_of_translation": "",

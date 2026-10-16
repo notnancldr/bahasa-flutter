@@ -26,6 +26,16 @@ void main() {
               preload: true,
               routes: [
                 GoRoute(
+                  path: '/multiplayer',
+                  builder: (context, state) =>
+                      const Scaffold(body: Text('Multiplayer Content')),
+                ),
+              ],
+            ),
+            StatefulShellBranch(
+              preload: true,
+              routes: [
+                GoRoute(
                   path: '/deck',
                   builder: (context, state) =>
                       const Scaffold(body: Text('Deck Content')),
@@ -77,6 +87,7 @@ void main() {
 
       // Verify localized navbar labels
       expect(find.text('Home'), findsOneWidget);
+      expect(find.text('Multiplayer'), findsOneWidget);
       expect(find.text('Deck'), findsOneWidget);
       expect(find.text('Settings'), findsOneWidget);
 
@@ -92,6 +103,12 @@ void main() {
 
     await tester.pumpWidget(buildApp(router));
     await tester.pumpAndSettle();
+
+    // Tap on Multiplayer tab
+    await tester.tap(find.text('Multiplayer'));
+    await tester.pumpAndSettle();
+
+    expect(find.text('Multiplayer Content'), findsOneWidget);
 
     // Tap on Deck tab
     await tester.tap(find.text('Deck'));
@@ -128,7 +145,13 @@ void main() {
 
       expect(find.text('Home Content'), findsOneWidget);
 
-      // Swipe left from Home to Deck
+      // Swipe left from Home to Multiplayer
+      await tester.drag(find.byType(PageView), const Offset(-500, 0));
+      await tester.pumpAndSettle();
+
+      expect(find.text('Multiplayer Content'), findsOneWidget);
+
+      // Swipe left from Multiplayer to Deck
       await tester.drag(find.byType(PageView), const Offset(-500, 0));
       await tester.pumpAndSettle();
 

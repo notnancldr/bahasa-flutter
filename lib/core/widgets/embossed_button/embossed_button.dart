@@ -99,11 +99,15 @@ class EmbossedButton extends StatelessWidget {
                 Icon(leadingIcon, color: foregroundColor, size: 18),
                 const SizedBox(width: 8),
               ],
-              Text(
-                text,
-                style: TextStyle(
-                  color: foregroundColor,
-                  fontWeight: FontWeight.w700,
+              Flexible(
+                child: Text(
+                  text,
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                  style: TextStyle(
+                    color: foregroundColor,
+                    fontWeight: FontWeight.w700,
+                  ),
                 ),
               ),
               if (trailingIcon != null) ...[

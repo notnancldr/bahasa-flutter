@@ -120,24 +120,77 @@ class GenerateDeckRepositoryImpl implements GenerateDeckRepository {
     return [
       {
         'idCard': 'c_${randomChar(8)}',
-        'defaultLanguage': 'Halo / Selamat datang',
-        'translation': 'Hello / Welcome',
-        'phoneticLang': 'Konnichiwa',
-        'additionalContext': 'Salam umum ketika bertemu seseorang.',
+        'defaultLanguage': 'Halo',
+        'translation': 'Konnichiwa',
+        'phoneticLang': '/kon.ni.tɕi.wa/',
+        'additionalContext': 'Sapaan umum yang digunakan sepanjang hari, setara dengan "halo" dalam bahasa Indonesia.',
       },
       {
         'idCard': 'c_${randomChar(8)}',
         'defaultLanguage': 'Terima kasih banyak',
-        'translation': 'Thank you very much',
-        'phoneticLang': 'Arigatou gozaimasu',
-        'additionalContext': 'Bentuk sopan untuk berterima kasih.',
+        'translation': 'Arigatou gozaimasu',
+        'phoneticLang': '/a.ɾi.ɡa.toː ɡo.za.i.ma.sɯ/',
+        'additionalContext':
+            'Bentuk sopan untuk mengucapkan terima kasih kepada orang lain.',
+      },
+      {
+        'idCard': 'c_${randomChar(8)}',
+        'defaultLanguage': 'Selamat tinggal',
+        'translation': 'Sayounara',
+        'phoneticLang': '/sa.joː.na.ɾa/',
+        'additionalContext': 'Salam perpisahan formal ketika berpisah untuk waktu yang cukup lama.',
+      },
+      {
+        'idCard': 'c_${randomChar(8)}',
+        'defaultLanguage': 'Selamat pagi',
+        'translation': 'Ohayou gozaimasu',
+        'phoneticLang': '/o.ha.joː ɡo.za.i.ma.sɯ/',
+        'additionalContext': 'Sapaan sopan yang digunakan pada pagi hari hingga menjelang siang.',
+      },
+      {
+        'idCard': 'c_${randomChar(8)}',
+        'defaultLanguage': 'Selamat malam',
+        'translation': 'Konbanwa',
+        'phoneticLang': '/kom.baɰ̃.wa/',
+        'additionalContext':
+            'Sapaan yang digunakan ketika bertemu seseorang pada malam hari.',
+      },
+      {
+        'idCard': 'c_${randomChar(8)}',
+        'defaultLanguage': 'Mohon maaf',
+        'translation': 'Gomen nasai',
+        'phoneticLang': '/ɡo.men na.sa.i/',
+        'additionalContext':
+            'Digunakan untuk meminta maaf secara tulus atas kesalahan.',
+      },
+      {
+        'idCard': 'c_${randomChar(8)}',
+        'defaultLanguage': 'Permisi',
+        'translation': 'Sumimasen',
+        'phoneticLang': '/sɯ.mi.ma.seɴ/',
+        'additionalContext': 'Ungkapan sopan untuk menarik perhatian, meminta izin, atau meminta maaf ringan.',
       },
       {
         'idCard': 'c_${randomChar(8)}',
         'defaultLanguage': 'Sampai jumpa besok',
-        'translation': 'See you tomorrow',
-        'phoneticLang': 'Mata ashita',
-        'additionalContext': 'Salam perpisahan santai antar teman.',
+        'translation': 'Mata ashita',
+        'phoneticLang': '/ma.ta a.ɕi.ta/',
+        'additionalContext': 'Salam perpisahan santai antar teman yang akan bertemu kembali besok.',
+      },
+      {
+        'idCard': 'c_${randomChar(8)}',
+        'defaultLanguage': 'Senang bertemu dengan anda',
+        'translation': 'Hajimemashite',
+        'phoneticLang': '/ha.dʑi.me.ma.ɕi.te/',
+        'additionalContext':
+            'Ungkapan perkenalan saat pertama kali bertemu dengan seseorang.',
+      },
+      {
+        'idCard': 'c_${randomChar(8)}',
+        'defaultLanguage': 'Selamat makan',
+        'translation': 'Itadakimasu',
+        'phoneticLang': '/i.ta.da.ki.ma.sɯ/',
+        'additionalContext': 'Ungkapan rasa syukur yang diucapkan sebelum mulai menyantap hidangan.',
       },
     ];
   }

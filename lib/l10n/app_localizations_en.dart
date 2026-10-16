@@ -694,6 +694,44 @@ class AppLocalizationsEn extends AppLocalizations {
   String get deck_page_placeholder => 'Deck';
 
   @override
+  String get deck_compilation_title => 'Deck Compilation';
+
+  @override
+  String get deck_search_hint => 'Search your decks...';
+
+  @override
+  String get deck_select_all => 'Select all';
+
+  @override
+  String get deck_deselect_all => 'Deselect all';
+
+  @override
+  String deck_selected_count(int count) {
+    return '$count deck selected';
+  }
+
+  @override
+  String get deck_delete_button => 'Delete';
+
+  @override
+  String get deck_delete_dialog_title => 'Delete This Deck??';
+
+  @override
+  String get deck_delete_dialog_body =>
+      'This action cannot be undone. Type your username to confirm.';
+
+  @override
+  String deck_delete_dialog_hint(String username) {
+    return 'Type \"$username\"...';
+  }
+
+  @override
+  String get deck_empty_search_title => 'No decks found';
+
+  @override
+  String get deck_add_fab_tooltip => 'Add Deck';
+
+  @override
   String get nav_home => 'Home';
 
   @override
@@ -701,6 +739,486 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get nav_settings => 'Settings';
+
+  @override
+  String get deck_details_play_quiz => 'Play\nQuiz';
+
+  @override
+  String get deck_details_play_flashcard => 'Play\nFlash Card';
+
+  @override
+  String get deck_details_streak_label => 'Streak';
+
+  @override
+  String get deck_details_accuracy_label => 'Accuracy';
+
+  @override
+  String get deck_details_search_hint => 'Search cards...';
+
+  @override
+  String get deck_details_empty_cards => 'No cards found';
+
+  @override
+  String get deck_details_card_description_label => 'DESCRIPTION';
+
+  @override
+  String get deck_details_history_tooltip => 'History';
+
+  @override
+  String get deck_progress_streak_title => 'Active Time';
+
+  @override
+  String get deck_progress_accuracy_title => 'Accuracy';
+
+  @override
+  String get deck_progress_streaks_label => 'Streaks';
+
+  @override
+  String get deck_progress_accuracy_subtitle => 'This Month\'s Accuracy';
+
+  @override
+  String deck_progress_comparison_vs_last_month(String diff, int lastMonth) {
+    return '$diff% vs last month ($lastMonth%)';
+  }
+
+  @override
+  String deck_progress_active_comparison_vs_last_month(
+    int thisMonth,
+    int lastMonth,
+  ) {
+    return '${thisMonth}m this month (${lastMonth}m last month)';
+  }
+
+  @override
+  String get deck_progress_weekly_streaks_title => 'Weekly Streaks';
+
+  @override
+  String get deck_progress_weekly_restarts_note =>
+      '*This will be restarted every week';
+
+  @override
+  String get deck_progress_day_mon_short => 'Mon';
+
+  @override
+  String get deck_progress_day_tue_short => 'Tue';
+
+  @override
+  String get deck_progress_day_wed_short => 'Wed';
+
+  @override
+  String get deck_progress_day_thu_short => 'Thu';
+
+  @override
+  String get deck_progress_day_fri_short => 'Fri';
+
+  @override
+  String get deck_progress_day_sat_short => 'Sat';
+
+  @override
+  String get deck_progress_day_sun_short => 'Sun';
+
+  @override
+  String get deck_progress_day_sun => 'Sun';
+
+  @override
+  String get deck_progress_day_mon => 'Mon';
+
+  @override
+  String get deck_progress_day_tue => 'Tue';
+
+  @override
+  String get deck_progress_day_wed => 'Wed';
+
+  @override
+  String get deck_progress_day_thu => 'Thu';
+
+  @override
+  String get deck_progress_day_fri => 'Fri';
+
+  @override
+  String get deck_progress_day_sat => 'Sat';
+
+  @override
+  String get deck_progress_tab_month => 'Month';
+
+  @override
+  String get deck_progress_tab_year => 'Year';
+
+  @override
+  String get deck_progress_metric_card => 'Card';
+
+  @override
+  String get deck_progress_metric_accurate => 'Accurate';
+
+  @override
+  String get deck_progress_metric_active => 'Active';
+
+  @override
+  String get deck_progress_weakest_cards_title => 'Top 3 Weakest Cards';
+
+  @override
+  String get deck_progress_weakest_empty =>
+      'No cards studied in this period yet';
+
+  @override
+  String deck_progress_wrong_count(int count) {
+    return '${count}x Wrong';
+  }
+
+  @override
+  String deck_progress_accurate_percent(int percent) {
+    return '$percent% Accurate';
+  }
+
+  @override
+  String get flashcard_title => 'Flashcard';
+
+  @override
+  String get flashcard_instruction =>
+      'Read the word below and flip the card to see its meaning:';
+
+  @override
+  String flashcard_card_progress(int current, int total) {
+    return 'Card $current of $total';
+  }
+
+  @override
+  String get flashcard_question_label => 'Question';
+
+  @override
+  String get flashcard_answer_label => 'Answer';
+
+  @override
+  String get flashcard_tap_to_flip => 'Tap to see meaning';
+
+  @override
+  String get flashcard_flip_button => 'Flip Card';
+
+  @override
+  String get flashcard_not_memorized => 'Not memorized';
+
+  @override
+  String get flashcard_memorized => 'Memorized';
+
+  @override
+  String get flashcard_complete_title => 'Practice Complete';
+
+  @override
+  String flashcard_complete_cards_value(int count) {
+    return '${count}Card';
+  }
+
+  @override
+  String get flashcard_complete_memorized_label => 'Memorized';
+
+  @override
+  String get flashcard_complete_not_memorized_label => 'Not Memorized';
+
+  @override
+  String flashcard_complete_active_time_value(int minutes, int seconds) {
+    return '+${minutes}m ${seconds}s';
+  }
+
+  @override
+  String get flashcard_complete_active_time_label => 'Session Active Time';
+
+  @override
+  String get flashcard_complete_finish_button => 'Done';
+
+  @override
+  String get quiz_title => 'Quiz';
+
+  @override
+  String get quiz_mc_instruction =>
+      'Choose the matching meaning for the word below:';
+
+  @override
+  String get quiz_jumble_instruction =>
+      'Arrange the translation for this word:';
+
+  @override
+  String get quiz_jumble_placeholder => 'Tap words below to arrange them here';
+
+  @override
+  String get quiz_check_answer_button => 'Check Answer';
+
+  @override
+  String get quiz_feedback_correct_title => 'Spot On Answer';
+
+  @override
+  String get quiz_feedback_wrong_title => 'The correct answer is';
+
+  @override
+  String get quiz_continue_button => 'Continue';
+
+  @override
+  String quiz_complete_score_value(int correct, int total) {
+    return '$correct / $total';
+  }
+
+  @override
+  String get quiz_complete_correct_label => 'Correct Answers';
+
+  @override
+  String get deck_history_title => 'Activity History';
+
+  @override
+  String get deck_history_period_week => 'This week';
+
+  @override
+  String get deck_history_period_month => 'This month';
+
+  @override
+  String get deck_history_period_year => 'This year';
+
+  @override
+  String get deck_history_summary_week => 'This Week\'s Summary';
+
+  @override
+  String get deck_history_summary_month => 'This Month\'s Summary';
+
+  @override
+  String get deck_history_summary_year => 'This Year\'s Summary';
+
+  @override
+  String get deck_history_total_activities => 'Total Activities';
+
+  @override
+  String get deck_history_study_time => 'Study Time';
+
+  @override
+  String get deck_history_avg_accuracy => 'Avg. Accuracy';
+
+  @override
+  String deck_history_sessions_count(int count) {
+    return '$count sessions';
+  }
+
+  @override
+  String get deck_history_activities_title => 'Study Activities';
+
+  @override
+  String deck_history_activities_count(int count) {
+    return '$count activities';
+  }
+
+  @override
+  String get deck_history_empty_title => 'No Activities Yet';
+
+  @override
+  String get deck_history_empty_subtitle =>
+      'Complete flashcard or quiz sessions to see your history here.';
+
+  @override
+  String get deck_history_quiz_label => 'Word Quiz';
+
+  @override
+  String get deck_history_flashcard_label => 'Flashcard';
+
+  @override
+  String deck_history_score_badge(int correct, int total) {
+    return '$correct / $total Correct';
+  }
+
+  @override
+  String deck_history_minutes_badge(int minutes) {
+    return '$minutes Min';
+  }
+
+  @override
+  String deck_history_seconds_badge(int seconds) {
+    return '$seconds Sec';
+  }
+
+  @override
+  String get deck_history_sheet_correct_answers => 'Correct Answers';
+
+  @override
+  String get deck_history_sheet_session_duration => 'Session Duration';
+
+  @override
+  String get deck_history_sheet_accuracy => 'Accuracy';
+
+  @override
+  String get deck_history_sheet_cards_studied => 'Cards studied';
+
+  @override
+  String get deck_history_sheet_mastered => 'Mastered';
+
+  @override
+  String get deck_history_sheet_needs_review => 'Needs Review';
+
+  @override
+  String get deck_history_sheet_close => 'Close details';
+
+  @override
+  String get deck_history_time_today => 'Today';
+
+  @override
+  String get deck_history_time_yesterday => 'Yesterday';
+
+  @override
+  String get nav_multiplayer => 'Multiplayer';
+
+  @override
+  String get multiplayer_title => 'Play Together';
+
+  @override
+  String get multiplayer_banner_title => 'Practice with Friends';
+
+  @override
+  String get multiplayer_banner_desc =>
+      'Cooperative learning for 2 players on the same Wi-Fi without internet quota.';
+
+  @override
+  String get multiplayer_create_room => 'Create New Room';
+
+  @override
+  String get multiplayer_create_room_desc => 'Set your device as host';
+
+  @override
+  String get multiplayer_join_room => 'Join Room';
+
+  @override
+  String get multiplayer_join_room_desc => 'Join an existing room';
+
+  @override
+  String get multiplayer_room_title => 'Room';
+
+  @override
+  String get multiplayer_room_ip_label => 'THIS DEVICE ADDRESS';
+
+  @override
+  String get multiplayer_room_scan_label => 'or scan this code';
+
+  @override
+  String get multiplayer_room_waiting =>
+      'Waiting for data from another device...';
+
+  @override
+  String get multiplayer_room_wifi_note =>
+      'Make sure both devices are connected to the same Wi-Fi network.';
+
+  @override
+  String get multiplayer_join_scan_qr => 'Tap to scan Host QR';
+
+  @override
+  String get multiplayer_join_or_scan => 'or enter IP address';
+
+  @override
+  String get multiplayer_join_ip_placeholder => 'Enter Host IP Address....';
+
+  @override
+  String get multiplayer_join_button => 'Join Room';
+
+  @override
+  String get multiplayer_lobby_title => 'Practice Lobby';
+
+  @override
+  String multiplayer_lobby_connected_count(int current, int total) {
+    return 'Connected Players ($current/$total)';
+  }
+
+  @override
+  String get multiplayer_lobby_role_host => 'Clue Giver';
+
+  @override
+  String get multiplayer_lobby_role_guesser => 'Guesser';
+
+  @override
+  String get multiplayer_lobby_ready => 'Ready';
+
+  @override
+  String get multiplayer_lobby_start_button => 'Choose Deck';
+
+  @override
+  String get multiplayer_lobby_waiting_host =>
+      'Waiting for Host to choose deck...';
+
+  @override
+  String get multiplayer_select_deck_title => 'Choose Deck';
+
+  @override
+  String get multiplayer_select_deck_search => 'Search your deck...';
+
+  @override
+  String get multiplayer_game_title => 'Practice Together';
+
+  @override
+  String multiplayer_host_elaborate_prompt(String name) {
+    return 'Explain to $name regarding the word above';
+  }
+
+  @override
+  String multiplayer_guesser_listen_prompt(String name) {
+    return 'Listen to explanation from $name';
+  }
+
+  @override
+  String multiplayer_guesser_waiting_title(String name) {
+    return 'Waiting for Answer from $name....';
+  }
+
+  @override
+  String multiplayer_guesser_waiting_desc(String name) {
+    return '$name (Clue Giver) is choosing an answer from the system. Stay relaxed and get ready!';
+  }
+
+  @override
+  String get multiplayer_score_plus => '+1';
+
+  @override
+  String get multiplayer_score_minus => '-1';
+
+  @override
+  String get multiplayer_score_zero => '+0';
+
+  @override
+  String get multiplayer_score_label => 'Points';
+
+  @override
+  String get multiplayer_score_total => 'Your Current Total Score:';
+
+  @override
+  String multiplayer_score_points(int score) {
+    return '$score Points';
+  }
+
+  @override
+  String get multiplayer_continue_button => 'Continue Question';
+
+  @override
+  String get multiplayer_complete_title => 'Practice Session Completed';
+
+  @override
+  String multiplayer_complete_correct_count(int correct, int total) {
+    return '$correct / $total';
+  }
+
+  @override
+  String get multiplayer_complete_correct_label => 'Correct Answers';
+
+  @override
+  String get multiplayer_complete_time_label => 'Session Active Time';
+
+  @override
+  String get multiplayer_back_button => 'Back';
+
+  @override
+  String get multiplayer_history_title => 'Multiplayer History';
+
+  @override
+  String get multiplayer_leave_confirm_title => 'Leave Room?';
+
+  @override
+  String get multiplayer_leave_confirm_desc =>
+      'The practice session will end for both players.';
+
+  @override
+  String get multiplayer_leave_confirm_yes => 'Leave';
+
+  @override
+  String get multiplayer_leave_confirm_no => 'Cancel';
 
   @override
   String get end_of_translation => '';
