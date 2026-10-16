@@ -8,9 +8,10 @@ class DeleteAppDataUseCase {
   Future<void> call(String verificationUsername) {
     final trimmed = verificationUsername.trim();
     if (trimmed.isEmpty) {
-      throw const UsernameMismatchFailure('Verification username cannot be empty.');
+      throw const UsernameMismatchFailure(
+        'Verification username cannot be empty.',
+      );
     }
     return _repository.deleteAppData(verificationUsername: trimmed);
   }
 }
-

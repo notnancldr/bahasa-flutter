@@ -1,3 +1,1 @@
-enum LoginStep {
-  username, language,
-}
+enum LoginStep { username, language }

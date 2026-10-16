@@ -11,10 +11,7 @@ class ListeningState extends TransferState {
   final String ipHost;
   final int repeat;
 
-  ListeningState({
-    required this.ipHost,
-    required this.repeat,
-  });
+  ListeningState({required this.ipHost, required this.repeat});
 }
 
 class ReceiveState extends TransferState {
@@ -78,18 +75,27 @@ class CheckValidState extends TransferState {
 
 class TransferCompleteState extends TransferState {
   final String username;
-  final String defultLanguage;
+  final String defaultLanguage;
+  final String? joinSince;
+
+  /// Backwards compatibility getter for typo.
+  String get defultLanguage => defaultLanguage;
 
   TransferCompleteState({
     required this.username,
-    required this.defultLanguage,
+    required this.defaultLanguage,
+    this.joinSince,
   });
 }
 
 class TransferErrorState extends TransferState {
   final Exception error;
+  final String? message;
+  final bool isInvalidData;
 
   TransferErrorState({
     required this.error,
+    this.message,
+    this.isInvalidData = false,
   });
 }

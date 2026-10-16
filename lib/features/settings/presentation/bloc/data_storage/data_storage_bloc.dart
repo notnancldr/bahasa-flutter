@@ -13,7 +13,7 @@ class DataStorageBloc extends Bloc<DataStorageEvent, DataStorageState> {
   DataStorageBloc({
     required this._transferDataUseCase,
     required this._deleteAppDataUseCase,
-  })  : super(const DataStorageInitial()) {
+  }) : super(const DataStorageInitial()) {
     on<StartDataTransferEvent>(_onStartDataTransfer);
     on<RetryDataTransferEvent>(_onRetryDataTransfer);
     on<CancelDataTransferEvent>(_onCancelDataTransfer);
@@ -28,17 +28,19 @@ class DataStorageBloc extends Bloc<DataStorageEvent, DataStorageState> {
     StartDataTransferEvent event,
     Emitter<DataStorageState> emit,
   ) async {
-    _lastReceiverCode = event.receiverCode;
-    emit(DataTransferring(event.receiverCode));
+    _lastReceiverCode = event.receiverIp;
+    emit(DataTransferring(event.receiverIp));
 
     try {
-      final result = await _transferDataUseCase(event.receiverCode);
+      final result = await _transferDataUseCase(event.receiverIp);
       emit(DataTransferSuccess(result));
     } catch (e) {
-      emit(DataTransferFailureState(
-        message: e.toString(),
-        lastReceiverCode: event.receiverCode,
-      ));
+      emit(
+        DataTransferFailureState(
+          message: e.toString(),
+          lastReceiverCode: event.receiverIp,
+        ),
+      );
     }
   }
 

@@ -1,4 +1,5 @@
 import 'dart:convert';
+
 import 'package:bahasa/core/errors/settings_error.dart';
 import 'package:bahasa/features/settings/data/models/user_profile_model.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -7,6 +8,7 @@ abstract class ProfileLocalDataSource {
   Future<UserProfileModel> getProfile();
   Future<UserProfileModel> saveProfile(UserProfileModel profile);
   Future<String?> pickProfilePhoto();
+  Future<bool> hasProfile();
   Future<void> clearProfile();
 }
 
@@ -21,12 +23,18 @@ class ProfileLocalDataSourceImpl implements ProfileLocalDataSource {
   }
 
   @override
+  Future<bool> hasProfile() async {
+    final prefs = await _getPrefs();
+    return prefs.containsKey(_profileKey);
+  }
+
+  @override
   Future<UserProfileModel> getProfile() async {
     final prefs = await _getPrefs();
     final raw = prefs.getString(_profileKey);
     if (raw == null) {
       // Default fallback profile if not yet explicitly saved
-      return const UserProfileModel(username: 'User');
+      return const UserProfileModel(username: "User", defaultLanguage: "en");
     }
 
     try {
@@ -63,4 +71,3 @@ class ProfileLocalDataSourceImpl implements ProfileLocalDataSource {
     await prefs.remove(_profileKey);
   }
 }
-

@@ -52,4 +52,3 @@ class DeleteDataFailureState extends DataStorageState {
   final String message;
   const DeleteDataFailureState(this.message);
 }
-

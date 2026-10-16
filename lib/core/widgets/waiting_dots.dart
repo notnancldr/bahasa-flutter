@@ -27,14 +27,14 @@ class WaitingDots extends StatelessWidget {
         for (int i = 0; i < count; i++) ...[
           if (i > 0) SizedBox(width: spacing),
           Container(
-            key: ValueKey('waiting-$i'),
-            width: dotSize,
-            height: dotSize,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(999),
-              color: color,
-            ),
-          )
+                key: ValueKey('waiting-$i'),
+                width: dotSize,
+                height: dotSize,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(999),
+                  color: color,
+                ),
+              )
               .animate(
                 delay: stagger * i,
                 onPlay: (controller) => controller.repeat(reverse: true),

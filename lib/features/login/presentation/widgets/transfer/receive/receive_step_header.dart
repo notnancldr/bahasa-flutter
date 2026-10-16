@@ -1,4 +1,4 @@
-import 'package:bahasa/core/widgets/rounded_container.dart';
+import 'package:bahasa/core/widgets/info_chip.dart';
 import 'package:flutter/material.dart';
 
 class ReceiveStepHeader extends StatelessWidget {
@@ -15,21 +15,11 @@ class ReceiveStepHeader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
-
-    final t = theme.textTheme;
-
     return Column(
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         SizedBox(height: 16),
-        RoundedContainer(
-          textContent: true,
-          child: Text(
-            name,
-            style: t.labelMedium,
-          ),
-        ),
+        InfoChip(text: name),
 
         SizedBox(height: 54),
         Text(

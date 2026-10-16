@@ -2,6 +2,7 @@ import 'package:bahasa/features/settings/domain/entities/user_profile.dart';
 import 'package:bahasa/features/settings/domain/usecases/delete_profile_usecase.dart';
 import 'package:bahasa/features/settings/domain/usecases/get_profile_usecase.dart';
 import 'package:bahasa/features/settings/domain/usecases/pick_profile_photo_usecase.dart';
+import 'package:bahasa/features/settings/domain/usecases/set_default_language_usecase.dart';
 import 'package:bahasa/features/settings/domain/usecases/update_profile_photo_usecase.dart';
 import 'package:bahasa/features/settings/domain/usecases/update_username_usecase.dart';
 import 'package:bahasa/features/settings/presentation/bloc/account/account_event.dart';
@@ -9,25 +10,28 @@ import 'package:bahasa/features/settings/presentation/bloc/account/account_state
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class AccountBloc extends Bloc<AccountEvent, AccountState> {
-  final GetProfileUseCase _getProfileUseCase;
-  final UpdateUsernameUseCase _updateUsernameUseCase;
-  final UpdateProfilePhotoUseCase _updateProfilePhotoUseCase;
-  final PickProfilePhotoUseCase _pickProfilePhotoUseCase;
-  final DeleteProfileUseCase _deleteProfileUseCase;
+  final GetProfileUseCase getProfileUseCase;
+  final UpdateUsernameUseCase updateUsernameUseCase;
+  final UpdateProfilePhotoUseCase updateProfilePhotoUseCase;
+  final PickProfilePhotoUseCase pickProfilePhotoUseCase;
+  final DeleteProfileUseCase deleteProfileUseCase;
+  final SetDefaultLanguageUsecase setDefaultLanguageUsecase;
 
   UserProfile? _currentProfile;
 
   AccountBloc({
-    required this._getProfileUseCase,
-    required this._updateUsernameUseCase,
-    required this._updateProfilePhotoUseCase,
-    required this._pickProfilePhotoUseCase,
-    required this._deleteProfileUseCase,
-  })  : super(const AccountInitial()) {
+    required this.getProfileUseCase,
+    required this.updateUsernameUseCase,
+    required this.updateProfilePhotoUseCase,
+    required this.pickProfilePhotoUseCase,
+    required this.deleteProfileUseCase,
+    required this.setDefaultLanguageUsecase,
+  }) : super(const AccountInitial()) {
     on<LoadAccountEvent>(_onLoadAccount);
     on<PickAndChangePhotoEvent>(_onPickAndChangePhoto);
     on<ChangeProfilePhotoEvent>(_onChangeProfilePhoto);
     on<ChangeUsernameEvent>(_onChangeUsername);
+    on<ChangeDefaultLanguageEvent>(_onChangeDefaultLanguage);
     on<RequestDeleteProfileConfirmationEvent>(_onRequestDeleteConfirmation);
     on<ConfirmDeleteProfileEvent>(_onConfirmDeleteProfile);
     on<CancelAccountActionEvent>(_onCancelAccountAction);
@@ -39,7 +43,7 @@ class AccountBloc extends Bloc<AccountEvent, AccountState> {
   ) async {
     emit(const AccountLoading());
     try {
-      final profile = await _getProfileUseCase();
+      final profile = await getProfileUseCase();
       _currentProfile = profile;
       emit(AccountLoaded(profile));
     } catch (e) {
@@ -52,9 +56,9 @@ class AccountBloc extends Bloc<AccountEvent, AccountState> {
     Emitter<AccountState> emit,
   ) async {
     try {
-      final pickedPath = await _pickProfilePhotoUseCase();
+      final pickedPath = await pickProfilePhotoUseCase();
       if (pickedPath != null) {
-        final updated = await _updateProfilePhotoUseCase(pickedPath);
+        final updated = await updateProfilePhotoUseCase(pickedPath);
         _currentProfile = updated;
         emit(AccountPhotoUpdated(updated));
       }
@@ -68,7 +72,7 @@ class AccountBloc extends Bloc<AccountEvent, AccountState> {
     Emitter<AccountState> emit,
   ) async {
     try {
-      final updated = await _updateProfilePhotoUseCase(event.photoPath);
+      final updated = await updateProfilePhotoUseCase(event.photoPath);
       _currentProfile = updated;
       emit(AccountPhotoUpdated(updated));
     } catch (e) {
@@ -81,9 +85,22 @@ class AccountBloc extends Bloc<AccountEvent, AccountState> {
     Emitter<AccountState> emit,
   ) async {
     try {
-      final updated = await _updateUsernameUseCase(event.newUsername);
+      final updated = await updateUsernameUseCase(event.newUsername);
       _currentProfile = updated;
       emit(AccountUsernameUpdated(updated));
+    } catch (e) {
+      emit(AccountError(e.toString(), previousProfile: _currentProfile));
+    }
+  }
+
+  Future<void> _onChangeDefaultLanguage(
+    ChangeDefaultLanguageEvent event,
+    Emitter<AccountState> emit,
+  ) async {
+    try {
+      final updated = await setDefaultLanguageUsecase(event.newLanguage);
+      _currentProfile = updated;
+      emit(AccountLanguageUpdated(updated));
     } catch (e) {
       emit(AccountError(e.toString(), previousProfile: _currentProfile));
     }
@@ -104,7 +121,7 @@ class AccountBloc extends Bloc<AccountEvent, AccountState> {
   ) async {
     emit(const AccountDeleting());
     try {
-      await _deleteProfileUseCase();
+      await deleteProfileUseCase();
       _currentProfile = null;
       emit(const AccountDeletedSuccess());
     } catch (e) {

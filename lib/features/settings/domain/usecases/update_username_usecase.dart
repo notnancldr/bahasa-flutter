@@ -16,4 +16,3 @@ class UpdateUsernameUseCase {
     return _repository.updateUsername(trimmed);
   }
 }
-

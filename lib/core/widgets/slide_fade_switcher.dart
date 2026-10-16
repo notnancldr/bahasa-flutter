@@ -37,10 +37,7 @@ class SlideFadeSwitcher extends StatelessWidget {
       layoutBuilder: (currentChild, previousChildren) {
         return Stack(
           alignment: alignment,
-          children: [
-            ...previousChildren,
-            ?currentChild,
-          ],
+          children: [...previousChildren, ?currentChild],
         );
       },
       transitionBuilder: (transitionChild, animation) {

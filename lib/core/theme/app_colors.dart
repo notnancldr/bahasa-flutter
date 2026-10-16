@@ -31,11 +31,23 @@ abstract class AppColors {
   static const lightBackground = Color(0xFFFAFAF8);
   static const lightSurface = Color(0xFFF4F4F2);
   static const lightOnSurface = Color(0xFF2F3A3F);
-  static const lightOutline = Color(0xFFE5E7EB);
+  static const lightOutline = Color(0x66CCCCCC);
 
-  // Neutrals — dark theme
-  static const darkBackground = Color(0xFF0B0F19);
-  static const darkSurface = Color(0xFF1A1F2E);
-  static const darkOnSurface = Color(0xFFF3F4F6);
-  static const darkOutline = Color(0xFF2E3446);
+  // Neutrals — dark theme (same blue-gray hue as mainText, hue ~200°)
+  static const darkBackground = Color(0xFF0F1417);
+  static const darkSurface = Color(0xFF171F23);
+  static const darkSurfaceElevated = Color(
+    0xFF1F292E,
+  ); // cards, sheets, dialogs
+  static const darkOnSurface = Color(0xFFE8EFF1);
+  static const darkOnSurfaceMuted = Color(
+    0xFF9AA8AD,
+  ); // dark counterpart of secodaryText
+  static const darkOutline = Color(0xFF2F3A3F); // reuses mainText for cohesion
+
+  // Dark theme brand accents
+  // Pastels already have strong contrast on dark, so primary/secondary/
+  // tertiary can be used as-is. Only containers need a deeper tone.
+  static const darkPrimaryContainer = Color(0xFF2B4A58);
+  static const darkOnPrimary = Color(0xFF16252C);
 }

@@ -39,6 +39,11 @@
     "transfer_listening_belowQr": "Waiting for data from another device...",
     "transfer_listening_note": "Make sure both devices connected to the same network.",
 
+    "transfer_error_invalid_title": "Invalid Data",
+    "transfer_error_invalid_description": "Transfer process was interrupted before all your profile data could be copied to this device.",
+    "transfer_error_cleanup_title": "Failed data has been removed from this device.",
+    "transfer_error_cleanup_description": "Device local storage remains clean and safe.",
+
     "process_preparing": "Preparing",
     "process_gettingReady": "Getting things ready",
     "process_process": "Processing",
@@ -58,6 +63,1110 @@
     "languageName": "{code, select, id{Indonesian} en{English} es{Spanish} ja{Japanese} ko{Korean} fr{French} ru{Russian} ar{Arabic} de{German} pt{Portuguese} zh{Chinese} hi{Hindi} other{{code}}}",
 
     "step": "{first} of {second}",
+
+    "settings_title": "Settings",
+    "settings_manageProfile": "Manage profile",
+    "settings_activeStudent": "Active Learner",
+    "settings_account_title": "Account",
+    "settings_account_subtitle": "Change username & photo",
+    "settings_theme_title": "Theme",
+    "settings_theme_subtitleLight": "Light mode (easy on the eyes)",
+    "settings_theme_subtitleDark": "Dark mode (saves battery)",
+    "settings_theme_badgeLight": "Light",
+    "settings_theme_badgeDark": "Dark",
+    "settings_language_title": "Language",
+    "settings_language_subtitle": "Select app primary language",
+    "settings_notif_title": "Notifications",
+    "settings_notif_subtitle": "Daily learning reminders",
+    "settings_data_title": "Data & Storage",
+    "settings_data_subtitle": "Vocab storage and transfer profile",
+
+    "account_joinedSince": "Joined since 2026.",
+    "account_editProfile": "Edit Profile",
+    "account_editProfile_subtitle": "Change photo or username.",
+    "account_deleteProfile": "Delete Profile",
+    "account_deleteProfile_subtitle": "Delete account and all data permanently.",
+    "account_footer": "Basa \u2022 Your Language Learning Companion",
+    "account_delete_dialogTitle": "Delete this profile?",
+    "account_delete_dialogBody": "All your learning data will be permanently deleted and cannot be recovered.",
+    "account_delete_confirmButton": "Delete",
+
+    "editProfile_title": "Edit Profile",
+    "editProfile_subtitle": "Manage your public information and learning account.",
+    "editProfile_changePhoto": "Change Photo",
+    "editProfile_usernameLabel": "Username",
+    "editProfile_usernameHint": "You can use letters, numbers, or periods.",
+    "editProfile_tipTitle": "Basa Community Tip",
+    "editProfile_tipBody": "This username will be visible to peers on the weekly leaderboard.",
+    "editProfile_saveButton": "Save Changes",
+
+    "theme_title": "Theme",
+    "theme_subtitle": "Choose the display that suits you best.",
+    "theme_light": "Light",
+    "theme_dark": "Dark",
+
+    "data_sectionStorage": "STORAGE USAGE",
+    "data_download": "Vocabulary Downloads",
+    "data_downloadSubtitle": "{sizeStr} stored offline",
+    "data_clear": "Clear",
+    "data_sectionDataTransfer": "DATA TRANSFER",
+    "data_dataTransfer": "Data Transfer",
+    "data_dataTransfer_subtitle": "Transfer data to your new device",
+    "data_sectionDanger": "ADVANCED ACTIONS",
+    "data_deleteData": "Delete Data",
+    "data_deleteData_subtitle": "Delete all history and progress",
+
+    "shareData_title": "Share Data",
+    "shareData_subtitle": "Enter the IP address from the receiver device to send data.",
+    "shareData_ipLabel": "Receiver IP Address",
+    "shareData_ipPlaceholder": "Enter IP address...",
+    "shareData_startButton": "Start Transfer",
+    "shareData_sending_overline": "DATA & STORAGE",
+    "shareData_sending_title": "Sending Data",
+    "shareData_sending_status": "Please wait, data is being processed...",
+    "shareData_sending_note": "Do not close the app during the transfer.",
+    "shareData_failed_title": "Transfer failed",
+    "shareData_failed_body": "Connection lost or code is no longer valid. Try again?",
+    "shareData_failed_no": "No",
+    "shareData_or": "or",
+    "shareData_scanQrButton": "Scan QR Code",
+    "shareData_scanner_title": "Scan Receiver QR",
+    "shareData_scanner_instruction": "Point camera at the QR code on the receiver device",
+    "shareData_scanner_permission_denied": "Camera permission is required to scan QR code",
+    "shareData_scanner_error": "Unable to access camera",
+
+    "deleteData_dialog_title": "Delete all data?",
+    "deleteData_dialog_body": "This action cannot be undone. Type your username to confirm.",
+    "deleteData_dialog_confirmButton": "Delete Data",
+    "deleteData_success_title": "Data deleted successfully",
+    "deleteData_success_body": "Your account still exists. You can start learning from scratch anytime.",
+    "deleteData_success_homeButton": "Back to Home",
+
+    "home_consecutiveDays": "Consecutive Days",
+    "home_emptyDeckTitle": "You don't have any deck yet!",
+    "home_createDeckButton": "Create Deck",
+    "home_rarelyStudied": "Rarely Studied",
+    "home_reviewButton": "Review",
+    "home_lastStudiedDaysAgo": "Last studied {days} days ago.",
+    "@home_lastStudiedDaysAgo": {
+        "placeholders": {
+            "days": {
+                "type": "int"
+            }
+        }
+    },
+    "home_recentActivityTitle": "Recent Activity",
+    "home_recentActivitySubtitle": "{cards, plural, =1{1 card} other{{cards} cards}} \u2022 {unit, select, hoursAgo{{time} hours ago} yesterday{Yesterday} daysAgo{{time} days ago} other{{time}}}",
+    "home_cardsCount": "{count} cards",
+    "@home_cardsCount": {
+        "placeholders": {
+            "count": {
+                "type": "int"
+            }
+        }
+    },
+    "home_timeHoursAgo": "{hours} hours ago",
+    "@home_timeHoursAgo": {
+        "placeholders": {
+            "hours": {
+                "type": "int"
+            }
+        }
+    },
+    "home_timeYesterday": "Yesterday",
+    "home_timeDaysAgo": "{days} days ago",
+    "@home_timeDaysAgo": {
+        "placeholders": {
+            "days": {
+                "type": "int"
+            }
+        }
+    },
+
+    "deck_method_title": "Add New Deck",
+    "deck_method_subtitle": "Choose how you want to create your deck.",
+    "deck_method_generate_title": "Generate Deck",
+    "deck_method_generate_subtitle": "Create a new deck automatically.",
+    "deck_method_generate_cta": "Start",
+    "deck_method_import_title": "Import Deck",
+    "deck_method_import_subtitle": "Use an existing .euy file.",
+    "deck_method_import_cta": "Choose File",
+
+    "deck_gen_appbar_title": "Generate Deck",
+    "deck_gen_name_title": "Name your deck",
+    "deck_gen_name_desc": "This name will appear in your deck list.",
+    "deck_gen_name_label": "Deck Name",
+    "deck_gen_name_hint": "Example: Basic Japanese Vocabulary...",
+    "deck_gen_country_title": "Select Country",
+    "deck_gen_country_desc": "Deck content will be tailored to this country.",
+    "deck_gen_country_search": "Search Country",
+    "deck_gen_diff_title": "Select Difficulty Level",
+    "deck_gen_diff_desc": "This helps adjust the card difficulty.",
+    "deck_gen_diff_beginner": "Beginner",
+    "deck_gen_diff_intermediate": "Intermediate",
+    "deck_gen_diff_expert": "Expert",
+    "deck_gen_desc_title": "Add description",
+    "deck_gen_desc_subtitle": "Tell a bit about your study focus for this deck.",
+    "deck_gen_desc_hint": "Example: Focus on everyday vocabulary for casual conversation...",
+    "deck_gen_review_title": "Review before creating",
+    "deck_gen_review_desc": "Make sure the details below are correct.",
+    "deck_gen_review_change": "Change",
+    "deck_gen_create_button": "Create Deck",
+    "deck_gen_cancel_button": "Cancel",
+    "deck_gen_progress_header": "Creating Deck",
+    "deck_gen_progress_title": "Preparing your deck...",
+    "deck_gen_progress_subtitle": "You will be notified once it is ready.",
+    "deck_run_in_background": "Run in Background",
+    "deck_gen_error_title": "Deck creation failed",
+    "deck_gen_error_subtitle": "Something went wrong while preparing your deck. No partial data was saved.",
+    "deck_back_to_home": "Back to Home Page",
+
+    "deck_import_appbar_title": "Import Deck",
+    "deck_import_title": "Select deck file",
+    "deck_import_subtitle": "Select a .euy file from your device storage.",
+    "deck_import_empty_title": "No file chosen yet",
+    "deck_import_empty_format": "Supported format: .euy",
+    "deck_import_pick_button": "Choose from Storage",
+    "deck_import_change_file": "Change File",
+    "deck_import_verifying_title": "Verifying file...",
+    "deck_import_verifying_subtitle": "Ensuring the file format and content are valid.",
+    "deck_import_importing_title": "Importing Deck",
+    "deck_import_invalid_title": "Invalid file",
+    "deck_import_invalid_subtitle": "The selected file is corrupted or not a recognized .euy format.",
+    "deck_import_pick_another": "Choose Another File",
+    "deck_import_ready_title": "Deck is ready!",
+    "deck_import_ready_subtitle": "Check the details below before proceeding.",
+    "deck_card_count_label": "Card Count",
+    "deck_file_size_label": "File Size",
+    "deck_continue": "Continue",
+    "deck_page_placeholder": "Deck",
+    "deck_compilation_title": "Deck Compilation",
+    "@deck_compilation_title": {
+        "description": "Header title for the Deck Compilation page"
+    },
+    "deck_search_hint": "Search your decks...",
+    "@deck_search_hint": {
+        "description": "Placeholder hint text in the deck search bar"
+    },
+    "deck_select_all": "Select all",
+    "@deck_select_all": {
+        "description": "Button label to select all decks in selection mode"
+    },
+    "deck_deselect_all": "Deselect all",
+    "@deck_deselect_all": {
+        "description": "Button label to deselect all decks in selection mode"
+    },
+    "deck_selected_count": "{count} deck selected",
+    "@deck_selected_count": {
+        "description": "Label showing the number of selected decks in the bottom bar",
+        "placeholders": {
+            "count": {
+                "type": "int"
+            }
+        }
+    },
+    "deck_delete_button": "Delete",
+    "@deck_delete_button": {
+        "description": "Button label to delete selected decks"
+    },
+    "deck_delete_dialog_title": "Delete This Deck??",
+    "@deck_delete_dialog_title": {
+        "description": "Title of the delete confirmation dialog on the deck page"
+    },
+    "deck_delete_dialog_body": "This action cannot be undone. Type your username to confirm.",
+    "@deck_delete_dialog_body": {
+        "description": "Body description of the delete confirmation dialog on the deck page"
+    },
+    "deck_delete_dialog_hint": "Type \"{username}\"...",
+    "@deck_delete_dialog_hint": {
+        "description": "Hint text inside the username verification text field when deleting decks",
+        "placeholders": {
+            "username": {
+                "type": "String"
+            }
+        }
+    },
+    "deck_empty_search_title": "No decks found",
+    "@deck_empty_search_title": {
+        "description": "Message displayed when no decks match the search query"
+    },
+    "deck_add_fab_tooltip": "Add Deck",
+    "@deck_add_fab_tooltip": {
+        "description": "Tooltip and semantic label for the floating add deck button"
+    },
+
+    "nav_home": "Home",
+    "@nav_home": {
+        "description": "Bottom navigation bar item for Home screen"
+    },
+    "nav_deck": "Deck",
+    "@nav_deck": {
+        "description": "Bottom navigation bar item for Deck screen"
+    },
+    "nav_settings": "Settings",
+    "@nav_settings": {
+        "description": "Bottom navigation bar item for Settings screen"
+    },
+
+    "deck_details_play_quiz": "Play\nQuiz",
+    "@deck_details_play_quiz": {
+        "description": "Button label to start the Quiz game from Deck Details page"
+    },
+    "deck_details_play_flashcard": "Play\nFlash Card",
+    "@deck_details_play_flashcard": {
+        "description": "Button label to start the Flash Card game from Deck Details page"
+    },
+    "deck_details_streak_label": "Streak",
+    "@deck_details_streak_label": {
+        "description": "Label under the streak count on Deck Details page"
+    },
+    "deck_details_accuracy_label": "Accuracy",
+    "@deck_details_accuracy_label": {
+        "description": "Label under the accuracy percentage on Deck Details page"
+    },
+    "deck_details_search_hint": "Search cards...",
+    "@deck_details_search_hint": {
+        "description": "Hint text for searching cards on Deck Details page"
+    },
+    "deck_details_empty_cards": "No cards found",
+    "@deck_details_empty_cards": {
+        "description": "Empty state text when no cards match the search query on Deck Details page"
+    },
+    "deck_details_card_description_label": "DESCRIPTION",
+    "@deck_details_card_description_label": {
+        "description": "Section header label for card description in the Card Detail bottom sheet"
+    },
+    "deck_details_history_tooltip": "History",
+    "@deck_details_history_tooltip": {
+        "description": "Tooltip for the top-right history icon button"
+    },
+
+    "deck_progress_streak_title": "Active Time",
+    "@deck_progress_streak_title": {
+        "description": "AppBar title for the Active Time / Streak progress page"
+    },
+    "deck_progress_accuracy_title": "Accuracy",
+    "@deck_progress_accuracy_title": {
+        "description": "AppBar title for the Accuracy progress page"
+    },
+    "deck_progress_streaks_label": "Streaks",
+    "@deck_progress_streaks_label": {
+        "description": "Hero subtitle label under the streak count on the Streak progress page"
+    },
+    "deck_progress_accuracy_subtitle": "This Month's Accuracy",
+    "@deck_progress_accuracy_subtitle": {
+        "description": "Hero subtitle label under the accuracy percentage on the Accuracy progress page"
+    },
+    "deck_progress_comparison_vs_last_month": "{diff}% vs last month ({lastMonth}%)",
+    "@deck_progress_comparison_vs_last_month": {
+        "description": "Comparison text between this month and last month accuracy",
+        "placeholders": {
+            "diff": {
+                "type": "String"
+            },
+            "lastMonth": {
+                "type": "int"
+            }
+        }
+    },
+    "deck_progress_active_comparison_vs_last_month": "{thisMonth}m this month ({lastMonth}m last month)",
+    "@deck_progress_active_comparison_vs_last_month": {
+        "description": "Comparison text between this month and last month active time in minutes",
+        "placeholders": {
+            "thisMonth": {
+                "type": "int"
+            },
+            "lastMonth": {
+                "type": "int"
+            }
+        }
+    },
+    "deck_progress_weekly_streaks_title": "Weekly Streaks",
+    "@deck_progress_weekly_streaks_title": {
+        "description": "Card title for the Weekly Streaks box"
+    },
+    "deck_progress_weekly_restarts_note": "*This will be restarted every week",
+    "@deck_progress_weekly_restarts_note": {
+        "description": "Footnote inside the Weekly Streaks card"
+    },
+    "deck_progress_day_mon_short": "Mon",
+    "@deck_progress_day_mon_short": {
+        "description": "Short label for Monday"
+    },
+    "deck_progress_day_tue_short": "Tue",
+    "@deck_progress_day_tue_short": {
+        "description": "Short label for Tuesday"
+    },
+    "deck_progress_day_wed_short": "Wed",
+    "@deck_progress_day_wed_short": {
+        "description": "Short label for Wednesday"
+    },
+    "deck_progress_day_thu_short": "Thu",
+    "@deck_progress_day_thu_short": {
+        "description": "Short label for Thursday"
+    },
+    "deck_progress_day_fri_short": "Fri",
+    "@deck_progress_day_fri_short": {
+        "description": "Short label for Friday"
+    },
+    "deck_progress_day_sat_short": "Sat",
+    "@deck_progress_day_sat_short": {
+        "description": "Short label for Saturday"
+    },
+    "deck_progress_day_sun_short": "Sun",
+    "@deck_progress_day_sun_short": {
+        "description": "Short label for Sunday"
+    },
+    "deck_progress_day_sun": "Sun",
+    "@deck_progress_day_sun": {
+        "description": "Calendar column header for Sunday"
+    },
+    "deck_progress_day_mon": "Mon",
+    "@deck_progress_day_mon": {
+        "description": "Calendar column header for Monday"
+    },
+    "deck_progress_day_tue": "Tue",
+    "@deck_progress_day_tue": {
+        "description": "Calendar column header for Tuesday"
+    },
+    "deck_progress_day_wed": "Wed",
+    "@deck_progress_day_wed": {
+        "description": "Calendar column header for Wednesday"
+    },
+    "deck_progress_day_thu": "Thu",
+    "@deck_progress_day_thu": {
+        "description": "Calendar column header for Thursday"
+    },
+    "deck_progress_day_fri": "Fri",
+    "@deck_progress_day_fri": {
+        "description": "Calendar column header for Friday"
+    },
+    "deck_progress_day_sat": "Sat",
+    "@deck_progress_day_sat": {
+        "description": "Calendar column header for Saturday"
+    },
+    "deck_progress_tab_month": "Month",
+    "@deck_progress_tab_month": {
+        "description": "Segmented toggle tab label for Monthly bar chart view"
+    },
+    "deck_progress_tab_year": "Year",
+    "@deck_progress_tab_year": {
+        "description": "Segmented toggle tab label for Yearly/Calendar heatmap view"
+    },
+    "deck_progress_metric_card": "Card",
+    "@deck_progress_metric_card": {
+        "description": "Metric box label for practiced card count in Period Detail bottom sheet"
+    },
+    "deck_progress_metric_accurate": "Accurate",
+    "@deck_progress_metric_accurate": {
+        "description": "Metric box label for accuracy rate in Period Detail bottom sheet"
+    },
+    "deck_progress_metric_active": "Active",
+    "@deck_progress_metric_active": {
+        "description": "Metric box label for active duration in Period Detail bottom sheet"
+    },
+    "deck_progress_weakest_cards_title": "Top 3 Weakest Cards",
+    "@deck_progress_weakest_cards_title": {
+        "description": "Section header for Top 3 Weakest Cards in Period Detail bottom sheet"
+    },
+    "deck_progress_weakest_empty": "No cards studied in this period yet",
+    "@deck_progress_weakest_empty": {
+        "description": "Empty state text when no weakest cards exist for the selected period"
+    },
+    "deck_progress_wrong_count": "{count}x Wrong",
+    "@deck_progress_wrong_count": {
+        "description": "Label showing how many times a card was answered incorrectly",
+        "placeholders": {
+            "count": {
+                "type": "int"
+            }
+        }
+    },
+    "deck_progress_accurate_percent": "{percent}% Accurate",
+    "@deck_progress_accurate_percent": {
+        "description": "Label showing the accuracy percentage of a card",
+        "placeholders": {
+            "percent": {
+                "type": "int"
+            }
+        }
+    },
+
+    "flashcard_title": "Flashcard",
+    "@flashcard_title": {
+        "description": "Header title for the Flashcard game screen"
+    },
+    "flashcard_instruction": "Read the word below and flip the card to see its meaning:",
+    "@flashcard_instruction": {
+        "description": "Instruction text displayed above the flashcard"
+    },
+    "flashcard_card_progress": "Card {current} of {total}",
+    "@flashcard_card_progress": {
+        "description": "Badge showing the current flashcard index out of total cards",
+        "placeholders": {
+            "current": {
+                "type": "int"
+            },
+            "total": {
+                "type": "int"
+            }
+        }
+    },
+    "flashcard_question_label": "Question",
+    "@flashcard_question_label": {
+        "description": "Label at the top of the unflipped flashcard"
+    },
+    "flashcard_answer_label": "Answer",
+    "@flashcard_answer_label": {
+        "description": "Label at the top of the flipped flashcard"
+    },
+    "flashcard_tap_to_flip": "Tap to see meaning",
+    "@flashcard_tap_to_flip": {
+        "description": "Hint text at the bottom of the unflipped flashcard"
+    },
+    "flashcard_flip_button": "Flip Card",
+    "@flashcard_flip_button": {
+        "description": "Primary button label to flip the flashcard"
+    },
+    "flashcard_not_memorized": "Not memorized",
+    "@flashcard_not_memorized": {
+        "description": "Self-assessment button label when the user has not memorized the card"
+    },
+    "flashcard_memorized": "Memorized",
+    "@flashcard_memorized": {
+        "description": "Self-assessment button label when the user has memorized the card"
+    },
+    "flashcard_complete_title": "Practice Complete",
+    "@flashcard_complete_title": {
+        "description": "Title shown on the completion summary screen for Flashcard and Quiz games"
+    },
+    "flashcard_complete_cards_value": "{count}Card",
+    "@flashcard_complete_cards_value": {
+        "description": "Stat value showing the number of cards memorized or not memorized",
+        "placeholders": {
+            "count": {
+                "type": "int"
+            }
+        }
+    },
+    "flashcard_complete_memorized_label": "Memorized",
+    "@flashcard_complete_memorized_label": {
+        "description": "Stat label for memorized cards count on Flashcard completion screen"
+    },
+    "flashcard_complete_not_memorized_label": "Not Memorized",
+    "@flashcard_complete_not_memorized_label": {
+        "description": "Stat label for not memorized cards count on Flashcard completion screen"
+    },
+    "flashcard_complete_active_time_value": "+{minutes}m {seconds}s",
+    "@flashcard_complete_active_time_value": {
+        "description": "Formatted session active time in minutes and seconds",
+        "placeholders": {
+            "minutes": {
+                "type": "int"
+            },
+            "seconds": {
+                "type": "int"
+            }
+        }
+    },
+    "flashcard_complete_active_time_label": "Session Active Time",
+    "@flashcard_complete_active_time_label": {
+        "description": "Stat label for session active time on completion screen"
+    },
+    "flashcard_complete_finish_button": "Done",
+    "@flashcard_complete_finish_button": {
+        "description": "Button label to finish the session and return to Deck Details"
+    },
+
+    "quiz_title": "Quiz",
+    "@quiz_title": {
+        "description": "Header title for the Quiz game screen"
+    },
+    "quiz_mc_instruction": "Choose the matching meaning for the word below:",
+    "@quiz_mc_instruction": {
+        "description": "Instruction prompt for Multiple Choice translation questions in Quiz"
+    },
+    "quiz_jumble_instruction": "Arrange the translation for this word:",
+    "@quiz_jumble_instruction": {
+        "description": "Instruction prompt for Jumble Words arrangement questions in Quiz"
+    },
+    "quiz_jumble_placeholder": "Tap words below to arrange them here",
+    "@quiz_jumble_placeholder": {
+        "description": "Placeholder text inside the empty Jumble Words answer box"
+    },
+    "quiz_check_answer_button": "Check Answer",
+    "@quiz_check_answer_button": {
+        "description": "Primary button label to check the selected answer in Quiz"
+    },
+    "quiz_feedback_correct_title": "Spot On Answer",
+    "@quiz_feedback_correct_title": {
+        "description": "Title inside the Correct Answer feedback sheet"
+    },
+    "quiz_feedback_wrong_title": "The correct answer is",
+    "@quiz_feedback_wrong_title": {
+        "description": "Subtitle inside the Wrong Answer feedback sheet preceding the correct answer pill"
+    },
+    "quiz_continue_button": "Continue",
+    "@quiz_continue_button": {
+        "description": "Button label inside the Quiz feedback sheet to proceed to the next question"
+    },
+    "quiz_complete_score_value": "{correct} / {total}",
+    "@quiz_complete_score_value": {
+        "description": "Score ratio shown on the Quiz completion summary screen",
+        "placeholders": {
+            "correct": {
+                "type": "int"
+            },
+            "total": {
+                "type": "int"
+            }
+        }
+    },
+    "quiz_complete_correct_label": "Correct Answers",
+    "@quiz_complete_correct_label": {
+        "description": "Label under the score ratio on the Quiz completion summary screen"
+    },
+
+    "deck_history_title": "Activity History",
+    "@deck_history_title": {
+        "description": "Page title for the Deck History page"
+    },
+    "deck_history_period_week": "This week",
+    "@deck_history_period_week": {
+        "description": "Label for current week period toggle"
+    },
+    "deck_history_period_month": "This month",
+    "@deck_history_period_month": {
+        "description": "Label for current month period toggle"
+    },
+    "deck_history_period_year": "This year",
+    "@deck_history_period_year": {
+        "description": "Label for current year period toggle"
+    },
+    "deck_history_summary_week": "This Week's Summary",
+    "@deck_history_summary_week": {
+        "description": "Heading for week summary section"
+    },
+    "deck_history_summary_month": "This Month's Summary",
+    "@deck_history_summary_month": {
+        "description": "Heading for month summary section"
+    },
+    "deck_history_summary_year": "This Year's Summary",
+    "@deck_history_summary_year": {
+        "description": "Heading for year summary section"
+    },
+    "deck_history_total_activities": "Total Activities",
+    "@deck_history_total_activities": {
+        "description": "Caption for total activities count in summary section"
+    },
+    "deck_history_study_time": "Study Time",
+    "@deck_history_study_time": {
+        "description": "Caption for total study duration in summary section"
+    },
+    "deck_history_avg_accuracy": "Avg. Accuracy",
+    "@deck_history_avg_accuracy": {
+        "description": "Caption for average accuracy percentage in summary section"
+    },
+    "deck_history_sessions_count": "{count} sessions",
+    "@deck_history_sessions_count": {
+        "description": "Formatted sessions count value",
+        "placeholders": {
+            "count": {
+                "type": "int"
+            }
+        }
+    },
+    "deck_history_activities_title": "Study Activities",
+    "@deck_history_activities_title": {
+        "description": "Header title for the learning activity list section"
+    },
+    "deck_history_activities_count": "{count} activities",
+    "@deck_history_activities_count": {
+        "description": "Counter displayed next to study activities title",
+        "placeholders": {
+            "count": {
+                "type": "int"
+            }
+        }
+    },
+    "deck_history_empty_title": "No Activities Yet",
+    "@deck_history_empty_title": {
+        "description": "Empty state title when no activities were completed in the period"
+    },
+    "deck_history_empty_subtitle": "Complete flashcard or quiz sessions to see your history here.",
+    "@deck_history_empty_subtitle": {
+        "description": "Empty state subtitle instructions"
+    },
+    "deck_history_quiz_label": "Word Quiz",
+    "@deck_history_quiz_label": {
+        "description": "Title for quiz study session items"
+    },
+    "deck_history_flashcard_label": "Flashcard",
+    "@deck_history_flashcard_label": {
+        "description": "Title for flashcard study session items"
+    },
+    "deck_history_score_badge": "{correct} / {total} Correct",
+    "@deck_history_score_badge": {
+        "description": "Score badge on history item card",
+        "placeholders": {
+            "correct": {
+                "type": "int"
+            },
+            "total": {
+                "type": "int"
+            }
+        }
+    },
+    "deck_history_minutes_badge": "{minutes} Min",
+    "@deck_history_minutes_badge": {
+        "description": "Duration badge on history item card in minutes",
+        "placeholders": {
+            "minutes": {
+                "type": "int"
+            }
+        }
+    },
+    "deck_history_seconds_badge": "{seconds} Sec",
+    "@deck_history_seconds_badge": {
+        "description": "Duration badge on history item card in seconds",
+        "placeholders": {
+            "seconds": {
+                "type": "int"
+            }
+        }
+    },
+    "deck_history_sheet_correct_answers": "Correct Answers",
+    "@deck_history_sheet_correct_answers": {
+        "description": "Stat label for correct answers count in session detail sheet"
+    },
+    "deck_history_sheet_session_duration": "Session Duration",
+    "@deck_history_sheet_session_duration": {
+        "description": "Stat label for session duration in session detail sheet"
+    },
+    "deck_history_sheet_accuracy": "Accuracy",
+    "@deck_history_sheet_accuracy": {
+        "description": "Stat label for accuracy percentage in session detail sheet"
+    },
+    "deck_history_sheet_cards_studied": "Cards studied",
+    "@deck_history_sheet_cards_studied": {
+        "description": "Section title for list of practiced cards in session detail sheet"
+    },
+    "deck_history_sheet_mastered": "Mastered",
+    "@deck_history_sheet_mastered": {
+        "description": "Badge for cards answered correctly in session detail sheet"
+    },
+    "deck_history_sheet_needs_review": "Needs Review",
+    "@deck_history_sheet_needs_review": {
+        "description": "Badge for cards answered incorrectly in session detail sheet"
+    },
+    "deck_history_sheet_close": "Close details",
+    "@deck_history_sheet_close": {
+        "description": "Primary action button to dismiss session detail bottom sheet"
+    },
+    "deck_history_time_today": "Today",
+    "@deck_history_time_today": {
+        "description": "Relative date prefix for today"
+    },
+    "deck_history_time_yesterday": "Yesterday",
+    "@deck_history_time_yesterday": {
+        "description": "Relative date prefix for yesterday"
+    },
+
+    "nav_multiplayer": "League",
+    "@nav_multiplayer": {
+        "description": "Multiplayer bottom navigation tab label"
+    },
+    "multiplayer_title": "Play Together",
+    "@multiplayer_title": {
+        "description": "Multiplayer page title"
+    },
+    "multiplayer_banner_title": "Practice with Friends",
+    "@multiplayer_banner_title": {
+        "description": "Multiplayer hero banner title"
+    },
+    "multiplayer_banner_desc": "Cooperative learning for 2 players on the same Wi-Fi without internet quota.",
+    "@multiplayer_banner_desc": {
+        "description": "Multiplayer hero banner description"
+    },
+    "multiplayer_create_room": "Create New Room",
+    "@multiplayer_create_room": {
+        "description": "Button to create a room as host"
+    },
+    "multiplayer_create_room_desc": "Set your device as host",
+    "@multiplayer_create_room_desc": {
+        "description": "Subtitle for create room option"
+    },
+    "multiplayer_join_room": "Join Room",
+    "@multiplayer_join_room": {
+        "description": "Button to join existing room"
+    },
+    "multiplayer_join_room_desc": "Join an existing room",
+    "@multiplayer_join_room_desc": {
+        "description": "Subtitle for join room option"
+    },
+    "multiplayer_room_title": "Room",
+    "@multiplayer_room_title": {
+        "description": "Room page title"
+    },
+    "multiplayer_room_ip_label": "THIS DEVICE ADDRESS",
+    "@multiplayer_room_ip_label": {
+        "description": "Label above host IP address"
+    },
+    "multiplayer_room_scan_label": "or scan this code",
+    "@multiplayer_room_scan_label": {
+        "description": "Chip label above QR code"
+    },
+    "multiplayer_room_waiting": "Waiting for data from another device...",
+    "@multiplayer_room_waiting": {
+        "description": "Host waiting status under QR code"
+    },
+    "multiplayer_room_wifi_note": "Make sure both devices are connected to the same Wi-Fi network.",
+    "@multiplayer_room_wifi_note": {
+        "description": "Advisory text regarding Wi-Fi connection"
+    },
+    "multiplayer_join_scan_qr": "Tap to scan Host QR",
+    "@multiplayer_join_scan_qr": {
+        "description": "Guesser QR scanner box label"
+    },
+    "multiplayer_join_or_scan": "or enter IP address",
+    "@multiplayer_join_or_scan": {
+        "description": "Divider text between QR scan and IP input"
+    },
+    "multiplayer_join_ip_placeholder": "Enter Host IP Address....",
+    "@multiplayer_join_ip_placeholder": {
+        "description": "Hint text for host IP input field"
+    },
+    "multiplayer_join_button": "Join Room",
+    "@multiplayer_join_button": {
+        "description": "Primary action button to join room"
+    },
+    "multiplayer_lobby_title": "Practice Lobby",
+    "@multiplayer_lobby_title": {
+        "description": "Title for practice lobby screen"
+    },
+    "multiplayer_lobby_connected_count": "Connected Players ({current}/{total})",
+    "@multiplayer_lobby_connected_count": {
+        "description": "Count of connected players in lobby",
+        "placeholders": {
+            "current": {
+                "type": "int"
+            },
+            "total": {
+                "type": "int"
+            }
+        }
+    },
+    "multiplayer_lobby_role_host": "Clue Giver",
+    "@multiplayer_lobby_role_host": {
+        "description": "Host player role title"
+    },
+    "multiplayer_lobby_role_guesser": "Guesser",
+    "@multiplayer_lobby_role_guesser": {
+        "description": "Guesser player role title"
+    },
+    "multiplayer_lobby_ready": "Ready",
+    "@multiplayer_lobby_ready": {
+        "description": "Ready status badge"
+    },
+    "multiplayer_lobby_start_button": "Choose Deck",
+    "@multiplayer_lobby_start_button": {
+        "description": "Button for host to proceed to deck selection"
+    },
+    "multiplayer_lobby_waiting_host": "Waiting for Host to choose deck...",
+    "@multiplayer_lobby_waiting_host": {
+        "description": "Guesser status while host chooses deck"
+    },
+    "multiplayer_select_deck_title": "Choose Deck",
+    "@multiplayer_select_deck_title": {
+        "description": "Deck selection page title"
+    },
+    "multiplayer_select_deck_search": "Search your deck...",
+    "@multiplayer_select_deck_search": {
+        "description": "Placeholder for deck search bar"
+    },
+    "multiplayer_game_title": "Practice Together",
+    "@multiplayer_game_title": {
+        "description": "Title for multiplayer quiz page"
+    },
+    "multiplayer_host_elaborate_prompt": "Explain to {name} regarding the word above",
+    "@multiplayer_host_elaborate_prompt": {
+        "description": "Host instruction to explain word to guesser",
+        "placeholders": {
+            "name": {
+                "type": "String"
+            }
+        }
+    },
+    "multiplayer_guesser_listen_prompt": "Listen to explanation from {name}",
+    "@multiplayer_guesser_listen_prompt": {
+        "description": "Guesser instruction box header",
+        "placeholders": {
+            "name": {
+                "type": "String"
+            }
+        }
+    },
+    "multiplayer_guesser_waiting_title": "Waiting for Answer from {name}....",
+    "@multiplayer_guesser_waiting_title": {
+        "description": "Guesser waiting title while host answers",
+        "placeholders": {
+            "name": {
+                "type": "String"
+            }
+        }
+    },
+    "multiplayer_guesser_waiting_desc": "{name} (Clue Giver) is choosing an answer from the system. Stay relaxed and get ready!",
+    "@multiplayer_guesser_waiting_desc": {
+        "description": "Guesser waiting description while host answers",
+        "placeholders": {
+            "name": {
+                "type": "String"
+            }
+        }
+    },
+    "multiplayer_score_plus": "+1",
+    "@multiplayer_score_plus": {
+        "description": "Plus one point indicator"
+    },
+    "multiplayer_score_minus": "-1",
+    "@multiplayer_score_minus": {
+        "description": "Minus one point indicator"
+    },
+    "multiplayer_score_zero": "+0",
+    "@multiplayer_score_zero": {
+        "description": "Zero score delta indicator"
+    },
+    "multiplayer_score_label": "Points",
+    "@multiplayer_score_label": {
+        "description": "Points label"
+    },
+    "multiplayer_score_total": "Your Current Total Score:",
+    "@multiplayer_score_total": {
+        "description": "Total score heading"
+    },
+    "multiplayer_score_points": "{score} Points",
+    "@multiplayer_score_points": {
+        "description": "Points format with score count",
+        "placeholders": {
+            "score": {
+                "type": "int"
+            }
+        }
+    },
+    "multiplayer_continue_button": "Continue Question",
+    "@multiplayer_continue_button": {
+        "description": "Button to advance to next question"
+    },
+    "multiplayer_complete_title": "Practice Session Completed",
+    "@multiplayer_complete_title": {
+        "description": "Completion screen title"
+    },
+    "multiplayer_complete_correct_count": "{correct} / {total}",
+    "@multiplayer_complete_correct_count": {
+        "description": "Correct ratio on complete screen",
+        "placeholders": {
+            "correct": {
+                "type": "int"
+            },
+            "total": {
+                "type": "int"
+            }
+        }
+    },
+    "multiplayer_complete_correct_label": "Correct Answers",
+    "@multiplayer_complete_correct_label": {
+        "description": "Label under correct answers count"
+    },
+    "multiplayer_complete_time_label": "Session Active Time",
+    "@multiplayer_complete_time_label": {
+        "description": "Label under session duration"
+    },
+    "multiplayer_back_button": "Back",
+    "@multiplayer_back_button": {
+        "description": "Button to return to main page"
+    },
+    "multiplayer_history_title": "Multiplayer History",
+    "@multiplayer_history_title": {
+        "description": "Title for multiplayer history page"
+    },
+    "multiplayer_leave_confirm_title": "Leave Room?",
+    "@multiplayer_leave_confirm_title": {
+        "description": "Dialog title confirming room exit"
+    },
+    "multiplayer_leave_confirm_desc": "The practice session will end for both players.",
+    "@multiplayer_leave_confirm_desc": {
+        "description": "Dialog body explaining consequences of leaving"
+    },
+    "multiplayer_leave_confirm_yes": "Leave",
+    "@multiplayer_leave_confirm_yes": {
+        "description": "Confirm button to leave room"
+    },
+    "multiplayer_leave_confirm_no": "Cancel",
+    "@multiplayer_leave_confirm_no": {
+        "description": "Cancel button to stay in room"
+    },
+
+    "ai_mode_choose_title": "Choose AI processing mode",
+    "@ai_mode_choose_title": {
+        "description": "Title on the AI selection onboarding page"
+    },
+    "ai_mode_choose_subtitle": "Determine how BASA AI creates vocabulary cards for you. This choice can be changed at any time in Settings.",
+    "@ai_mode_choose_subtitle": {
+        "description": "Subtitle describing the AI processing mode selection"
+    },
+    "ai_mode_feature_header": "Feature",
+    "@ai_mode_feature_header": {
+        "description": "Feature column header in AI mode comparison table"
+    },
+    "ai_mode_online_header": "Online",
+    "@ai_mode_online_header": {
+        "description": "Online column header in AI mode comparison table"
+    },
+    "ai_mode_local_header": "Local",
+    "@ai_mode_local_header": {
+        "description": "Local column header in AI mode comparison table"
+    },
+    "ai_feature_unlimited_generation": "Generate deck without limitations",
+    "@ai_feature_unlimited_generation": {
+        "description": "Feature comparison row for unlimited generation"
+    },
+    "ai_feature_offline_use": "Can be used without internet (offline)",
+    "@ai_feature_offline_use": {
+        "description": "Feature comparison row for offline usage"
+    },
+    "ai_feature_private_storage": "Data stored securely on device (private)",
+    "@ai_feature_private_storage": {
+        "description": "Feature comparison row for private on-device data"
+    },
+    "ai_feature_faster_process": "Faster generation process",
+    "@ai_feature_faster_process": {
+        "description": "Feature comparison row for faster generation speed"
+    },
+    "ai_feature_broader_context": "Broader & dynamic vocabulary context",
+    "@ai_feature_broader_context": {
+        "description": "Feature comparison row for broader vocabulary context"
+    },
+    "ai_feature_more_accurate": "More accurate vocabulary results",
+    "@ai_feature_more_accurate": {
+        "description": "Feature comparison row for vocabulary accuracy"
+    },
+    "ai_feature_daily_limit": "1 deck per day limit",
+    "@ai_feature_daily_limit": {
+        "description": "Feature comparison row for daily deck limits"
+    },
+    "ai_feature_requires_internet": "Requires internet connection",
+    "@ai_feature_requires_internet": {
+        "description": "Feature comparison row for internet connectivity requirement"
+    },
+    "ai_feature_data_training": "Data used to train AI",
+    "@ai_feature_data_training": {
+        "description": "Feature comparison row for AI training data usage"
+    },
+    "ai_button_start_download": "Start Download (2.59GB)",
+    "@ai_button_start_download": {
+        "description": "Primary action button to download local AI model"
+    },
+    "ai_button_continue_online": "continue using online model",
+    "@ai_button_continue_online": {
+        "description": "Secondary link button to proceed with online AI model"
+    },
+    "ai_download_progress_title": "Local AI Download in Progress...",
+    "@ai_download_progress_title": {
+        "description": "Title on the local AI download progress screen"
+    },
+    "ai_download_continue_in_background": "Continue in Background",
+    "@ai_download_continue_in_background": {
+        "description": "Action button to allow download to proceed in background"
+    },
+    "ai_download_retry": "Retry Download",
+    "@ai_download_retry": {
+        "description": "Button to retry downloading the local AI model"
+    },
+    "ai_download_error_title": "Download Failed",
+    "@ai_download_error_title": {
+        "description": "Title when model download encounters an error"
+    },
+    "ai_download_complete_title": "AI Download Successful",
+    "@ai_download_complete_title": {
+        "description": "Title on the download completion screen"
+    },
+    "ai_download_complete_subtitle": "Your profile is ready to use. Let's continue your learning journey calmly.",
+    "@ai_download_complete_subtitle": {
+        "description": "Subtitle on the download completion screen"
+    },
+    "ai_download_complete_button": "Done",
+    "@ai_download_complete_button": {
+        "description": "Button to complete onboarding after local AI model download"
+    },
+    "settings_ai_title": "AI Processing Mode",
+    "@settings_ai_title": {
+        "description": "Title for AI settings page and menu tile"
+    },
+    "settings_ai_subtitle": "Configure AI processing model and Gemini API",
+    "@settings_ai_subtitle": {
+        "description": "Subtitle for AI settings tile"
+    },
+    "settings_gemini_api_key": "Gemini API Key",
+    "@settings_gemini_api_key": {
+        "description": "Label for Gemini API key field"
+    },
+    "settings_gemini_api_key_desc": "Required for Online AI generation",
+    "@settings_gemini_api_key_desc": {
+        "description": "Description explaining the need for Gemini API key"
+    },
+    "settings_gemini_api_key_hint": "Enter your Gemini API key...",
+    "@settings_gemini_api_key_hint": {
+        "description": "Placeholder hint for Gemini API key input"
+    },
+    "settings_gemini_guide": "Gemini API Setup Guide",
+    "@settings_gemini_guide": {
+        "description": "Button or link text to open Gemini API setup documentation"
+    },
+    "settings_local_model_status": "Local Model Status",
+    "@settings_local_model_status": {
+        "description": "Section header for local model download status"
+    },
+    "settings_local_model_downloaded": "Downloaded ({size})",
+    "@settings_local_model_downloaded": {
+        "description": "Status text when local AI model is downloaded",
+        "placeholders": {
+            "size": {
+                "type": "String"
+            }
+        }
+    },
+    "settings_local_model_not_downloaded": "Not Downloaded",
+    "@settings_local_model_not_downloaded": {
+        "description": "Status text when local AI model is not downloaded"
+    },
+    "settings_download_local_model": "Download Local Model (2.59GB)",
+    "@settings_download_local_model": {
+        "description": "Button to download local model from settings"
+    },
+    "settings_delete_local_model": "Delete Local Model",
+    "@settings_delete_local_model": {
+        "description": "Button to delete local model file from device storage"
+    },
+    "deck_gen_online_daily_limit_reached": "Online generation limit reached (maximum 1 deck per day). Please use Local AI or try again tomorrow.",
+    "@deck_gen_online_daily_limit_reached": {
+        "description": "Error message when the daily 1 deck limit for online generation has been reached"
+    },
+    "settings_cancel_download": "Cancel",
+    "@settings_cancel_download": {
+        "description": "Button to cancel active model download"
+    },
+    "settings_delete_local_model_confirm_title": "Delete Local AI Model?",
+    "@settings_delete_local_model_confirm_title": {
+        "description": "Title for dialog confirming local model deletion"
+    },
+    "settings_delete_local_model_confirm_desc": "This will remove the 2.59 GB model file from device storage. You can download it again anytime.",
+    "@settings_delete_local_model_confirm_desc": {
+        "description": "Confirmation message before deleting downloaded model"
+    },
+    "settings_local_model_downloading": "Downloading local AI model...",
+    "@settings_local_model_downloading": {
+        "description": "Status text while model is downloading"
+    },
 
     "end_of_translation": "",
     "@end_of_translation": {}

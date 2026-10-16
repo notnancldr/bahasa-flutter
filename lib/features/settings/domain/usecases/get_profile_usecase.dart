@@ -7,4 +7,3 @@ class GetProfileUseCase {
 
   Future<UserProfile> call() => _repository.getProfile();
 }
-

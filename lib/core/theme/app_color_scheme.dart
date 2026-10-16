@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import 'app_colors.dart';
 
 /// Builds Material 3 ColorSchemes from AppColors.
@@ -23,17 +24,18 @@ abstract class AppColorScheme {
   static ColorScheme get dark => ColorScheme.fromSeed(
     seedColor: AppColors.primary,
     primary: AppColors.primary,
+    onPrimary: AppColors.darkOnPrimary,
     secondary: AppColors.secondary,
     tertiary: AppColors.tertiary,
 
-    primaryContainer: AppColors.primaryBackground,
-    onPrimaryContainer: AppColors.onPrimaryBackground,
+    primaryContainer: AppColors.darkPrimaryContainer,
+    // onPrimaryContainer: AppColors.onPrimaryBackground,
 
     error: AppColors.error,
     surface: AppColors.darkSurface,
     onSurface: AppColors.darkOnSurface,
     outline: AppColors.darkOutline,
-    
+
     brightness: Brightness.dark,
   );
 }

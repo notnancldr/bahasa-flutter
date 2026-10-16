@@ -29,22 +29,16 @@ class LoginComplete extends StatelessWidget {
               decoration: BoxDecoration(
                 color: c.surfaceContainer,
                 borderRadius: BorderRadius.circular(999),
-                border: BoxBorder.all(
-                  width: 1,
-                  color: c.primaryContainer,
-                ),
+                border: BoxBorder.all(width: 1, color: c.primaryContainer),
                 boxShadow: [
-                  BoxShadow(
-                    blurRadius: 16,
-                    color: c.primary.withAlpha(60),
-                  )
+                  BoxShadow(blurRadius: 16, color: c.primary.withAlpha(60)),
                 ],
               ),
               child: Icon(
                 Symbols.check,
                 size: 48,
                 weight: 800,
-                color: c.onPrimaryContainer
+                color: c.onPrimaryContainer,
               ),
             ),
           ),

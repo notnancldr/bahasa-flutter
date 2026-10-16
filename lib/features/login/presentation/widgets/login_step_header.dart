@@ -4,11 +4,7 @@ class LoginStepHeader extends StatelessWidget {
   final String title;
   final String description;
 
-  const LoginStepHeader(
-    this.title, {
-    super.key,
-    required this.description,
-  });
+  const LoginStepHeader(this.title, {super.key, required this.description});
 
   @override
   Widget build(BuildContext context) {

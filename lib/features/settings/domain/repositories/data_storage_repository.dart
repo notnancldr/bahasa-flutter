@@ -8,4 +8,3 @@ abstract class DataStorageRepository {
   /// Deletes app data from application directory after verifying username.
   Future<void> deleteAppData({required String verificationUsername});
 }
-

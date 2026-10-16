@@ -1,27 +1,77 @@
 import 'package:bahasa/core/router/page_transitions.dart';
+import 'package:bahasa/core/widgets/main_scaffold.dart';
+import 'package:bahasa/features/decks/deck_history/presentation/pages/deck_history_page.dart';
+import 'package:bahasa/features/decks/deck_details/domain/entities/deck_progress_data.dart';
+import 'package:bahasa/features/decks/deck_details/presentation/pages/deck_details_page.dart';
+import 'package:bahasa/features/decks/deck_details/presentation/pages/deck_progress_page.dart';
+import 'package:bahasa/features/decks/generate_deck/presentation/pages/generate_deck_page.dart';
+import 'package:bahasa/features/decks/import_deck/presentation/pages/import_deck_page.dart';
+import 'package:bahasa/features/decks/presentation/pages/deck_page.dart';
+import 'package:bahasa/features/decks/study/presentation/pages/flashcard_page.dart';
+import 'package:bahasa/features/decks/study/presentation/pages/quiz_page.dart';
+import 'package:bahasa/features/home/presentation/pages/home_page.dart';
+import 'package:bahasa/features/login/presentation/pages/ai_model_download_page.dart';
+import 'package:bahasa/features/login/presentation/pages/ai_model_selection_page.dart';
 import 'package:bahasa/features/login/presentation/pages/login_page.dart';
 import 'package:bahasa/features/login/presentation/pages/transfer_page.dart';
 import 'package:bahasa/features/login/presentation/pages/welcome_page.dart';
+import 'package:bahasa/features/multiplayer/presentation/pages/multiplayer_complete_page.dart';
+import 'package:bahasa/features/multiplayer/presentation/pages/multiplayer_game_page.dart';
+import 'package:bahasa/features/multiplayer/presentation/pages/multiplayer_history_page.dart';
+import 'package:bahasa/features/multiplayer/presentation/pages/multiplayer_lobby_page.dart';
+import 'package:bahasa/features/multiplayer/presentation/pages/multiplayer_main_page.dart';
+import 'package:bahasa/features/multiplayer/presentation/pages/multiplayer_room_page.dart';
+import 'package:bahasa/features/multiplayer/presentation/pages/multiplayer_select_deck_page.dart';
+import 'package:bahasa/features/settings/domain/repositories/profile_repository.dart';
+import 'package:bahasa/features/settings/domain/repositories/settings_repository.dart';
+import 'package:bahasa/features/settings/presentation/bloc/account/account_bloc.dart';
 import 'package:bahasa/features/settings/presentation/pages/account_settings_page.dart';
+import 'package:bahasa/features/settings/presentation/pages/ai_settings_page.dart';
 import 'package:bahasa/features/settings/presentation/pages/data_storage_page.dart';
-import 'package:bahasa/features/settings/presentation/pages/delete_data_page.dart';
-import 'package:bahasa/features/settings/presentation/pages/notification_settings_page.dart';
+import 'package:bahasa/features/settings/presentation/pages/edit_profile_page.dart';
+import 'package:bahasa/features/settings/presentation/pages/language_settings_page.dart';
 import 'package:bahasa/features/settings/presentation/pages/settings_page.dart';
 import 'package:bahasa/features/settings/presentation/pages/share_data_page.dart';
 import 'package:bahasa/features/settings/presentation/pages/theme_settings_page.dart';
+import 'package:bahasa/features/settings/settings_dependencies.dart';
 import 'package:go_router/go_router.dart';
+
 import 'app_routes.dart';
 
 class AppRouter {
-  // final dynamic authBloc;
+  final ProfileRepository _profileRepository;
+  final SettingsRepository _settingsRepository;
 
-  AppRouter();
+  AppRouter({
+    ProfileRepository? profileRepository,
+    SettingsRepository? settingsRepository,
+  }) : _profileRepository =
+           profileRepository ?? SettingsDependencies.createProfileRepository(),
+       _settingsRepository =
+           settingsRepository ??
+           SettingsDependencies.createSettingsRepository();
 
   late final GoRouter router = GoRouter(
-    initialLocation: AppRoutes.settings, // Temporary initial location
+    initialLocation: AppRoutes.home,
     debugLogDiagnostics: true,
-    // refreshListenable: GoRouterRefreshStream(authBloc.stream),
-    // redirect: _handleRedirect,
+    redirect: (context, state) async {
+      final hasProfile = await _profileRepository.hasProfile();
+      final isOnboarded = await _settingsRepository.isOnboardingCompleted();
+      final isLoggedIn = hasProfile && isOnboarded;
+
+      final location = state.matchedLocation;
+      final isLoginRoute = location.startsWith('/login');
+
+      if (!isLoggedIn && !isLoginRoute) {
+        return AppRoutes.login;
+      }
+
+      if (isLoggedIn && isLoginRoute) {
+        return AppRoutes.home;
+      }
+
+      return null;
+    },
     routes: [
       GoRoute(
         path: AppRoutes.login,
@@ -46,15 +96,220 @@ class AppRouter {
           child: const TransferPage(),
         ),
       ),
-
-      // Settings routes
       GoRoute(
-        path: AppRoutes.settings,
-        name: "settings",
+        path: AppRoutes.loginAiSelection,
+        name: "loginAiSelection",
         pageBuilder: (context, state) => buildSlideTransitionPage(
           context: context,
           state: state,
-          child: const SettingsPage(),
+          child: const AiModelSelectionPage(),
+        ),
+      ),
+      GoRoute(
+        path: AppRoutes.loginAiDownload,
+        name: "loginAiDownload",
+        pageBuilder: (context, state) => buildSlideTransitionPage(
+          context: context,
+          state: state,
+          child: const AiModelDownloadPage(),
+        ),
+      ),
+      GoRoute(
+        path: AppRoutes.deckGenerate,
+        name: "deckGenerate",
+        pageBuilder: (context, state) => buildSlideTransitionPage(
+          context: context,
+          state: state,
+          child: const GenerateDeckPage(),
+        ),
+      ),
+      GoRoute(
+        path: AppRoutes.deckImport,
+        name: "deckImport",
+        pageBuilder: (context, state) => buildSlideTransitionPage(
+          context: context,
+          state: state,
+          child: const ImportDeckPage(),
+        ),
+      ),
+      GoRoute(
+        path: AppRoutes.deckDetails,
+        name: "deckDetails",
+        pageBuilder: (context, state) => buildSlideTransitionPage(
+          context: context,
+          state: state,
+          child: DeckDetailsPage(deckId: state.pathParameters['deckId'] ?? ''),
+        ),
+      ),
+      GoRoute(
+        path: AppRoutes.deckStreak,
+        name: "deckStreak",
+        pageBuilder: (context, state) => buildSlideTransitionPage(
+          context: context,
+          state: state,
+          child: DeckProgressPage(
+            deckId: state.pathParameters['deckId'] ?? '',
+            metricType: DeckProgressMetricType.streak,
+          ),
+        ),
+      ),
+      GoRoute(
+        path: AppRoutes.deckAccuracy,
+        name: "deckAccuracy",
+        pageBuilder: (context, state) => buildSlideTransitionPage(
+          context: context,
+          state: state,
+          child: DeckProgressPage(
+            deckId: state.pathParameters['deckId'] ?? '',
+            metricType: DeckProgressMetricType.accuracy,
+          ),
+        ),
+      ),
+      GoRoute(
+        path: AppRoutes.deckFlashcard,
+        name: "deckFlashcard",
+        pageBuilder: (context, state) => buildSlideTransitionPage(
+          context: context,
+          state: state,
+          child: FlashcardPage(deckId: state.pathParameters['deckId'] ?? ''),
+        ),
+      ),
+      GoRoute(
+        path: AppRoutes.deckQuiz,
+        name: "deckQuiz",
+        pageBuilder: (context, state) => buildSlideTransitionPage(
+          context: context,
+          state: state,
+          child: QuizPage(deckId: state.pathParameters['deckId'] ?? ''),
+        ),
+      ),
+      GoRoute(
+        path: AppRoutes.deckDetailsHistory,
+        name: "deckDetailsHistory",
+        pageBuilder: (context, state) => buildSlideTransitionPage(
+          context: context,
+          state: state,
+          child: DeckHistoryPage(deckId: state.pathParameters['deckId']),
+        ),
+      ),
+      GoRoute(
+        path: AppRoutes.deckHistory,
+        name: "deckHistory",
+        pageBuilder: (context, state) => buildSlideTransitionPage(
+          context: context,
+          state: state,
+          child: const DeckHistoryPage(),
+        ),
+      ),
+
+      StatefulShellRoute(
+        branches: [
+          StatefulShellBranch(
+            preload: true,
+            routes: [
+              GoRoute(
+                path: AppRoutes.home,
+                name: "home",
+                builder: (context, state) => const HomePage(),
+              ),
+            ],
+          ),
+          StatefulShellBranch(
+            preload: true,
+            routes: [
+              GoRoute(
+                path: AppRoutes.multiplayer,
+                name: "multiplayer",
+                builder: (context, state) => const MultiplayerMainPage(),
+              ),
+            ],
+          ),
+          StatefulShellBranch(
+            preload: true,
+            routes: [
+              GoRoute(
+                path: AppRoutes.deck,
+                name: "deck",
+                builder: (context, state) => const DeckPage(),
+              ),
+            ],
+          ),
+          StatefulShellBranch(
+            preload: true,
+            routes: [
+              GoRoute(
+                path: AppRoutes.settings,
+                name: "settings",
+                builder: (context, state) => const SettingsPage(),
+              ),
+            ],
+          ),
+        ],
+        builder: (context, state, navigationShell) => navigationShell,
+        navigatorContainerBuilder: (context, navigationShell, children) {
+          return MainScaffold(
+            navigationShell: navigationShell,
+            children: children,
+          );
+        },
+      ),
+      GoRoute(
+        path: AppRoutes.multiplayerRoom,
+        name: "multiplayerRoom",
+        pageBuilder: (context, state) {
+          final isHost =
+              (state.extra as Map<String, dynamic>?)?['isHost'] as bool? ??
+              true;
+          return buildSlideTransitionPage(
+            context: context,
+            state: state,
+            child: MultiplayerRoomPage(isHost: isHost),
+          );
+        },
+      ),
+      GoRoute(
+        path: AppRoutes.multiplayerLobby,
+        name: "multiplayerLobby",
+        pageBuilder: (context, state) => buildSlideTransitionPage(
+          context: context,
+          state: state,
+          child: const MultiplayerLobbyPage(),
+        ),
+      ),
+      GoRoute(
+        path: AppRoutes.multiplayerSelectDeck,
+        name: "multiplayerSelectDeck",
+        pageBuilder: (context, state) => buildSlideTransitionPage(
+          context: context,
+          state: state,
+          child: const MultiplayerSelectDeckPage(),
+        ),
+      ),
+      GoRoute(
+        path: AppRoutes.multiplayerGame,
+        name: "multiplayerGame",
+        pageBuilder: (context, state) => buildSlideTransitionPage(
+          context: context,
+          state: state,
+          child: const MultiplayerGamePage(),
+        ),
+      ),
+      GoRoute(
+        path: AppRoutes.multiplayerComplete,
+        name: "multiplayerComplete",
+        pageBuilder: (context, state) => buildSlideTransitionPage(
+          context: context,
+          state: state,
+          child: const MultiplayerCompletePage(),
+        ),
+      ),
+      GoRoute(
+        path: AppRoutes.multiplayerHistory,
+        name: "multiplayerHistory",
+        pageBuilder: (context, state) => buildSlideTransitionPage(
+          context: context,
+          state: state,
+          child: const MultiplayerHistoryPage(),
         ),
       ),
       GoRoute(
@@ -63,7 +318,16 @@ class AppRouter {
         pageBuilder: (context, state) => buildSlideTransitionPage(
           context: context,
           state: state,
-          child: const AccountSettingsPage(),
+          child: AccountSettingsPage(bloc: state.extra as AccountBloc?),
+        ),
+      ),
+      GoRoute(
+        path: AppRoutes.settingsAccountEdit,
+        name: "settingsAccountEdit",
+        pageBuilder: (context, state) => buildSlideTransitionPage(
+          context: context,
+          state: state,
+          child: EditProfilePage(bloc: state.extra as AccountBloc?),
         ),
       ),
       GoRoute(
@@ -76,12 +340,12 @@ class AppRouter {
         ),
       ),
       GoRoute(
-        path: AppRoutes.settingsNotifications,
-        name: "settingsNotifications",
+        path: AppRoutes.settingsLanguage,
+        name: "settingsLanguage",
         pageBuilder: (context, state) => buildSlideTransitionPage(
           context: context,
           state: state,
-          child: const NotificationSettingsPage(),
+          child: LanguageSettingsPage(bloc: state.extra as AccountBloc?),
         ),
       ),
       GoRoute(
@@ -103,55 +367,14 @@ class AppRouter {
         ),
       ),
       GoRoute(
-        path: AppRoutes.settingsDataDelete,
-        name: "settingsDataDelete",
+        path: AppRoutes.settingsAi,
+        name: "settingsAi",
         pageBuilder: (context, state) => buildSlideTransitionPage(
           context: context,
           state: state,
-          child: const DeleteDataPage(),
+          child: const AiSettingsPage(),
         ),
       ),
-
-      // Shell route: persistent scaffold (e.g. bottom nav) for main app
-      // ShellRoute(
-      //   builder: (context, state, child) => MainShell(child: child),
-      //   routes: [
-      //     GoRoute(
-      //       path: AppRoutes.home,
-      //       name: 'home',
-      //       builder: (context, state) => const HomePage(),
-      //       routes: [
-      //         GoRoute(
-      //           path: 'details/:id',
-      //           name: 'details',
-      //           builder: (context, state) {
-      //             final id = state.pathParameters['id']!;
-      //             return DetailsPage(id: id);
-      //           },
-      //         ),
-      //       ],
-      //     ),
-      //     GoRoute(
-      //       path: AppRoutes.profile,
-      //       name: 'profile',
-      //       builder: (context, state) => const ProfilePage(),
-      //     ),
-      //   ],
-      // ),
     ],
-    // errorBuilder: (context, state) => ErrorPage(error: state.error), // TODO
   );
-
-  // FutureOr<String?> _handleRedirect(
-  //   BuildContext context,
-  //   GoRouterState state,
-  // ) {
-  //   final isLoggedIn = authBloc.state is AuthAuthenticated; // adapt to your states
-  //   final isAuthRoute = state.matchedLocation == AppRoutes.login ||
-  //       state.matchedLocation == AppRoutes.splash;
-
-  //   if (!isLoggedIn && !isAuthRoute) return AppRoutes.login;
-  //   if (isLoggedIn && isAuthRoute) return AppRoutes.home;
-  //   return null; // no redirect
-  // }
 }

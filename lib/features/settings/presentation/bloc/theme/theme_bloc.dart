@@ -13,7 +13,7 @@ class ThemeBloc extends Bloc<ThemeEvent, ThemeState> {
   ThemeBloc({
     required this._getThemeModeUseCase,
     required this._setThemeModeUseCase,
-  })  : super(const ThemeState(themeMode: ThemeMode.light)) {
+  }) : super(const ThemeState(themeMode: ThemeMode.light)) {
     on<LoadThemeEvent>(_onLoadTheme);
     on<ChangeThemeEvent>(_onChangeTheme);
   }
@@ -23,10 +23,7 @@ class ThemeBloc extends Bloc<ThemeEvent, ThemeState> {
     Emitter<ThemeState> emit,
   ) async {
     final mode = await _getThemeModeUseCase();
-    emit(ThemeState(
-      themeMode: _mapToFlutterTheme(mode),
-      isApplied: false,
-    ));
+    emit(ThemeState(themeMode: _mapToFlutterTheme(mode), isApplied: false));
   }
 
   Future<void> _onChangeTheme(
@@ -35,10 +32,7 @@ class ThemeBloc extends Bloc<ThemeEvent, ThemeState> {
   ) async {
     final appMode = _mapFromFlutterTheme(event.themeMode);
     await _setThemeModeUseCase(appMode);
-    emit(ThemeState(
-      themeMode: event.themeMode,
-      isApplied: true,
-    ));
+    emit(ThemeState(themeMode: event.themeMode, isApplied: true));
   }
 
   static ThemeMode _mapToFlutterTheme(AppThemeMode mode) {
@@ -57,4 +51,3 @@ class ThemeBloc extends Bloc<ThemeEvent, ThemeState> {
     };
   }
 }
-

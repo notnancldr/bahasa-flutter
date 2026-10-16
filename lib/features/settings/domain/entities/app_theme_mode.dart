@@ -14,4 +14,3 @@ enum AppThemeMode {
 
   String toStorageString() => name;
 }
-

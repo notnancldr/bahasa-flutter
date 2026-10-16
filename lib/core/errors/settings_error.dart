@@ -12,7 +12,9 @@ class ProfileNotFoundFailure extends SettingsFailure {
 }
 
 class InvalidUsernameFailure extends SettingsFailure {
-  const InvalidUsernameFailure([super.message = 'Invalid username format or length.']);
+  const InvalidUsernameFailure([
+    super.message = 'Invalid username format or length.',
+  ]);
 }
 
 class UsernameMismatchFailure extends SettingsFailure {
@@ -32,4 +34,3 @@ class StorageOperationFailure extends SettingsFailure {
 class FileNotFoundFailure extends SettingsFailure {
   const FileNotFoundFailure([super.message = 'Selected file was not found.']);
 }
-

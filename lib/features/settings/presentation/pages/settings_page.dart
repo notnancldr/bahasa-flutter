@@ -1,4 +1,6 @@
+import 'package:bahasa/core/localization/locale_cubit.dart';
 import 'package:bahasa/core/router/app_routes.dart';
+import 'package:bahasa/core/utils/widget_var.dart';
 import 'package:bahasa/features/settings/presentation/bloc/account/account_bloc.dart';
 import 'package:bahasa/features/settings/presentation/bloc/account/account_event.dart';
 import 'package:bahasa/features/settings/presentation/bloc/notification/notification_bloc.dart';
@@ -6,7 +8,6 @@ import 'package:bahasa/features/settings/presentation/bloc/notification/notifica
 import 'package:bahasa/features/settings/presentation/bloc/notification/notification_state.dart';
 import 'package:bahasa/features/settings/presentation/bloc/theme/theme_bloc.dart';
 import 'package:bahasa/features/settings/presentation/bloc/theme/theme_state.dart';
-import 'package:bahasa/features/settings/presentation/widgets/settings_metric_card.dart';
 import 'package:bahasa/features/settings/presentation/widgets/settings_menu_tile.dart';
 import 'package:bahasa/features/settings/presentation/widgets/settings_profile_card.dart';
 import 'package:bahasa/features/settings/settings_dependencies.dart';
@@ -24,12 +25,14 @@ class SettingsPage extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider(
-          create: (_) => SettingsDependencies.createAccountBloc()
-            ..add(const LoadAccountEvent()),
+          create: (_) =>
+              SettingsDependencies.createAccountBloc()
+                ..add(const LoadAccountEvent()),
         ),
         BlocProvider(
-          create: (_) => SettingsDependencies.createNotificationBloc()
-            ..add(const LoadNotificationSettingsEvent()),
+          create: (_) =>
+              SettingsDependencies.createNotificationBloc()
+                ..add(const LoadNotificationSettingsEvent()),
         ),
       ],
       child: const SettingsView(),
@@ -41,15 +44,17 @@ class SettingsView extends StatelessWidget {
   const SettingsView({super.key});
 
   void _navigateToAccount(BuildContext context) {
-    context.push(AppRoutes.settingsAccount);
+    final accountBloc = context.read<AccountBloc>();
+    context.push(AppRoutes.settingsAccount, extra: accountBloc);
   }
 
   void _navigateToTheme(BuildContext context) {
     context.push(AppRoutes.settingsTheme);
   }
 
-  void _navigateToNotifications(BuildContext context) {
-    context.push(AppRoutes.settingsNotifications);
+  void _navigateToLanguage(BuildContext context) {
+    final accountBloc = context.read<AccountBloc>();
+    context.push(AppRoutes.settingsLanguage, extra: accountBloc);
   }
 
   void _navigateToDataStorage(BuildContext context) {
@@ -59,10 +64,9 @@ class SettingsView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    final isDark = theme.brightness == Brightness.dark;
+    final WidgetVars(:l, :c) = WidgetVars.of(context);
 
     return Scaffold(
-      backgroundColor: isDark ? const Color(0xFF13171F) : const Color(0xFFF9FAFA),
       body: SafeArea(
         child: SingleChildScrollView(
           padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 24),
@@ -70,7 +74,7 @@ class SettingsView extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                'Pengaturan',
+                l.settings_title,
                 style: theme.textTheme.displayLarge?.copyWith(
                   fontSize: 28,
                   fontWeight: FontWeight.w800,
@@ -83,139 +87,93 @@ class SettingsView extends StatelessWidget {
               SettingsProfileCard(
                 onManageProfile: () => _navigateToAccount(context),
               ),
-              const SizedBox(height: 16),
 
-              // Two Metric Cards (Kosakata & Cadangan)
-              Row(
-                children: [
-                  Expanded(
-                    child: SettingsMetricCard(
-                      backgroundColor: isDark ? const Color(0xFF2A221C) : const Color(0xFFFFF7ED),
-                      borderColor: isDark ? const Color(0xFF453526) : const Color(0xFFFFEDD5),
-                      iconWidget: Container(
-                        padding: const EdgeInsets.all(5),
-                        decoration: BoxDecoration(
-                          color: const Color(0xFFFFE6D2),
-                          borderRadius: BorderRadius.circular(8),
-                        ),
-                        child: const Icon(
-                          Symbols.translate,
-                          color: Color(0xFF9E653A),
-                          size: 15,
-                        ),
-                      ),
-                      title: 'Kosakata',
-                      contentWidget: RichText(
-                        text: TextSpan(
-                          children: [
-                            TextSpan(
-                              text: '142 ',
-                              style: theme.textTheme.titleMedium?.copyWith(
-                                fontSize: 20,
-                                fontWeight: FontWeight.w800,
-                              ),
-                            ),
-                            TextSpan(
-                              text: 'Kata',
-                              style: theme.textTheme.bodyMedium?.copyWith(
-                                color: const Color(0xFF7A868C),
-                                fontSize: 13,
-                                fontWeight: FontWeight.w600,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ),
-                  const SizedBox(width: 12),
-                  Expanded(
-                    child: SettingsMetricCard(
-                      backgroundColor: isDark ? const Color(0xFF1B2820) : const Color(0xFFF0F9F3),
-                      borderColor: isDark ? const Color(0xFF274332) : const Color(0xFFDCF0E2),
-                      iconWidget: Container(
-                        padding: const EdgeInsets.all(5),
-                        decoration: BoxDecoration(
-                          color: const Color(0xFFD6EEDF),
-                          borderRadius: BorderRadius.circular(8),
-                        ),
-                        child: const Icon(
-                          Symbols.cloud,
-                          color: Color(0xFF2D774B),
-                          size: 15,
-                        ),
-                      ),
-                      title: 'Cadangan',
-                      contentWidget: const Row(
-                        children: [
-                          Icon(
-                            Symbols.check_circle,
-                            color: Color(0xFF2D774B),
-                            size: 18,
-                            weight: 700,
-                          ),
-                          SizedBox(width: 4),
-                          Expanded(
-                            child: Text(
-                              'Aman & Terkini',
-                              style: TextStyle(
-                                color: Color(0xFF2D774B),
-                                fontSize: 13,
-                                fontWeight: FontWeight.w800,
-                              ),
-                              overflow: TextOverflow.ellipsis,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                ],
-              ),
               const SizedBox(height: 16),
-
-              // Menu: Akun
-              SettingsMenuTile(
-                icon: Symbols.person_edit,
-                iconColor: const Color(0xFFB5703E),
-                iconBackgroundColor: const Color(0xFFFFE7D1),
-                title: 'Akun',
-                subtitle: 'Ubah nama pengguna & foto',
-                onTap: () => _navigateToAccount(context),
-              ),
-              const SizedBox(height: 12),
 
               // Menu: Tema
               BlocBuilder<ThemeBloc, ThemeState>(
                 builder: (context, themeState) {
-                  final isCurrentlyDark = themeState.themeMode == ThemeMode.dark;
-                  final themeLabel = isCurrentlyDark ? 'Gelap' : 'Terang';
+                  final isCurrentlyDark =
+                      themeState.themeMode == ThemeMode.dark;
+                  final themeLabel = isCurrentlyDark
+                      ? l.settings_theme_badgeDark
+                      : l.settings_theme_badgeLight;
                   final subtitleText = isCurrentlyDark
-                      ? 'Mode gelap (hemat baterai)'
-                      : 'Mode terang (nyaman di mata)';
+                      ? l.settings_theme_subtitleDark
+                      : l.settings_theme_subtitleLight;
 
                   return SettingsMenuTile(
                     icon: Symbols.palette,
                     iconColor: const Color(0xFF6B5894),
                     iconBackgroundColor: const Color(0xFFDCD2F0),
-                    title: 'Tema',
+                    title: l.theme_title,
                     subtitle: subtitleText,
                     onTap: () => _navigateToTheme(context),
                     trailing: Row(
                       mainAxisSize: MainAxisSize.min,
                       children: [
                         Container(
-                          padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
+                          padding: const EdgeInsets.symmetric(
+                            horizontal: 10,
+                            vertical: 4,
+                          ),
                           decoration: BoxDecoration(
-                            color: isDark ? const Color(0xFF2C3847) : const Color(0xFFEFF2F5),
-                            borderRadius: BorderRadius.circular(12),
+                            color: c.surfaceContainerHigh,
+                            borderRadius: BorderRadius.circular(5),
                           ),
                           child: Text(
                             themeLabel,
-                            style: const TextStyle(
+                            style: TextStyle(
                               fontSize: 12,
                               fontWeight: FontWeight.w700,
-                              color: Color(0xFF4A555B),
+                              color: c.onSurfaceVariant,
+                            ),
+                          ),
+                        ),
+                        const SizedBox(width: 4),
+                        const Icon(
+                          Symbols.chevron_right,
+                          size: 20,
+                          color: Color(0xFF9EAAB0),
+                        ),
+                      ],
+                    ),
+                  );
+                },
+              ),
+              const SizedBox(height: 12),
+
+              // Menu: Bahasa (Language)
+              BlocBuilder<LocaleCubit, LanguageState>(
+                builder: (context, localeState) {
+                  final currentCode = localeState.locale.languageCode;
+                  final languageLabel = l.languageName(currentCode);
+
+                  return SettingsMenuTile(
+                    icon: Symbols.translate,
+                    iconColor: const Color(0xFF388E3C),
+                    iconBackgroundColor: const Color(0xFFC8E6C9),
+                    title: l.settings_language_title,
+                    subtitle: languageLabel,
+                    onTap: () => _navigateToLanguage(context),
+                    trailing: Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Container(
+                          padding: const EdgeInsets.symmetric(
+                            horizontal: 10,
+                            vertical: 4,
+                          ),
+                          decoration: BoxDecoration(
+                            color: c.surfaceContainerHigh,
+                            borderRadius: BorderRadius.circular(5),
+                          ),
+                          child: Text(
+                            languageLabel,
+                            style: TextStyle(
+                              fontSize: 12,
+                              fontWeight: FontWeight.w700,
+                              color: c.onSurfaceVariant,
                             ),
                           ),
                         ),
@@ -239,18 +197,31 @@ class SettingsView extends StatelessWidget {
                     icon: Symbols.notifications,
                     iconColor: const Color(0xFF9E653A),
                     iconBackgroundColor: const Color(0xFFFFECCF),
-                    title: 'Notifikasi',
-                    subtitle: 'Pengingat belajar harian',
-                    onTap: () => _navigateToNotifications(context),
+                    title: l.settings_notif_title,
+                    subtitle: l.settings_notif_subtitle,
+                    onTap: null,
                     trailing: Switch.adaptive(
                       value: notifState.isEnabled,
                       activeTrackColor: const Color(0xFF5B93AE),
                       onChanged: (val) {
-                        context.read<NotificationBloc>().add(ToggleNotificationEvent(val));
+                        context.read<NotificationBloc>().add(
+                          ToggleNotificationEvent(val),
+                        );
                       },
                     ),
                   );
                 },
+              ),
+              const SizedBox(height: 12),
+
+              // Menu: Model AI
+              SettingsMenuTile(
+                icon: Symbols.smart_toy,
+                iconColor: const Color(0xFF264653),
+                iconBackgroundColor: const Color(0xFFE2F3F5),
+                title: l.settings_ai_title,
+                subtitle: l.settings_ai_subtitle,
+                onTap: () => context.push(AppRoutes.settingsAi),
               ),
               const SizedBox(height: 12),
 
@@ -259,8 +230,8 @@ class SettingsView extends StatelessWidget {
                 icon: Symbols.database,
                 iconColor: const Color(0xFF3B7A8C),
                 iconBackgroundColor: const Color(0xFFCEE8F2),
-                title: 'Data & Penyimpanan',
-                subtitle: 'Impor, ekspor, & cadangan profil',
+                title: l.settings_data_title,
+                subtitle: l.settings_data_subtitle,
                 onTap: () => _navigateToDataStorage(context),
               ),
               const SizedBox(height: 32),

@@ -14,7 +14,9 @@ class DataStorageRepositoryImpl implements DataStorageRepository {
   });
 
   @override
-  Future<DataTransferResult> transferData({required String receiverCode}) async {
+  Future<DataTransferResult> transferData({
+    required String receiverCode,
+  }) async {
     return _dataStorageDataSource.transferData(receiverCode: receiverCode);
   }
 
@@ -32,4 +34,3 @@ class DataStorageRepositoryImpl implements DataStorageRepository {
     await _dataStorageDataSource.deleteAppData();
   }
 }
-

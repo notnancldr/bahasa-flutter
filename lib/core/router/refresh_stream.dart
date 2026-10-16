@@ -1,4 +1,5 @@
 import 'dart:async';
+
 import 'package:flutter/foundation.dart';
 
 /// Bridges a Bloc/Cubit stream to GoRouter's `refreshListenable`,
@@ -8,9 +9,7 @@ class GoRouterRefreshStream extends ChangeNotifier {
 
   GoRouterRefreshStream(Stream<dynamic> stream) {
     notifyListeners();
-    _subscription = stream.asBroadcastStream().listen(
-          (_) => notifyListeners(),
-        );
+    _subscription = stream.asBroadcastStream().listen((_) => notifyListeners());
   }
 
   @override

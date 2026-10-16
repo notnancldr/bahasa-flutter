@@ -46,8 +46,9 @@ class ReceiveProgressIndicator extends StatelessWidget {
     final s = theme.extension<AppSemanticColors>()!;
     final t = theme.textTheme;
 
-    final percentage =
-        animatedValue != null ? (animatedValue * 100).round() : null;
+    final percentage = animatedValue != null
+        ? (animatedValue * 100).round()
+        : null;
 
     return SizedBox(
       height: size,
@@ -102,16 +103,9 @@ class ReceiveProgressIndicator extends StatelessWidget {
                   Text(
                     "$percentage%",
                     textAlign: .center,
-                    style: const TextStyle(
-                      fontSize: 26,
-                      fontWeight: .w800,
-                    ),
+                    style: const TextStyle(fontSize: 26, fontWeight: .w800),
                   ),
-                Text(
-                  label,
-                  style: t.labelSmall,
-                  textAlign: .center,
-                ),
+                Text(label, style: t.labelSmall, textAlign: .center),
               ],
             ),
           ),

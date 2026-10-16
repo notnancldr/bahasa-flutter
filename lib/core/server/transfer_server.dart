@@ -58,6 +58,11 @@ class TransferServer implements TransferServerBase {
   static const _progressInterval = Duration(milliseconds: 100);
   static const _flushThreshold = 512 * 1024; // flush every 512 KB
 
+  final Future<Directory> Function()? _tempDirProvider;
+
+  /// Creates a [TransferServer] with an optional custom [tempDirProvider].
+  TransferServer([this._tempDirProvider]);
+
   HttpServer? _server;
   final _controller = StreamController<TransferServerEvent>.broadcast();
 
@@ -74,7 +79,7 @@ class TransferServer implements TransferServerBase {
 
   @override
   bool get isRunning => _server != null;
-  
+
   @override
   bool get isReceiving => _activeSub != null;
 
@@ -123,8 +128,12 @@ class TransferServer implements TransferServerBase {
     await _cleanupActiveTransfer(deleteFile: true);
     _activeCompleter = null;
     if (completer != null && !completer.isCompleted) {
-      completer.complete(Response(499,
-          body: jsonEncode({"success": false, "message": "Cancelled"})));
+      completer.complete(
+        Response(
+          499,
+          body: jsonEncode({"success": false, "message": "Cancelled"}),
+        ),
+      );
     }
     _controller.add(TransferServerCancelled());
   }
@@ -158,12 +167,14 @@ class TransferServer implements TransferServerBase {
     await _controller.close();
   }
 
-
   Response _badRequest() {
     final error = TransferNotValid();
     _controller.add(TransferServerError(error));
     return Response.badRequest(
-      body: jsonEncode({"success": false, "message": error.runtimeType.toString()}),
+      body: jsonEncode({
+        "success": false,
+        "message": error.runtimeType.toString(),
+      }),
     );
   }
 
@@ -173,10 +184,10 @@ class TransferServer implements TransferServerBase {
     final multipart = request.formData();
     if (multipart == null) return _badRequest();
 
-    final clientIp = (request.context['shelf.io.connection_info']
-            as HttpConnectionInfo?)
-        ?.remoteAddress
-        .address;
+    final clientIp =
+        (request.context['shelf.io.connection_info'] as HttpConnectionInfo?)
+            ?.remoteAddress
+            .address;
     final totalBytes = int.tryParse(request.headers['content-length'] ?? '');
 
     Response? result;
@@ -204,12 +215,14 @@ class TransferServer implements TransferServerBase {
     int? totalBytes,
   ) async {
     final fileName = data.filename ?? 'unnamed_${randomChar(8)}';
-    final tempDir = await getTemporaryDirectory();
-    // final path = "${tempDir.path}/${randomChar(16)}_$fileName"; // TODO: save to file
-    // final sink = File(path).openWrite(); // TODO: save to file
+    final tempDir = _tempDirProvider != null
+        ? await _tempDirProvider()
+        : await getTemporaryDirectory();
+    final path = "${tempDir.path}/${randomChar(16)}_$fileName";
+    final sink = File(path).openWrite();
 
-    // _activeSink = sink; // TODO: save to file
-    // _activeTempPath = path; // TODO: save to file
+    _activeSink = sink;
+    _activeTempPath = path;
     _cancelRequested = false;
 
     final completer = Completer<Response>();
@@ -224,12 +237,14 @@ class TransferServer implements TransferServerBase {
       final now = clock.elapsedMilliseconds;
       if (!force && now - lastEmitMs < _progressInterval.inMilliseconds) return;
       lastEmitMs = now;
-      _controller.add(TransferServerReceiving(
-        ipOrigin: clientIp,
-        fileName: fileName,
-        fileSize: totalBytes,
-        progress: received,
-      ));
+      _controller.add(
+        TransferServerReceiving(
+          ipOrigin: clientIp,
+          fileName: fileName,
+          fileSize: totalBytes,
+          progress: received,
+        ),
+      );
     }
 
     emitProgress(force: true);
@@ -244,7 +259,7 @@ class TransferServer implements TransferServerBase {
     late final StreamSubscription<List<int>> sub;
     sub = data.part.listen(
       (chunk) {
-        // sink.add(chunk);
+        sink.add(chunk);
         received += chunk.length;
         unflushed += chunk.length;
         emitProgress();
@@ -252,26 +267,29 @@ class TransferServer implements TransferServerBase {
         // Backpressure: stop reading from the socket until the disk catches up.
         if (unflushed >= _flushThreshold) {
           unflushed = 0;
-          // sub.pause(); // TODO: save to file
-          // sink.flush().catchError((_) {}).whenComplete(sub.resume); // TODO: save to file
+          sub.pause();
+          sink.flush().catchError((_) {}).whenComplete(sub.resume);
         }
       },
       onDone: () async {
         try {
-          // await sink.flush(); // TODO: save to file
-          // await sink.close(); // TODO: save to file
+          await sink.flush();
+          await sink.close();
           emitProgress(force: true);
-          // _controller.add(TransferServerComplete(path));
-          _controller.add(TransferServerComplete("dummy")); // TODO: save to file
+          _controller.add(TransferServerComplete(path));
           if (!completer.isCompleted) {
-            completer.complete(Response.ok(
-              jsonEncode({"success": true, "message": "File sent"}),
-            ));
+            completer.complete(
+              Response.ok(
+                jsonEncode({"success": true, "message": "File sent"}),
+              ),
+            );
           }
         } catch (e) {
           _controller.add(TransferServerError(Exception(e.toString())));
           if (!completer.isCompleted) {
-            completer.complete(Response.internalServerError(body: e.toString()));
+            completer.complete(
+              Response.internalServerError(body: e.toString()),
+            );
           }
         } finally {
           reset();

@@ -7,4 +7,3 @@ class GetNotificationSettingsUseCase {
 
   Future<NotificationSettings> call() => _repository.getNotificationSettings();
 }
-

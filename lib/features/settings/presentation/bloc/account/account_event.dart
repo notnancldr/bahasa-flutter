@@ -28,7 +28,11 @@ class ConfirmDeleteProfileEvent extends AccountEvent {
   const ConfirmDeleteProfileEvent();
 }
 
+class ChangeDefaultLanguageEvent extends AccountEvent {
+  final String newLanguage;
+  const ChangeDefaultLanguageEvent(this.newLanguage);
+}
+
 class CancelAccountActionEvent extends AccountEvent {
   const CancelAccountActionEvent();
 }
-

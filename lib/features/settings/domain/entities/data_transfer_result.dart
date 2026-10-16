@@ -22,4 +22,3 @@ class DataTransferResult {
   @override
   int get hashCode => Object.hash(isSuccess, message, bytesTransferred);
 }
-

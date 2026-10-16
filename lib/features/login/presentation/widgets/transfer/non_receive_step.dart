@@ -11,10 +11,7 @@ import 'package:go_router/go_router.dart';
 class NonReceiveStep extends StatelessWidget {
   final TransferState state;
 
-  const NonReceiveStep({
-    super.key,
-    required this.state,
-  });
+  const NonReceiveStep({super.key, required this.state});
 
   @override
   Widget build(BuildContext context) {
@@ -30,17 +27,12 @@ class NonReceiveStep extends StatelessWidget {
             children: [
               PageHeader(title: "Transfer Profil"),
               SizedBox(height: 8),
-              Expanded(
-                child: ScaleFadeSwitcher(
-                  child: _buildStep(state),
-                ),
-              ),
+              Expanded(child: ScaleFadeSwitcher(child: _buildStep(state))),
             ],
           ),
         ),
 
         // --- Bottom section ---
-
         SizedBox(height: 16),
 
         Column(
@@ -61,13 +53,13 @@ class NonReceiveStep extends StatelessWidget {
   Widget _buildStep(TransferState state) {
     return switch (state) {
       ListeningState() => ListeningStep(
-          key: ValueKey("nonreceive-listening"),
-          state: state,
-        ),
+        key: ValueKey("nonreceive-listening"),
+        state: state,
+      ),
       StartHostState() => StartHostStep(
-          key: ValueKey("nonreceive-starthost"),
-          // state: NO STATE,
-        ),
+        key: ValueKey("nonreceive-starthost"),
+        // state: NO STATE,
+      ),
       _ => Row(),
     };
   }
@@ -81,10 +73,10 @@ class NonReceiveStep extends StatelessWidget {
   void Function()? _onPressedFor(BuildContext context, TransferState state) {
     return switch (state) {
       ListeningState() => () {
-          if (context.canPop()) {
-            context.pop();
-          }
-        },
+        if (context.canPop()) {
+          context.pop();
+        }
+      },
       _ => null,
     };
   }

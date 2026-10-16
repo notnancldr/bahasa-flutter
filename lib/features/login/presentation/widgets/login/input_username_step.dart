@@ -28,32 +28,23 @@ class InputUsernameStep extends StatelessWidget {
             l.newProfile_step_username_title,
             description: l.newProfile_step_username_description,
           ),
-      
+
           SizedBox(height: 32),
-      
-          Text(
-            l.newProfile_step_username_fieldName,
-            style: t.titleMedium,
-          ),
-      
+
+          Text(l.newProfile_step_username_fieldName, style: t.titleMedium),
+
           SizedBox(height: 8),
-      
+
           Container(
             decoration: BoxDecoration(
-              border: BoxBorder.all(
-                color: c.outline,
-                width: 3,
-              ),
+              border: BoxBorder.all(color: c.outline, width: 3),
               borderRadius: BorderRadius.circular(16),
               color: c.surface,
             ),
             padding: EdgeInsets.only(left: 14),
             child: Row(
               children: [
-                Icon(
-                  Symbols.alternate_email,
-                  size: 16,
-                ),
+                Icon(Symbols.alternate_email, size: 16),
                 SizedBox(width: 8),
                 Expanded(
                   child: BlocBuilder<LoginBloc, LoginState>(
@@ -61,28 +52,29 @@ class InputUsernameStep extends StatelessWidget {
                       return TextFormField(
                         initialValue: state is InputState ? state.username : "",
                         onChanged: (value) {
-                          context.read<LoginBloc>().add(InputUsername(username: value));
+                          context.read<LoginBloc>().add(
+                            InputUsername(username: value),
+                          );
                         },
                         decoration: InputDecoration(
-                          hint: Text(l.newProfile_step_username_fieldPlaceholder),
+                          hint: Text(
+                            l.newProfile_step_username_fieldPlaceholder,
+                          ),
                           contentPadding: EdgeInsets.all(0),
                           fillColor: Colors.transparent,
                           hoverColor: Colors.transparent,
                         ),
                       );
-                    }
+                    },
                   ),
                 ),
               ],
             ),
           ),
-      
+
           SizedBox(height: 4),
-      
-          Text(
-            l.newProfile_step_username_fieldHint,
-            style: t.labelSmall,
-          ),
+
+          Text(l.newProfile_step_username_fieldHint, style: t.labelSmall),
         ],
       ),
     );

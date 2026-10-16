@@ -87,12 +87,9 @@ class EmbossedButtonSeededColor extends EmbossedButtonColor {
     this.colorBuilder,
   });
 
-  ColorScheme _cs(ThemeData theme) =>
-      ColorScheme.fromSeed(
-        seedColor: seedColor 
-          ?? colorBuilder?.call(theme)
-          ?? theme.primaryColor,
-      );
+  ColorScheme _cs(ThemeData theme) => ColorScheme.fromSeed(
+    seedColor: seedColor ?? colorBuilder?.call(theme) ?? theme.primaryColor,
+  );
 
   @override
   Color resolveBackground(ThemeData theme) =>
@@ -103,12 +100,10 @@ class EmbossedButtonSeededColor extends EmbossedButtonColor {
       foreground ?? _cs(theme).onPrimaryContainer;
 
   @override
-  Color resolveShadow(ThemeData theme) =>
-      shadow ?? _cs(theme).primaryFixedDim;
+  Color resolveShadow(ThemeData theme) => shadow ?? _cs(theme).primaryFixedDim;
 
   @override
-  Color resolveBorder(ThemeData theme) =>
-      border ?? _cs(theme).outline;
+  Color resolveBorder(ThemeData theme) => border ?? _cs(theme).outline;
 }
 
 @immutable
@@ -119,9 +114,7 @@ class EmbossedButtonWarningColor extends EmbossedButtonSeededColor {
     super.shadow,
     super.border,
     super.gradient,
-  }) : super(
-    colorBuilder: (theme) => theme.semanticColors.warning
-  );
+  }) : super(colorBuilder: (theme) => theme.semanticColors.warning);
 }
 
 /// Shared behavior for presets built around a single accent color.
@@ -147,8 +140,7 @@ abstract class _AccentEmbossedButtonColor extends EmbossedButtonColor {
       foreground ?? (outlined ? _accent(theme) : Colors.white);
 
   @override
-  Color resolveShadow(ThemeData theme) =>
-      shadow ?? _darken(_accent(theme));
+  Color resolveShadow(ThemeData theme) => shadow ?? _darken(_accent(theme));
 
   @override
   Color resolveBorder(ThemeData theme) => border ?? _accent(theme);
@@ -235,7 +227,5 @@ extension on ThemeData {
 
 Color _darken(Color color, [double amount = 0.12]) {
   final hsl = HSLColor.fromColor(color);
-  return hsl
-      .withLightness((hsl.lightness - amount).clamp(0.0, 1.0))
-      .toColor();
+  return hsl.withLightness((hsl.lightness - amount).clamp(0.0, 1.0)).toColor();
 }

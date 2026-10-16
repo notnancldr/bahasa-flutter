@@ -1,3 +1,4 @@
+import 'package:bahasa/core/utils/widget_var.dart';
 import 'package:bahasa/core/widgets/circle_back_button.dart';
 import 'package:flutter/material.dart';
 
@@ -13,17 +14,15 @@ class PageHeader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
-
-    final t = theme.textTheme;
+    final WidgetVars(:theme, :t) = WidgetVars.of(context);
 
     return Row(
       children: [
-        CircleBackButton(),
+        ...showBackButton ? const [CircleBackButton()] : const [],
         Expanded(
-          child: Text(title, style: t.bodyLarge, textAlign: TextAlign.center)
+          child: Text(title, style: t.bodyLarge, textAlign: TextAlign.center),
         ),
-        SizedBox(width: 34),
+        const SizedBox(width: 34),
       ],
     );
   }
