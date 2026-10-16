@@ -1,0 +1,1 @@
+class LoginNotValid implements Exception {}

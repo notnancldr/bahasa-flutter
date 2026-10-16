@@ -1,0 +1,1 @@
+enum LoginStep { username, language }

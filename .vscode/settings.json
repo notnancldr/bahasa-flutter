@@ -1,0 +1,8 @@
+{
+    "arb-editor.suppressedWarnings": [
+        "missing_metadata_for_key",
+        "metadata_for_missing_key",
+        "invalid_placeholder",
+        "placeholder_without_metadata"
+    ]
+}
