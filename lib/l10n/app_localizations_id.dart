@@ -1059,7 +1059,7 @@ class AppLocalizationsId extends AppLocalizations {
   String get deck_history_time_yesterday => 'Kemarin';
 
   @override
-  String get nav_multiplayer => 'Multiplayer';
+  String get nav_multiplayer => 'Laga';
 
   @override
   String get multiplayer_title => 'Bermain bersama';
@@ -1219,6 +1219,136 @@ class AppLocalizationsId extends AppLocalizations {
 
   @override
   String get multiplayer_leave_confirm_no => 'Batal';
+
+  @override
+  String get ai_mode_choose_title => 'Pilih mode pemrosesan AI';
+
+  @override
+  String get ai_mode_choose_subtitle =>
+      'Tentukan bagaimana AI BASA membuat kartu kosakata untuk Anda. Pilihan ini dapat diubah kapan saja di Pengaturan.';
+
+  @override
+  String get ai_mode_feature_header => 'Fitur';
+
+  @override
+  String get ai_mode_online_header => 'Online';
+
+  @override
+  String get ai_mode_local_header => 'Local';
+
+  @override
+  String get ai_feature_unlimited_generation => 'Generate deck tanpa batasan';
+
+  @override
+  String get ai_feature_offline_use =>
+      'Dapat digunakan tanpa internet (offline)';
+
+  @override
+  String get ai_feature_private_storage =>
+      'Data tersimpan aman di perangkat (privat)';
+
+  @override
+  String get ai_feature_faster_process => 'Proses generate lebih cepat';
+
+  @override
+  String get ai_feature_broader_context =>
+      'Konteks data kosakata lebih luas & dinamis';
+
+  @override
+  String get ai_feature_more_accurate => 'Hasil kosakata lebih akurat';
+
+  @override
+  String get ai_feature_daily_limit => 'Batas 1 deck per hari';
+
+  @override
+  String get ai_feature_requires_internet => 'Memerlukan koneksi internet';
+
+  @override
+  String get ai_feature_data_training => 'Data digunakan untuk melatih AI';
+
+  @override
+  String get ai_button_start_download => 'Mulai Download (2.59GB)';
+
+  @override
+  String get ai_button_continue_online => 'lanjut menggunakan model online';
+
+  @override
+  String get ai_download_progress_title => 'Download AI local Berlangsung...';
+
+  @override
+  String get ai_download_continue_in_background =>
+      'Lanjutkan di Latar Belakang';
+
+  @override
+  String get ai_download_retry => 'Coba Unduh Lagi';
+
+  @override
+  String get ai_download_error_title => 'Download Gagal';
+
+  @override
+  String get ai_download_complete_title => 'Download AI Berhasil';
+
+  @override
+  String get ai_download_complete_subtitle =>
+      'Profilmu sudah siap digunakan. Mari lanjutkan perjalanan belajarmu dengan tenang.';
+
+  @override
+  String get ai_download_complete_button => 'Selesai';
+
+  @override
+  String get settings_ai_title => 'Mode Pemrosesan AI';
+
+  @override
+  String get settings_ai_subtitle => 'Atur model pemrosesan AI dan API Gemini';
+
+  @override
+  String get settings_gemini_api_key => 'Kunci API Gemini';
+
+  @override
+  String get settings_gemini_api_key_desc =>
+      'Dibutuhkan untuk pembuatan AI Online';
+
+  @override
+  String get settings_gemini_api_key_hint => 'Masukkan kunci API Gemini...';
+
+  @override
+  String get settings_gemini_guide => 'Panduan Pengaturan API Gemini';
+
+  @override
+  String get settings_local_model_status => 'Status Model Lokal';
+
+  @override
+  String settings_local_model_downloaded(String size) {
+    return 'Sudah Diunduh ($size)';
+  }
+
+  @override
+  String get settings_local_model_not_downloaded => 'Belum Diunduh';
+
+  @override
+  String get settings_download_local_model => 'Unduh Model Lokal (2.59GB)';
+
+  @override
+  String get settings_delete_local_model => 'Hapus Model Lokal';
+
+  @override
+  String get deck_gen_online_daily_limit_reached =>
+      'Batas pembuatan deck online tercapai (maksimum 1 deck per hari). Silakan gunakan AI Lokal atau coba lagi besok.';
+
+  @override
+  String get settings_cancel_download => 'Batal';
+
+  @override
+  String get settings_delete_local_model_confirm_title =>
+      'Hapus Model AI Lokal?';
+
+  @override
+  String get settings_delete_local_model_confirm_desc =>
+      'Tindakan ini akan menghapus file model 2.59 GB dari penyimpanan perangkat. Anda dapat mengunduhnya kembali kapan saja.';
+
+  @override
+  String get settings_local_model_downloading =>
+      'Sedang mengunduh model AI lokal...';
 
   @override
   String get end_of_translation => '';

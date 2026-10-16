@@ -104,7 +104,7 @@ class ReceiveStep extends StatelessWidget {
         l.done,
         onPressed: () {
           context.read<TransferBloc>().add(CancelTransfer());
-          context.go(AppRoutes.home);
+          context.go(AppRoutes.loginAiSelection);
         },
       ),
       _ => EmbossedButton(

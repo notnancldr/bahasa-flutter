@@ -19,6 +19,9 @@ abstract class ProfileRepository {
   /// Launches local file access to pick an image from phone and returns its path.
   Future<String?> pickProfilePhoto();
 
+  /// Checks if a valid user profile already exists.
+  Future<bool> hasProfile();
+
   /// Deletes profile record and all app data.
   Future<void> deleteProfileAndData();
 }

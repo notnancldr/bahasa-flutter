@@ -7,6 +7,9 @@ import 'package:bahasa/features/login/domain/usecases/start_transfer_server_usec
 import 'package:bahasa/features/login/domain/usecases/validate_transferred_file_usecase.dart';
 import 'package:bahasa/features/login/presentation/bloc/login/login_bloc.dart';
 import 'package:bahasa/features/login/presentation/bloc/transfer/transfer_bloc.dart';
+import 'package:bahasa/features/login/domain/services/model_download_service.dart';
+import 'package:bahasa/features/login/presentation/bloc/ai_onboarding/ai_onboarding_bloc.dart';
+import 'package:bahasa/features/settings/domain/repositories/settings_repository.dart';
 import 'package:bahasa/features/settings/settings_dependencies.dart';
 
 /// Lightweight dependency factory for the Login & Transfer feature.
@@ -34,6 +37,17 @@ class LoginDependencies {
       saveLoginProfileUseCase: SaveLoginProfileUseCase(
         SettingsDependencies.createProfileRepository(),
       ),
+    );
+  }
+
+  static AiOnboardingBloc createAiOnboardingBloc({
+    SettingsRepository? settingsRepository,
+    ModelDownloadService? downloadService,
+  }) {
+    return AiOnboardingBloc(
+      settingsRepository:
+          settingsRepository ?? SettingsDependencies.createSettingsRepository(),
+      downloadService: downloadService,
     );
   }
 }

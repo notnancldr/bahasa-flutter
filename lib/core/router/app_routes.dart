@@ -21,6 +21,8 @@ abstract class AppRoutes {
 
   static const loginTransfer = "/login/transfer";
   static const loginNew = "/login/new";
+  static const loginAiSelection = "/login/ai-selection";
+  static const loginAiDownload = "/login/ai-download";
 
   // Settings
   static const settings = "/settings";
@@ -30,6 +32,7 @@ abstract class AppRoutes {
   static const settingsLanguage = "/settings/language";
   static const settingsDataStorage = "/settings/data";
   static const settingsDataTransfer = "/settings/data/transfer";
+  static const settingsAi = "/settings/ai";
 
   /// Builds the concrete path for [deckDetails].
   static String deckDetailsPath(String deckId) => "/deck/details/$deckId";

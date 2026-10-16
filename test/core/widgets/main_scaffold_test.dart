@@ -87,7 +87,7 @@ void main() {
 
       // Verify localized navbar labels
       expect(find.text('Home'), findsOneWidget);
-      expect(find.text('Multiplayer'), findsOneWidget);
+      expect(find.text('League'), findsOneWidget);
       expect(find.text('Deck'), findsOneWidget);
       expect(find.text('Settings'), findsOneWidget);
 
@@ -104,8 +104,8 @@ void main() {
     await tester.pumpWidget(buildApp(router));
     await tester.pumpAndSettle();
 
-    // Tap on Multiplayer tab
-    await tester.tap(find.text('Multiplayer'));
+    // Tap on Multiplayer (League) tab
+    await tester.tap(find.text('League'));
     await tester.pumpAndSettle();
 
     expect(find.text('Multiplayer Content'), findsOneWidget);

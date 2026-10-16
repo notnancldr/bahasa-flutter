@@ -8,6 +8,7 @@ abstract class ProfileLocalDataSource {
   Future<UserProfileModel> getProfile();
   Future<UserProfileModel> saveProfile(UserProfileModel profile);
   Future<String?> pickProfilePhoto();
+  Future<bool> hasProfile();
   Future<void> clearProfile();
 }
 
@@ -19,6 +20,12 @@ class ProfileLocalDataSourceImpl implements ProfileLocalDataSource {
 
   Future<SharedPreferences> _getPrefs() async {
     return _prefs ?? await SharedPreferences.getInstance();
+  }
+
+  @override
+  Future<bool> hasProfile() async {
+    final prefs = await _getPrefs();
+    return prefs.containsKey(_profileKey);
   }
 
   @override

@@ -1,50 +1,115 @@
 import 'dart:io';
 
+import 'package:bahasa/core/constants/gemini_config.dart';
 import 'package:bahasa/core/utils/deck_db_loader.dart';
 import 'package:bahasa/core/utils/main_db_loader.dart';
-import 'package:bahasa/core/utils/random_char.dart';
+import 'package:bahasa/features/decks/generate_deck/data/datasources/gemini_deck_generator_datasource.dart';
+import 'package:bahasa/features/decks/generate_deck/data/datasources/local_gemma_deck_generator_datasource.dart';
+import 'package:bahasa/features/decks/import_deck/data/models/euy_deck_model.dart';
+import 'package:bahasa/features/login/domain/entities/ai_model_preference.dart';
+import 'package:bahasa/features/login/domain/services/model_download_service.dart';
+import 'package:bahasa/features/settings/domain/repositories/settings_repository.dart';
+import 'package:bahasa/features/settings/settings_dependencies.dart';
 
 import '../../domain/entities/deck_generation_request.dart';
 import '../../domain/entities/generated_deck_result.dart';
 import '../../domain/repositories/generate_deck_repository.dart';
 
-/// Implementation of [GenerateDeckRepository] simulating AI generation
-/// and committing the generated records into SQLite.
+/// Implementation of [GenerateDeckRepository] calling real AI models
+/// (Online Gemini or Local Gemma) and persisting results to SQLite databases.
 class GenerateDeckRepositoryImpl implements GenerateDeckRepository {
   final MainDbLoader _mainDbLoader;
   final DeckDbLoader _deckDbLoader;
+  final SettingsRepository _settingsRepository;
+  final GeminiDeckGeneratorDataSource _geminiDataSource;
+  final LocalGemmaDeckGeneratorDataSource _localGemmaDataSource;
+  final ModelDownloadService _downloadService;
   final Directory? _overrideStorageDirectory;
 
-  const GenerateDeckRepositoryImpl({
+  GenerateDeckRepositoryImpl({
     MainDbLoader? mainDbLoader,
     DeckDbLoader? deckDbLoader,
+    SettingsRepository? settingsRepository,
+    GeminiDeckGeneratorDataSource? geminiDataSource,
+    LocalGemmaDeckGeneratorDataSource? localGemmaDataSource,
+    ModelDownloadService? downloadService,
     this._overrideStorageDirectory,
   }) : _mainDbLoader = mainDbLoader ?? const MainDbLoader(),
-       _deckDbLoader = deckDbLoader ?? const DeckDbLoader();
+       _deckDbLoader = deckDbLoader ?? const DeckDbLoader(),
+       _settingsRepository =
+           settingsRepository ??
+           SettingsDependencies.createSettingsRepository(),
+       _geminiDataSource =
+           geminiDataSource ?? const GeminiDeckGeneratorDataSource(),
+       _localGemmaDataSource =
+           localGemmaDataSource ?? const LocalGemmaDeckGeneratorDataSource(),
+       _downloadService = downloadService ?? ModelDownloadService();
 
   @override
   Future<GeneratedDeckResult> generateDeck(
     DeckGenerationRequest request,
   ) async {
-    // Simulate generation latency
-    await Future.delayed(const Duration(milliseconds: 1000));
+    try {
+      final aiMode = await _settingsRepository.getAiModelPreference();
+      final EuyDeckModel deck;
 
-    // Support intentional error simulation for testing
-    if (request.name.toLowerCase().contains('error') ||
-        request.name.toLowerCase().contains('gagal')) {
-      return GeneratedDeckResult.failure(
-        'Simulated AI service generation error.',
+      if (aiMode == AiModelType.local) {
+        final modelPath = await _downloadService.getModelPathIfAvailable();
+        if (modelPath == null) {
+          return GeneratedDeckResult.failure(
+            'Local AI model is not ready. Please download it first or switch to Online AI in Settings.',
+          );
+        }
+
+        deck = await _localGemmaDataSource.generateDeck(
+          request: request,
+          modelPath: modelPath,
+        );
+      } else {
+        // Enforce online deck generation daily limit (maximum 1 deck per day)
+        final canGenerate = await _settingsRepository
+            .canGenerateOnlineDeckToday();
+        if (!canGenerate) {
+          return GeneratedDeckResult.failure(
+            'Batas pembuatan deck online tercapai (maksimum 1 deck per hari). Silakan gunakan AI Lokal atau coba lagi besok.',
+          );
+        }
+
+        // Obtain developer-provided Gemini API key
+        final apiKey = GeminiConfig.developerGeminiApiKey;
+        if (!GeminiConfig.isConfigured) {
+          return GeneratedDeckResult.failure(
+            'Gemini API key is not configured by the developer. Please configure developerGeminiApiKey in lib/core/constants/gemini_config.dart.',
+          );
+        }
+
+        deck = await _geminiDataSource.generateDeck(
+          request: request,
+          apiKey: apiKey,
+        );
+      }
+
+      await _persistDeck(deck);
+
+      if (aiMode != AiModelType.local) {
+        await _settingsRepository.recordOnlineDeckGeneration();
+      }
+
+      return GeneratedDeckResult(
+        deckId: deck.id,
+        name: deck.name,
+        cardCount: deck.listCards.length,
+        isSuccess: true,
       );
+    } catch (e) {
+      return GeneratedDeckResult.failure(e.toString());
     }
+  }
 
-    final deckId =
-        'gen_${DateTime.now().millisecondsSinceEpoch}_${randomChar(8)}';
+  Future<void> _persistDeck(EuyDeckModel deck) async {
     final nowMs = DateTime.now().millisecondsSinceEpoch;
 
-    // Generated sample cards tailored to the requested language
-    final generatedCards = _buildSampleCards(request);
-
-    // 1. Commit deck to basa.sqlite
+    // 1. Commit deck record to basa.sqlite
     final mainDb = await _mainDbLoader.openDatabase(
       overrideDirectory: _overrideStorageDirectory,
     );
@@ -56,15 +121,13 @@ class GenerateDeckRepositoryImpl implements GenerateDeckRepository {
         ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);
       ''');
       stmt.execute([
-        deckId,
-        request.name,
-        request.language,
-        request.difficulty,
-        request.description,
-        'AI generated assistant',
-        request.description.isEmpty
-            ? 'Kosakata harian terstruktur'
-            : request.description,
+        deck.id,
+        deck.name,
+        deck.language,
+        deck.difficulty,
+        deck.explanationRolePlay,
+        deck.rolePlay,
+        deck.explanationRolePlay,
         0,
         null,
         nowMs,
@@ -77,7 +140,7 @@ class GenerateDeckRepositoryImpl implements GenerateDeckRepository {
 
     // 2. Commit cards to deck_<uuid>.sqlite
     final deckDb = await _deckDbLoader.openDeckDatabase(
-      deckId,
+      deck.id,
       overrideDirectory: _overrideStorageDirectory,
     );
     try {
@@ -88,17 +151,17 @@ class GenerateDeckRepositoryImpl implements GenerateDeckRepository {
         ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);
       ''');
 
-      for (final card in generatedCards) {
+      for (final card in deck.listCards) {
         stmt.execute([
-          card['idCard'],
-          card['defaultLanguage'],
-          card['translation'],
-          card['phoneticLang'],
+          card.idCard,
+          card.defaultLanguage,
+          card.translation,
+          card.phoneticLang,
           null,
-          card['additionalContext'],
-          0,
-          0,
-          0,
+          card.additionalContext,
+          card.reps,
+          card.correctAnswer,
+          card.finalScore,
           nowMs,
           nowMs,
         ]);
@@ -107,91 +170,5 @@ class GenerateDeckRepositoryImpl implements GenerateDeckRepository {
     } finally {
       deckDb.close();
     }
-
-    return GeneratedDeckResult(
-      deckId: deckId,
-      name: request.name,
-      cardCount: generatedCards.length,
-      isSuccess: true,
-    );
-  }
-
-  List<Map<String, dynamic>> _buildSampleCards(DeckGenerationRequest request) {
-    return [
-      {
-        'idCard': 'c_${randomChar(8)}',
-        'defaultLanguage': 'Halo',
-        'translation': 'Konnichiwa',
-        'phoneticLang': '/kon.ni.tɕi.wa/',
-        'additionalContext': 'Sapaan umum yang digunakan sepanjang hari, setara dengan "halo" dalam bahasa Indonesia.',
-      },
-      {
-        'idCard': 'c_${randomChar(8)}',
-        'defaultLanguage': 'Terima kasih banyak',
-        'translation': 'Arigatou gozaimasu',
-        'phoneticLang': '/a.ɾi.ɡa.toː ɡo.za.i.ma.sɯ/',
-        'additionalContext':
-            'Bentuk sopan untuk mengucapkan terima kasih kepada orang lain.',
-      },
-      {
-        'idCard': 'c_${randomChar(8)}',
-        'defaultLanguage': 'Selamat tinggal',
-        'translation': 'Sayounara',
-        'phoneticLang': '/sa.joː.na.ɾa/',
-        'additionalContext': 'Salam perpisahan formal ketika berpisah untuk waktu yang cukup lama.',
-      },
-      {
-        'idCard': 'c_${randomChar(8)}',
-        'defaultLanguage': 'Selamat pagi',
-        'translation': 'Ohayou gozaimasu',
-        'phoneticLang': '/o.ha.joː ɡo.za.i.ma.sɯ/',
-        'additionalContext': 'Sapaan sopan yang digunakan pada pagi hari hingga menjelang siang.',
-      },
-      {
-        'idCard': 'c_${randomChar(8)}',
-        'defaultLanguage': 'Selamat malam',
-        'translation': 'Konbanwa',
-        'phoneticLang': '/kom.baɰ̃.wa/',
-        'additionalContext':
-            'Sapaan yang digunakan ketika bertemu seseorang pada malam hari.',
-      },
-      {
-        'idCard': 'c_${randomChar(8)}',
-        'defaultLanguage': 'Mohon maaf',
-        'translation': 'Gomen nasai',
-        'phoneticLang': '/ɡo.men na.sa.i/',
-        'additionalContext':
-            'Digunakan untuk meminta maaf secara tulus atas kesalahan.',
-      },
-      {
-        'idCard': 'c_${randomChar(8)}',
-        'defaultLanguage': 'Permisi',
-        'translation': 'Sumimasen',
-        'phoneticLang': '/sɯ.mi.ma.seɴ/',
-        'additionalContext': 'Ungkapan sopan untuk menarik perhatian, meminta izin, atau meminta maaf ringan.',
-      },
-      {
-        'idCard': 'c_${randomChar(8)}',
-        'defaultLanguage': 'Sampai jumpa besok',
-        'translation': 'Mata ashita',
-        'phoneticLang': '/ma.ta a.ɕi.ta/',
-        'additionalContext': 'Salam perpisahan santai antar teman yang akan bertemu kembali besok.',
-      },
-      {
-        'idCard': 'c_${randomChar(8)}',
-        'defaultLanguage': 'Senang bertemu dengan anda',
-        'translation': 'Hajimemashite',
-        'phoneticLang': '/ha.dʑi.me.ma.ɕi.te/',
-        'additionalContext':
-            'Ungkapan perkenalan saat pertama kali bertemu dengan seseorang.',
-      },
-      {
-        'idCard': 'c_${randomChar(8)}',
-        'defaultLanguage': 'Selamat makan',
-        'translation': 'Itadakimasu',
-        'phoneticLang': '/i.ta.da.ki.ma.sɯ/',
-        'additionalContext': 'Ungkapan rasa syukur yang diucapkan sebelum mulai menyantap hidangan.',
-      },
-    ];
   }
 }

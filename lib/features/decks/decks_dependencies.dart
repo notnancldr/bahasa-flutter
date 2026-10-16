@@ -167,7 +167,7 @@ abstract class DecksDependencies {
 
   /// Creates a [GenerateDeckRepository] instance.
   static GenerateDeckRepository createGenerateDeckRepository() {
-    return const GenerateDeckRepositoryImpl();
+    return GenerateDeckRepositoryImpl();
   }
 
   /// Creates a [GenerateDeckBloc] instance.

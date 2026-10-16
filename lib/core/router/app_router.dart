@@ -10,6 +10,8 @@ import 'package:bahasa/features/decks/presentation/pages/deck_page.dart';
 import 'package:bahasa/features/decks/study/presentation/pages/flashcard_page.dart';
 import 'package:bahasa/features/decks/study/presentation/pages/quiz_page.dart';
 import 'package:bahasa/features/home/presentation/pages/home_page.dart';
+import 'package:bahasa/features/login/presentation/pages/ai_model_download_page.dart';
+import 'package:bahasa/features/login/presentation/pages/ai_model_selection_page.dart';
 import 'package:bahasa/features/login/presentation/pages/login_page.dart';
 import 'package:bahasa/features/login/presentation/pages/transfer_page.dart';
 import 'package:bahasa/features/login/presentation/pages/welcome_page.dart';
@@ -20,24 +22,56 @@ import 'package:bahasa/features/multiplayer/presentation/pages/multiplayer_lobby
 import 'package:bahasa/features/multiplayer/presentation/pages/multiplayer_main_page.dart';
 import 'package:bahasa/features/multiplayer/presentation/pages/multiplayer_room_page.dart';
 import 'package:bahasa/features/multiplayer/presentation/pages/multiplayer_select_deck_page.dart';
+import 'package:bahasa/features/settings/domain/repositories/profile_repository.dart';
+import 'package:bahasa/features/settings/domain/repositories/settings_repository.dart';
 import 'package:bahasa/features/settings/presentation/bloc/account/account_bloc.dart';
 import 'package:bahasa/features/settings/presentation/pages/account_settings_page.dart';
+import 'package:bahasa/features/settings/presentation/pages/ai_settings_page.dart';
 import 'package:bahasa/features/settings/presentation/pages/data_storage_page.dart';
 import 'package:bahasa/features/settings/presentation/pages/edit_profile_page.dart';
 import 'package:bahasa/features/settings/presentation/pages/language_settings_page.dart';
 import 'package:bahasa/features/settings/presentation/pages/settings_page.dart';
 import 'package:bahasa/features/settings/presentation/pages/share_data_page.dart';
 import 'package:bahasa/features/settings/presentation/pages/theme_settings_page.dart';
+import 'package:bahasa/features/settings/settings_dependencies.dart';
 import 'package:go_router/go_router.dart';
 
 import 'app_routes.dart';
 
 class AppRouter {
-  AppRouter();
+  final ProfileRepository _profileRepository;
+  final SettingsRepository _settingsRepository;
+
+  AppRouter({
+    ProfileRepository? profileRepository,
+    SettingsRepository? settingsRepository,
+  }) : _profileRepository =
+           profileRepository ?? SettingsDependencies.createProfileRepository(),
+       _settingsRepository =
+           settingsRepository ??
+           SettingsDependencies.createSettingsRepository();
 
   late final GoRouter router = GoRouter(
-    initialLocation: AppRoutes.home, // Temporary initial location
+    initialLocation: AppRoutes.home,
     debugLogDiagnostics: true,
+    redirect: (context, state) async {
+      final hasProfile = await _profileRepository.hasProfile();
+      final isOnboarded = await _settingsRepository.isOnboardingCompleted();
+      final isLoggedIn = hasProfile && isOnboarded;
+
+      final location = state.matchedLocation;
+      final isLoginRoute = location.startsWith('/login');
+
+      if (!isLoggedIn && !isLoginRoute) {
+        return AppRoutes.login;
+      }
+
+      if (isLoggedIn && isLoginRoute) {
+        return AppRoutes.home;
+      }
+
+      return null;
+    },
     routes: [
       GoRoute(
         path: AppRoutes.login,
@@ -60,6 +94,24 @@ class AppRouter {
           context: context,
           state: state,
           child: const TransferPage(),
+        ),
+      ),
+      GoRoute(
+        path: AppRoutes.loginAiSelection,
+        name: "loginAiSelection",
+        pageBuilder: (context, state) => buildSlideTransitionPage(
+          context: context,
+          state: state,
+          child: const AiModelSelectionPage(),
+        ),
+      ),
+      GoRoute(
+        path: AppRoutes.loginAiDownload,
+        name: "loginAiDownload",
+        pageBuilder: (context, state) => buildSlideTransitionPage(
+          context: context,
+          state: state,
+          child: const AiModelDownloadPage(),
         ),
       ),
       GoRoute(
@@ -312,6 +364,15 @@ class AppRouter {
           context: context,
           state: state,
           child: const ShareDataPage(),
+        ),
+      ),
+      GoRoute(
+        path: AppRoutes.settingsAi,
+        name: "settingsAi",
+        pageBuilder: (context, state) => buildSlideTransitionPage(
+          context: context,
+          state: state,
+          child: const AiSettingsPage(),
         ),
       ),
     ],

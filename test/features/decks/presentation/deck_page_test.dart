@@ -79,6 +79,9 @@ class _FakeProfileRepository implements ProfileRepository {
   Future<String?> pickProfilePhoto() async => null;
 
   @override
+  Future<bool> hasProfile() async => true;
+
+  @override
   Future<void> deleteProfileAndData() async {}
 }
 

@@ -214,6 +214,17 @@ class SettingsView extends StatelessWidget {
               ),
               const SizedBox(height: 12),
 
+              // Menu: Model AI
+              SettingsMenuTile(
+                icon: Symbols.smart_toy,
+                iconColor: const Color(0xFF264653),
+                iconBackgroundColor: const Color(0xFFE2F3F5),
+                title: l.settings_ai_title,
+                subtitle: l.settings_ai_subtitle,
+                onTap: () => context.push(AppRoutes.settingsAi),
+              ),
+              const SizedBox(height: 12),
+
               // Menu: Data & Penyimpanan
               SettingsMenuTile(
                 icon: Symbols.database,

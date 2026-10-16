@@ -1058,7 +1058,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get deck_history_time_yesterday => 'Yesterday';
 
   @override
-  String get nav_multiplayer => 'Multiplayer';
+  String get nav_multiplayer => 'League';
 
   @override
   String get multiplayer_title => 'Play Together';
@@ -1219,6 +1219,136 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get multiplayer_leave_confirm_no => 'Cancel';
+
+  @override
+  String get ai_mode_choose_title => 'Choose AI processing mode';
+
+  @override
+  String get ai_mode_choose_subtitle =>
+      'Determine how BASA AI creates vocabulary cards for you. This choice can be changed at any time in Settings.';
+
+  @override
+  String get ai_mode_feature_header => 'Feature';
+
+  @override
+  String get ai_mode_online_header => 'Online';
+
+  @override
+  String get ai_mode_local_header => 'Local';
+
+  @override
+  String get ai_feature_unlimited_generation =>
+      'Generate deck without limitations';
+
+  @override
+  String get ai_feature_offline_use => 'Can be used without internet (offline)';
+
+  @override
+  String get ai_feature_private_storage =>
+      'Data stored securely on device (private)';
+
+  @override
+  String get ai_feature_faster_process => 'Faster generation process';
+
+  @override
+  String get ai_feature_broader_context =>
+      'Broader & dynamic vocabulary context';
+
+  @override
+  String get ai_feature_more_accurate => 'More accurate vocabulary results';
+
+  @override
+  String get ai_feature_daily_limit => '1 deck per day limit';
+
+  @override
+  String get ai_feature_requires_internet => 'Requires internet connection';
+
+  @override
+  String get ai_feature_data_training => 'Data used to train AI';
+
+  @override
+  String get ai_button_start_download => 'Start Download (2.59GB)';
+
+  @override
+  String get ai_button_continue_online => 'continue using online model';
+
+  @override
+  String get ai_download_progress_title => 'Local AI Download in Progress...';
+
+  @override
+  String get ai_download_continue_in_background => 'Continue in Background';
+
+  @override
+  String get ai_download_retry => 'Retry Download';
+
+  @override
+  String get ai_download_error_title => 'Download Failed';
+
+  @override
+  String get ai_download_complete_title => 'AI Download Successful';
+
+  @override
+  String get ai_download_complete_subtitle =>
+      'Your profile is ready to use. Let\'s continue your learning journey calmly.';
+
+  @override
+  String get ai_download_complete_button => 'Done';
+
+  @override
+  String get settings_ai_title => 'AI Processing Mode';
+
+  @override
+  String get settings_ai_subtitle =>
+      'Configure AI processing model and Gemini API';
+
+  @override
+  String get settings_gemini_api_key => 'Gemini API Key';
+
+  @override
+  String get settings_gemini_api_key_desc =>
+      'Required for Online AI generation';
+
+  @override
+  String get settings_gemini_api_key_hint => 'Enter your Gemini API key...';
+
+  @override
+  String get settings_gemini_guide => 'Gemini API Setup Guide';
+
+  @override
+  String get settings_local_model_status => 'Local Model Status';
+
+  @override
+  String settings_local_model_downloaded(String size) {
+    return 'Downloaded ($size)';
+  }
+
+  @override
+  String get settings_local_model_not_downloaded => 'Not Downloaded';
+
+  @override
+  String get settings_download_local_model => 'Download Local Model (2.59GB)';
+
+  @override
+  String get settings_delete_local_model => 'Delete Local Model';
+
+  @override
+  String get deck_gen_online_daily_limit_reached =>
+      'Online generation limit reached (maximum 1 deck per day). Please use Local AI or try again tomorrow.';
+
+  @override
+  String get settings_cancel_download => 'Cancel';
+
+  @override
+  String get settings_delete_local_model_confirm_title =>
+      'Delete Local AI Model?';
+
+  @override
+  String get settings_delete_local_model_confirm_desc =>
+      'This will remove the 2.59 GB model file from device storage. You can download it again anytime.';
+
+  @override
+  String get settings_local_model_downloading =>
+      'Downloading local AI model...';
 
   @override
   String get end_of_translation => '';

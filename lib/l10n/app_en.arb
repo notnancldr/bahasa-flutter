@@ -772,7 +772,7 @@
         "description": "Relative date prefix for yesterday"
     },
 
-    "nav_multiplayer": "Multiplayer",
+    "nav_multiplayer": "League",
     "@nav_multiplayer": {
         "description": "Multiplayer bottom navigation tab label"
     },
@@ -1004,6 +1004,168 @@
     "multiplayer_leave_confirm_no": "Cancel",
     "@multiplayer_leave_confirm_no": {
         "description": "Cancel button to stay in room"
+    },
+
+    "ai_mode_choose_title": "Choose AI processing mode",
+    "@ai_mode_choose_title": {
+        "description": "Title on the AI selection onboarding page"
+    },
+    "ai_mode_choose_subtitle": "Determine how BASA AI creates vocabulary cards for you. This choice can be changed at any time in Settings.",
+    "@ai_mode_choose_subtitle": {
+        "description": "Subtitle describing the AI processing mode selection"
+    },
+    "ai_mode_feature_header": "Feature",
+    "@ai_mode_feature_header": {
+        "description": "Feature column header in AI mode comparison table"
+    },
+    "ai_mode_online_header": "Online",
+    "@ai_mode_online_header": {
+        "description": "Online column header in AI mode comparison table"
+    },
+    "ai_mode_local_header": "Local",
+    "@ai_mode_local_header": {
+        "description": "Local column header in AI mode comparison table"
+    },
+    "ai_feature_unlimited_generation": "Generate deck without limitations",
+    "@ai_feature_unlimited_generation": {
+        "description": "Feature comparison row for unlimited generation"
+    },
+    "ai_feature_offline_use": "Can be used without internet (offline)",
+    "@ai_feature_offline_use": {
+        "description": "Feature comparison row for offline usage"
+    },
+    "ai_feature_private_storage": "Data stored securely on device (private)",
+    "@ai_feature_private_storage": {
+        "description": "Feature comparison row for private on-device data"
+    },
+    "ai_feature_faster_process": "Faster generation process",
+    "@ai_feature_faster_process": {
+        "description": "Feature comparison row for faster generation speed"
+    },
+    "ai_feature_broader_context": "Broader & dynamic vocabulary context",
+    "@ai_feature_broader_context": {
+        "description": "Feature comparison row for broader vocabulary context"
+    },
+    "ai_feature_more_accurate": "More accurate vocabulary results",
+    "@ai_feature_more_accurate": {
+        "description": "Feature comparison row for vocabulary accuracy"
+    },
+    "ai_feature_daily_limit": "1 deck per day limit",
+    "@ai_feature_daily_limit": {
+        "description": "Feature comparison row for daily deck limits"
+    },
+    "ai_feature_requires_internet": "Requires internet connection",
+    "@ai_feature_requires_internet": {
+        "description": "Feature comparison row for internet connectivity requirement"
+    },
+    "ai_feature_data_training": "Data used to train AI",
+    "@ai_feature_data_training": {
+        "description": "Feature comparison row for AI training data usage"
+    },
+    "ai_button_start_download": "Start Download (2.59GB)",
+    "@ai_button_start_download": {
+        "description": "Primary action button to download local AI model"
+    },
+    "ai_button_continue_online": "continue using online model",
+    "@ai_button_continue_online": {
+        "description": "Secondary link button to proceed with online AI model"
+    },
+    "ai_download_progress_title": "Local AI Download in Progress...",
+    "@ai_download_progress_title": {
+        "description": "Title on the local AI download progress screen"
+    },
+    "ai_download_continue_in_background": "Continue in Background",
+    "@ai_download_continue_in_background": {
+        "description": "Action button to allow download to proceed in background"
+    },
+    "ai_download_retry": "Retry Download",
+    "@ai_download_retry": {
+        "description": "Button to retry downloading the local AI model"
+    },
+    "ai_download_error_title": "Download Failed",
+    "@ai_download_error_title": {
+        "description": "Title when model download encounters an error"
+    },
+    "ai_download_complete_title": "AI Download Successful",
+    "@ai_download_complete_title": {
+        "description": "Title on the download completion screen"
+    },
+    "ai_download_complete_subtitle": "Your profile is ready to use. Let's continue your learning journey calmly.",
+    "@ai_download_complete_subtitle": {
+        "description": "Subtitle on the download completion screen"
+    },
+    "ai_download_complete_button": "Done",
+    "@ai_download_complete_button": {
+        "description": "Button to complete onboarding after local AI model download"
+    },
+    "settings_ai_title": "AI Processing Mode",
+    "@settings_ai_title": {
+        "description": "Title for AI settings page and menu tile"
+    },
+    "settings_ai_subtitle": "Configure AI processing model and Gemini API",
+    "@settings_ai_subtitle": {
+        "description": "Subtitle for AI settings tile"
+    },
+    "settings_gemini_api_key": "Gemini API Key",
+    "@settings_gemini_api_key": {
+        "description": "Label for Gemini API key field"
+    },
+    "settings_gemini_api_key_desc": "Required for Online AI generation",
+    "@settings_gemini_api_key_desc": {
+        "description": "Description explaining the need for Gemini API key"
+    },
+    "settings_gemini_api_key_hint": "Enter your Gemini API key...",
+    "@settings_gemini_api_key_hint": {
+        "description": "Placeholder hint for Gemini API key input"
+    },
+    "settings_gemini_guide": "Gemini API Setup Guide",
+    "@settings_gemini_guide": {
+        "description": "Button or link text to open Gemini API setup documentation"
+    },
+    "settings_local_model_status": "Local Model Status",
+    "@settings_local_model_status": {
+        "description": "Section header for local model download status"
+    },
+    "settings_local_model_downloaded": "Downloaded ({size})",
+    "@settings_local_model_downloaded": {
+        "description": "Status text when local AI model is downloaded",
+        "placeholders": {
+            "size": {
+                "type": "String"
+            }
+        }
+    },
+    "settings_local_model_not_downloaded": "Not Downloaded",
+    "@settings_local_model_not_downloaded": {
+        "description": "Status text when local AI model is not downloaded"
+    },
+    "settings_download_local_model": "Download Local Model (2.59GB)",
+    "@settings_download_local_model": {
+        "description": "Button to download local model from settings"
+    },
+    "settings_delete_local_model": "Delete Local Model",
+    "@settings_delete_local_model": {
+        "description": "Button to delete local model file from device storage"
+    },
+    "deck_gen_online_daily_limit_reached": "Online generation limit reached (maximum 1 deck per day). Please use Local AI or try again tomorrow.",
+    "@deck_gen_online_daily_limit_reached": {
+        "description": "Error message when the daily 1 deck limit for online generation has been reached"
+    },
+    "settings_cancel_download": "Cancel",
+    "@settings_cancel_download": {
+        "description": "Button to cancel active model download"
+    },
+    "settings_delete_local_model_confirm_title": "Delete Local AI Model?",
+    "@settings_delete_local_model_confirm_title": {
+        "description": "Title for dialog confirming local model deletion"
+    },
+    "settings_delete_local_model_confirm_desc": "This will remove the 2.59 GB model file from device storage. You can download it again anytime.",
+    "@settings_delete_local_model_confirm_desc": {
+        "description": "Confirmation message before deleting downloaded model"
+    },
+    "settings_local_model_downloading": "Downloading local AI model...",
+    "@settings_local_model_downloading": {
+        "description": "Status text while model is downloading"
     },
 
     "end_of_translation": "",

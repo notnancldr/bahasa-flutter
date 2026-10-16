@@ -1,4 +1,5 @@
 import 'package:bahasa/core/localization/locale_cubit.dart';
+import 'package:bahasa/core/router/app_routes.dart';
 import 'package:bahasa/core/widgets/embossed_button/embossed_button.dart';
 import 'package:bahasa/core/widgets/step_page_switcher.dart';
 import 'package:bahasa/features/login/domain/enums/login_step_enum.dart';
@@ -159,7 +160,7 @@ class LoginView extends StatelessWidget {
         context.read<LoginBloc>().add(SaveProfile());
       },
       ProfileSavedState() => () {
-        context.go("/");
+        context.go(AppRoutes.loginAiSelection);
       },
       _ => null,
     };

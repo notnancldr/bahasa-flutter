@@ -1952,7 +1952,7 @@ abstract class AppLocalizations {
   /// Multiplayer bottom navigation tab label
   ///
   /// In id, this message translates to:
-  /// **'Multiplayer'**
+  /// **'Laga'**
   String get nav_multiplayer;
 
   /// Multiplayer page title
@@ -2236,6 +2236,240 @@ abstract class AppLocalizations {
   /// In id, this message translates to:
   /// **'Batal'**
   String get multiplayer_leave_confirm_no;
+
+  /// Title on the AI selection onboarding page
+  ///
+  /// In id, this message translates to:
+  /// **'Pilih mode pemrosesan AI'**
+  String get ai_mode_choose_title;
+
+  /// Subtitle describing the AI processing mode selection
+  ///
+  /// In id, this message translates to:
+  /// **'Tentukan bagaimana AI BASA membuat kartu kosakata untuk Anda. Pilihan ini dapat diubah kapan saja di Pengaturan.'**
+  String get ai_mode_choose_subtitle;
+
+  /// Feature column header in AI mode comparison table
+  ///
+  /// In id, this message translates to:
+  /// **'Fitur'**
+  String get ai_mode_feature_header;
+
+  /// Online column header in AI mode comparison table
+  ///
+  /// In id, this message translates to:
+  /// **'Online'**
+  String get ai_mode_online_header;
+
+  /// Local column header in AI mode comparison table
+  ///
+  /// In id, this message translates to:
+  /// **'Local'**
+  String get ai_mode_local_header;
+
+  /// Feature comparison row for unlimited generation
+  ///
+  /// In id, this message translates to:
+  /// **'Generate deck tanpa batasan'**
+  String get ai_feature_unlimited_generation;
+
+  /// Feature comparison row for offline usage
+  ///
+  /// In id, this message translates to:
+  /// **'Dapat digunakan tanpa internet (offline)'**
+  String get ai_feature_offline_use;
+
+  /// Feature comparison row for private on-device data
+  ///
+  /// In id, this message translates to:
+  /// **'Data tersimpan aman di perangkat (privat)'**
+  String get ai_feature_private_storage;
+
+  /// Feature comparison row for faster generation speed
+  ///
+  /// In id, this message translates to:
+  /// **'Proses generate lebih cepat'**
+  String get ai_feature_faster_process;
+
+  /// Feature comparison row for broader vocabulary context
+  ///
+  /// In id, this message translates to:
+  /// **'Konteks data kosakata lebih luas & dinamis'**
+  String get ai_feature_broader_context;
+
+  /// Feature comparison row for vocabulary accuracy
+  ///
+  /// In id, this message translates to:
+  /// **'Hasil kosakata lebih akurat'**
+  String get ai_feature_more_accurate;
+
+  /// Feature comparison row for daily deck limits
+  ///
+  /// In id, this message translates to:
+  /// **'Batas 1 deck per hari'**
+  String get ai_feature_daily_limit;
+
+  /// Feature comparison row for internet connectivity requirement
+  ///
+  /// In id, this message translates to:
+  /// **'Memerlukan koneksi internet'**
+  String get ai_feature_requires_internet;
+
+  /// Feature comparison row for AI training data usage
+  ///
+  /// In id, this message translates to:
+  /// **'Data digunakan untuk melatih AI'**
+  String get ai_feature_data_training;
+
+  /// Primary action button to download local AI model
+  ///
+  /// In id, this message translates to:
+  /// **'Mulai Download (2.59GB)'**
+  String get ai_button_start_download;
+
+  /// Secondary link button to proceed with online AI model
+  ///
+  /// In id, this message translates to:
+  /// **'lanjut menggunakan model online'**
+  String get ai_button_continue_online;
+
+  /// Title on the local AI download progress screen
+  ///
+  /// In id, this message translates to:
+  /// **'Download AI local Berlangsung...'**
+  String get ai_download_progress_title;
+
+  /// Action button to allow download to proceed in background
+  ///
+  /// In id, this message translates to:
+  /// **'Lanjutkan di Latar Belakang'**
+  String get ai_download_continue_in_background;
+
+  /// Button to retry downloading the local AI model
+  ///
+  /// In id, this message translates to:
+  /// **'Coba Unduh Lagi'**
+  String get ai_download_retry;
+
+  /// Title when model download encounters an error
+  ///
+  /// In id, this message translates to:
+  /// **'Download Gagal'**
+  String get ai_download_error_title;
+
+  /// Title on the download completion screen
+  ///
+  /// In id, this message translates to:
+  /// **'Download AI Berhasil'**
+  String get ai_download_complete_title;
+
+  /// Subtitle on the download completion screen
+  ///
+  /// In id, this message translates to:
+  /// **'Profilmu sudah siap digunakan. Mari lanjutkan perjalanan belajarmu dengan tenang.'**
+  String get ai_download_complete_subtitle;
+
+  /// Button to complete onboarding after local AI model download
+  ///
+  /// In id, this message translates to:
+  /// **'Selesai'**
+  String get ai_download_complete_button;
+
+  /// Title for AI settings page and menu tile
+  ///
+  /// In id, this message translates to:
+  /// **'Mode Pemrosesan AI'**
+  String get settings_ai_title;
+
+  /// Subtitle for AI settings tile
+  ///
+  /// In id, this message translates to:
+  /// **'Atur model pemrosesan AI dan API Gemini'**
+  String get settings_ai_subtitle;
+
+  /// Label for Gemini API key field
+  ///
+  /// In id, this message translates to:
+  /// **'Kunci API Gemini'**
+  String get settings_gemini_api_key;
+
+  /// Description explaining the need for Gemini API key
+  ///
+  /// In id, this message translates to:
+  /// **'Dibutuhkan untuk pembuatan AI Online'**
+  String get settings_gemini_api_key_desc;
+
+  /// Placeholder hint for Gemini API key input
+  ///
+  /// In id, this message translates to:
+  /// **'Masukkan kunci API Gemini...'**
+  String get settings_gemini_api_key_hint;
+
+  /// Button or link text to open Gemini API setup documentation
+  ///
+  /// In id, this message translates to:
+  /// **'Panduan Pengaturan API Gemini'**
+  String get settings_gemini_guide;
+
+  /// Section header for local model download status
+  ///
+  /// In id, this message translates to:
+  /// **'Status Model Lokal'**
+  String get settings_local_model_status;
+
+  /// Status text when local AI model is downloaded
+  ///
+  /// In id, this message translates to:
+  /// **'Sudah Diunduh ({size})'**
+  String settings_local_model_downloaded(String size);
+
+  /// Status text when local AI model is not downloaded
+  ///
+  /// In id, this message translates to:
+  /// **'Belum Diunduh'**
+  String get settings_local_model_not_downloaded;
+
+  /// Button to download local model from settings
+  ///
+  /// In id, this message translates to:
+  /// **'Unduh Model Lokal (2.59GB)'**
+  String get settings_download_local_model;
+
+  /// Button to delete local model file from device storage
+  ///
+  /// In id, this message translates to:
+  /// **'Hapus Model Lokal'**
+  String get settings_delete_local_model;
+
+  /// Error message when the daily 1 deck limit for online generation has been reached
+  ///
+  /// In id, this message translates to:
+  /// **'Batas pembuatan deck online tercapai (maksimum 1 deck per hari). Silakan gunakan AI Lokal atau coba lagi besok.'**
+  String get deck_gen_online_daily_limit_reached;
+
+  /// Button to cancel active model download
+  ///
+  /// In id, this message translates to:
+  /// **'Batal'**
+  String get settings_cancel_download;
+
+  /// Title for dialog confirming local model deletion
+  ///
+  /// In id, this message translates to:
+  /// **'Hapus Model AI Lokal?'**
+  String get settings_delete_local_model_confirm_title;
+
+  /// Confirmation message before deleting downloaded model
+  ///
+  /// In id, this message translates to:
+  /// **'Tindakan ini akan menghapus file model 2.59 GB dari penyimpanan perangkat. Anda dapat mengunduhnya kembali kapan saja.'**
+  String get settings_delete_local_model_confirm_desc;
+
+  /// Status text while model is downloading
+  ///
+  /// In id, this message translates to:
+  /// **'Sedang mengunduh model AI lokal...'**
+  String get settings_local_model_downloading;
 
   /// No description provided for @end_of_translation.
   ///
