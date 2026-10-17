@@ -46,11 +46,11 @@ class DeckGenerationErrorView extends StatelessWidget {
         ),
         const SizedBox(height: 8),
 
-        // Subtitle
+        // Subtitle / Detailed error message
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 24),
           child: Text(
-            l.deck_gen_error_subtitle,
+            errorMessage.isNotEmpty ? errorMessage : l.deck_gen_error_subtitle,
             style: t.bodySmall?.copyWith(color: c.onSurfaceVariant),
             textAlign: TextAlign.center,
           ),

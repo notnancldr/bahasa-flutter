@@ -11,13 +11,17 @@ class ProfileRepositoryImpl implements ProfileRepository {
   final DataStorageLocalDataSource _dataStorageDataSource;
 
   ProfileRepositoryImpl({
-    required this._profileDataSource,
-    required this._dataStorageDataSource,
-  });
+    ProfileLocalDataSource? profileDataSource,
+    DataStorageLocalDataSource? dataStorageDataSource,
+  }) : _profileDataSource =
+           profileDataSource ?? ProfileLocalDataSourceImpl(),
+       _dataStorageDataSource =
+           dataStorageDataSource ?? DataStorageLocalDataSourceImpl();
 
   @override
   Future<UserProfile> getProfile() async {
-    return _profileDataSource.getProfile();
+    final profile = await _profileDataSource.getProfile();
+    return profile;
   }
 
   @override
@@ -28,38 +32,23 @@ class ProfileRepositoryImpl implements ProfileRepository {
 
   @override
   Future<UserProfile> updateUsername(String newUsername) async {
-    final current = await _profileDataSource.getProfile();
-    final updated = UserProfileModel(
-      username: newUsername,
-      defaultLanguage: current.defaultLanguage,
-      photoPath: current.photoPath,
-      updatedAt: DateTime.now(),
-    );
-    return _profileDataSource.saveProfile(updated);
+    final current = await getProfile();
+    final updated = current.copyWith(username: newUsername);
+    return saveProfile(updated);
   }
 
   @override
   Future<UserProfile> updateDefaultLanguage(String newDefaultLanguage) async {
-    final current = await _profileDataSource.getProfile();
-    final updated = UserProfileModel(
-      username: current.username,
-      defaultLanguage: newDefaultLanguage,
-      photoPath: current.photoPath,
-      updatedAt: DateTime.now(),
-    );
-    return _profileDataSource.saveProfile(updated);
+    final current = await getProfile();
+    final updated = current.copyWith(defaultLanguage: newDefaultLanguage);
+    return saveProfile(updated);
   }
 
   @override
   Future<UserProfile> updateProfilePhoto(String photoPath) async {
-    final current = await _profileDataSource.getProfile();
-    final updated = UserProfileModel(
-      username: current.username,
-      defaultLanguage: current.defaultLanguage,
-      photoPath: photoPath,
-      updatedAt: DateTime.now(),
-    );
-    return _profileDataSource.saveProfile(updated);
+    final current = await getProfile();
+    final updated = current.copyWith(photoPath: photoPath);
+    return saveProfile(updated);
   }
 
   @override
@@ -84,5 +73,6 @@ class ProfileRepositoryImpl implements ProfileRepository {
     await SettingsDependencies.settingsDataSource.saveOnboardingCompleted(
       false,
     );
+    await SettingsDependencies.settingsDataSource.resetOnlineDeckGeneration();
   }
 }

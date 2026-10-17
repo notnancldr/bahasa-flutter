@@ -217,12 +217,40 @@ class AppLocalizationsId extends AppLocalizations {
       'ja': 'Jepang',
       'ko': 'Korea',
       'fr': 'Prancis',
+      'de': 'Jerman',
+      'it': 'Italia',
       'ru': 'Rusia',
       'ar': 'Arab',
-      'de': 'Jerman',
+      'nl': 'Belanda',
       'pt': 'Portugis',
       'zh': 'Mandarin',
+      'th': 'Thailand',
+      'vi': 'Vietnam',
+      'tr': 'Turki',
       'hi': 'Hindi',
+      'sv': 'Swedia',
+      'no': 'Norwegia',
+      'da': 'Denmark',
+      'fi': 'Finlandia',
+      'pl': 'Polandia',
+      'uk': 'Ukraina',
+      'el': 'Yunani',
+      'he': 'Ibrani',
+      'ms': 'Melayu',
+      'tl': 'Filipina',
+      'cs': 'Ceko',
+      'hu': 'Hongaria',
+      'ro': 'Rumania',
+      'bg': 'Bulgaria',
+      'hr': 'Kroasia',
+      'sk': 'Slowakia',
+      'sl': 'Slovenia',
+      'sw': 'Swahili',
+      'fa': 'Persia',
+      'ur': 'Urdu',
+      'bn': 'Bengali',
+      'ta': 'Tamil',
+      'lat': 'Latin',
       'other': '$code',
     });
     return '$_temp0';
@@ -268,6 +296,19 @@ class AppLocalizationsId extends AppLocalizations {
 
   @override
   String get settings_language_subtitle => 'Pilih bahasa utama aplikasi';
+
+  @override
+  String get settings_language_alert_title => 'Ubah Bahasa Aplikasi & Deck';
+
+  @override
+  String get settings_language_alert_message =>
+      'Mengubah bahasa di sini akan membuat deck dan penjelasan ke depannya dijelaskan serta diterjemahkan menggunakan bahasa yang dipilih.';
+
+  @override
+  String get settings_language_alert_confirm => 'Ubah Bahasa';
+
+  @override
+  String get settings_language_alert_cancel => 'Batal';
 
   @override
   String get settings_notif_title => 'Notifikasi';
@@ -608,6 +649,16 @@ class AppLocalizationsId extends AppLocalizations {
   String get deck_gen_create_button => 'Buat Deck';
 
   @override
+  String deck_gen_limit_reached_title(String time) {
+    return 'Batas harian AI Online tercapai (1 deck/hari). Reset dalam $time.';
+  }
+
+  @override
+  String deck_gen_limit_countdown_button(String time) {
+    return 'Buat Deck (Reset dalam $time)';
+  }
+
+  @override
   String get deck_gen_cancel_button => 'Batal';
 
   @override
@@ -619,6 +670,14 @@ class AppLocalizationsId extends AppLocalizations {
   @override
   String get deck_gen_progress_subtitle =>
       'Kamu akan diberi tahu begitu selesai.';
+
+  @override
+  String deck_gen_cards_collected_progress(int count, int total) {
+    return 'Terkumpul $count / $total kartu';
+  }
+
+  @override
+  String get deck_gen_in_progress_badge => 'Membuat...';
 
   @override
   String get deck_run_in_background => 'Jalankan di Latar Belakang';
@@ -932,6 +991,10 @@ class AppLocalizationsId extends AppLocalizations {
   @override
   String get quiz_mc_instruction =>
       'Pilih arti yang sesuai untuk kata berikut:';
+
+  @override
+  String get quiz_context_instruction =>
+      'Tebak kosakata yang tepat berdasarkan konteks ini:';
 
   @override
   String get quiz_jumble_instruction =>

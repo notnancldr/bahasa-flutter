@@ -70,4 +70,9 @@ class SettingsRepositoryImpl implements SettingsRepository {
   Future<void> recordOnlineDeckGeneration() async {
     await settingsDataSource.recordOnlineDeckGeneration();
   }
+
+  @override
+  Future<void> resetOnlineDeckGeneration() async {
+    await settingsDataSource.resetOnlineDeckGeneration();
+  }
 }

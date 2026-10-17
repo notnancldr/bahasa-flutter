@@ -16,8 +16,8 @@ class MultiplayerStarGrid extends StatelessWidget {
   Widget build(BuildContext context) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
     final emptyColor = isDark
-        ? const Color(0xFF2E3846)
-        : const Color(0xFFE2E8F0);
+        ? const Color(0xFF37474F)
+        : const Color(0xFFCFD8DC);
     const filledColor = Color(0xFFFF6D00);
 
     return Wrap(

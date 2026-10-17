@@ -32,10 +32,15 @@ class GenerateDeckPage extends StatelessWidget {
       return BlocProvider.value(value: bloc!, child: const _GenerateDeckView());
     }
 
-    return BlocProvider(
-      create: (_) => DecksDependencies.createGenerateDeckBloc(),
-      child: const _GenerateDeckView(),
-    );
+    try {
+      context.read<GenerateDeckBloc>();
+      return const _GenerateDeckView();
+    } catch (_) {
+      return BlocProvider(
+        create: (_) => DecksDependencies.createGenerateDeckBloc(),
+        child: const _GenerateDeckView(),
+      );
+    }
   }
 }
 
@@ -61,7 +66,11 @@ class _GenerateDeckView extends StatelessWidget {
               padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
               child: switch (state) {
                 GenerateDeckWizardState() => _buildWizard(context, state, bloc),
-                GenerateDeckInProgressState() => Column(
+                GenerateDeckInProgressState(
+                  :final collectedCards,
+                  :final totalCards,
+                  :final isLocalAi,
+                ) => Column(
                   children: [
                     Text(
                       l.deck_gen_progress_header,
@@ -75,6 +84,9 @@ class _GenerateDeckView extends StatelessWidget {
                     const SizedBox(height: 16),
                     Expanded(
                       child: DeckGenerationProgressView(
+                        collectedCards: collectedCards,
+                        totalCards: totalCards,
+                        isLocalAi: isLocalAi,
                         onRunInBackground: () => context.go(AppRoutes.deck),
                       ),
                     ),

@@ -103,10 +103,31 @@ class GenerateDeckBloc extends Bloc<GenerateDeckEvent, GenerateDeckState> {
     if (state is! GenerateDeckWizardState) return;
     final wizard = state as GenerateDeckWizardState;
 
-    emit(GenerateDeckInProgressState(wizard.name));
+    final request = wizard.toRequest();
+    emit(
+      GenerateDeckInProgressState(
+        deckName: wizard.name,
+        language: wizard.language,
+      ),
+    );
 
     try {
-      final result = await generateDeckUseCase(wizard.toRequest());
+      final result = await generateDeckUseCase(
+        request,
+        onProgress: (collected, total) {
+          if (!emit.isDone) {
+            emit(
+              GenerateDeckInProgressState(
+                deckName: wizard.name,
+                language: wizard.language,
+                collectedCards: collected,
+                totalCards: total,
+                isLocalAi: true,
+              ),
+            );
+          }
+        },
+      );
       if (result.isSuccess) {
         emit(GenerateDeckSuccessState(result));
       } else {

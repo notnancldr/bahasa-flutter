@@ -34,11 +34,15 @@ import 'package:bahasa/features/settings/presentation/pages/settings_page.dart';
 import 'package:bahasa/features/settings/presentation/pages/share_data_page.dart';
 import 'package:bahasa/features/settings/presentation/pages/theme_settings_page.dart';
 import 'package:bahasa/features/settings/settings_dependencies.dart';
+import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 import 'app_routes.dart';
 
 class AppRouter {
+  static final RouteObserver<ModalRoute<void>> routeObserver =
+      RouteObserver<ModalRoute<void>>();
+
   final ProfileRepository _profileRepository;
   final SettingsRepository _settingsRepository;
 
@@ -54,6 +58,7 @@ class AppRouter {
   late final GoRouter router = GoRouter(
     initialLocation: AppRoutes.home,
     debugLogDiagnostics: true,
+    observers: [routeObserver],
     redirect: (context, state) async {
       final hasProfile = await _profileRepository.hasProfile();
       final isOnboarded = await _settingsRepository.isOnboardingCompleted();

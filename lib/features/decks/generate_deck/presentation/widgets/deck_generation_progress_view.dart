@@ -6,10 +6,16 @@ import 'package:material_symbols_icons/symbols.dart';
 /// Progress view displayed during AI deck generation.
 class DeckGenerationProgressView extends StatelessWidget {
   final VoidCallback onRunInBackground;
+  final int collectedCards;
+  final int totalCards;
+  final bool isLocalAi;
 
   const DeckGenerationProgressView({
     super.key,
     required this.onRunInBackground,
+    this.collectedCards = 0,
+    this.totalCards = 20,
+    this.isLocalAi = false,
   });
 
   @override
@@ -65,8 +71,13 @@ class DeckGenerationProgressView extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 24),
           child: Text(
-            l.deck_gen_progress_subtitle,
-            style: t.bodySmall?.copyWith(color: c.onSurfaceVariant),
+            isLocalAi && collectedCards > 0
+                ? l.deck_gen_cards_collected_progress(collectedCards, totalCards)
+                : l.deck_gen_progress_subtitle,
+            style: t.bodyMedium?.copyWith(
+              fontWeight: FontWeight.w700,
+              color: c.primary,
+            ),
             textAlign: TextAlign.center,
           ),
         ),

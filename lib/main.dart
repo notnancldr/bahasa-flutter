@@ -1,5 +1,7 @@
 import 'package:bahasa/core/localization/locale_cubit.dart';
 import 'package:bahasa/core/theme/app_theme.dart';
+import 'package:bahasa/features/decks/decks_dependencies.dart';
+import 'package:bahasa/features/decks/generate_deck/presentation/bloc/generate_deck_bloc.dart';
 import 'package:bahasa/features/multiplayer/multiplayer_dependencies.dart';
 import 'package:bahasa/features/multiplayer/presentation/bloc/multiplayer_bloc.dart';
 import 'package:bahasa/features/settings/presentation/bloc/account/account_bloc.dart';
@@ -11,11 +13,18 @@ import 'package:bahasa/features/settings/settings_dependencies.dart';
 import 'package:bahasa/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 import 'core/router/app_router.dart';
 
-void main() {
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+
+  try {
+    await dotenv.load(fileName: '.env');
+  } catch (_) {
+    // Gracefully handle missing .env file
+  }
 
   runApp(const AppBootstrap());
 }
@@ -44,6 +53,9 @@ class AppBootstrap extends StatelessWidget {
         ),
         BlocProvider<MultiplayerBloc>(
           create: (_) => MultiplayerDependencies.createMultiplayerBloc(),
+        ),
+        BlocProvider<GenerateDeckBloc>(
+          create: (_) => DecksDependencies.createGenerateDeckBloc(),
         ),
       ],
       child: const BahasaApp(),

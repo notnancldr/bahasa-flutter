@@ -83,6 +83,8 @@ final class QuizInProgress extends QuizState {
     return switch (currentQuestion.type) {
       QuizQuestionType.multipleChoice =>
         selectedOption != null && selectedOption!.trim().isNotEmpty,
+      QuizQuestionType.contextGuess =>
+        selectedOption != null && selectedOption!.trim().isNotEmpty,
       QuizQuestionType.jumbleWords => selectedWordIndices.isNotEmpty,
     };
   }

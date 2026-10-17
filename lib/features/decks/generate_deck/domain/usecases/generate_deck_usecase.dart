@@ -8,6 +8,8 @@ class GenerateDeckUseCase {
 
   const GenerateDeckUseCase(this._repository);
 
-  Future<GeneratedDeckResult> call(DeckGenerationRequest request) =>
-      _repository.generateDeck(request);
+  Future<GeneratedDeckResult> call(
+    DeckGenerationRequest request, {
+    void Function(int collected, int total)? onProgress,
+  }) => _repository.generateDeck(request, onProgress: onProgress);
 }

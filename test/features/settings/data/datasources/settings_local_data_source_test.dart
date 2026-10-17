@@ -14,6 +14,7 @@ void main() {
     test('canGenerateOnlineDeckToday returns true initially and false after recording', () async {
       final prefs = await SharedPreferences.getInstance();
       final dataSource = SettingsLocalDataSourceImpl(prefs);
+      await dataSource.saveOnboardingCompleted(true);
 
       // Initially should be allowed
       expect(await dataSource.canGenerateOnlineDeckToday(), isTrue);

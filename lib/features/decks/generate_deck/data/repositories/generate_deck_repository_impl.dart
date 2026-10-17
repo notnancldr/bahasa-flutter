@@ -47,8 +47,9 @@ class GenerateDeckRepositoryImpl implements GenerateDeckRepository {
 
   @override
   Future<GeneratedDeckResult> generateDeck(
-    DeckGenerationRequest request,
-  ) async {
+    DeckGenerationRequest request, {
+    void Function(int collected, int total)? onProgress,
+  }) async {
     try {
       final aiMode = await _settingsRepository.getAiModelPreference();
       final EuyDeckModel deck;
@@ -64,6 +65,7 @@ class GenerateDeckRepositoryImpl implements GenerateDeckRepository {
         deck = await _localGemmaDataSource.generateDeck(
           request: request,
           modelPath: modelPath,
+          onProgress: onProgress,
         );
       } else {
         // Enforce online deck generation daily limit (maximum 1 deck per day)
@@ -79,7 +81,7 @@ class GenerateDeckRepositoryImpl implements GenerateDeckRepository {
         final apiKey = GeminiConfig.developerGeminiApiKey;
         if (!GeminiConfig.isConfigured) {
           return GeneratedDeckResult.failure(
-            'Gemini API key is not configured by the developer. Please configure developerGeminiApiKey in lib/core/constants/gemini_config.dart.',
+            'Gemini API key is not configured by the developer. Please configure GEMINI_API_KEY in the .env file or pass --dart-define=GEMINI_API_KEY=your_key.',
           );
         }
 

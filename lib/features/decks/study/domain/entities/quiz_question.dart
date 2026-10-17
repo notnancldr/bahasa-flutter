@@ -5,6 +5,9 @@ enum QuizQuestionType {
   /// Translating question with 4 multiple-choice options.
   multipleChoice,
 
+  /// Context-guessing question where user picks the vocabulary word matching the context.
+  contextGuess,
+
   /// Writing / word arrangement question where the user assembles word tokens.
   jumbleWords,
 }
@@ -17,7 +20,7 @@ class QuizQuestion {
   /// Question interaction format.
   final QuizQuestionType type;
 
-  /// 4 multiple-choice options (used when [type] is [QuizQuestionType.multipleChoice]).
+  /// 4 multiple-choice options (used when [type] is [QuizQuestionType.multipleChoice] or [QuizQuestionType.contextGuess]).
   final List<String> options;
 
   /// Target answer split into ordered words (used when [type] is [QuizQuestionType.jumbleWords]).
@@ -26,7 +29,7 @@ class QuizQuestion {
   /// Shuffled word bank including [targetWords] and distractor words.
   final List<String> wordBank;
 
-  /// Canonical expected answer string (`card.defaultLanguage`).
+  /// Canonical expected answer string.
   final String correctAnswer;
 
   /// Creates a [QuizQuestion].
@@ -39,7 +42,10 @@ class QuizQuestion {
     required this.correctAnswer,
   });
 
-  /// Database log label for this question type (`'translating'` or `'writing'`).
-  String get dbQuestionType =>
-      type == QuizQuestionType.multipleChoice ? 'translating' : 'writing';
+  /// Database log label for this question type (`'translating'`, `'context'`, or `'writing'`).
+  String get dbQuestionType => switch (type) {
+        QuizQuestionType.multipleChoice => 'translating',
+        QuizQuestionType.contextGuess => 'context',
+        QuizQuestionType.jumbleWords => 'writing',
+      };
 }

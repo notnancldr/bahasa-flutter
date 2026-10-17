@@ -2,6 +2,7 @@ import 'package:bahasa/core/utils/widget_var.dart';
 import 'package:bahasa/core/widgets/embossed_button/embossed_button.dart';
 import 'package:bahasa/core/widgets/flame_icon.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:material_symbols_icons/symbols.dart';
 
 import '../../domain/entities/study_session_result.dart';
@@ -34,7 +35,12 @@ class QuizCompleteView extends StatelessWidget {
           const Spacer(),
 
           // Flame icon & title
-          const Center(child: FlameIcon(streakCount: 1, size: 150)),
+          Center(
+            child: const FlameIcon(streakCount: 1, size: 150)
+                .animate()
+                .scale(duration: 400.ms, curve: Curves.easeOutBack)
+                .fadeIn(duration: 300.ms),
+          ),
           const SizedBox(height: 20),
           Text(
             l.flashcard_complete_title,
@@ -44,7 +50,16 @@ class QuizCompleteView extends StatelessWidget {
               fontSize: 26,
               color: c.onSurface,
             ),
-          ),
+          )
+              .animate()
+              .slideY(
+                begin: 0.3,
+                end: 0.0,
+                duration: 350.ms,
+                delay: 150.ms,
+                curve: Curves.easeOutCubic,
+              )
+              .fadeIn(delay: 150.ms),
           const SizedBox(height: 28),
 
           // 5-column grid of rounded star icons
@@ -65,9 +80,20 @@ class QuizCompleteView extends StatelessWidget {
                   Symbols.star,
                   fill: 1,
                   size: 46,
-                  color: isCorrect ? const Color(0xFFFF6D00) : c.surface,
+                  color: isCorrect
+                      ? const Color(0xFFFF6D00)
+                      : (Theme.of(context).brightness == Brightness.dark
+                          ? const Color(0xFF37474F)
+                          : const Color(0xFFCFD8DC)),
                 ),
-              );
+              )
+                  .animate()
+                  .scale(
+                    delay: (250 + index * 60).ms,
+                    duration: 300.ms,
+                    curve: Curves.easeOutBack,
+                  )
+                  .fadeIn(delay: (250 + index * 60).ms);
             },
           ),
 
@@ -137,13 +163,31 @@ class QuizCompleteView extends StatelessWidget {
                 ),
               ],
             ),
-          ),
+          )
+              .animate()
+              .slideY(
+                begin: 0.3,
+                end: 0.0,
+                delay: 600.ms,
+                duration: 350.ms,
+                curve: Curves.easeOutCubic,
+              )
+              .fadeIn(delay: 600.ms),
           const SizedBox(height: 24),
 
           EmbossedButton(
             l.flashcard_complete_finish_button,
             onPressed: onFinish,
-          ),
+          )
+              .animate()
+              .slideY(
+                begin: 0.4,
+                end: 0.0,
+                delay: 750.ms,
+                duration: 350.ms,
+                curve: Curves.easeOutCubic,
+              )
+              .fadeIn(delay: 750.ms),
         ],
       ),
     );

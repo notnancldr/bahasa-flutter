@@ -22,6 +22,9 @@ import '../widgets/deck_search_bar.dart';
 import '../widgets/deck_selection_bottom_bar.dart';
 import '../widgets/deck_selection_header_bar.dart';
 import '../widgets/delete_decks_dialog.dart';
+import '../widgets/generating_deck_placeholder_card.dart';
+import '../../generate_deck/presentation/bloc/generate_deck_bloc.dart';
+import '../../generate_deck/presentation/bloc/generate_deck_state.dart';
 
 /// Page displaying the user's flashcard deck compilation with search,
 /// flag-seeded card colors, multi-selection mode, and username-confirmed deletion.
@@ -148,7 +151,9 @@ class _DeckCompilationViewState extends State<_DeckCompilationView> {
   Widget build(BuildContext context) {
     final WidgetVars(:c, :t, :l) = WidgetVars.of(context);
 
-    return BlocConsumer<DeckBloc, DeckState>(
+    final genBloc = context.read<GenerateDeckBloc?>();
+
+    Widget body = BlocConsumer<DeckBloc, DeckState>(
       listener: (context, state) {
         if (state is DeckLoaded && state.errorMessage != null) {
           ScaffoldMessenger.of(context)
@@ -268,6 +273,19 @@ class _DeckCompilationViewState extends State<_DeckCompilationView> {
         );
       },
     );
+
+    if (genBloc != null) {
+      body = BlocListener<GenerateDeckBloc, GenerateDeckState>(
+        listener: (context, genState) {
+          if (genState is GenerateDeckSuccessState) {
+            context.read<DeckBloc>().add(const LoadDecksEvent());
+          }
+        },
+        child: body,
+      );
+    }
+
+    return body;
   }
 }
 
@@ -280,6 +298,10 @@ class _DeckBodyContent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final WidgetVars(:c, :t, :l) = WidgetVars.of(context);
+
+    final genBlocState = context.watch<GenerateDeckBloc?>()?.state;
+    final genInProgress =
+        genBlocState is GenerateDeckInProgressState ? genBlocState : null;
 
     return switch (state) {
       DeckInitial() ||
@@ -304,60 +326,76 @@ class _DeckBodyContent extends StatelessWidget {
         :final isSelectionMode,
         :final selectedDeckIds,
       ) =>
-        allDecks.isEmpty
-            ? Center(child: HomeEmptyState(onCreateDeck: onAddDeck))
-            : filteredDecks.isEmpty
-            ? Center(
-                child: Text(
-                  l.deck_empty_search_title,
-                  style: t.titleMedium?.copyWith(color: c.onSurfaceVariant),
-                ),
-              )
-            : GridView.builder(
-                padding: EdgeInsets.only(bottom: isSelectionMode ? 96 : 88),
-                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 2,
-                  crossAxisSpacing: 16,
-                  mainAxisSpacing: 16,
-                  childAspectRatio: 0.78,
-                ),
-                itemCount: filteredDecks.length,
-                itemBuilder: (context, index) {
-                  final deck = filteredDecks[index];
-                  final isSelected = selectedDeckIds.contains(deck.id);
+        (() {
+          if (allDecks.isEmpty && genInProgress == null) {
+            return Center(child: HomeEmptyState(onCreateDeck: onAddDeck));
+          }
 
-                  return DeckCard(
-                    key: ValueKey(deck.id),
-                    deck: deck,
-                    isSelectionMode: isSelectionMode,
-                    isSelected: isSelected,
-                    onTap: () async {
-                      if (isSelectionMode) {
-                        context.read<DeckBloc>().add(
-                          ToggleDeckSelectionEvent(deck.id),
-                        );
-                      } else {
-                        final deckBloc = context.read<DeckBloc>();
-                        await context.push(AppRoutes.deckDetailsPath(deck.id));
-                        if (context.mounted) {
-                          deckBloc.add(const LoadDecksEvent());
-                        }
-                      }
-                    },
-                    onLongPress: () {
-                      if (!isSelectionMode) {
-                        context.read<DeckBloc>().add(
-                          EnterDeckSelectionModeEvent(deck.id),
-                        );
-                      } else {
-                        context.read<DeckBloc>().add(
-                          ToggleDeckSelectionEvent(deck.id),
-                        );
-                      }
-                    },
-                  );
-                },
+          if (filteredDecks.isEmpty && genInProgress == null) {
+            return Center(
+              child: Text(
+                l.deck_empty_search_title,
+                style: t.titleMedium?.copyWith(color: c.onSurfaceVariant),
               ),
+            );
+          }
+
+          final itemCount =
+              filteredDecks.length + (genInProgress != null ? 1 : 0);
+
+          return GridView.builder(
+            padding: EdgeInsets.only(bottom: isSelectionMode ? 96 : 88),
+            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: 2,
+              crossAxisSpacing: 16,
+              mainAxisSpacing: 16,
+              childAspectRatio: 0.78,
+            ),
+            itemCount: itemCount,
+            itemBuilder: (context, index) {
+              if (genInProgress != null && index == 0) {
+                return GeneratingDeckPlaceholderCard(
+                  progressState: genInProgress,
+                );
+              }
+
+              final deckIndex = genInProgress != null ? index - 1 : index;
+              final deck = filteredDecks[deckIndex];
+              final isSelected = selectedDeckIds.contains(deck.id);
+
+              return DeckCard(
+                key: ValueKey(deck.id),
+                deck: deck,
+                isSelectionMode: isSelectionMode,
+                isSelected: isSelected,
+                onTap: () async {
+                  if (isSelectionMode) {
+                    context.read<DeckBloc>().add(
+                      ToggleDeckSelectionEvent(deck.id),
+                    );
+                  } else {
+                    final deckBloc = context.read<DeckBloc>();
+                    await context.push(AppRoutes.deckDetailsPath(deck.id));
+                    if (context.mounted) {
+                      deckBloc.add(const LoadDecksEvent());
+                    }
+                  }
+                },
+                onLongPress: () {
+                  if (!isSelectionMode) {
+                    context.read<DeckBloc>().add(
+                      EnterDeckSelectionModeEvent(deck.id),
+                    );
+                  } else {
+                    context.read<DeckBloc>().add(
+                      ToggleDeckSelectionEvent(deck.id),
+                    );
+                  }
+                },
+              );
+            },
+          );
+        })(),
     };
   }
 }

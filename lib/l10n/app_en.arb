@@ -60,7 +60,7 @@
     "copied": "Copied!",
     "pasted": "Pasted!",
 
-    "languageName": "{code, select, id{Indonesian} en{English} es{Spanish} ja{Japanese} ko{Korean} fr{French} ru{Russian} ar{Arabic} de{German} pt{Portuguese} zh{Chinese} hi{Hindi} other{{code}}}",
+    "languageName": "{code, select, id{Indonesian} en{English} es{Spanish} ja{Japanese} ko{Korean} fr{French} de{German} it{Italian} ru{Russian} ar{Arabic} nl{Dutch} pt{Portuguese} zh{Chinese} th{Thai} vi{Vietnamese} tr{Turkish} hi{Hindi} sv{Swedish} no{Norwegian} da{Danish} fi{Finnish} pl{Polish} uk{Ukrainian} el{Greek} he{Hebrew} ms{Malay} tl{Filipino} cs{Czech} hu{Hungarian} ro{Romanian} bg{Bulgarian} hr{Croatian} sk{Slovak} sl{Slovenian} sw{Swahili} fa{Persian} ur{Urdu} bn{Bengali} ta{Tamil} lat{Latin} other{{code}}}",
 
     "step": "{first} of {second}",
 
@@ -76,6 +76,22 @@
     "settings_theme_badgeDark": "Dark",
     "settings_language_title": "Language",
     "settings_language_subtitle": "Select app primary language",
+    "settings_language_alert_title": "Change App & Deck Language",
+    "@settings_language_alert_title": {
+        "description": "Title for language change confirmation dialog"
+    },
+    "settings_language_alert_message": "Changing the language here will cause future decks and explanations to be translated and explained using the selected language.",
+    "@settings_language_alert_message": {
+        "description": "Notice message explaining that future decks will use the selected language"
+    },
+    "settings_language_alert_confirm": "Change Language",
+    "@settings_language_alert_confirm": {
+        "description": "Confirm button label in language change dialog"
+    },
+    "settings_language_alert_cancel": "Cancel",
+    "@settings_language_alert_cancel": {
+        "description": "Cancel button label in language change dialog"
+    },
     "settings_notif_title": "Notifications",
     "settings_notif_subtitle": "Daily learning reminders",
     "settings_data_title": "Data & Storage",
@@ -212,10 +228,40 @@
     "deck_gen_review_desc": "Make sure the details below are correct.",
     "deck_gen_review_change": "Change",
     "deck_gen_create_button": "Create Deck",
+    "deck_gen_limit_reached_title": "Online AI daily limit reached (1 deck/day). Reset in {time}.",
+    "@deck_gen_limit_reached_title": {
+        "description": "Banner notification when daily online deck creation limit is reached",
+        "placeholders": {
+            "time": {
+                "type": "String"
+            }
+        }
+    },
+    "deck_gen_limit_countdown_button": "Create Deck (Reset in {time})",
+    "@deck_gen_limit_countdown_button": {
+        "description": "Disabled button label showing remaining countdown time until daily reset",
+        "placeholders": {
+            "time": {
+                "type": "String"
+            }
+        }
+    },
     "deck_gen_cancel_button": "Cancel",
     "deck_gen_progress_header": "Creating Deck",
     "deck_gen_progress_title": "Preparing your deck...",
     "deck_gen_progress_subtitle": "You will be notified once it is ready.",
+    "deck_gen_cards_collected_progress": "Collected {count} / {total} cards",
+    "@deck_gen_cards_collected_progress": {
+        "description": "Progress subtitle showing collected cards during offline AI deck generation",
+        "placeholders": {
+            "count": { "type": "int" },
+            "total": { "type": "int" }
+        }
+    },
+    "deck_gen_in_progress_badge": "Generating...",
+    "@deck_gen_in_progress_badge": {
+        "description": "Badge label on background deck generation placeholder card"
+    },
     "deck_run_in_background": "Run in Background",
     "deck_gen_error_title": "Deck creation failed",
     "deck_gen_error_subtitle": "Something went wrong while preparing your deck. No partial data was saved.",
@@ -585,6 +631,10 @@
     "quiz_mc_instruction": "Choose the matching meaning for the word below:",
     "@quiz_mc_instruction": {
         "description": "Instruction prompt for Multiple Choice translation questions in Quiz"
+    },
+    "quiz_context_instruction": "Guess the vocabulary word based on this usage context:",
+    "@quiz_context_instruction": {
+        "description": "Instruction prompt for context-based guessing questions in Quiz"
     },
     "quiz_jumble_instruction": "Arrange the translation for this word:",
     "@quiz_jumble_instruction": {

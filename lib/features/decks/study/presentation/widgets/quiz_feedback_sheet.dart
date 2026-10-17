@@ -2,6 +2,7 @@ import 'package:bahasa/core/theme/app_colors.dart';
 import 'package:bahasa/core/utils/widget_var.dart';
 import 'package:bahasa/core/widgets/embossed_button/embossed_button.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:material_symbols_icons/symbols.dart';
 
 import '../../domain/entities/quiz_question.dart';
@@ -101,6 +102,10 @@ class QuizFeedbackSheet extends StatelessWidget {
                           ),
                         ),
                 ),
+              ).animate().scale(
+                delay: 100.ms,
+                duration: 300.ms,
+                curve: Curves.easeOutBack,
               ),
               const SizedBox(height: 18),
 

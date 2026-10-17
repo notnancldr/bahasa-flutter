@@ -8,17 +8,18 @@ import 'ai_deck_json_parser.dart';
 class GeminiDeckGeneratorDataSource {
   const GeminiDeckGeneratorDataSource();
 
-  /// Generates a deck of vocabulary cards using Gemini 1.5 Flash.
+  /// Generates a deck of vocabulary cards using Gemini API.
   Future<EuyDeckModel> generateDeck({
     required DeckGenerationRequest request,
     required String apiKey,
   }) async {
     final model = GenerativeModel(
-      model: 'gemini-1.5-flash',
+      model: 'gemini-3.8-flash',
       apiKey: apiKey,
       generationConfig: GenerationConfig(
         responseMimeType: 'application/json',
         temperature: 0.7,
+        maxOutputTokens: 8192,
       ),
     );
 
@@ -54,7 +55,7 @@ Parameter dek yang diminta:
 
 Ikuti aturan berikut:
 (1) Properti "name" wajib diisi dengan judul dek dalam bahasa Inggris beserta tingkat kesulitannya, dan properti "explanationRolePlay" diisi dengan penjelasan singkat dalam bahasa Indonesia mengenai topik serta tingkat kesulitan yang diminta.
-(2) Di dalam array "cards", buatkan kosakata atau frasa unik yang relevan dengan topik dan tingkat kesulitan tersebut tanpa duplikasi kata atau pengulangan elemen.
+(2) Di dalam array "cards", buatkan minimal 100 (seratus) kosakata atau frasa unik yang relevan dengan topik dan tingkat kesulitan tersebut tanpa duplikasi kata atau pengulangan elemen. Pastikan teks penjelasan dalam "additionalContext" dibuat padat dan singkat agar seluruh 100 kartu muat sempurna dalam JSON.
 (3) Setiap objek di dalam array "cards" wajib memiliki properti "defaultLanguage" berisi kata atau frasa dalam bahasa Indonesia.
 (4) Properti "translation" wajib berisi terjemahan kosakata ke bahasa target menggunakan aksara aslinya secara murni tanpa romanisasi, tanpa tanda kurung, dan tanpa teks tambahan.
 (5) Properti "phoneticLang" wajib memuat transkripsi fonetik atau panduan cara baca dari kosakata bahasa target tersebut.

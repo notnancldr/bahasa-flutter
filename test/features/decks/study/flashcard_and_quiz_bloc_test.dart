@@ -32,6 +32,16 @@ class _FakeStudySessionRepository implements StudySessionRepository {
       correctAnswer: 0,
       finalScore: 0,
     ),
+    DeckCardItem(
+      idCard: 'c3',
+      defaultLanguage: 'Terima kasih',
+      translation: 'Arigatou',
+      phoneticLang: '/ari/',
+      additionalContext: 'Ungkapan syukur',
+      reps: 0,
+      correctAnswer: 0,
+      finalScore: 0,
+    ),
   ];
 
   @override
@@ -113,9 +123,14 @@ void main() {
 
       bloc.add(const AnswerFlashcardEvent(isMemorized: false));
       await Future<void>.delayed(Duration.zero);
+      inProgress = bloc.state as FlashcardInProgress;
+      expect(inProgress.currentIndex, equals(2));
+
+      bloc.add(const AnswerFlashcardEvent(isMemorized: true));
+      await Future<void>.delayed(Duration.zero);
       expect(bloc.state, isA<FlashcardCompleted>());
       final completed = bloc.state as FlashcardCompleted;
-      expect(completed.result.correctCount, equals(1));
+      expect(completed.result.correctCount, equals(2));
       expect(completed.result.wrongCount, equals(1));
 
       await bloc.close();
@@ -123,7 +138,7 @@ void main() {
   });
 
   group('QuizBloc', () {
-    test('evaluates multiple choice and jumble words, shows feedback, and completes session', () async {
+    test('evaluates multiple choice, context guess, and jumble words, shows feedback, and completes session', () async {
       final repo = _FakeStudySessionRepository();
       final bloc = QuizBloc(
         startSessionUseCase: StartStudySessionUseCase(repo),
@@ -153,7 +168,21 @@ void main() {
       inProgress = bloc.state as QuizInProgress;
       expect(inProgress.currentIndex, equals(1));
 
-      // Question 1: Jumble Words -> pick first word index (incomplete/wrong)
+      // Question 1: Context Guess -> select wrong option
+      bloc.add(const SelectQuizOptionEvent('SalahOption'));
+      await Future<void>.delayed(Duration.zero);
+
+      bloc.add(const CheckQuizAnswerEvent());
+      await Future<void>.delayed(Duration.zero);
+      inProgress = bloc.state as QuizInProgress;
+      expect(inProgress.feedbackStatus, equals(QuizFeedbackStatus.wrong));
+
+      bloc.add(const NextQuizQuestionEvent());
+      await Future<void>.delayed(Duration.zero);
+      inProgress = bloc.state as QuizInProgress;
+      expect(inProgress.currentIndex, equals(2));
+
+      // Question 2: Jumble Words -> pick first word index
       bloc.add(const ToggleQuizJumbleWordEvent(0));
       await Future<void>.delayed(Duration.zero);
 
@@ -167,7 +196,7 @@ void main() {
       expect(bloc.state, isA<QuizCompleted>());
       final completed = bloc.state as QuizCompleted;
       expect(completed.result.correctCount, equals(1));
-      expect(completed.result.totalQuestions, equals(2));
+      expect(completed.result.totalQuestions, equals(3));
 
       await bloc.close();
     });

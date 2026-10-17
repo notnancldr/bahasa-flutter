@@ -2,18 +2,20 @@ import 'package:bahasa/core/theme/app_colors.dart';
 import 'package:bahasa/core/utils/widget_var.dart';
 import 'package:bahasa/features/decks/deck_details/domain/entities/deck_card_item.dart';
 import 'package:flutter/material.dart';
+import 'package:flip_card/flip_card.dart';
+import 'package:flip_card/flip_card_controller.dart';
 import 'package:material_symbols_icons/symbols.dart';
 
-/// Interactive Flashcard container that transitions between the Question face
-/// (`Pertanyaan`) and the Answer face (`Jawaban`).
-class FlashcardCardView extends StatelessWidget {
+/// Interactive 3D Flip Flashcard container that rotates between the Question face
+/// (`Pertanyaan`) and the Answer face (`Jawaban`) using `flip_card`.
+class FlashcardCardView extends StatefulWidget {
   /// The vocabulary card to display.
   final DeckCardItem card;
 
   /// Whether the card is currently flipped to the Answer side.
   final bool isFlipped;
 
-  /// Callback invoked when the card surface is tapped to flip.
+  /// Callback invoked when the card surface is flipped.
   final VoidCallback onFlip;
 
   /// Creates a [FlashcardCardView].
@@ -25,17 +27,48 @@ class FlashcardCardView extends StatelessWidget {
   });
 
   @override
+  State<FlashcardCardView> createState() => _FlashcardCardViewState();
+}
+
+class _FlashcardCardViewState extends State<FlashcardCardView> {
+  late final FlipCardController _controller;
+  bool _isAnimatingFromTouch = false;
+
+  @override
+  void initState() {
+    super.initState();
+    _controller = FlipCardController();
+  }
+
+  @override
+  void didUpdateWidget(covariant FlashcardCardView oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (oldWidget.card.idCard != widget.card.idCard) {
+      _isAnimatingFromTouch = false;
+    } else if (oldWidget.isFlipped != widget.isFlipped) {
+      if (!_isAnimatingFromTouch) {
+        _controller.toggleCard();
+      }
+      _isAnimatingFromTouch = false;
+    }
+  }
+
+  void _handleTouchFlip() {
+    _isAnimatingFromTouch = true;
+    widget.onFlip();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: onFlip,
-      child: AnimatedSwitcher(
-        duration: const Duration(milliseconds: 260),
-        switchInCurve: Curves.easeOutCubic,
-        switchOutCurve: Curves.easeInCubic,
-        child: isFlipped
-            ? _AnswerCardFace(key: const ValueKey('answer'), card: card)
-            : _QuestionCardFace(key: const ValueKey('question'), card: card),
-      ),
+    return FlipCard(
+      key: ValueKey(widget.card.idCard),
+      controller: _controller,
+      flipOnTouch: true,
+      direction: FlipDirection.HORIZONTAL,
+      speed: 350,
+      front: _QuestionCardFace(card: widget.card),
+      back: _AnswerCardFace(card: widget.card),
+      onFlip: _handleTouchFlip,
     );
   }
 }
@@ -43,7 +76,7 @@ class FlashcardCardView extends StatelessWidget {
 class _QuestionCardFace extends StatelessWidget {
   final DeckCardItem card;
 
-  const _QuestionCardFace({super.key, required this.card});
+  const _QuestionCardFace({required this.card});
 
   @override
   Widget build(BuildContext context) {
@@ -102,14 +135,14 @@ class _QuestionCardFace extends StatelessWidget {
               Icon(
                 Symbols.cached,
                 size: 16,
-                color: c.onSurfaceVariant.withValues(alpha: 0.7),
+                color: c.onSurfaceVariant.withAlpha(180),
               ),
               const SizedBox(width: 6),
               Text(
                 l.flashcard_tap_to_flip,
                 style: t.labelSmall?.copyWith(
                   fontWeight: FontWeight.w600,
-                  color: c.onSurfaceVariant.withValues(alpha: 0.75),
+                  color: c.onSurfaceVariant.withAlpha(190),
                 ),
               ),
             ],
@@ -123,7 +156,7 @@ class _QuestionCardFace extends StatelessWidget {
 class _AnswerCardFace extends StatelessWidget {
   final DeckCardItem card;
 
-  const _AnswerCardFace({super.key, required this.card});
+  const _AnswerCardFace({required this.card});
 
   @override
   Widget build(BuildContext context) {

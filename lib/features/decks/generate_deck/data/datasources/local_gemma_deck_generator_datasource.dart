@@ -14,6 +14,7 @@ class LocalGemmaDeckGeneratorDataSource {
   Future<EuyDeckModel> generateDeck({
     required DeckGenerationRequest request,
     required String modelPath,
+    void Function(int collected, int total)? onProgress,
   }) async {
     final engine = await LiteLmEngine.create(
       LiteLmEngineConfig(modelPath: modelPath, backend: LiteLmBackend.cpu),
@@ -61,6 +62,7 @@ class LocalGemmaDeckGeneratorDataSource {
           final rawCards = jsonMap['cards'] as List<dynamic>? ?? [];
           final chunkCards = AiDeckJsonParser.parseCards(rawCards);
           allCards.addAll(chunkCards);
+          onProgress?.call(allCards.length, 20);
         } finally {
           await conversation.dispose();
         }

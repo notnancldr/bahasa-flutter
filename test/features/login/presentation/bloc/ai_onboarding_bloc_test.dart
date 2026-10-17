@@ -46,6 +46,9 @@ class _FakeSettingsRepository implements SettingsRepository {
   Future<void> recordOnlineDeckGeneration() async {}
 
   @override
+  Future<void> resetOnlineDeckGeneration() async {}
+
+  @override
   Future<AppThemeMode> getThemeMode() async => AppThemeMode.system;
 
   @override

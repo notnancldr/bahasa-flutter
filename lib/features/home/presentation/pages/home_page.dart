@@ -1,3 +1,4 @@
+import 'package:bahasa/core/router/app_router.dart';
 import 'package:bahasa/core/router/app_routes.dart';
 import 'package:bahasa/core/utils/widget_var.dart';
 import 'package:bahasa/features/decks/presentation/widgets/add_deck_method_modal.dart';
@@ -7,7 +8,6 @@ import 'package:bahasa/features/home/presentation/bloc/home_dashboard_state.dart
 import 'package:bahasa/features/home/presentation/bloc/home_event.dart';
 import 'package:bahasa/features/home/presentation/bloc/home_state.dart';
 import 'package:bahasa/features/home/presentation/widgets/home_empty_state.dart';
-import 'package:bahasa/features/home/presentation/widgets/home_notification_button.dart';
 import 'package:bahasa/features/home/presentation/widgets/recent_activity_tile.dart';
 import 'package:bahasa/features/home/presentation/widgets/review_recommendation_card.dart';
 import 'package:bahasa/features/home/presentation/widgets/streak_section.dart';
@@ -42,8 +42,46 @@ class HomePage extends StatelessWidget {
   }
 }
 
-class _HomeView extends StatelessWidget {
+class _HomeView extends StatefulWidget {
   const _HomeView();
+
+  @override
+  State<_HomeView> createState() => _HomeViewState();
+}
+
+class _HomeViewState extends State<_HomeView> with RouteAware {
+  int? _lastBranchIndex;
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    final route = ModalRoute.of(context);
+    if (route is PageRoute) {
+      AppRouter.routeObserver.subscribe(this, route);
+    }
+
+    final shell = StatefulNavigationShell.maybeOf(context);
+    if (shell != null) {
+      final currentBranch = shell.currentIndex;
+      if (_lastBranchIndex != null &&
+          _lastBranchIndex != currentBranch &&
+          currentBranch == 0) {
+        context.read<HomeBloc?>()?.add(const RefreshHomeDashboardEvent());
+      }
+      _lastBranchIndex = currentBranch;
+    }
+  }
+
+  @override
+  void dispose() {
+    AppRouter.routeObserver.unsubscribe(this);
+    super.dispose();
+  }
+
+  @override
+  void didPopNext() {
+    context.read<HomeBloc?>()?.add(const RefreshHomeDashboardEvent());
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -103,14 +141,6 @@ class _HomeDashboardView extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          // Top Bar with Notification Bell
-          HomeNotificationButton(
-            onPressed: () {
-              // Notification center handler
-            },
-          ),
-          const SizedBox(height: 12),
-
           // Streak Section (Flame, Counter, Label)
           Center(
             child: StreakSection(

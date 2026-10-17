@@ -31,6 +31,11 @@ class _FakeSettingsRepository implements SettingsRepository {
   }
 
   @override
+  Future<void> resetOnlineDeckGeneration() async {
+    recordedOnline = false;
+  }
+
+  @override
   Future<String?> getGeminiApiKey() async => null;
 
   @override

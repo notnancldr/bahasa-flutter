@@ -80,7 +80,7 @@
     "copied": "Disalin!",
     "pasted": "Dikutip!",
 
-    "languageName": "{code, select, id{Indonesia} en{Inggris} es{Spanyol} ja{Jepang} ko{Korea} fr{Prancis} ru{Rusia} ar{Arab} de{Jerman} pt{Portugis} zh{Mandarin} hi{Hindi} other{{code}}}",
+    "languageName": "{code, select, id{Indonesia} en{Inggris} es{Spanyol} ja{Jepang} ko{Korea} fr{Prancis} de{Jerman} it{Italia} ru{Rusia} ar{Arab} nl{Belanda} pt{Portugis} zh{Mandarin} th{Thailand} vi{Vietnam} tr{Turki} hi{Hindi} sv{Swedia} no{Norwegia} da{Denmark} fi{Finlandia} pl{Polandia} uk{Ukraina} el{Yunani} he{Ibrani} ms{Melayu} tl{Filipina} cs{Ceko} hu{Hongaria} ro{Rumania} bg{Bulgaria} hr{Kroasia} sk{Slowakia} sl{Slovenia} sw{Swahili} fa{Persia} ur{Urdu} bn{Bengali} ta{Tamil} lat{Latin} other{{code}}}",
     "@languageName": {
         "description": "Display name of a language, resolved from its ISO 639-1 code",
         "placeholders": {
@@ -114,6 +114,22 @@
     "settings_theme_badgeDark": "Gelap",
     "settings_language_title": "Bahasa",
     "settings_language_subtitle": "Pilih bahasa utama aplikasi",
+    "settings_language_alert_title": "Ubah Bahasa Aplikasi & Deck",
+    "@settings_language_alert_title": {
+        "description": "Title for language change confirmation dialog"
+    },
+    "settings_language_alert_message": "Mengubah bahasa di sini akan membuat deck dan penjelasan ke depannya dijelaskan serta diterjemahkan menggunakan bahasa yang dipilih.",
+    "@settings_language_alert_message": {
+        "description": "Notice message explaining that future decks will use the selected language"
+    },
+    "settings_language_alert_confirm": "Ubah Bahasa",
+    "@settings_language_alert_confirm": {
+        "description": "Confirm button label in language change dialog"
+    },
+    "settings_language_alert_cancel": "Batal",
+    "@settings_language_alert_cancel": {
+        "description": "Cancel button label in language change dialog"
+    },
     "settings_notif_title": "Notifikasi",
     "settings_notif_subtitle": "Pengingat belajar harian",
     "settings_data_title": "Data & Penyimpanan",
@@ -271,10 +287,40 @@
     "deck_gen_review_desc": "Pastikan detail berikut sudah sesuai.",
     "deck_gen_review_change": "Ubah",
     "deck_gen_create_button": "Buat Deck",
+    "deck_gen_limit_reached_title": "Batas harian AI Online tercapai (1 deck/hari). Reset dalam {time}.",
+    "@deck_gen_limit_reached_title": {
+        "description": "Banner notification when daily online deck creation limit is reached",
+        "placeholders": {
+            "time": {
+                "type": "String"
+            }
+        }
+    },
+    "deck_gen_limit_countdown_button": "Buat Deck (Reset dalam {time})",
+    "@deck_gen_limit_countdown_button": {
+        "description": "Disabled button label showing remaining countdown time until daily reset",
+        "placeholders": {
+            "time": {
+                "type": "String"
+            }
+        }
+    },
     "deck_gen_cancel_button": "Batal",
     "deck_gen_progress_header": "Membuat Deck",
     "deck_gen_progress_title": "Sedang menyiapkan deck-mu...",
     "deck_gen_progress_subtitle": "Kamu akan diberi tahu begitu selesai.",
+    "deck_gen_cards_collected_progress": "Terkumpul {count} / {total} kartu",
+    "@deck_gen_cards_collected_progress": {
+        "description": "Progress subtitle showing collected cards during offline AI deck generation",
+        "placeholders": {
+            "count": { "type": "int" },
+            "total": { "type": "int" }
+        }
+    },
+    "deck_gen_in_progress_badge": "Membuat...",
+    "@deck_gen_in_progress_badge": {
+        "description": "Badge label on background deck generation placeholder card"
+    },
     "deck_run_in_background": "Jalankan di Latar Belakang",
     "deck_gen_error_title": "Pembuatan deck gagal",
     "deck_gen_error_subtitle": "Terjadi kendala saat menyiapkan deck-mu. Tidak ada data yang tersimpan sebagian.",
@@ -644,6 +690,10 @@
     "quiz_mc_instruction": "Pilih arti yang sesuai untuk kata berikut:",
     "@quiz_mc_instruction": {
         "description": "Instruction prompt for Multiple Choice translation questions in Quiz"
+    },
+    "quiz_context_instruction": "Tebak kosakata yang tepat berdasarkan konteks ini:",
+    "@quiz_context_instruction": {
+        "description": "Instruction prompt for context-based guessing questions in Quiz"
     },
     "quiz_jumble_instruction": "Ketik atau susun terjemahan untuk kata ini:",
     "@quiz_jumble_instruction": {

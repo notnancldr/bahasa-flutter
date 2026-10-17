@@ -17,6 +17,7 @@ abstract class SettingsLocalDataSource {
   Future<void> saveOnboardingCompleted(bool completed);
   Future<bool> canGenerateOnlineDeckToday();
   Future<void> recordOnlineDeckGeneration();
+  Future<void> resetOnlineDeckGeneration();
 }
 
 class SettingsLocalDataSourceImpl implements SettingsLocalDataSource {
@@ -116,6 +117,12 @@ class SettingsLocalDataSourceImpl implements SettingsLocalDataSource {
   @override
   Future<bool> canGenerateOnlineDeckToday() async {
     final prefs = await _getPrefs();
+    final isOnboarded = prefs.getBool(_onboardingKey) ?? false;
+    if (!isOnboarded) {
+      await prefs.remove(_lastOnlineDeckDateKey);
+      return true;
+    }
+
     final lastDate = prefs.getString(_lastOnlineDeckDateKey);
     return lastDate != _formatTodayDate();
   }
@@ -124,5 +131,11 @@ class SettingsLocalDataSourceImpl implements SettingsLocalDataSource {
   Future<void> recordOnlineDeckGeneration() async {
     final prefs = await _getPrefs();
     await prefs.setString(_lastOnlineDeckDateKey, _formatTodayDate());
+  }
+
+  @override
+  Future<void> resetOnlineDeckGeneration() async {
+    final prefs = await _getPrefs();
+    await prefs.remove(_lastOnlineDeckDateKey);
   }
 }

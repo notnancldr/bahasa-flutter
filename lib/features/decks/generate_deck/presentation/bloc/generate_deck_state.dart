@@ -70,8 +70,31 @@ class GenerateDeckWizardState extends GenerateDeckState {
 /// In-progress state while AI generation is executing.
 class GenerateDeckInProgressState extends GenerateDeckState {
   final String deckName;
+  final String language;
+  final int collectedCards;
+  final int totalCards;
+  final bool isLocalAi;
 
-  const GenerateDeckInProgressState(this.deckName);
+  const GenerateDeckInProgressState({
+    required this.deckName,
+    required this.language,
+    this.collectedCards = 0,
+    this.totalCards = 20,
+    this.isLocalAi = false,
+  });
+
+  GenerateDeckInProgressState copyWith({
+    int? collectedCards,
+    int? totalCards,
+  }) {
+    return GenerateDeckInProgressState(
+      deckName: deckName,
+      language: language,
+      collectedCards: collectedCards ?? this.collectedCards,
+      totalCards: totalCards ?? this.totalCards,
+      isLocalAi: isLocalAi,
+    );
+  }
 }
 
 /// Error state when generation fails.

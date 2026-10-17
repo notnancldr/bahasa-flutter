@@ -38,4 +38,7 @@ abstract class SettingsRepository {
 
   /// Records that an online AI deck generation was completed today.
   Future<void> recordOnlineDeckGeneration();
+
+  /// Resets the daily online AI deck generation tracker.
+  Future<void> resetOnlineDeckGeneration();
 }

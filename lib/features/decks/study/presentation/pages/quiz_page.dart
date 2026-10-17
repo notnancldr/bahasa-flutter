@@ -3,6 +3,7 @@ import 'package:bahasa/core/widgets/embossed_button/embossed_button.dart';
 import 'package:bahasa/core/widgets/step_progress_header.dart';
 import 'package:bahasa/features/decks/decks_dependencies.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
@@ -11,6 +12,7 @@ import '../bloc/quiz_bloc.dart';
 import '../bloc/quiz_event.dart';
 import '../bloc/quiz_state.dart';
 import '../widgets/quiz_complete_view.dart';
+import '../widgets/quiz_context_guess_view.dart';
 import '../widgets/quiz_feedback_sheet.dart';
 import '../widgets/quiz_jumble_words_view.dart';
 import '../widgets/quiz_multiple_choice_view.dart';
@@ -114,23 +116,32 @@ class _QuizSessionView extends StatelessWidget {
                           // Question body
                           Expanded(
                             child: SingleChildScrollView(
-                              child:
-                                  currentQuestion.type ==
-                                      QuizQuestionType.multipleChoice
-                                  ? QuizMultipleChoiceView(
-                                      question: currentQuestion,
-                                      selectedOption: selectedOption,
-                                      onSelectOption: (opt) => context
-                                          .read<QuizBloc>()
-                                          .add(SelectQuizOptionEvent(opt)),
-                                    )
-                                  : QuizJumbleWordsView(
-                                      question: currentQuestion,
-                                      selectedWordIndices: selectedWordIndices,
-                                      onToggleWordIndex: (idx) => context
-                                          .read<QuizBloc>()
-                                          .add(ToggleQuizJumbleWordEvent(idx)),
-                                    ),
+                              child: switch (currentQuestion.type) {
+                                QuizQuestionType.multipleChoice =>
+                                  QuizMultipleChoiceView(
+                                    question: currentQuestion,
+                                    selectedOption: selectedOption,
+                                    onSelectOption: (opt) => context
+                                        .read<QuizBloc>()
+                                        .add(SelectQuizOptionEvent(opt)),
+                                  ),
+                                QuizQuestionType.contextGuess =>
+                                  QuizContextGuessView(
+                                    question: currentQuestion,
+                                    selectedOption: selectedOption,
+                                    onSelectOption: (opt) => context
+                                        .read<QuizBloc>()
+                                        .add(SelectQuizOptionEvent(opt)),
+                                  ),
+                                QuizQuestionType.jumbleWords =>
+                                  QuizJumbleWordsView(
+                                    question: currentQuestion,
+                                    selectedWordIndices: selectedWordIndices,
+                                    onToggleWordIndex: (idx) => context
+                                        .read<QuizBloc>()
+                                        .add(ToggleQuizJumbleWordEvent(idx)),
+                                  ),
+                              },
                             ),
                           ),
                           const SizedBox(height: 16),
@@ -162,9 +173,17 @@ class _QuizSessionView extends StatelessWidget {
                               onContinue: () => context.read<QuizBloc>().add(
                                 const NextQuizQuestionEvent(),
                               ),
-                            ),
+                            )
+                                .animate()
+                                .slideY(
+                                  begin: 1.0,
+                                  end: 0.0,
+                                  duration: 350.ms,
+                                  curve: Curves.easeOutCubic,
+                                )
+                                .fadeIn(duration: 200.ms),
                           ),
-                        ),
+                        ).animate().fadeIn(duration: 200.ms),
                       ),
                   ],
                 ),

@@ -14,8 +14,9 @@ class _FakeGenerateDeckRepository implements GenerateDeckRepository {
 
   @override
   Future<GeneratedDeckResult> generateDeck(
-    DeckGenerationRequest request,
-  ) async {
+    DeckGenerationRequest request, {
+    void Function(int collected, int total)? onProgress,
+  }) async {
     if (shouldFail) {
       return GeneratedDeckResult.failure('Failed to generate deck');
     }

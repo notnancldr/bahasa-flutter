@@ -1,3 +1,4 @@
+import 'package:bahasa/core/constants/language_options.dart';
 import 'package:bahasa/core/widgets/language_picker.dart';
 import 'package:bahasa/features/login/presentation/bloc/login/login_bloc.dart';
 import 'package:bahasa/features/login/presentation/bloc/login/login_event.dart';
@@ -26,6 +27,7 @@ class SelectLanguageStep extends StatelessWidget {
         const SizedBox(height: 32),
         Expanded(
           child: LanguagePicker(
+            options: kAppUiLanguageOptions,
             selectedLanguage: state.language,
             onLanguageSelected: (code) {
               context.read<LoginBloc>().add(

@@ -1,3 +1,4 @@
+import 'package:bahasa/core/constants/language_options.dart';
 import 'package:bahasa/core/localization/locale_cubit.dart';
 import 'package:bahasa/core/utils/widget_var.dart';
 import 'package:bahasa/core/widgets/language_picker.dart';
@@ -8,6 +9,7 @@ import 'package:bahasa/features/settings/presentation/bloc/account/account_state
 import 'package:bahasa/features/settings/settings_dependencies.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:material_symbols_icons/symbols.dart';
 
 class LanguageSettingsPage extends StatelessWidget {
   final AccountBloc? bloc;
@@ -40,11 +42,86 @@ class LanguageSettingsPage extends StatelessWidget {
 class LanguageSettingsView extends StatelessWidget {
   const LanguageSettingsView({super.key});
 
-  void _onLanguageSelected(BuildContext context, String languageCode) {
-    // 1. Update persisted account profile
-    context.read<AccountBloc>().add(ChangeDefaultLanguageEvent(languageCode));
-    // 2. Change active app locale immediately
-    context.read<LocaleCubit>().changeLanguage(languageCode);
+  void _onLanguageSelected(
+    BuildContext context,
+    String newLanguageCode,
+    String currentLanguageCode,
+  ) {
+    if (newLanguageCode == currentLanguageCode) return;
+
+    final WidgetVars(:t, :c, :l) = WidgetVars.of(context);
+
+    showDialog<void>(
+      context: context,
+      builder: (dialogContext) {
+        return AlertDialog(
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(20),
+          ),
+          title: Row(
+            children: [
+              Icon(
+                Symbols.info,
+                color: c.primary,
+                size: 28,
+              ),
+              const SizedBox(width: 10),
+              Expanded(
+                child: Text(
+                  l.settings_language_alert_title,
+                  style: t.titleMedium?.copyWith(
+                    fontWeight: FontWeight.w800,
+                  ),
+                ),
+              ),
+            ],
+          ),
+          content: Text(
+            l.settings_language_alert_message,
+            style: t.bodyMedium?.copyWith(
+              color: c.onSurfaceVariant,
+              height: 1.4,
+            ),
+          ),
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.of(dialogContext).pop(),
+              child: Text(
+                l.settings_language_alert_cancel,
+                style: t.labelLarge?.copyWith(
+                  color: c.onSurfaceVariant,
+                  fontWeight: FontWeight.w700,
+                ),
+              ),
+            ),
+            FilledButton(
+              onPressed: () {
+                Navigator.of(dialogContext).pop();
+                // 1. Update persisted account profile
+                context.read<AccountBloc>().add(
+                      ChangeDefaultLanguageEvent(newLanguageCode),
+                    );
+                // 2. Change active app locale immediately
+                context.read<LocaleCubit>().changeLanguage(newLanguageCode);
+              },
+              style: FilledButton.styleFrom(
+                backgroundColor: c.primary,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(12),
+                ),
+              ),
+              child: Text(
+                l.settings_language_alert_confirm,
+                style: t.labelLarge?.copyWith(
+                  color: c.onPrimary,
+                  fontWeight: FontWeight.w800,
+                ),
+              ),
+            ),
+          ],
+        );
+      },
+    );
   }
 
   @override
@@ -93,9 +170,13 @@ class LanguageSettingsView extends StatelessWidget {
                   const SizedBox(height: 24),
                   Expanded(
                     child: LanguagePicker(
+                      options: kAppUiLanguageOptions,
                       selectedLanguage: currentLanguageCode,
-                      onLanguageSelected: (code) =>
-                          _onLanguageSelected(context, code),
+                      onLanguageSelected: (code) => _onLanguageSelected(
+                        context,
+                        code,
+                        currentLanguageCode,
+                      ),
                     ),
                   ),
                 ],

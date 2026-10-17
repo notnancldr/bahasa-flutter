@@ -3,6 +3,7 @@ import 'package:bahasa/features/settings/data/datasources/data_storage_local_dat
 import 'package:bahasa/features/settings/data/datasources/profile_local_data_source.dart';
 import 'package:bahasa/features/settings/domain/entities/data_transfer_result.dart';
 import 'package:bahasa/features/settings/domain/repositories/data_storage_repository.dart';
+import 'package:bahasa/features/settings/settings_dependencies.dart';
 
 class DataStorageRepositoryImpl implements DataStorageRepository {
   final DataStorageLocalDataSource _dataStorageDataSource;
@@ -32,5 +33,6 @@ class DataStorageRepositoryImpl implements DataStorageRepository {
 
     // DAT-06: Data deleted from application directory
     await _dataStorageDataSource.deleteAppData();
+    await SettingsDependencies.settingsDataSource.resetOnlineDeckGeneration();
   }
 }

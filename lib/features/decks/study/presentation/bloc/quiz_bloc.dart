@@ -223,7 +223,8 @@ class QuizBloc extends Bloc<QuizEvent, QuizState> {
   }
 
   bool _evaluateAnswer(QuizInProgress current, QuizQuestion question) {
-    if (question.type == QuizQuestionType.multipleChoice) {
+    if (question.type == QuizQuestionType.multipleChoice ||
+        question.type == QuizQuestionType.contextGuess) {
       return _normalize(current.selectedOption ?? '') ==
           _normalize(question.correctAnswer);
     }
@@ -249,9 +250,17 @@ class QuizBloc extends Bloc<QuizEvent, QuizState> {
     final questions = <QuizQuestion>[];
     for (var i = 0; i < sessionCards.length; i++) {
       final card = sessionCards[i];
-      final type = i.isEven
-          ? QuizQuestionType.multipleChoice
-          : QuizQuestionType.jumbleWords;
+      final modeIndex = i % 3;
+      var type = switch (modeIndex) {
+        0 => QuizQuestionType.multipleChoice,
+        1 => QuizQuestionType.contextGuess,
+        _ => QuizQuestionType.jumbleWords,
+      };
+
+      if (type == QuizQuestionType.contextGuess &&
+          card.additionalContext.trim().isEmpty) {
+        type = QuizQuestionType.multipleChoice;
+      }
 
       if (type == QuizQuestionType.multipleChoice) {
         final options = _buildMultipleChoiceOptions(card, allCards);
@@ -263,6 +272,18 @@ class QuizBloc extends Bloc<QuizEvent, QuizState> {
             targetWords: const [],
             wordBank: const [],
             correctAnswer: card.defaultLanguage,
+          ),
+        );
+      } else if (type == QuizQuestionType.contextGuess) {
+        final options = _buildContextGuessOptions(card, allCards);
+        questions.add(
+          QuizQuestion(
+            card: card,
+            type: QuizQuestionType.contextGuess,
+            options: options,
+            targetWords: const [],
+            wordBank: const [],
+            correctAnswer: card.translation,
           ),
         );
       } else {
@@ -313,6 +334,33 @@ class QuizBloc extends Bloc<QuizEvent, QuizState> {
     candidatePool.shuffle(_random);
     final options = <String>[
       targetCard.defaultLanguage,
+      ...candidatePool.take(3),
+    ]..shuffle(_random);
+
+    return options;
+  }
+
+  List<String> _buildContextGuessOptions(
+    DeckCardItem targetCard,
+    List<DeckCardItem> allCards,
+  ) {
+    final targetNormalized = _normalize(targetCard.translation);
+    final candidatePool = <String>[];
+
+    for (final c in allCards) {
+      final val = c.translation.trim();
+      if (val.isNotEmpty &&
+          _normalize(val) != targetNormalized &&
+          !candidatePool.any(
+            (existing) => _normalize(existing) == _normalize(val),
+          )) {
+        candidatePool.add(val);
+      }
+    }
+
+    candidatePool.shuffle(_random);
+    final options = <String>[
+      targetCard.translation,
       ...candidatePool.take(3),
     ]..shuffle(_random);
 

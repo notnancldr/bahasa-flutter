@@ -216,12 +216,40 @@ class AppLocalizationsEn extends AppLocalizations {
       'ja': 'Japanese',
       'ko': 'Korean',
       'fr': 'French',
+      'de': 'German',
+      'it': 'Italian',
       'ru': 'Russian',
       'ar': 'Arabic',
-      'de': 'German',
+      'nl': 'Dutch',
       'pt': 'Portuguese',
       'zh': 'Chinese',
+      'th': 'Thai',
+      'vi': 'Vietnamese',
+      'tr': 'Turkish',
       'hi': 'Hindi',
+      'sv': 'Swedish',
+      'no': 'Norwegian',
+      'da': 'Danish',
+      'fi': 'Finnish',
+      'pl': 'Polish',
+      'uk': 'Ukrainian',
+      'el': 'Greek',
+      'he': 'Hebrew',
+      'ms': 'Malay',
+      'tl': 'Filipino',
+      'cs': 'Czech',
+      'hu': 'Hungarian',
+      'ro': 'Romanian',
+      'bg': 'Bulgarian',
+      'hr': 'Croatian',
+      'sk': 'Slovak',
+      'sl': 'Slovenian',
+      'sw': 'Swahili',
+      'fa': 'Persian',
+      'ur': 'Urdu',
+      'bn': 'Bengali',
+      'ta': 'Tamil',
+      'lat': 'Latin',
       'other': '$code',
     });
     return '$_temp0';
@@ -267,6 +295,19 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get settings_language_subtitle => 'Select app primary language';
+
+  @override
+  String get settings_language_alert_title => 'Change App & Deck Language';
+
+  @override
+  String get settings_language_alert_message =>
+      'Changing the language here will cause future decks and explanations to be translated and explained using the selected language.';
+
+  @override
+  String get settings_language_alert_confirm => 'Change Language';
+
+  @override
+  String get settings_language_alert_cancel => 'Cancel';
 
   @override
   String get settings_notif_title => 'Notifications';
@@ -607,6 +648,16 @@ class AppLocalizationsEn extends AppLocalizations {
   String get deck_gen_create_button => 'Create Deck';
 
   @override
+  String deck_gen_limit_reached_title(String time) {
+    return 'Online AI daily limit reached (1 deck/day). Reset in $time.';
+  }
+
+  @override
+  String deck_gen_limit_countdown_button(String time) {
+    return 'Create Deck (Reset in $time)';
+  }
+
+  @override
   String get deck_gen_cancel_button => 'Cancel';
 
   @override
@@ -618,6 +669,14 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get deck_gen_progress_subtitle =>
       'You will be notified once it is ready.';
+
+  @override
+  String deck_gen_cards_collected_progress(int count, int total) {
+    return 'Collected $count / $total cards';
+  }
+
+  @override
+  String get deck_gen_in_progress_badge => 'Generating...';
 
   @override
   String get deck_run_in_background => 'Run in Background';
@@ -931,6 +990,10 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get quiz_mc_instruction =>
       'Choose the matching meaning for the word below:';
+
+  @override
+  String get quiz_context_instruction =>
+      'Guess the vocabulary word based on this usage context:';
 
   @override
   String get quiz_jumble_instruction =>

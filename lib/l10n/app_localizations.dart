@@ -461,7 +461,7 @@ abstract class AppLocalizations {
   /// Display name of a language, resolved from its ISO 639-1 code
   ///
   /// In id, this message translates to:
-  /// **'{code, select, id{Indonesia} en{Inggris} es{Spanyol} ja{Jepang} ko{Korea} fr{Prancis} ru{Rusia} ar{Arab} de{Jerman} pt{Portugis} zh{Mandarin} hi{Hindi} other{{code}}}'**
+  /// **'{code, select, id{Indonesia} en{Inggris} es{Spanyol} ja{Jepang} ko{Korea} fr{Prancis} de{Jerman} it{Italia} ru{Rusia} ar{Arab} nl{Belanda} pt{Portugis} zh{Mandarin} th{Thailand} vi{Vietnam} tr{Turki} hi{Hindi} sv{Swedia} no{Norwegia} da{Denmark} fi{Finlandia} pl{Polandia} uk{Ukraina} el{Yunani} he{Ibrani} ms{Melayu} tl{Filipina} cs{Ceko} hu{Hongaria} ro{Rumania} bg{Bulgaria} hr{Kroasia} sk{Slowakia} sl{Slovenia} sw{Swahili} fa{Persia} ur{Urdu} bn{Bengali} ta{Tamil} lat{Latin} other{{code}}}'**
   String languageName(String code);
 
   /// No description provided for @step.
@@ -541,6 +541,30 @@ abstract class AppLocalizations {
   /// In id, this message translates to:
   /// **'Pilih bahasa utama aplikasi'**
   String get settings_language_subtitle;
+
+  /// Title for language change confirmation dialog
+  ///
+  /// In id, this message translates to:
+  /// **'Ubah Bahasa Aplikasi & Deck'**
+  String get settings_language_alert_title;
+
+  /// Notice message explaining that future decks will use the selected language
+  ///
+  /// In id, this message translates to:
+  /// **'Mengubah bahasa di sini akan membuat deck dan penjelasan ke depannya dijelaskan serta diterjemahkan menggunakan bahasa yang dipilih.'**
+  String get settings_language_alert_message;
+
+  /// Confirm button label in language change dialog
+  ///
+  /// In id, this message translates to:
+  /// **'Ubah Bahasa'**
+  String get settings_language_alert_confirm;
+
+  /// Cancel button label in language change dialog
+  ///
+  /// In id, this message translates to:
+  /// **'Batal'**
+  String get settings_language_alert_cancel;
 
   /// No description provided for @settings_notif_title.
   ///
@@ -1136,6 +1160,18 @@ abstract class AppLocalizations {
   /// **'Buat Deck'**
   String get deck_gen_create_button;
 
+  /// Banner notification when daily online deck creation limit is reached
+  ///
+  /// In id, this message translates to:
+  /// **'Batas harian AI Online tercapai (1 deck/hari). Reset dalam {time}.'**
+  String deck_gen_limit_reached_title(String time);
+
+  /// Disabled button label showing remaining countdown time until daily reset
+  ///
+  /// In id, this message translates to:
+  /// **'Buat Deck (Reset dalam {time})'**
+  String deck_gen_limit_countdown_button(String time);
+
   /// No description provided for @deck_gen_cancel_button.
   ///
   /// In id, this message translates to:
@@ -1159,6 +1195,18 @@ abstract class AppLocalizations {
   /// In id, this message translates to:
   /// **'Kamu akan diberi tahu begitu selesai.'**
   String get deck_gen_progress_subtitle;
+
+  /// Progress subtitle showing collected cards during offline AI deck generation
+  ///
+  /// In id, this message translates to:
+  /// **'Terkumpul {count} / {total} kartu'**
+  String deck_gen_cards_collected_progress(int count, int total);
+
+  /// Badge label on background deck generation placeholder card
+  ///
+  /// In id, this message translates to:
+  /// **'Membuat...'**
+  String get deck_gen_in_progress_badge;
 
   /// No description provided for @deck_run_in_background.
   ///
@@ -1726,6 +1774,12 @@ abstract class AppLocalizations {
   /// In id, this message translates to:
   /// **'Pilih arti yang sesuai untuk kata berikut:'**
   String get quiz_mc_instruction;
+
+  /// Instruction prompt for context-based guessing questions in Quiz
+  ///
+  /// In id, this message translates to:
+  /// **'Tebak kosakata yang tepat berdasarkan konteks ini:'**
+  String get quiz_context_instruction;
 
   /// Instruction prompt for Jumble Words arrangement questions in Quiz
   ///

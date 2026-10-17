@@ -17,6 +17,8 @@ class ModelDownloadService {
   /// Default model file size: 2.59 GB (2,781,102,080 bytes).
   static const int expectedModelBytes = 2781102080;
   static const String modelFileName = 'gemma-4-E4B-it-litert-lm.litertlm';
+  static const String defaultModelUrl =
+      'https://huggingface.co/litert-community/gemma-4-E2B-it-litert-lm/resolve/main/gemma-4-E2B-it.litertlm';
 
   final _progressController =
       StreamController<ModelDownloadProgress>.broadcast();
@@ -72,9 +74,12 @@ class ModelDownloadService {
 
     try {
       final targetFile = await getLocalModelFile();
-      final url =
-          downloadUrl ??
-          const String.fromEnvironment('LOCAL_GEMMA_DOWNLOAD_URL');
+      final url = (downloadUrl != null && downloadUrl.isNotEmpty)
+          ? downloadUrl
+          : const String.fromEnvironment(
+              'LOCAL_GEMMA_DOWNLOAD_URL',
+              defaultValue: defaultModelUrl,
+            );
 
       if (url.isNotEmpty && Uri.tryParse(url)?.hasScheme == true) {
         await _downloadFromUrl(Uri.parse(url), targetFile);
@@ -95,10 +100,32 @@ class ModelDownloadService {
     }
   }
 
-  Future<void> _downloadFromUrl(Uri uri, File targetFile) async {
-    _client = HttpClient();
+  Future<void> _downloadFromUrl(
+    Uri uri,
+    File targetFile, {
+    int redirectCount = 0,
+  }) async {
+    if (redirectCount > 5) {
+      throw const HttpException('Too many HTTP redirects.');
+    }
+
+    _client ??= HttpClient();
     final request = await _client!.getUrl(uri);
     final response = await request.close();
+
+    if (response.statusCode == 301 ||
+        response.statusCode == 302 ||
+        response.statusCode == 307) {
+      final redirectLocation =
+          response.headers.value(HttpHeaders.locationHeader);
+      if (redirectLocation != null && redirectLocation.isNotEmpty) {
+        return _downloadFromUrl(
+          Uri.parse(redirectLocation),
+          targetFile,
+          redirectCount: redirectCount + 1,
+        );
+      }
+    }
 
     if (response.statusCode != 200) {
       throw HttpException('Server returned ${response.statusCode}');

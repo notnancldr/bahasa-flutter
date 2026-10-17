@@ -45,12 +45,13 @@ class _LanguagePickerState extends State<LanguagePicker> {
         ? widget.options
         : widget.options.where((lang) {
             final q = _query.toLowerCase();
+            final matchesCode = lang.code.toLowerCase().contains(q);
             final matchesNative = lang.name.toLowerCase().contains(q);
             final matchesLocalized = l
                 .languageName(lang.code)
                 .toLowerCase()
                 .contains(q);
-            return matchesNative || matchesLocalized;
+            return matchesCode || matchesNative || matchesLocalized;
           }).toList();
 
     final listView = ListView.separated(

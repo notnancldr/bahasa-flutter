@@ -3,6 +3,7 @@ import 'package:bahasa/core/utils/widget_var.dart';
 import 'package:bahasa/core/widgets/embossed_button/embossed_button.dart';
 import 'package:bahasa/core/widgets/flame_icon.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
@@ -56,7 +57,12 @@ class MultiplayerCompletePage extends StatelessWidget {
                     const Spacer(flex: 2),
 
                     // Big Flame Illustration
-                    const FlameIcon(streakCount: 1, size: 140),
+                    Center(
+                      child: const FlameIcon(streakCount: 1, size: 140)
+                          .animate()
+                          .scale(duration: 400.ms, curve: Curves.easeOutBack)
+                          .fadeIn(duration: 300.ms),
+                    ),
                     const SizedBox(height: 24),
 
                     // Header
@@ -67,7 +73,16 @@ class MultiplayerCompletePage extends StatelessWidget {
                         fontWeight: FontWeight.w900,
                         fontSize: 24,
                       ),
-                    ),
+                    )
+                        .animate()
+                        .slideY(
+                          begin: 0.3,
+                          end: 0.0,
+                          duration: 350.ms,
+                          delay: 150.ms,
+                          curve: Curves.easeOutCubic,
+                        )
+                        .fadeIn(delay: 150.ms),
 
                     const Spacer(flex: 2),
 
@@ -75,7 +90,14 @@ class MultiplayerCompletePage extends StatelessWidget {
                     MultiplayerStarGrid(
                       outcomes: outcomes,
                       totalQuestions: totalQuestions,
-                    ),
+                    )
+                        .animate()
+                        .scale(
+                          delay: 250.ms,
+                          duration: 400.ms,
+                          curve: Curves.easeOutBack,
+                        )
+                        .fadeIn(delay: 250.ms),
 
                     const Spacer(flex: 3),
 
@@ -152,7 +174,16 @@ class MultiplayerCompletePage extends StatelessWidget {
                           ),
                         ),
                       ],
-                    ),
+                    )
+                        .animate()
+                        .slideY(
+                          begin: 0.3,
+                          end: 0.0,
+                          delay: 550.ms,
+                          duration: 350.ms,
+                          curve: Curves.easeOutCubic,
+                        )
+                        .fadeIn(delay: 550.ms),
 
                     const SizedBox(height: 28),
 
@@ -169,7 +200,16 @@ class MultiplayerCompletePage extends StatelessWidget {
                           context.go(AppRoutes.multiplayer);
                         },
                       ),
-                    ),
+                    )
+                        .animate()
+                        .slideY(
+                          begin: 0.4,
+                          end: 0.0,
+                          delay: 700.ms,
+                          duration: 350.ms,
+                          curve: Curves.easeOutCubic,
+                        )
+                        .fadeIn(delay: 700.ms),
                   ],
                 ),
               ),
