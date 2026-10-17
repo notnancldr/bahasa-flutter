@@ -1,3 +1,4 @@
+import 'package:bahasa/core/utils/app_notification_service.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../domain/usecases/generate_deck_usecase.dart';
@@ -108,7 +109,16 @@ class GenerateDeckBloc extends Bloc<GenerateDeckEvent, GenerateDeckState> {
       GenerateDeckInProgressState(
         deckName: wizard.name,
         language: wizard.language,
+        collectedCards: 0,
+        totalCards: 50,
       ),
+    );
+
+    // Initial system notification for progress
+    AppNotificationService().showProgressNotification(
+      deckName: wizard.name,
+      collectedCards: 0,
+      totalCards: 50,
     );
 
     try {
@@ -126,19 +136,36 @@ class GenerateDeckBloc extends Bloc<GenerateDeckEvent, GenerateDeckState> {
               ),
             );
           }
+          AppNotificationService().showProgressNotification(
+            deckName: wizard.name,
+            collectedCards: collected,
+            totalCards: total,
+          );
         },
       );
       if (result.isSuccess) {
         emit(GenerateDeckSuccessState(result));
+        AppNotificationService().showCompletionNotification(
+          deckName: wizard.name,
+          totalCards: result.cardCount,
+        );
       } else {
         emit(
           GenerateDeckErrorState(
             result.errorMessage ?? 'Deck generation failed.',
           ),
         );
+        AppNotificationService().showFailureNotification(
+          deckName: wizard.name,
+          errorMessage: result.errorMessage ?? 'Deck generation failed.',
+        );
       }
     } catch (e) {
       emit(GenerateDeckErrorState(e.toString()));
+      AppNotificationService().showFailureNotification(
+        deckName: wizard.name,
+        errorMessage: e.toString(),
+      );
     }
   }
 

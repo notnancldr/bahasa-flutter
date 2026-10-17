@@ -6,16 +6,23 @@ import 'package:flutter_litert_lm/flutter_litert_lm.dart';
 import 'ai_deck_json_parser.dart';
 
 /// Data source executing on-device AI deck generation via Gemma 4 E4B LiteRT-LM.
-/// Generates cards in chunks with a dedicated conversation session per chunk.
+/// Generates 50 cards chunked into 5 independent sessions (10 cards per chunk).
 class LocalGemmaDeckGeneratorDataSource {
   const LocalGemmaDeckGeneratorDataSource();
 
-  /// Generates a deck of exactly 20 cards chunked into 4 independent sessions (5 cards per chunk).
+  /// Generates a deck of 50 cards chunked into 5 independent sessions (10 cards per chunk).
   Future<EuyDeckModel> generateDeck({
     required DeckGenerationRequest request,
     required String modelPath,
     void Function(int collected, int total)? onProgress,
   }) async {
+    const totalTargetCards = 50;
+    const totalChunks = 5;
+    const cardsPerChunk = 10;
+
+    // Report initial zero progress (0 / 50) from the very beginning
+    onProgress?.call(0, totalTargetCards);
+
     final engine = await LiteLmEngine.create(
       LiteLmEngineConfig(modelPath: modelPath, backend: LiteLmBackend.cpu),
     );
@@ -23,9 +30,6 @@ class LocalGemmaDeckGeneratorDataSource {
     String? generatedName;
     String? generatedExplanation;
     final allCards = <EuyCardModel>[];
-
-    const totalChunks = 4;
-    const cardsPerChunk = 5;
 
     try {
       for (int chunkIndex = 0; chunkIndex < totalChunks; chunkIndex++) {
@@ -38,6 +42,7 @@ class LocalGemmaDeckGeneratorDataSource {
           final prompt = _buildChunkPrompt(
             request: request,
             chunkIndex: chunkIndex,
+            totalChunks: totalChunks,
             startNum: startNum,
             endNum: endNum,
             existingCards: allCards,
@@ -62,7 +67,7 @@ class LocalGemmaDeckGeneratorDataSource {
           final rawCards = jsonMap['cards'] as List<dynamic>? ?? [];
           final chunkCards = AiDeckJsonParser.parseCards(rawCards);
           allCards.addAll(chunkCards);
-          onProgress?.call(allCards.length, 20);
+          onProgress?.call(allCards.length, totalTargetCards);
         } finally {
           await conversation.dispose();
         }
@@ -82,6 +87,7 @@ class LocalGemmaDeckGeneratorDataSource {
   String _buildChunkPrompt({
     required DeckGenerationRequest request,
     required int chunkIndex,
+    required int totalChunks,
     required int startNum,
     required int endNum,
     required List<EuyCardModel> existingCards,
@@ -102,9 +108,9 @@ Parameter dek yang diminta:
 - Tingkat Kesulitan: "${request.difficulty}"
 - Deskripsi / Fokus Khusus: "${request.description}"
 
-Aturan pembuatan bagian ini (Bagian ${chunkIndex + 1} dari 4, nomor $startNum sampai $endNum):
+Aturan pembuatan bagian ini (Bagian ${chunkIndex + 1} dari $totalChunks, nomor $startNum sampai $endNum):
 (1) Properti "name" wajib diisi dengan judul dek dalam bahasa Inggris beserta tingkat kesulitannya, dan properti "explanationRolePlay" diisi dengan penjelasan singkat dalam bahasa Indonesia mengenai topik serta tingkat kesulitan yang diminta.
-(2) Di dalam array "cards", WAJIB memuat tepat 5 kosakata atau frasa unik untuk bagian ini (nomor $startNum sampai $endNum), tanpa duplikasi kata, pengulangan elemen, ataupun kesamaan konsep sama sekali. $excludeNotice
+(2) Di dalam array "cards", WAJIB memuat tepat 10 kosakata atau frasa unik untuk bagian ini (nomor $startNum sampai $endNum), tanpa duplikasi kata, pengulangan elemen, ataupun kesamaan konsep sama sekali. $excludeNotice
 (3) Setiap objek di dalam array "cards" wajib memiliki properti "defaultLanguage" berisi kata atau frasa dalam bahasa Indonesia.
 (4) Properti "translation" wajib berisi terjemahan kosakata ke bahasa target menggunakan aksara aslinya secara murni tanpa romanisasi, tanpa tanda kurung, dan tanpa teks tambahan.
 (5) Properti "phoneticLang" wajib memuat transkripsi fonetik atau panduan cara baca dari kosakata bahasa target tersebut.
