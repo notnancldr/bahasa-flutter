@@ -16,6 +16,7 @@ dependencies:
   flip_card: ^0.7.0
   flutter_animate: ^4.5.2
   flutter_local_notifications: ^18.0.1
+  wakelock_plus: ^1.2.8
   flutter_bloc: ^9.1.1
   go_router: ^18.0.1
   hydrated_bloc: ^11.0.0
@@ -46,10 +47,19 @@ dev_dependencies:
   flutter_lints: ^6.0.0
   json_serializable: ^6.14.1
   build_runner: ^2.16.2
+  flutter_launcher_icons: ^0.14.3
+
+flutter_launcher_icons:
+  android: "ic_launcher"
+  ios: true
+  image_path: "lib/core/assets/app_icon.png"
+  adaptive_icon_background: "#F4FFFF"
+  adaptive_icon_foreground: "lib/core/assets/app_icon.png"
 
 flutter:
   assets:
     - .env
+    - lib/core/assets/icon - basa app.svg
   fonts:
     - family: NunitoSans
       fonts:

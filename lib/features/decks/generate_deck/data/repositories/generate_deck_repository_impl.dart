@@ -88,6 +88,7 @@ class GenerateDeckRepositoryImpl implements GenerateDeckRepository {
         deck = await _geminiDataSource.generateDeck(
           request: request,
           apiKey: apiKey,
+          onProgress: onProgress,
         );
       }
 
@@ -104,7 +105,15 @@ class GenerateDeckRepositoryImpl implements GenerateDeckRepository {
         isSuccess: true,
       );
     } catch (e) {
-      return GeneratedDeckResult.failure(e.toString());
+      final msg = e.toString();
+      if (msg.contains('Failed host lookup') ||
+          msg.contains('SocketException') ||
+          msg.contains('ClientException')) {
+        return GeneratedDeckResult.failure(
+          'Tidak ada koneksi internet. Silakan periksa koneksi Wi-Fi/Data seluler Anda atau gunakan AI Lokal (Offline) di Settings.',
+        );
+      }
+      return GeneratedDeckResult.failure(msg);
     }
   }
 

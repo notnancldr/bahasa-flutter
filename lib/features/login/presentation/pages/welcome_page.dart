@@ -3,6 +3,7 @@ import 'package:bahasa/core/utils/widget_var.dart';
 import 'package:bahasa/features/login/presentation/widgets/security_footnote.dart';
 import 'package:bahasa/features/login/presentation/widgets/welcome/option_card.dart';
 
+import 'package:bahasa/core/widgets/basa_app_logo.dart';
 import 'package:flutter/material.dart';
 import 'package:material_symbols_icons/symbols.dart';
 
@@ -33,17 +34,20 @@ class WelcomeView extends StatelessWidget {
               Column(
                 children: [
                   Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 48),
+                    padding: const EdgeInsets.symmetric(vertical: 32),
                     child: Column(
                       children: [
+                        const BasaAppLogo(size: 88, borderRadius: 22),
+                        const SizedBox(height: 16),
                         Text(
                           l.welcome_startUsing,
                           textAlign: TextAlign.center,
                           style: TextStyle(
                             fontWeight: FontWeight.w800,
-                            fontSize: 20,
+                            fontSize: 22,
                           ),
                         ),
+                        const SizedBox(height: 4),
                         Text(
                           l.welcome_description,
                           textAlign: TextAlign.center,

@@ -8,8 +8,8 @@ import '../../domain/usecases/study_session_usecases.dart';
 import 'quiz_event.dart';
 import 'quiz_state.dart';
 
-/// BLoC orchestrating a 10-question Quiz session with Multiple Choice (`translating`)
-/// and Jumble Words (`writing`) questions, immediate SQLite answer logging,
+/// BLoC orchestrating a 10-question Quiz session with Multiple Choice (`translating`),
+/// Context Guess (`context`), and Jumble Words (`writing`) questions, immediate SQLite answer logging,
 /// feedback overlays, and completion summary computation.
 class QuizBloc extends Bloc<QuizEvent, QuizState> {
   /// Use case to start a study session.
@@ -50,6 +50,15 @@ class QuizBloc extends Bloc<QuizEvent, QuizState> {
     'datang',
     'pagi',
     'malam',
+  ];
+
+  static const List<String> _fallbackDistractorTranslations = [
+    'Konnichiwa',
+    'Arigatou',
+    'Sayounara',
+    'Sumimasen',
+    'Ogenki desu ka',
+    'Gomen nasai',
   ];
 
   Future<void> _onStartSession(
@@ -355,6 +364,15 @@ class QuizBloc extends Bloc<QuizEvent, QuizState> {
             (existing) => _normalize(existing) == _normalize(val),
           )) {
         candidatePool.add(val);
+      }
+    }
+
+    for (final fallback in _fallbackDistractorTranslations) {
+      if (_normalize(fallback) != targetNormalized &&
+          !candidatePool.any(
+            (existing) => _normalize(existing) == _normalize(fallback),
+          )) {
+        candidatePool.add(fallback);
       }
     }
 

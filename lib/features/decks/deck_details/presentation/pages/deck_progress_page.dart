@@ -171,17 +171,17 @@ class _DeckProgressView extends StatelessWidget {
 
                       // Active Period Chart / Calendar View
                       if (activeTab == DeckProgressPeriodTab.month)
-                        ProgressMonthlyBarChart(
-                          monthlyStats: progress.monthlyStats,
-                          metricType: metricType,
-                          onMonthTap: (m) => _openMonthSheet(context, m),
-                        )
-                      else
                         ProgressCalendarHeatmap(
                           referenceDate: progress.referenceDate,
                           dailyStatsByDateKey: progress.dailyStatsByDateKey,
                           metricType: metricType,
                           onDayTap: (d) => _openDaySheet(context, d),
+                        )
+                      else
+                        ProgressMonthlyBarChart(
+                          monthlyStats: progress.monthlyStats,
+                          metricType: metricType,
+                          onMonthTap: (m) => _openMonthSheet(context, m),
                         ),
                     ],
                   ),

@@ -1,6 +1,7 @@
 import 'package:bahasa/core/router/app_router.dart';
 import 'package:bahasa/core/router/app_routes.dart';
 import 'package:bahasa/core/utils/widget_var.dart';
+import 'package:bahasa/core/widgets/basa_app_logo.dart';
 import 'package:bahasa/features/decks/presentation/widgets/add_deck_method_modal.dart';
 import 'package:bahasa/features/home/home_dependencies.dart';
 import 'package:bahasa/features/home/presentation/bloc/home_bloc.dart';
@@ -141,6 +142,25 @@ class _HomeDashboardView extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
+          // App Logo Header Row
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              const BasaAppLogo(size: 26, borderRadius: 8),
+              const SizedBox(width: 8),
+              Text(
+                'BASA',
+                style: t.titleMedium?.copyWith(
+                  fontWeight: FontWeight.w900,
+                  fontSize: 18,
+                  letterSpacing: 1.2,
+                  color: c.onSurface,
+                ),
+              ),
+            ],
+          ),
+          const SizedBox(height: 16),
+
           // Streak Section (Flame, Counter, Label)
           Center(
             child: StreakSection(

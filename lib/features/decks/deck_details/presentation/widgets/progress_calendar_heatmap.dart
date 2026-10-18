@@ -1,4 +1,3 @@
-import 'package:bahasa/core/theme/app_colors.dart';
 import 'package:bahasa/core/utils/widget_var.dart';
 import 'package:flutter/material.dart';
 
@@ -6,8 +5,7 @@ import '../../data/datasources/deck_details_local_data_source.dart';
 import '../../domain/entities/deck_progress_data.dart';
 
 /// Monthly calendar heatmap grid (`Minggu`..`Sabtu`) shading each day cell
-/// according to its study activity / accuracy and opening the Period Detail
-/// bottom sheet when tapped.
+/// according to its active study time (streak) or accuracy rate opacity.
 class ProgressCalendarHeatmap extends StatelessWidget {
   /// Reference month/date to display.
   final DateTime referenceDate;
@@ -30,30 +28,30 @@ class ProgressCalendarHeatmap extends StatelessWidget {
     required this.onDayTap,
   });
 
-  static const List<Color> _heatmapPalette = [
-    Color(0xFFD6EEF6),
-    Color(0xFFAEDCEB),
-    Color(0xFF8CCBDF),
-    Color(0xFF69B9D4),
-    Color(0xFF47A7C8),
-  ];
+  static const Color _baseThemeColor = Color(0xFF2C6378);
 
   Color? _resolveCellFill(DailyStatSummary? stat) {
-    if (stat == null || (stat.cardsPracticed <= 0 && stat.activeTimeMs <= 0)) {
-      return null;
-    }
+    if (stat == null) return null;
+
+    final hasActivity = stat.cardsPracticed > 0 || stat.activeTimeMs > 0;
+    if (!hasActivity) return null;
 
     if (metricType == DeckProgressMetricType.accuracy) {
-      final acc = stat.accuracyRate.clamp(0.0, 100.0);
-      final bucket = ((acc / 100.0) * (_heatmapPalette.length - 1))
-          .round()
-          .clamp(0, _heatmapPalette.length - 1);
-      return _heatmapPalette[bucket];
+      // Accuracy: Opacity is directly driven by accuracy percentage (0% to 100%)
+      final acc = stat.cardsPracticed > 0
+          ? stat.accuracyRate.clamp(0.0, 100.0)
+          : 0.0;
+      final opacity = (acc / 100.0).clamp(0.20, 1.0);
+      return _baseThemeColor.withValues(alpha: opacity);
+    } else {
+      // Streak / Active Time: Opacity is directly driven by how long active that day (activeTimeMs)
+      // 5 minutes (300,000 ms) = 100% full opacity
+      final durationMs = stat.activeTimeMs > 0
+          ? stat.activeTimeMs
+          : (stat.cardsPracticed * 12000);
+      final opacity = (durationMs / 300000.0).clamp(0.20, 1.0);
+      return _baseThemeColor.withValues(alpha: opacity);
     }
-
-    final practiced = stat.cardsPracticed;
-    final bucket = (practiced ~/ 5).clamp(0, _heatmapPalette.length - 1);
-    return _heatmapPalette[bucket];
   }
 
   List<DateTime> _buildCalendarCells(DateTime monthDate) {
@@ -121,6 +119,13 @@ class ProgressCalendarHeatmap extends StatelessWidget {
             final stat = dailyStatsByDateKey[key];
             final fillColor = isCurrentMonth ? _resolveCellFill(stat) : null;
 
+            final isHighOpacity = fillColor != null && (fillColor.a > 0.55);
+            final textColor = fillColor != null
+                ? (isHighOpacity ? Colors.white : _baseThemeColor)
+                : (isCurrentMonth
+                      ? c.onSurface
+                      : c.onSurfaceVariant.withValues(alpha: 0.35));
+
             return OutlinedButton(
               onPressed: () => onDayTap(cellDate),
               style: OutlinedButton.styleFrom(
@@ -128,7 +133,7 @@ class ProgressCalendarHeatmap extends StatelessWidget {
                 padding: const EdgeInsets.all(5),
                 side: BorderSide(
                   color: fillColor != null
-                      ? AppColors.primaryDark
+                      ? fillColor.withValues(alpha: 1.0)
                       : isCurrentMonth
                       ? c.onSurfaceVariant.withValues(alpha: 0.65)
                       : c.outline.withValues(alpha: 0.45),
@@ -143,13 +148,9 @@ class ProgressCalendarHeatmap extends StatelessWidget {
                 child: Text(
                   '${cellDate.day}',
                   style: t.labelSmall?.copyWith(
-                    fontWeight: FontWeight.w700,
+                    fontWeight: FontWeight.w800,
                     fontSize: 10,
-                    color: isCurrentMonth
-                        ? (fillColor != null
-                              ? AppColors.primaryDark
-                              : c.onSurface)
-                        : c.onSurfaceVariant.withValues(alpha: 0.4),
+                    color: textColor,
                   ),
                 ),
               ),
@@ -158,16 +159,16 @@ class ProgressCalendarHeatmap extends StatelessWidget {
         ),
         const SizedBox(height: 12),
 
-        // Heatmap intensity legend at bottom-right
+        // Heatmap opacity intensity legend at bottom-right
         Row(
           mainAxisAlignment: MainAxisAlignment.end,
-          children: _heatmapPalette.map((swatch) {
+          children: [0.20, 0.40, 0.60, 0.80, 1.0].map((opacity) {
             return Container(
               width: 11,
               height: 11,
               margin: const EdgeInsets.only(left: 4),
               decoration: BoxDecoration(
-                color: swatch,
+                color: _baseThemeColor.withValues(alpha: opacity),
                 borderRadius: BorderRadius.circular(3),
               ),
             );

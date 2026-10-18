@@ -1,5 +1,6 @@
 import 'package:bahasa/core/utils/app_notification_service.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:wakelock_plus/wakelock_plus.dart';
 
 import '../../domain/usecases/generate_deck_usecase.dart';
 import 'generate_deck_event.dart';
@@ -114,6 +115,11 @@ class GenerateDeckBloc extends Bloc<GenerateDeckEvent, GenerateDeckState> {
       ),
     );
 
+    // Keep CPU awake during background AI generation
+    try {
+      await WakelockPlus.enable();
+    } catch (_) {}
+
     // Initial system notification for progress
     AppNotificationService().showProgressNotification(
       deckName: wizard.name,
@@ -166,6 +172,10 @@ class GenerateDeckBloc extends Bloc<GenerateDeckEvent, GenerateDeckState> {
         deckName: wizard.name,
         errorMessage: e.toString(),
       );
+    } finally {
+      try {
+        await WakelockPlus.disable();
+      } catch (_) {}
     }
   }
 

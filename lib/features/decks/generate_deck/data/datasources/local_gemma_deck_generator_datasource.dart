@@ -6,7 +6,8 @@ import 'package:flutter_litert_lm/flutter_litert_lm.dart';
 import 'ai_deck_json_parser.dart';
 
 /// Data source executing on-device AI deck generation via Gemma 4 E4B LiteRT-LM.
-/// Generates 50 cards chunked into 5 independent sessions (10 cards per chunk).
+/// Generates 50 cards chunked into 5 independent sessions (10 cards per chunk)
+/// with automatic chunk retry resilience for background execution.
 class LocalGemmaDeckGeneratorDataSource {
   const LocalGemmaDeckGeneratorDataSource();
 
@@ -36,40 +37,64 @@ class LocalGemmaDeckGeneratorDataSource {
         final startNum = (chunkIndex * cardsPerChunk) + 1;
         final endNum = (chunkIndex + 1) * cardsPerChunk;
 
-        final conversation = await engine.createConversation();
+        int attempts = 0;
+        bool chunkSuccess = false;
 
-        try {
-          final prompt = _buildChunkPrompt(
-            request: request,
-            chunkIndex: chunkIndex,
-            totalChunks: totalChunks,
-            startNum: startNum,
-            endNum: endNum,
-            existingCards: allCards,
-          );
+        while (attempts < 3 && !chunkSuccess) {
+          attempts++;
+          final conversation = await engine.createConversation();
 
-          final response = await conversation.sendMessage(prompt);
-          final responseText = response.text;
-
-          if (responseText.trim().isEmpty) {
-            throw FormatException(
-              'Empty response received for chunk $chunkIndex.',
+          try {
+            final prompt = _buildChunkPrompt(
+              request: request,
+              chunkIndex: chunkIndex,
+              totalChunks: totalChunks,
+              startNum: startNum,
+              endNum: endNum,
+              existingCards: allCards,
             );
+
+            final response = await conversation.sendMessage(prompt);
+            final responseText = response.text;
+
+            if (responseText.trim().isEmpty) {
+              throw FormatException(
+                'Empty response received for chunk $chunkIndex (attempt $attempts).',
+              );
+            }
+
+            final jsonMap = AiDeckJsonParser.cleanAndDecodeJson(responseText);
+
+            if (chunkIndex == 0 && generatedName == null) {
+              generatedName = jsonMap['name']?.toString();
+              generatedExplanation = jsonMap['explanationRolePlay']?.toString();
+            }
+
+            final rawCards = jsonMap['cards'] as List<dynamic>? ?? [];
+            final chunkCards = AiDeckJsonParser.parseCards(rawCards);
+
+            if (chunkCards.isNotEmpty) {
+              allCards.addAll(chunkCards);
+              chunkSuccess = true;
+              onProgress?.call(allCards.length, totalTargetCards);
+            } else {
+              throw FormatException(
+                'No valid cards parsed in chunk $chunkIndex.',
+              );
+            }
+          } catch (e) {
+            if (attempts >= 3) {
+              // If we already collected cards, complete gracefully with available cards
+              if (allCards.isNotEmpty) {
+                chunkSuccess = true;
+                break;
+              }
+              rethrow;
+            }
+            await Future<void>.delayed(const Duration(milliseconds: 500));
+          } finally {
+            await conversation.dispose();
           }
-
-          final jsonMap = AiDeckJsonParser.cleanAndDecodeJson(responseText);
-
-          if (chunkIndex == 0) {
-            generatedName = jsonMap['name']?.toString();
-            generatedExplanation = jsonMap['explanationRolePlay']?.toString();
-          }
-
-          final rawCards = jsonMap['cards'] as List<dynamic>? ?? [];
-          final chunkCards = AiDeckJsonParser.parseCards(rawCards);
-          allCards.addAll(chunkCards);
-          onProgress?.call(allCards.length, totalTargetCards);
-        } finally {
-          await conversation.dispose();
         }
       }
     } finally {

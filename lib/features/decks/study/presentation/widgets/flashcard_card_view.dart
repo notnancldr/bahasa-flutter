@@ -32,7 +32,6 @@ class FlashcardCardView extends StatefulWidget {
 
 class _FlashcardCardViewState extends State<FlashcardCardView> {
   late final FlipCardController _controller;
-  bool _isAnimatingFromTouch = false;
 
   @override
   void initState() {
@@ -43,32 +42,25 @@ class _FlashcardCardViewState extends State<FlashcardCardView> {
   @override
   void didUpdateWidget(covariant FlashcardCardView oldWidget) {
     super.didUpdateWidget(oldWidget);
-    if (oldWidget.card.idCard != widget.card.idCard) {
-      _isAnimatingFromTouch = false;
-    } else if (oldWidget.isFlipped != widget.isFlipped) {
-      if (!_isAnimatingFromTouch) {
-        _controller.toggleCard();
-      }
-      _isAnimatingFromTouch = false;
+    if (oldWidget.card.idCard == widget.card.idCard &&
+        oldWidget.isFlipped != widget.isFlipped) {
+      _controller.toggleCard();
     }
-  }
-
-  void _handleTouchFlip() {
-    _isAnimatingFromTouch = true;
-    widget.onFlip();
   }
 
   @override
   Widget build(BuildContext context) {
-    return FlipCard(
-      key: ValueKey(widget.card.idCard),
-      controller: _controller,
-      flipOnTouch: true,
-      direction: FlipDirection.HORIZONTAL,
-      speed: 350,
-      front: _QuestionCardFace(card: widget.card),
-      back: _AnswerCardFace(card: widget.card),
-      onFlip: _handleTouchFlip,
+    return GestureDetector(
+      onTap: widget.onFlip,
+      child: FlipCard(
+        key: ValueKey(widget.card.idCard),
+        controller: _controller,
+        flipOnTouch: false,
+        direction: FlipDirection.HORIZONTAL,
+        speed: 350,
+        front: _QuestionCardFace(card: widget.card),
+        back: _AnswerCardFace(card: widget.card),
+      ),
     );
   }
 }

@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:bahasa/core/router/app_routes.dart';
 import 'package:bahasa/core/utils/widget_var.dart';
 import 'package:bahasa/core/widgets/circle_back_button.dart';
@@ -5,9 +7,13 @@ import 'package:bahasa/core/widgets/embossed_button/embossed_button.dart';
 import 'package:bahasa/core/widgets/step_page_switcher.dart';
 import 'package:bahasa/core/widgets/step_progress_header.dart';
 import 'package:bahasa/features/decks/decks_dependencies.dart';
+import 'package:bahasa/features/login/domain/entities/ai_model_preference.dart';
+import 'package:bahasa/features/settings/domain/repositories/settings_repository.dart';
+import 'package:bahasa/features/settings/settings_dependencies.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:material_symbols_icons/symbols.dart';
 
 import '../bloc/generate_deck_bloc.dart';
 import '../bloc/generate_deck_event.dart';
@@ -44,8 +50,70 @@ class GenerateDeckPage extends StatelessWidget {
   }
 }
 
-class _GenerateDeckView extends StatelessWidget {
+class _GenerateDeckView extends StatefulWidget {
   const _GenerateDeckView();
+
+  @override
+  State<_GenerateDeckView> createState() => _GenerateDeckViewState();
+}
+
+class _GenerateDeckViewState extends State<_GenerateDeckView> {
+  late final SettingsRepository _settingsRepository;
+  bool _canGenerateOnline = true;
+  bool _isOnlineModel = true;
+  Timer? _timer;
+  Duration _remainingTime = Duration.zero;
+
+  @override
+  void initState() {
+    super.initState();
+    _settingsRepository = SettingsDependencies.createSettingsRepository();
+    _checkLimitAndStartTimer();
+  }
+
+  Future<void> _checkLimitAndStartTimer() async {
+    final aiModel = await _settingsRepository.getAiModelPreference();
+    final canGenerate = await _settingsRepository.canGenerateOnlineDeckToday();
+
+    if (mounted) {
+      setState(() {
+        _isOnlineModel = aiModel == AiModelType.online;
+        _canGenerateOnline = canGenerate;
+      });
+    }
+
+    if (_isOnlineModel && !_canGenerateOnline) {
+      _updateRemainingTime();
+      _timer = Timer.periodic(const Duration(seconds: 1), (_) {
+        _updateRemainingTime();
+      });
+    }
+  }
+
+  void _updateRemainingTime() {
+    final now = DateTime.now();
+    final nextMidnight = DateTime(now.year, now.month, now.day + 1);
+    final remaining = nextMidnight.difference(now);
+
+    if (mounted) {
+      setState(() {
+        _remainingTime = remaining.isNegative ? Duration.zero : remaining;
+      });
+    }
+  }
+
+  @override
+  void dispose() {
+    _timer?.cancel();
+    super.dispose();
+  }
+
+  String _formatTime(Duration d) {
+    final hours = d.inHours;
+    final minutes = d.inMinutes.remainder(60);
+    final seconds = d.inSeconds.remainder(60);
+    return '${hours}j ${minutes}m ${seconds}d';
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -128,6 +196,8 @@ class _GenerateDeckView extends StatelessWidget {
   ) {
     final WidgetVars(:c, :t, :l) = WidgetVars.of(context);
     final isReviewStep = state.step == 4;
+    final isLimitBlocked = _isOnlineModel && !_canGenerateOnline;
+    final formattedTime = _formatTime(_remainingTime);
 
     return PopScope(
       canPop: state.step == 0,
@@ -178,6 +248,40 @@ class _GenerateDeckView extends StatelessWidget {
               ],
             ),
           const SizedBox(height: 16),
+
+          // Top Limit Banner if Online AI Limit Blocked
+          if (isLimitBlocked) ...[
+            Container(
+              padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 12),
+              decoration: BoxDecoration(
+                color: const Color(0xFFFDF2F2),
+                borderRadius: BorderRadius.circular(14),
+                border: Border.all(color: const Color(0xFFF87171), width: 1.2),
+              ),
+              child: Row(
+                children: [
+                  const Icon(
+                    Symbols.schedule,
+                    size: 20,
+                    color: Color(0xFFDC2626),
+                  ),
+                  const SizedBox(width: 10),
+                  Expanded(
+                    child: Text(
+                      l.deck_gen_limit_reached_title(formattedTime),
+                      style: t.bodySmall?.copyWith(
+                        color: const Color(0xFF991B1B),
+                        fontWeight: FontWeight.w700,
+                        fontSize: 12,
+                        height: 1.35,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            const SizedBox(height: 16),
+          ],
 
           // Main Step Content
           Expanded(
@@ -232,8 +336,10 @@ class _GenerateDeckView extends StatelessWidget {
                       ),
                       const SizedBox(height: 16),
                       EmbossedButton(
-                        l.deck_continue,
-                        onPressed: state.canProceedToNext
+                        isLimitBlocked
+                            ? l.deck_gen_limit_countdown_button(formattedTime)
+                            : l.deck_continue,
+                        onPressed: (!isLimitBlocked && state.canProceedToNext)
                             ? () => bloc.add(const NextStepRequested())
                             : null,
                       ),
