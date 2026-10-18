@@ -1,12 +1,33 @@
-# Bahasa
+<div align="center">
 
-An offline-first, AI-enhanced language learning and flashcard application built with Flutter, Clean Architecture, and peer-to-peer collaboration.
+# Basa
+
+**An offline-first, AI-enhanced language learning and flashcard application built with Flutter, Clean Architecture, and peer-to-peer collaboration.**
+
+<p align="center">
+  <a href="https://bahasa-web.vercel.app" target="_blank">
+    <img src="https://img.shields.io/badge/🌐_Visit_Website-bahasa--web.vercel.app-5889A2?style=for-the-badge&logoColor=white" alt="Visit Website" height="42" />
+  </a>
+  &nbsp;&nbsp;
+  <a href="https://github.com/notnancldr/bahasa-flutter/releases/download/v0.1.0/BASA.apk">
+    <img src="https://img.shields.io/badge/Download_on_GitHub-BASA.apk_(v0.1.0)-181717?style=for-the-badge&logo=github&logoColor=white" alt="Download on GitHub" height="42" />
+  </a>
+</p>
+
+### 🌐 Live Web Preview
+<a href="https://bahasa-web.vercel.app" target="_blank">
+  <img src="https://api.microlink.io/?url=https%3A%2F%2Fbahasa-web.vercel.app&screenshot=true&meta=false&embed=screenshot.url" alt="Basa Website Preview" width="100%" style="border-radius: 12px;" />
+</a>
+
+<sub>👆 Click the preview above to explore <b><a href="https://bahasa-web.vercel.app">bahasa-web.vercel.app</a></b> & the <code>.euy</code> Deck Inspector</sub>
+
+</div>
 
 ---
 
 ## Overview
 
-**Bahasa** is designed to provide an interactive, flexible, and privacy-respecting language learning experience. Whether studying solo with animated flashcards and timed quizzes, collaborating in real-time with a peer over local Wi-Fi, or generating tailored vocabulary decks using Cloud or On-Device AI, Bahasa delivers a fluid and modern mobile experience.
+**Basa** is designed to provide an interactive, flexible, and privacy-respecting language learning experience. Whether studying solo with animated flashcards and timed quizzes, collaborating in real-time with a peer over local Wi-Fi, or generating tailored vocabulary decks using Cloud or On-Device AI, Basa delivers a fluid and modern mobile experience.
 
 ---
 
@@ -75,7 +96,7 @@ lib/
 
 ### Layer Separation
 1. **Domain Layer:** Pure Dart containing Entities, Use Cases, and Repository Interfaces (strictly no UI or framework dependencies).
-2. **Data Layer:** Repository Implementations, Local Data Sources (SQLite via `sqlite3`, `shared_preferences`), Models, and Network/Server sources.
+2. **Data Layer:** Repository Implementations, Local Data Sources (SQLite via `sqlite3`, `sqlite3_flutter_libs`, `shared_preferences`), Models, and Network/Server sources.
 3. **Presentation Layer:** State management via BLoC/Cubit (`flutter_bloc`), modular screens/pages, and reusable UI components.
 
 ---
@@ -109,8 +130,8 @@ lib/
 
 1. **Clone the repository:**
    ```bash
-   git clone https://github.com/your-username/bahasa.git
-   cd bahasa
+   git clone https://github.com/notnancldr/bahasa-flutter.git
+   cd bahasa-flutter
    ```
 
 2. **Install project dependencies:**
